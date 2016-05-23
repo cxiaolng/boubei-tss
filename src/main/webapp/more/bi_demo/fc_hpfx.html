@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>货品分仓分析</title>
+
+<link rel="stylesheet" href="../../tools/tssJS/css/boubei.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/icon.css">
+<link rel="stylesheet" href="../bi_template/common.css">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="../bi_template/common.js"></script>
+ 
+<script src="../../tools/easyui/jquery.min.js"></script>
+<script src="../../tools/easyui/jquery.easyui.min.js"></script>
+
+<style>
+
+body { background-color: #fff; }
+
+.container {
+    background-color: #fff;
+}
+
+.container h2 { 
+    height:25px; width: 100%; line-height:25px; 
+    font-size:14px; text-indent:13px; 
+    background-color:#D2E8F7; color: #003300; 
+}
+
+.bibt {
+    left: 300px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+    URL_DATA2 = '/tss/api/json/GetDistributeInv';
+    URL_DATA3 = '/tss/api/json/GetSOQty_WMS';
+    URL_DATA4 = '/tss/api/json/GetSOQty_OMS'; 
+    URL_DATA5 = '/tss/api/json/GetWHs';
+
+    var _params = {}, skus = {}, skuIDs, skuCodes, whs = {}, _data, data1, data2, data3, data, _data2, method = 'POST';
+
+    $(function() {
+        initResearhBt();
+
+        var globalValiable = window.parent.globalValiable;
+        if(globalValiable && globalValiable.data) {
+            _params = globalValiable.queryParams;
+            _data = globalValiable.data;
+
+            query();
+            return;
+        }
+
+        // just Test
+        method = 'GET';
+        URL_DATA1 = 'data/fc/hpfcfx_topSKU.json?';
+        URL_DATA2 = 'data/fc/hpfcfx_1.json?';
+        URL_DATA3 = 'data/fc/hpfcfx_2.json?';
+        URL_DATA4 = 'data/fc/hpfcfx_3.json?';
+        URL_DATA5 = 'data/fc/wh_list.json?';
+
+        tssJS.ajax({
+            url : URL_DATA1,
+            method : "GET",
+            type : "json",
+            waiting : true,
+            ondata : function() {
+                _data = this.getResponseJSON();
+
+                query();
+            }
+        });   
+    });
+ 
+    function query() {
+        if(_data == null || _data.length == 0) {
+            return tssJS.alert("您查询的客户在当前查询时间段内没有做过任何发货。");
+        }
+
+        skuIDs = [];
+        skuCodes = [];
+
+        var customerCode;
+        _data.each(function(i, item){
+            skuIDs.push(item.id);
+            skuCodes.push(item.skucode);
+
+            skus[item.id] = item;
+            customerCode = item.customercode;
+        });
+        
+        tssJS.ajax({
+            url : URL_DATA5,
+            method : "GET",
+            type : "json",
+            waiting : true,
+            ondata : function() {
+                var whList = this.getResponseJSON();
+                whList.each(function(i, wh) {
+                    whs[wh.code] = wh.name;
+                });
+            }
+        });
+
+        // 分仓库存
+        tssJS.ajax({
+            url : URL_DATA2,
+            type: 'json',
+            method : method,
+            params: { "param1": _params.param1, "param3": _params.param2, "param4": _params.param3, "param2": skuIDs.join(",") },
+            waiting : true,
+            ondata : function() {
+                data1 = this.getResponseJSON();
+                showDetails();
+            }
+        }); 
+
+        // 分仓发货量
+        tssJS.ajax({
+            url : URL_DATA3,
+            type: 'json',
+            method : method,
+            params: { "param1": customerCode, "param3": _params.param2, "param4": _params.param3, "param2": skuCodes.join(",") },
+            waiting : true,
+            ondata : function() {
+                data2 = this.getResponseJSON();
+                showDetails();
+            }
+        }); 
+
+        // 区域销量
+        tssJS.ajax({
+            url : URL_DATA4,
+            type: 'json',
+            method : method,
+            params: { "param1": customerCode, "param3": _params.param2, "param4": _params.param3, "param2": skuCodes.join(",") },
+            waiting : true,
+            ondata : function() {
+                data3 = this.getResponseJSON();
+                showDetails();
+            }
+        }); 
+    }
+
+    function showDetails(result) {
+        if( !(data1 && data2 && data3) ) {
+            return;
+        }
+
+        data = []; // 先清空
+        _data2 = [];
+
+        var map1 = {}, map2 = {};
+
+        $.each(skus, function(skuID, sku){
+            map2[sku.skucode] = [0, 0, 0];
+        });
+
+        data1.each(function(i, row){
+            var item = {};
+            item.sku = skus[row.sku].skucode;
+            item.warehouse = row.whname;
+            item.value1 = row.invqty;
+
+            map1[item.sku + "," + row.whcode] = item;
+            map2[item.sku][0] += row.invqty;
+        });
+
+        data2.each(function(i, row){
+            var skucode = row.sku;
+            var item = map1[skucode + "," + row.whcode];
+
+            item.value3 = row.qty;
+            map2[item.sku][1] += row.qty;
+        });
+
+		data3.each(function(i, row){
+            var item = map1[row.sku + "," + row.whcode];
+            if( !item ) {
+				item = {};
+	            item.sku = row.sku;
+	            item.warehouse = whs[row.whcode];
+	            item.value1 = item.value3 = 0;
+	
+	            map1[row.sku + "," + row.whcode] = item;
+			}
+
+            item.value5 = row.qty;
+            map2[item.sku][2] += row.qty;
+        });
+
+        $.each(map1, function(key, item){
+            var skucode = key.split(",")[0];
+            item.value2 = calculatePercent(item.value1, map2[skucode][0]);
+            item.value4 = calculatePercent(item.value3, map2[skucode][1]);
+            item.value6 = calculatePercent(item.value5, map2[skucode][2]);
+            data.push(item);
+        });
+        
+        // 会改变TOP sku的顺序
+        // data.sort(function(row1, row2) {
+        //     return (row1.sku).localeCompare(row2.sku) * -1;
+        // });
+
+        var map3 = {};
+        skuCodes.each(function(n, sku){
+            map3[sku] = [];
+        });
+
+        $.each(map3, function(sku, v){
+            data.each(function(i, row){
+                if(row.sku === sku) {
+                    v.push(row);
+                }
+            });
+        });
+
+        $.each(map3, function(sku, v){
+            v.sort(function(row1, row2) {
+                return (row1.value3 || 0) > (row2.value3 || 0) ? -1 : 1;
+            });
+        });
+
+        skuCodes.each(function(n, sku){
+            map3[sku].each(function(i, row) {
+                _data2.push(row);
+            });
+        });
+
+        $('#details').datagrid({
+            rownumbers : true,
+            columns:[FIELD_DEFINE],
+            data: _data2
+        });
+    }  
+
+    var FIELD_DEFINE =  [
+                            {title:'SKU', field:'sku', width:150},
+                            {title:'实际分仓', field:'warehouse', width:150},
+                            {title:'当前分仓库存', field:'value1', width:100, align:'right'},
+                            {title:'分仓库存占比', field:'value2', width:90, align:'right'},
+                            {title:'分仓发货量', field:'value3', width:100, align:'right'},
+                            {title:'分仓发货量占比', field:'value4', width:90, align:'right'},
+                            {title:'区域销量', field:'value5', width:100, align:'right'},
+                            {title:'区域销量占比', field:'value6', width:90, align:'right'}
+                        ];
+
+    function exportCSV() {
+        data2CSV("hpfx", FIELD_DEFINE, _data2);
+    }
+     
+</script>
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <div id="detailsDiv">
+            <h2>货品分仓分析表</h2>
+            <table id="details"></table>
+        </div>
+
+        <input type="button" value="导出结果" class="tssbutton blue bibt" style="left:400px" onclick="exportCSV()">
+
+    </div>
+
+</body>
+</html>

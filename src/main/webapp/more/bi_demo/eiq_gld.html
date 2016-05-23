@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>SKU关联度分析</title>
+
+<link rel="stylesheet" href="../../tools/tssJS/css/boubei.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/icon.css">
+<link rel="stylesheet" href="../bi_template/common.css">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="../bi_template/common.js"></script>
+<script src="../../tools/easyui/jquery.min.js"></script>
+<script src="../../tools/easyui/jquery.easyui.min.js"></script>
+
+<style>
+
+html, body { height: 100%; }
+.bibt { left: -200px; }
+
+.searchDiv { font-size: 13px; }
+.searchDiv div { padding: 8px 0px 0px 3px; }
+.searchDiv div label { line-height:20px; margin:0 6px; }
+
+fieldset { width:95%; border:1px dashed #ccc; margin:10px auto; border-radius: 10px; }
+legend { background-color:#F9EE70; height:20px; line-height: 20px; font-weight:bolder; }
+
+#searchDiv input { color: #535458; height: 18px; }
+#searchDiv select { font-size: 12px; height: 18px; border: 1px solid #ABAAAF; background-color: #ECEFF8; }
+#searchDiv td { font-size: 12px; color: white; }
+
+.tssbutton {  margin: 10px; }
+
+
+#displayDiv table { margin:8px;  border-collapse:collapse;  border: 1px solid #96969E;  border-spacing:0; }
+#displayDiv td {
+	color: #000000;
+	font-size:13px; 
+	padding:5px;
+	table-layout: fixed;
+	word-break: break-all; 
+	word-wrap: break-word;
+}
+
+.h td { font-size: 15px; font-weight: bolder; }
+.m td { text-align: center; }
+
+</style>
+
+<script type="text/javascript">
+
+	URL_WAREHOUSE_LIST  = 'data/eiq/warehouse.json?';
+	URL_CUSTOMER_LIST   = 'data/eiq/customer.json?';
+	URL_PREVIEW_DATA    = 'data/eiq/eiq-gld-data.json?';
+	URL_ANALYSE_DATA    = 'data/eiq/eiq-gld.json?';
+	URL_ANALYSE_EXPORT  = 'data/eiq/xxx.json?';
+	URL_DS_LIST         = 'data/eiq/dataSource.json?';
+	URL_DT_LIST         = 'data/eiq/dataTable.json?';
+	URL_SF_LIST         = 'data/eiq/eiq_gld_algorithm.json?';
+	
+	function getComboboxValues(selector) {
+		if($(selector) && $(selector)[0]) {
+			 return $(selector).combobox("getValues").join(",");
+		}
+		return null;
+	}
+
+	$(function() {
+		$('#datatable').combobox('disable');
+
+		// 默认取近一个月的数据
+		var today = new Date();
+		today.setDate(today.getDate() - 1);
+		$1("searchTimeTo").value = today.format('yyyy-MM-dd');  
+
+		today.setDate(today.getDate() - 30);
+		$1("searchTimeFrom").value = today.format('yyyy-MM-dd');  
+
+		tssJS.createCalendar($1("searchTimeFrom"));
+		tssJS.createCalendar($1("searchTimeTo"));
+
+		$('#datasource').combobox( {
+			url : URL_DS_LIST,
+			method : 'get',
+			valueField : 'id',
+			textField : 'text',
+			multiple : false,
+			onChange : function(newValue, oldValue) {
+				if (newValue == 'connectionpool-1') {
+					$('#datatable').combobox('clear');
+					$('#datatable').combobox('disable');
+					$('#mode').combobox('disable');
+
+					$('#warehouse').combotree('enable');
+					$('#customer').combobox('enable');
+					$('#mode').combobox('enable');
+				} 
+				else {
+					$('#datatable').combobox('enable');
+					$('#datatable').combobox( {
+						url : URL_DT_LIST,
+						method : 'get',
+						valueField : 'id',
+						textField : 'text',
+						required : true,
+						multiple : false
+					});
+
+					$1("searchTimeTo").value = $1("searchTimeFrom").value = "";
+					$('#warehouse').combobox('clear');
+					$('#customer').combobox('clear');
+					$('#mode').combobox('clear');
+					$('#warehouse').combotree('disable');
+					$('#customer').combobox('disable');
+					$('#mode').combobox('disable');
+				}
+			}
+		});
+
+		$('#sf').combobox( {
+			url : URL_SF_LIST,
+			method : 'get',
+			valueField : 'id',
+			textField : 'text',
+			value : 'com.best.oasis.wms.eiq.JonGLDAnalyserII',
+			multiple : false,
+			panelHeight: '80'
+		});
+ 
+		$('#warehouse').combotree( {
+			url : URL_WAREHOUSE_LIST,
+			method : 'get',
+			onlyLeafCheck : true,
+			panelHeight: '300',
+			onChange : function(newValue, oldValue) {
+				if (newValue) {
+					var queryString = "whCodes=" + newValue.join(",");
+
+					// 加载客户信息
+					$('#customer').combobox( {
+						url : URL_CUSTOMER_LIST + queryString,
+						method : 'get',
+						valueField : 'pk',
+						textField : 'text',
+						multiple : true
+					});
+				}
+			}
+		});
+
+		$('#mode').combobox( {
+			panelHeight: 100,
+			valueField : 'pk',
+			textField : 'text',
+			data: [{
+				pk: 'B2C',
+				text: 'B2C'
+			},{
+				pk: 'B2B',
+				text: 'B2B'
+			}] 
+		});
+	});
+
+	var queryParams;
+
+	function checkQueryParams() {
+		queryParams = {}; // 清空上一次查询条件
+
+		queryParams.dataSource = $("#datasource").combobox("getValues").join(",");
+		queryParams.tableName = $("#datatable").combobox("getValues").join(",");
+		queryParams.gldAlgorithm = $("#sf").combobox("getValues").join(",");
+ 
+		queryParams.params = $1("sopercent").value + "," + $1("heapSize").value;
+
+		queryParams.whCodes = $('#warehouse').combotree("getValues").join(",");
+		queryParams.customerIds = $("#customer").combobox("getValues").join(",");
+		queryParams.mode = getComboboxValues("#mode");
+
+		queryParams.searchDateFrom = $1("searchTimeFrom").value || "";
+		queryParams.searchDateTo   = $1("searchTimeTo").value || "";
+
+		if(queryParams.dataSource == "") {
+			tssJS.alert("请选择数据源");
+			return false;
+		} else if (queryParams.dataSource != 'connectionpool-1') {
+			if(queryParams.tableName == "") {
+				tssJS.alert("请选择数据样本");
+				return false;
+			} 
+		} else {
+			if(queryParams.whCodes == "") {
+				tssJS.alert("请选择仓库");
+				return false;
+			}
+			if(queryParams.searchDateFrom == "") {
+				tssJS.alert("请输入起始时间");
+				return false;
+			}
+			if(queryParams.searchDateTo == "") {
+				tssJS.alert("请输入结束时间");
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+
+	function preview() {
+		if(!checkQueryParams()) {
+			 return;
+		}
+
+		$1("preview").innerHTML = "";
+		$1("result").innerHTML = "";
+ 
+		tssJS.ajax({
+			url : URL_PREVIEW_DATA,
+			params : queryParams,
+			method : "GET",
+			type : "json",
+			waiting : true,
+			ondata : function() {
+				var result = eval(this.getResponseText());
+				if (result) {
+					var resultTable = "<table id='previewTable'>";
+					resultTable += "<tr class='h m'><td width='200px'>总订单数</td><td width='200px'>总SKU数</td></tr>";
+					resultTable += "<tr class='h m'>";
+					resultTable += "<td>" +  result[0] + "</td>";
+					resultTable += "<td>" +  result[1] + "</td>";
+					resultTable += "</tr>";
+					resultTable += "</table>";
+
+					$1("preview").innerHTML = resultTable;
+				}
+			}
+		});
+	}
+
+	function analyse() {
+		if(!checkQueryParams()) {
+			 return;
+		}
+
+		if(queryParams.gldAlgorithm == "") {
+			tssJS.alert("请选择算法");
+			return false;
+		}
+
+		$1("result").innerHTML = "";
+
+		tssJS.ajax({
+			url : URL_ANALYSE_DATA,
+			params : queryParams,
+			method : "GET",
+			type : "json",
+			waiting : true,
+			ondata : function() {
+				var result = this.getResponseJSON();
+				if (result) {
+					var skuHeaps = result[0];
+					var sopercents1 = result[1];
+					var sopercents2 = result[2];
+					var skuSizes = result[3];
+					var skuIKs = result[5];
+					var realPercent = result[6];
+
+					var totalSKUs = {};
+
+					var resultTable = "<table id='resultTable'>";
+					resultTable += "<tr class='h'><td width='80px'>分组</td><td width='80px'>SKU数</td><td width='80px'>订单满足率</td><td>组合明细</td></tr>";
+					for(var i = 0; i < skuHeaps.length; i++) {
+						resultTable += "<tr>";
+						resultTable += "<td><h2>第" + (i+1) + "组</h2></td>";
+						resultTable += "<td>" + skuSizes[i] + "</td>";
+						resultTable += "<td>" + sopercents2[i] + "</td>";
+						resultTable += "<td>" + skuHeaps[i].join(", ") +"</td>";
+						resultTable += "</tr>";
+
+						for(var j = 0; j < skuHeaps[i].length; j++) {
+							var sku = skuHeaps[i][j];
+							totalSKUs[sku] = (totalSKUs[sku] || 0) + 1;
+						}
+					}	
+
+					var totalInfo = [];
+					skuIKs.each(function(i, item){
+						var sku = item[0];
+						totalInfo.push(sku + "|ik=" + item[1] + "|repeat=" + totalSKUs[sku]);
+					});
+
+					resultTable += "<tr>";
+					resultTable += "<td><h2>概览</h2></td>";
+					resultTable += "<td>" + totalInfo.length + "</td>";
+					resultTable += "<td>" + realPercent + "</td>";
+					resultTable += "<td>" + totalInfo.join(", ") +"</td>";
+					resultTable += "</tr>";
+
+					resultTable += "</table>";
+
+					$1("result").innerHTML = resultTable;
+				}
+			}
+		});
+	}
+
+	function exportCSV() {
+		if(checkQueryParams()) {
+			$exportCSV(URL_ANALYSE_EXPORT, queryParams);
+		}
+	}
+ 
+ 
+</script>
+</head>
+
+<body>
+
+	<div class="easyui-layout" data-options="fit:true" >
+        <div data-options="region:'west',split:true" title="分析参数设置" style="width:325px;">
+        	<div class="searchDiv">
+				<form>
+					<fieldset>
+           				<legend>样本读取</legend>
+						<div> <label>数据源:  </label> <input id="datasource" class="easyui-combobox" style="width: 205px;" /></div>
+						<div> <label>数据样本:</label> <input id="datatable" class="easyui-combobox" style="width: 193px;" /></div>
+						<div> <label>仓库:    </label> <select id="warehouse" class="easyui-combotree" multiple style="width: 220px;"> </select></div>
+						<div> <label>客户:    </label> <input id="customer" class="easyui-combobox" style="width: 220px;" /></div>
+						<div> <label>作业模式:</label> <input id="mode" class="easyui-combobox" style="width: 193px;" /></div>
+						<div> <label>起始时间:</label> <input id="searchTimeFrom" style="height:18px; width: 187px;"/></div>
+						<div> <label>结束时间:</label> <input id="searchTimeTo" style="height:18px; width: 187px;"/></div>
+						<div style="padding:12px 0 5px 80px;"> 
+							<input type="button" onclick="preview()" value="预览数据" class="tssbutton blue"/>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>算法设置</legend>
+						<div> <label>算法:    </label> <input id="sf" class="easyui-combobox" style="width: 218px;" /></div>
+						<div> <label>订单比例:</label> <br/><input id="sopercent" value="60" class="easyui-slider" style="width:270px" data-options="showTip:true"/></div>
+						<br/>
+						<div> <label>每组个数上限:</label> <br/><br/><input id="heapSize" value="50" class="easyui-slider" style="width:270px" data-options="showTip:true, max:200"/></div>
+						<br/>
+						<div style="padding-left:40px;"> 
+							<input type="button" onclick="analyse()" value="开始分析" class="tssbutton blue"/>
+							<input type="button" onclick="exportCSV()" value="导出结果" class="tssbutton blue"/>
+						</div>
+					</fieldset>
+
+				</form>
+			</div>
+        </div>
+ 
+        <div data-options="region:'center',title:'分析结果展示'" id="displayDiv">
+        	<div id="preview"></div>
+ 			<div id="result"></div>
+        </div>
+    </div>
+ 
+</body>
+</html>

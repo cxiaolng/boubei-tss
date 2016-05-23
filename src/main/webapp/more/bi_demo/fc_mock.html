@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>分仓模拟效果</title>
+
+<link rel="stylesheet" href="../../tools/tssJS/css/boubei.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/icon.css">
+<link rel="stylesheet" href="../bi_template/common.css">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="../bi_template/common.js"></script>
+ 
+<script src="../../tools/easyui/jquery.min.js"></script>
+<script src="../../tools/easyui/jquery.easyui.min.js"></script>
+
+<style>
+
+body { background-color: #fff; }
+.bibt { top: 4px; }
+
+.container {
+    background-color: #fff;
+    padding: 5px;
+    margin-top: 30px;
+}
+
+.container #detailsDiv {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.container #detailsDiv2 {
+    display: inline-block;
+}
+
+.container h2 { height:25px; width: 65%; max-width: 320px; 
+    line-height:25px; font-size:14px; text-indent:8px; background-color:#D2E8F7; color: #003300; }
+
+</style>
+
+<script type="text/javascript">
+
+    URL_DATA2 = '/tss/api/json/GetRegionSoNums';
+    URL_DATA3 = '/tss/api/json/GetRegionSoNums';
+    URL_DATA4 = '/tss/api/json/658?noCache=true';   //  请求《模拟分仓设置》的取分仓方案列表服务。 TODO 消除魔术数
+    URL_DATA5 = '/tss/api/json/GetRegions';
+    
+    // 如果分析的是第三方数据，则加参数fcmock.html?thirdData=true
+    var thirdData = tssJS.Query.get("thirdData") ;
+    if(thirdData) {
+    	URL_DATA2 = '/tss/api/json/GetRegionSoNums2';
+    	URL_DATA3 = '/tss/api/json/GetRegionSoNums2';
+    }
+
+    var _params = {};
+    var _data;
+    var regions = {}, planData, whList, whData = {}, skus = {}, skuIDs, 
+        data1, data2, data3, method = 'POST';
+
+    $(function() {
+        initResearhBt();
+
+        var globalValiable = window.parent.globalValiable;
+        if(globalValiable && globalValiable.data) {
+            _params = globalValiable.queryParams;
+            _data = globalValiable.data;
+
+            query();
+            return;
+        }
+
+        // just Test
+        method = 'GET';
+        URL_DATA1 = 'data/fc/fcmock_topSKU.json?';
+        URL_DATA2 = 'data/fc/fcmock_distribute.json?';
+        URL_DATA3 = 'data/fc/fcmock_distribute_sku.json?';
+        URL_DATA4 = 'data/fc/plans.json?';
+        URL_DATA5 = 'data/fc/regionTree.json?';
+
+        tssJS.ajax({
+            url : URL_DATA1,
+            method : "GET",
+            type : "json",
+            waiting : true,
+            ondata : function() {
+                _data = this.getResponseJSON();
+                query();
+            }
+        });   
+    });
+ 
+    function query() {
+        tssJS.ajax({
+            url : URL_DATA4,
+            method : "GET",
+            waiting : true,
+            type: 'json',
+            ondata : function() {
+                data1 = this.getResponseJSON();
+                if(data1 == null || data1.length == 0) {
+                    return tssJS.alert("目前没有分仓方案，请先到《模拟分仓设置》页面创建分仓方案。");
+                }
+               
+                precheatPlanData(data1[0]);
+                doQuery();
+
+                // 生成下拉菜单
+                data1.each(function(i, plan){
+                    var option = new Option(plan.name, i);
+                    $1("planSelect").options.add(option); 
+                });
+
+                $1("planSelect").onchange = function() { 
+                    var selectedValue = this.value;
+                    setTimeout(function() {
+                        precheatPlanData( data1[selectedValue] );
+                        if(data2) {
+                            showDetails(data2);
+                        }
+                        if(data3) {
+                            showDetails2(data3);
+                        }
+                    }, 300);
+                }
+
+                function precheatPlanData(item) {
+                    planData = tssJS.parseJSON(item.value);
+
+                    whList = item.whnames.split(",")
+                    item.whcodes.split(",").each(function(i, whcode){
+                        whData[whcode] = whList[i];
+                    });
+                }
+            }
+        }); 
+    }
+
+    function doQuery() {
+        // region Tree
+        tssJS.ajax({
+            url : URL_DATA5,
+            method : "GET",
+            type: 'json',
+            waiting : true,
+            ondata : function() {
+                var data = this.getResponseJSON();
+                data.each(function(i, item){
+                    regions[item.id] = item.name;
+                });
+            }
+        }); 
+
+        // group by region
+        tssJS.ajax({
+            url : URL_DATA2,
+            type: 'json',
+            method: method,
+            params: { "param1": _params.param1, "param3": _params.param2, "param4": _params.param3 },
+            waiting : true,
+            ondata : function() {
+                data2 = this.getResponseJSON();
+                showDetails(data2);
+            }
+        }); 
+
+        skuIDs = [];
+        _data.each(function(i, item){
+            skuIDs.push(item.id);
+            skus[item.id] = item;
+        });
+
+        // group by region and sku
+        tssJS.ajax({
+            url : URL_DATA3,
+            type: 'json',
+            method: method,
+            params: { "param1": _params.param1, "param3": _params.param2, "param4": _params.param3, "param2": skuIDs.join(",") },
+            waiting : true,
+            ondata : function() {
+                data3 = this.getResponseJSON();
+                showDetails2(data3);
+            }
+        }); 
+    }
+
+    function showDetails(result) {
+        var _data = calculate(result);
+
+        $('#details').datagrid({
+            rownumbers : true,
+            columns:[[
+                {title:'仓库', field:'name', width:120},
+                {title:'订单数', field:'value', width:100, align:'right'},
+                {title:'占比', field:'value2', width:90, align:'right'}
+            ]],
+            data: _data
+        });
+    }
+
+    function calculate(result) {
+        var _data = [], total = 0, hitTotal = 0, whValues = {};
+        whList.each(function(i, wh){
+            whValues[wh] = 0;
+        });
+
+        result.each(function(i, item) {
+            if(tssJS.isNullOrEmpty(item.parent)) {
+                return;
+            }
+
+            planData.each(function(i, point){
+                // 先比较地市名，再比较省份
+                if(regions[point[0]] === item.name || regions[point[0]] === item.parent) {
+                    var wh = whData[point[1]];
+                    whValues[wh] += item.value;
+                    hitTotal += item.value;
+                }
+            });
+    
+            total += item.value;
+        });
+
+        if (total > hitTotal) {
+            whValues["*未分到仓*"] = total - hitTotal;
+        }
+
+        tssJS.each(whValues, function(name, whValue){
+            var item = {"name": name, "value": whValue, "value2": 0};
+            item.value2 = calculatePercent(item.value, total);
+            _data.push(item);
+        });
+
+        return _data;
+    }
+
+    function showDetails2(result) {
+        var _data = [];
+        skuIDs.each(function(i, skuId){
+            var sku = skus[skuId];
+            var skuData = [];
+            result.each(function(i, item) {
+                if( item.sku === sku.id ) {
+                    skuData.push(item);
+                }
+            });
+
+            var tempData = calculate(skuData);
+            tempData.each(function(j, temp){
+                if(j == 0) {
+                    temp.skuCode = sku.skucode;
+                    temp.skuName = sku.skuname;
+                }
+
+                _data.push(temp);
+            });
+        });
+
+        $('#details2').datagrid({
+            rownumbers : true,
+            columns:[[
+                {title:'货品编号', field:'skuCode', width:120},
+                {title:'货品名称', field:'skuName', width:150},
+                {title:'仓库', field:'name', width:120},
+                {title:'订单数', field:'value', width:100, align:'right'},
+                {title:'占比', field:'value2', width:108, align:'right'}
+            ]],
+            data: _data,
+            rowStyler: rowStyler
+        });
+    }
+
+    function filterGrid(value) {
+        WARN_PERCENT = value;
+        $1("planSelect").onchange();
+    }
+
+    var WARN_PERCENT = 15;
+    function rowStyler(index, row) {
+        if(tssJS.isNullOrEmpty(row.value2)) return;
+
+        var percent = parseFloat(row.value2.replace('%', ''));
+        if (percent <= WARN_PERCENT){
+            return 'background-color:yellow;';
+        }
+    }
+     
+</script>
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <div id="detailsDiv">
+            <h2>模拟分仓订单分布表</h2>
+            <table id="details" style="width:350px;height:400px"></table>
+        </div>
+
+        <div id="detailsDiv2">
+            <h2 style="display:inline-block">模拟分仓货品分析【拖动右边控件进行过滤】</h2>
+            <span style="display:inline-block">
+                <input class="easyui-slider" value="15" style="width:300px;" 
+                    data-options="
+                        showTip: true,
+                        max:50,
+                        onChange: function(value) {
+                            setTimeout(function() { filterGrid(value); }, 100);
+                        }">
+            </span>  
+            <table id="details2" style="width:650px;height:600px"></table>
+        </div>
+
+    </div>
+
+    <select id="planSelect" class="bibt" style="left:100px; width:200px;" ></select>
+
+</body>
+</html>

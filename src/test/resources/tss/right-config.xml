@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rightConfig url_404="/404.html">
+
+	<servlet name="/framework/module/param/param.htm" right="-1,Admin,JonKing"/>
+	<servlet name="/framework/module/log/log.htm" right="-1,Admin,JonKing"/>
+	<servlet name="/framework/module/cache/cache.htm" right="-1,Admin,JonKing"/>
+	
+	<servlet name="/login.do" right="-1,Admin,J.K"/>
+	
+</rightConfig>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>进出存汇总</title>
+
+<link rel="stylesheet" href="../../tools/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/icon.css">
+<link rel="stylesheet" href="../bi_template/common.css">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="../bi_template/common.js"></script>
+
+<script src="../../tools/easyui/jquery.min.js"></script>
+<script src="../../tools/easyui/jquery.easyui.min.js"></script>
+<script src="../../tools/echarts/echarts-all-2.1.10.js"></script>
+
+<style type="text/css">
+	.bibt {
+	    left: inherit; right: 50px; top: 2px;
+	}
+</style>
+
+<script type="text/javascript">
+ 
+	var autoSize, title, data;
+
+	window.onresize = show;
+	
+	window.onload = function() {
+		var globalValiable = window.parent.globalValiable;
+		if(globalValiable && globalValiable.data) {
+			title = globalValiable.title;
+			data = globalValiable.data
+			show();
+			return true;
+		}		
+	
+		tssJS.ajax({
+			url : 'data/ios_trend.json?',
+			method : "GET",
+			type : "json",
+			waiting : true,
+			ondata : function() {
+				data = this.getResponseJSON();
+				show();
+			}
+		});	  
+	}
+ 
+	function show() {
+		showDataGrid(data);
+		$('#topDiv').accordion('select', 'IOS汇总图表');
+		
+		drawChart(data);
+	}
+
+	function drawChart(result) {
+		var data1 = [], data2 = [], data3 = [], labels = [];
+		result = result.slice().reverse();
+
+		for(var i = 0; i < result.length - 1; i++) {
+			var item = result[i];
+			labels.push(item.idate);
+			data1.push(item.inQty);
+			data2.push(item.outQty);
+			data3.push(item.afterQty);
+		}
+ 
+		var chartObj = echarts.init($1("canvasDiv"));
+		option = {
+		    tooltip : {
+		        trigger: 'axis'
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    legend: {
+		        data:['进','销','存']
+		    },
+		    xAxis : [
+		        {
+		            type : 'category',
+		            data : labels
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'value',
+		            name : '进销(单位:EA)',
+		            axisLabel : {
+		                formatter: '{value} '
+		            }
+		        },
+		        {
+		            type : 'value',
+		            name : '库存(单位:EA)',
+		            axisLabel : {
+		                formatter: '{value} '
+		            }
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'进',
+		            type:'bar',
+		            data: data1
+		        },
+		        {
+		            name:'销',
+		            type:'bar',
+		            data: data2
+		        },
+		        {
+		            name:'存',
+		            type:'line',
+		            yAxisIndex: 1,
+		            data: data3
+		        }
+		    ]
+		};
+                   
+        chartObj.setOption(option);  
+	}
+
+	function showDataGrid(result) {
+		$('#detailTable').datagrid( {
+			fit : true,
+			pagination : false,
+			columns : [ [ 
+				{ field : 'idate', title : '日期', width : 120 }, 							
+				{ field : 'beforeQty', title : '期初库存', width : 100 }, 
+				{ field : 'inQty', title : '当天入库' }, 
+				{ field : 'outQty', title : '当天出库' }, 
+				{ field : 'adjustQty', title : '当天调整' }, 
+				{ field : 'transferQty', title : '当天转移' }, 
+				{ field : 'afterQty', title : '期末库存', width : 100 }
+			] ],
+			data: result
+		});
+	}
+ 
+</script>
+</head>
+
+<body>
+
+	<div class="easyui-accordion" data-options="fit:true" id="topDiv">
+		<div title="IOS汇总明细">
+			<table id="detailTable" border="false"></table>
+		</div>
+
+		<div title="IOS汇总图表">
+			<div id="canvasDiv" style=" padding:10px;height:600px;"></div>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>时空互钻, 一级空间</title>
+
+<link href="common.css" rel="stylesheet">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="common.js"></script>
+
+<script src="../../tools/echarts/echarts-all-2.1.10.js"></script>
+<script src="echart.js"></script>
+
+<style type="text/css">
+	#research { right: 5px; left: inherit; }
+</style>
+
+<script type="text/javascript">
+
+var autoSize, title, data;
+
+window.onresize = show;
+
+window.onload = function() {
+	var globalValiable = window.parent.globalValiable;
+	if(globalValiable && globalValiable.data) {
+		title = globalValiable.title;
+		data = globalValiable.data
+		show();
+		return true;
+	}
+
+	title = "货量";
+	$.ajax({
+		url : "data/2.json",
+		method : "GET",
+		type : "json",
+		waiting : true,
+		ondata : function() {
+			data = this.getResponseJSON();
+			show();
+		}
+	});	  
+}
+
+function show() {	
+ 	autoAdjustSize("canvasDiv1");
+ 	autoAdjustSize("canvasDiv2");
+
+	showSpace();
+	showDay();
+}
+
+function showSpace(day) {
+	var temp = [];
+	data.each(function(i, item){
+		if(!day || item.day === day) {
+			temp.push(item);
+		}
+	});
+
+	var result = groupby(temp, "space1");
+	result.each(function(i, item){
+		item.name = item.space1;
+	});
+	echartColumn2D("canvasDiv2", (day||"") + title + "分布", result, showDay);
+}
+
+function showDay(space1) {
+	var temp = [];
+	data.each(function(i, item){
+		if(!space1 || item.space1 === space1) {
+			temp.push(item);
+		}
+	});
+
+	var result = groupby(temp, "day");
+	result.each(function(i, item){
+		item.name = item.day;
+	});
+	echartLine2D("canvasDiv1", (space1||"") + title + "走势", result, "", showSpace);
+}
+
+</script>
+</head>
+
+<body>
+
+	<div style="height:50%">
+		<div id='canvasDiv1'></div>
+	</div>
+
+	<div style="height:50%">
+		<div id='canvasDiv2'></div>
+	</div>
+
+</body>
+</html>

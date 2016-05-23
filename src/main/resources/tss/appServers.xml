@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<servers>
+	<server code="TSS" framework="tss" name="TSS" sessionIdName="JSESSIONID" baseURL="http://localhost:8088/tss"/>
+	<server code="WMS" framework="tss" name="WMS" sessionIdName="JSESSIONID" baseURL="http://localhost:8088/wms"/>
+</servers>

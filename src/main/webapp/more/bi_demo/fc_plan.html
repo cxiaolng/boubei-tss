@@ -1,0 +1,605 @@
+<!DOCTYPE HTML>
+<HTML xmlns:Tree xmlns:Grid xmlns:Form>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>分仓模拟设置</title>
+
+<link href="../../tools/tssJS/css/boubei.css" rel="stylesheet">
+<link href="../../css/css.css" rel="stylesheet">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="../../tools/tssJS/tssJS.matrix.js"></script>
+<script src="../../tools/tssUtils.js"></script>
+
+<script src="../../tools/echarts/echarts-all-2.1.10.js"></script>
+
+<style>
+
+  body { overflow:auto; min-width:1080px; }
+  hr { height:4px; border:none; border-top:1px dashed #555555; }
+
+  .left { position: absolute; top: 0; left: 0; width: 25%; height: 695px; background-color:#fff; }
+  .left #tree2Sub { text-align: center; height:26px; padding-top: 5px;}
+
+  .box { position: absolute; top: 0; left: 25%; width: 75%; min-width: 910px; background-color:#fff; padding: 0px; }
+  .box .bts { padding: 2px 0 5px 10px; text-align: center;}
+  .box .bts input { margin-right:20px; }
+  .box .comment { color:#999999; text-align: center; line-height:20px; }
+
+
+  .box #planInfo { min-width: 900px; height: 60px; line-height: 25px; padding:5px 0 0 10px; color: #990000; background-color: lightgrey; }
+  .box #planInfo input { height: 18px; padding-left: 3px; }
+
+  .box Tree { height: 575px; min-width: 910px; position: relative; }
+  
+  Tree .optionTitle { height: 20px; font-weight: bold; color: #666666; position: fixed; right: 22px; }
+
+/* 当屏幕尺寸小于1100px时，应用下面的CSS样式 */
+@media all and (max-width: 1100px) {
+  Tree .optionTitle { position: absolute; right: 12px; }
+}
+
+  Tree .optionBox { float: right; width: 700px; margin: 0; }
+  Tree .optionTitle span, Tree .optionBox span { float: right; width: 70px; height: 18px; margin: 0px; text-align: center; }  
+  Tree .optionBox span { text-indent: -9999px; background: no-repeat center; }
+
+  #fcMatrix>ul { margin-top: 20px; }
+  Tree li a { width: auto; font-size: 13px; font-weight: bold; color: #666666; }
+  Tree li:hover>:nth-child(3), Tree li:hover>:nth-child(2) { background-color: yellow; }
+  Tree li a:hover { text-decoration: none; }
+
+  #canvasDiv { height: 600px; position: absolute; top: 50px; left: 0; width: 100%; background-color:#fff; }
+
+</style>
+
+<script>
+
+var regionData = [], data, method = 'POST';
+
+/* XMLHTTP请求地址汇总 */
+URL_REGIONS   = "/tss/api/json/GetRegions";
+URL_OFCS      = NO_AUTH_PATH + "param/json/simple/";
+URL_SAVE_PLAN = NO_AUTH_PATH + "param";
+URL_DELE_PLAN = NO_AUTH_PATH + "param/";
+
+if(true) {
+    method = 'GET';
+    URL_REGIONS   = "data/fc/regionTree.json?";
+    URL_OFCS      = "data/fc/ofc.json?";
+    URL_SAVE_PLAN = "data/_success.xml?";
+    URL_DELE_PLAN = "data/_success.xml?";
+    URL_PLANS     = "data/fc/plans.json?";
+}
+
+ $(function() {
+    initTree2();
+    appendChinaMap();
+    $("#canvasDiv").hide();
+
+    $("#showMapBt").toggle(
+        function(){
+            $("#canvasDiv").show();
+            this.value = "隐藏地图";
+        },
+        function(){
+            $("#canvasDiv").hide();
+            this.value = "显示地图";
+        }
+    );
+
+    var globalValiable = window.parent.globalValiable;
+    if(globalValiable && globalValiable.data) {
+        title = globalValiable.title;
+        data = globalValiable.data;
+
+        initTree1();
+        return;
+    }
+
+    // just test
+    URL_REGIONS   = "data/fc/regionTree.json?";
+    URL_OFCS      = "data/fc/ofc.json?";
+    URL_SAVE_PLAN = "data/_success.xml?";
+    URL_DELE_PLAN = "data/_success.xml?";
+    URL_PLANS 	  = "data/fc/plans.json?";
+
+    tssJS.ajax({
+        url : URL_PLANS,
+        method : "GET",
+        type : "json",
+        ondata : function() {
+            data = this.getResponseJSON();
+            initTree1();
+        }
+    });   
+});
+ 
+function getRegionTreeData() {
+    $.ajax({
+        url: URL_REGIONS,
+        type: 'json',
+        method: method,
+        ondata: function() {
+            var data = this.getResponseJSON();
+            data.each(function(i, item) {
+                if(item.pid === 1) {
+                    item.children = [];
+                    regionData.push(item);
+                }
+                else {
+                    regionData.each(function(j, province){
+                        if(province.id === item.pid) {
+                            province.children.push(item);
+                        }
+                    });
+                }
+            });
+        }
+    })
+}
+
+function initTree1() {
+    getRegionTreeData();
+
+    var treeNodes = [];
+    data.each(function(index, item){
+        var node = {"id": item.id, "name": generatePlanTitle(item.name, item.description), "data": JSON.stringify(item)};
+        treeNodes.push(node); 
+    });
+
+    var treeData = [{"id": "_root", "name": "分仓方案列表", "data": {}, "children": treeNodes}];
+    var tree1 = $.T("tree1", treeData); 
+
+    var item1 = {
+        label:"删除",
+        icon: ICON + "icon_del.gif",
+        callback:deletePlan,
+        visible: function() { 
+            return tree1.getActiveTreeNode().id !== '_root';
+        }
+    }
+    var item2 = {
+        label:"创建新方案",
+        callback:createPlan,
+        visible: function() { 
+            return tree1.getActiveTreeNode().id === '_root'; 
+        }
+    }
+    var item3 = {
+        label:"修改方案",
+        icon: ICON + "icon_edit.gif",
+        callback:editPlan,
+        visible: function() { 
+            return tree1.getActiveTreeNode().id !== '_root'; 
+        }
+    }
+ 
+    var menu1 = new $.Menu();
+    menu1.addItem(item2);
+    menu1.addItem(item3);
+    menu1.addItem(item1);
+    tree1.el.contextmenu = menu1;
+
+    tree1.onTreeNodeRightClick = function(event) {
+        tree1.el.contextmenu.show(event.clientX, event.clientY);
+    }
+    tree1.onTreeNodeDoubleClick = function(ev) {
+        if( getTreeAttribute("id", "tree1") !== '_root' ) { editPlan(); }
+    }
+}
+
+function createPlan(flag) {
+    $1("planInfo0").value = "";
+    $1("planInfo1").value = $1("planInfo2").value = $1("planInfo3").value = "";
+    $1("planInfo4").value = $1("planInfo5").value = $1("planInfo6").value = "";
+
+    var data = {};
+    data.options = [];
+    data.treeNodes = regionData;
+    data.value = [];
+
+    buildMatrix(data, true);
+
+    if( !!flag ) {
+        tssJS.alert("温馨提示：请从左下方的仓库列表里选择仓库到方案中，然后可进行区域和仓库映射。");
+    }
+}
+
+function deletePlan() {
+    var tree1 = $.T("tree1");
+    var treeNode = tree1.getActiveTreeNode();
+
+	$.confirm("您确定要删除方案【" + treeNode.name + "】吗？", "删除方案", function() {
+        tssJS.ajax({
+            url : URL_DELE_PLAN + treeNode.id,
+            method : "DELETE",
+            onsuccess : function() { 
+                tree1.removeTreeNode(treeNode);
+                tree1.setActiveTreeNode(treeNode.parent.id);
+                createPlan(false);
+            }
+        }); 
+    });
+}
+
+function editPlan() {
+    var tree1 = $.T("tree1");
+    var activeTree1Node = $.T("tree1").getActiveTreeNode();
+    var planData = $.parseJSON(activeTree1Node.attrs["data"]);
+
+    $1("planInfo0").value = planData.id;
+    $1("planInfo1").value = planData.code;
+    $1("planInfo2").value = planData.name;
+    $1("planInfo3").value = planData.description;
+    $1("planInfo4").value = planData._update || planData._create || "";
+    $1("planInfo6").value = planData.whcodes;
+
+    // 仓库有可能被删除或改名了，需要重新依据仓库列表过滤一下
+    var options = [];
+    if(planData.whcodes) {
+        var tree2 = $.T("tree2");
+        tree2.setCheckValues(planData.whcodes); // 设置选中仓库节点
+
+        var whnamesOld = planData.whnames.split(",");
+        var whnamesNew = [];
+        planData.whcodes.split(",").each(function(i, whcode) {
+            var node = tree2.getTreeNodeById(whcode);
+            var whname = node ? node.name : whnamesOld[i];
+            options.push({"id": whcode, "name": whname});
+            whnamesNew.push(whname);
+        });
+
+        $1("planInfo5").value = whnamesNew.join(",");
+    }
+
+    // 刷新矩阵
+    var data = {};
+    data.options = options;
+    data.treeNodes = regionData;
+    data.value = $.parseJSON(planData.value);
+
+    buildMatrix(data, true);
+}
+
+function initTree2() {
+    $.ajax({
+        url : URL_OFCS + "whList4ycPlan",
+        waiting: true,
+        method: "GET",
+        type: 'json',
+        ondata: function() { 
+            var data = this.getResponseJSON();
+            if (data.length && typeof(data[0]) == 'string') {
+               data = $.parseJSON(data[0])
+            }
+
+            var treeNodes = [];
+            data.each(function(index, item){
+                var node = {"id": item.code, "name": item.name};
+                treeNodes.push(node); 
+            });
+
+            var treeData = [{"id": "_root", "name": "仓库列表", "children": treeNodes}];
+            var tree2 = $.T("tree2", treeData); 
+
+            var item1 = {
+                label:"删除",
+                icon: ICON + "icon_del.gif",
+                callback:function() {
+                    tree2.removeActiveNode();
+                    saveWarehouseList(tree2);
+                },
+                visible: function() { 
+                    return tree2.getActiveTreeNode().id !== '_root';
+                }
+            }
+            var item2 = {
+                label:"创建新仓库",
+                callback:function() {
+                    var name = prompt("请输入仓库名称", "");
+                    if(name == null) {
+                        return; // 用户取消创建
+                    }
+                    if(name.trim() == "") {
+                        return tssJS.alert("仓库名不能为空。");
+                    }
+
+                    var root = tree2.getTreeNodeById('_root');
+                    tree2.addTreeNode({"name":name, "id":tssJS.now()}, root);
+                    saveWarehouseList(tree2);
+                },
+                visible: function() { 
+                    return tree2.getActiveTreeNode().id === '_root'; 
+                }
+            }
+            var item3 = {
+                label:"修改仓库名称",
+                icon: ICON + "icon_edit.gif",
+                callback: function() {
+                    var treeNode = tree2.getActiveTreeNode();
+                    var name = prompt("请输入仓库名称", treeNode.name);
+                    if(name == null) {
+                        return; // 用户取消修改
+                    }
+                    if(name.trim() == "") {
+                        return tssJS.alert("仓库名不能为空。");
+                    }
+
+                    modifyTreeNode(treeNode.id, "name", name, "tree2");
+                    saveWarehouseList(tree2);
+                },
+                visible: function() { 
+                    return tree2.getActiveTreeNode().id !== '_root'; 
+                }
+            }
+         
+            var menu1 = new $.Menu();
+            menu1.addItem(item2);
+            menu1.addItem(item3);
+            menu1.addItem(item1);
+            tree2.el.contextmenu = menu1;
+ 
+            tree2.onTreeNodeRightClick = function(event) {
+                tree2.el.contextmenu.show(event.clientX, event.clientY);
+            }
+        }
+    });
+}
+
+function saveWarehouseList(tree2) {
+    var allNodes = tree2.getAllNodes();
+    var result = [];
+    allNodes.each(function(i, node){
+        result.push({"code": node.id, "name": node.name});
+    });
+
+    var whListData = {};
+    whListData.code = "whList4ycPlan";
+    whListData.value = JSON.stringify(result);
+    
+    // console.log(JSON.stringify(whListData));
+
+    $.ajax({
+        url : URL_SAVE_PLAN + "/value",
+        params : whListData
+    });
+}
+
+function selectWarehouses2plan() {
+    var tree2 = $.T("tree2");
+    var selectedNodes = tree2.getCheckedNodes();
+    if(selectedNodes.length === 0) {
+        return tssJS.alert("您必须选择一个以上仓库。");
+    }
+
+    var result = [], codes = [], names = [];
+    selectedNodes.each(function(i, node){
+        if(node.id !== '_root') {
+            result.push({"id": node.id, "name": node.name});
+            codes.push(node.id);
+            names.push(node.name);
+        }
+    });
+
+    $1("planInfo5").value = names;
+    $1("planInfo6").value = codes;
+
+    // console.log(JSON.stringify(result));
+
+    // 刷新分仓配置矩阵
+    var data = {};
+    data.options = result;
+    data.treeNodes = regionData;
+
+    var activeTree1Node = $.T("tree1").getActiveTreeNode();
+    if(activeTree1Node && activeTree1Node.id !== '_root') {
+        var existData = $.parseJSON(activeTree1Node.attrs["data"]);
+        data.value = existData ? existData.value : [];
+    }
+    buildMatrix(data);
+}
+
+function buildMatrix(data, clear) {
+    var values = {};
+
+    if(data.value && typeof data.value === "string") {
+        data.value = $.parseJSON(data.value);
+    }
+    (data.value || []).each(function(i, item){
+        values[item[0]] = item;
+    });
+
+    data.treeNodes.each(function(i, province){
+        var item = values[province.id];
+        if(clear) { clearNodeState(province); }
+        if(item)  { province[item[1]] = item[2];  }
+
+        (province.children || []).each(function(j, city){
+            var item2 = values[city.id];
+            if(clear) { clearNodeState(city); }
+            if(item2) { 
+                city[item2[1]] = item2[2]; 
+                province["_open"] = "true"; // 如果有市级打勾的，默认把省一级打开
+            }
+        });
+    });
+
+    data.options.reverse();
+
+    $.MT("fcMatrix", data);
+}
+
+function clearNodeState(node) {
+    for(var attr in node) {
+        if(attr !== 'id' && attr !== 'name' && attr !== 'pid' && attr !== 'children') {
+            delete node[attr];
+        }
+    }
+}
+
+function savePlan() {
+    var tree = $.MT("fcMatrix");
+    if(tree == null) return;
+
+    var planData = {}, nodesMatrixs = [], completed = true;
+    $.each($("li[nodeId]", tree.el), function(i, li) {
+        var curNode = li.node;
+        var curNodeOptionStates = "", selected = false;
+        $.each(tree._options, function(_optionId, _option) {
+            var curNodeOptionState = curNode.attrs[_optionId];
+            if(curNodeOptionState === "1") {
+                nodesMatrixs.push([curNode.id, _optionId, curNodeOptionState]);
+                selected = true;
+            }
+        } );
+
+        if(curNode.attrs["pid"] === 1) {
+            completed = completed && selected;
+        }
+    });
+
+    if( !completed ) {
+       return tssJS.alert("温馨提示：尚有部分省级节点没有完成分仓，请完成后再保存。");
+    }
+
+    planData.id = $1("planInfo0").value;
+    planData.parentId = "0";
+    planData.code = $1("planInfo1").value;
+    planData.name = $1("planInfo2").value;
+    planData.description = $1("planInfo3").value;
+    planData.whnames = $1("planInfo5").value;
+    planData.whcodes = $1("planInfo6").value;
+
+    planData.udf1 = "cloudPlan";
+    planData.hidden = "1";
+    planData.type = "1";
+    planData.value = JSON.stringify(nodesMatrixs);
+    planData.udf2 = planData.whcodes;
+    planData.udf3 = planData.whnames;
+    
+    // console.log(JSON.stringify(planData));
+
+    if( $.isNullOrEmpty(planData.code) ) {
+         (new tssJS.Balloon("方案编号不能为空。")).dockTo($1("planInfo1"));
+         $1("planInfo1").focus();
+         return;
+    }
+
+    if( $.isNullOrEmpty(planData.name) ) {
+         (new tssJS.Balloon("方案名称不能为空。")).dockTo($1("planInfo2"));
+         $1("planInfo2").focus();
+         return;
+    }
+
+    if( $.isNullOrEmpty(planData.whcodes) ) {
+        (new tssJS.Balloon("请选择仓库。")).dockTo($1("tree2"));
+         return;
+    }
+
+    $.ajax({
+        url : URL_SAVE_PLAN,
+        params : planData,
+        waiting: true,
+        onresult: function() {
+            var treeNode = this.getNodeValue("ParamTree").querySelector("treeNode");
+
+            $1("planInfo0").value = planData.id = treeNode.id;
+
+            var nodeAttrs = {"id": planData.id, "name": generatePlanTitle(planData.name, planData.description), "data": JSON.stringify(planData)};
+
+            var tree1 = $.T("tree1");
+            var root = tree1.getTreeNodeById('_root');
+            tree1.addTreeNode(nodeAttrs, root);
+            tree1.setActiveTreeNode(treeNode.id);
+        },
+        onsuccess: function() {
+            var name = generatePlanTitle(planData.name, planData.description);
+            modifyTreeNode(planData.id, "name", name, "tree1");
+        }
+    });
+}
+
+function generatePlanTitle(name, description) {
+    if($.isNullOrEmpty(description)){
+        return name;
+    }
+    return name + " ( " + description + " ) ";
+}
+
+function appendChinaMap() {
+    var chartObj = echarts.init($1("canvasDiv"));
+option = {
+    title : {
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item'
+    },
+    toolbox: {
+        show: true,
+        orient : 'vertical',
+        x: 'right',
+        y: 'center' 
+    },
+ 
+    series : [
+        {
+            type: 'map',
+            mapType: 'china',
+            roam: false,
+            itemStyle:{
+                normal:{label:{show:true}},
+                emphasis:{label:{show:true}}
+            },
+            data: []
+        } 
+    ]
+};
+ 
+    chartObj.setOption(option);
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="left">
+    <Tree id="tree1" style="height:330px;"></Tree>
+    <hr>
+    <Tree id="tree2" style="height:310px;" treeType="multi" selectSelf="false"></Tree>
+    <div id="tree2Sub">
+        <input type="button" value="选择仓库到方案" class="tssbutton small blue" onclick="selectWarehouses2plan()"/>&nbsp;
+        <input type="button" value="保存分仓方案" class="tssbutton small blue" onclick="savePlan()"/>
+        <input type="button" value="显示地图" class="tssbutton small orange" id="showMapBt"/>
+    </div>
+</div>
+
+<div class="box">
+    <div id="planInfo">
+        <input type="hidden" id="planInfo0"/>
+        <label> 方案编号：</label><input type="text" id="planInfo1" /> 
+        <label> 方案备注：</label><input type="text" id="planInfo3" style="width:260px;"/>
+        <label> 最后更新：</label><input type="text" id="planInfo4" style="width:230px;" readonly/><br/>
+        <label> 方案名称：</label><input type="text" id="planInfo2" /> 
+        <label> 仓库列表：</label><input type="text" id="planInfo5" style="width:561px;" readonly/><input type="hidden" id="planInfo6"/>
+    </div>
+    
+    <Tree id="fcMatrix"></Tree>
+    <hr>
+    <div class="comment">
+        &nbsp;&nbsp;说明：节点状态 (
+            <img src="images/optionState0.gif" align="absmiddle"/> 未选中 
+            <img src="images/optionState1.gif" align="absmiddle"/> 选中 
+        )
+        &nbsp;鼠标点击切换状态，通常情况下是 【未选中】 → 【选中】 → 【未选中】
+        <br/>&nbsp;&nbsp;鼠标点击同时按下shift键，可以将所有子节点设置为与当前节点相同状态
+    </div>
+</div>
+
+<div id='canvasDiv'></div>
+
+</body>
+</html>

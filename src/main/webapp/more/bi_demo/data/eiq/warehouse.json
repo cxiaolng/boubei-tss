@@ -1,0 +1,1742 @@
+[
+    {
+        "pk": "-1",
+        "id": "-1",
+        "text": "百世物流",
+        "children": [
+            {
+                "pk": "BEST_SH_TAOBAO_IS_ORG",
+                "id": "BEST_SH_TAOBAO_IS_ORG",
+                "text": "上海电子商务OFC",
+                "children": [
+                    {
+                        "pk": "100220",
+                        "id": "BEST_SH_TAOBAO_WH",
+                        "text": "上海OFC-盈港仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109555",
+                        "id": "WH_XJGY",
+                        "text": "上海OFC-周浦仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109455",
+                        "id": "SH_LJ_WH",
+                        "text": "上海OFC-曹安仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "181655",
+                        "id": "SH_EC_SS",
+                        "text": "上海OFC-佘山仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "137653",
+                        "id": "SH_CA_WH",
+                        "text": "上海OFC-3M仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "Best_BJ_LN_IS_ORG",
+                "id": "Best_BJ_LN_IS_ORG",
+                "text": "百世北京李宁组织",
+                "children": [
+                    {
+                        "pk": "102821",
+                        "id": "BJ_LT",
+                        "text": "北京-天河仓1(LOTTO仓)",
+                        "children": []
+                    },
+                    {
+                        "pk": "109509",
+                        "id": "BJ_VMI",
+                        "text": "北京-天河仓1(VMI仓)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177661",
+                        "id": "NYYD001",
+                        "text": "南宁-科园仓(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177664",
+                        "id": "CDYD002",
+                        "text": "成都-双流仓（销地仓）(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "104621",
+                        "id": "BJ_TH",
+                        "text": "退货仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "147653",
+                        "id": "LN_DL_RDC",
+                        "text": "李宁大连RDC",
+                        "children": []
+                    },
+                    {
+                        "pk": "177660",
+                        "id": "DQYD001",
+                        "text": "大庆-香坊仓(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "100200",
+                        "id": "BJ_LN",
+                        "text": "北京-天河仓1(NDC仓)",
+                        "children": []
+                    },
+                    {
+                        "pk": "109644",
+                        "id": "BJ_LN_RDC",
+                        "text": "北京-天河仓4",
+                        "children": []
+                    },
+                    {
+                        "pk": "177657",
+                        "id": "TJYD001",
+                        "text": "天津-中环仓(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177668",
+                        "id": "CSYD001",
+                        "text": "长沙-东风仓（新）",
+                        "children": []
+                    },
+                    {
+                        "pk": "177669",
+                        "id": "HFYD001",
+                        "text": "合肥-大彭仓（新）",
+                        "children": []
+                    },
+                    {
+                        "pk": "177670",
+                        "id": "XAYD001",
+                        "text": "西安-双五仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109377",
+                        "id": "BJ_LN_XD",
+                        "text": "北京-天河仓1(销地仓)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177655",
+                        "id": "LZYD001",
+                        "text": "兰州-晏坪仓(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177656",
+                        "id": "LZ_XDC",
+                        "text": "兰州销地仓(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177665",
+                        "id": "CQYD001",
+                        "text": "重庆RDC(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177662",
+                        "id": "NYYD002",
+                        "text": "南宁销地仓(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177667",
+                        "id": "XJ_XDC",
+                        "text": "新疆-庐山仓(销地仓)（新）",
+                        "children": []
+                    },
+                    {
+                        "pk": "177658",
+                        "id": "KA_LINING_HAERBIN",
+                        "text": "哈尔滨-香坊仓(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177663",
+                        "id": "CDYD001",
+                        "text": "成都-双流仓（一动）(新)",
+                        "children": []
+                    },
+                    {
+                        "pk": "177666",
+                        "id": "KA_LINING_XNJIANG",
+                        "text": "新疆-庐山仓(一动)（新）",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_BJ_IS_ORG",
+                "id": "EC_BJ_IS_ORG",
+                "text": "北京电子商务OFC",
+                "children": [
+                    {
+                        "pk": "103421",
+                        "id": "WH_EC_XJ_Oriflame",
+                        "text": "乌市-金湖仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "113653",
+                        "id": "WH_EC_LZ_Oriflame",
+                        "text": "兰州-万兴仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109077",
+                        "id": "WH_EC_CD_Oriflame",
+                        "text": "成都-双流仓（欧瑞莲）",
+                        "children": []
+                    },
+                    {
+                        "pk": "109617",
+                        "id": "WH_RH",
+                        "text": "北京-天河仓3(荣辉)",
+                        "children": []
+                    },
+                    {
+                        "pk": "109095",
+                        "id": "WH_BJ_PARKSON",
+                        "text": "北京-张仪仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "114654",
+                        "id": "WH_TJ_PARKSON",
+                        "text": "天津百盛仓库（SAAS）",
+                        "children": []
+                    },
+                    {
+                        "pk": "139654",
+                        "id": "WH_EC_BJ_B2B",
+                        "text": "北京中粮B2B仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "148653",
+                        "id": "WH_EC_BJ_AIGAO",
+                        "text": "艾高电子商务仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "100821",
+                        "id": "WH_EC_BJ",
+                        "text": "北京OFC-天河仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "102421",
+                        "id": "WH_EC_BJ_Oriflame",
+                        "text": "欧瑞莲北京DC",
+                        "children": []
+                    },
+                    {
+                        "pk": "109329",
+                        "id": "WH_HG_BJ",
+                        "text": "百世汇通汇购仓库",
+                        "children": []
+                    },
+                    {
+                        "pk": "109113",
+                        "id": "WH_EC_GZ_Oriflame",
+                        "text": "广州-市莲仓（欧瑞莲）",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_HZMINIOPC_IS_ORG",
+                "id": "EC_HZMINIOPC_IS_ORG",
+                "text": "厦门电子商务OFC",
+                "children": [
+                    {
+                        "pk": "105422",
+                        "id": "XM_EC_TONGZHUANG",
+                        "text": "同安JIT仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109635",
+                        "id": "XM_SEPWOLVES_SHANGYING",
+                        "text": "七匹狼总部调拨仓_尚盈",
+                        "children": []
+                    },
+                    {
+                        "pk": "151655",
+                        "id": "XM_EC_HX",
+                        "text": "厦门OFC-后溪仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109104",
+                        "id": "XM_EC_WH_DWOLVES",
+                        "text": "厦门OFC-天凤仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109041",
+                        "id": "XM_EC_GRN",
+                        "text": "厦门OFC-翔安仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "100901",
+                        "id": "XM_SEPTWOLVES_DC",
+                        "text": "厦门OFC-同安仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "best023_IS_ORG",
+                "id": "best023_IS_ORG",
+                "text": "百世红叶组织",
+                "children": [
+                    {
+                        "pk": "109176",
+                        "id": "SH_HY",
+                        "text": "上海-鹿吉仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "101421",
+                        "id": "BJ_HY",
+                        "text": "北京-天河仓3",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "OSA_WH_IS_ORG",
+                "id": "OSA_WH_IS_ORG",
+                "text": "欧莎组织",
+                "children": [
+                    {
+                        "pk": "109248",
+                        "id": "WH_OSA",
+                        "text": "深圳OFC-龙岗仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_QZ_IS_ORG",
+                "id": "ORG_QZ_IS_ORG",
+                "text": "泉州电子商务OFC",
+                "children": [
+                    {
+                        "pk": "109491",
+                        "id": "WH_QINGMEN",
+                        "text": "泉州OFC-清濛仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109447",
+                        "id": "WH_ANHAI",
+                        "text": "泉州OFC-安海仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "best_ps_IS_ORG",
+                "id": "best_ps_IS_ORG",
+                "text": "百世PS组织",
+                "children": [
+                    {
+                        "pk": "143653",
+                        "id": "BEST_PS",
+                        "text": "百世-食品仓（2014压力测试仓）",
+                        "children": []
+                    },
+                    {
+                        "pk": "188656",
+                        "id": "TMALL",
+                        "text": "天猫测试仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "100661",
+                        "id": "best_ps_001",
+                        "text": "PS食品室（2013压力测试仓）",
+                        "children": []
+                    },
+                    {
+                        "pk": "109284",
+                        "id": "best_ps_002",
+                        "text": "压力测试仓1",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_TA_OFC_IS_ORG",
+                "id": "CLOUD_TA_OFC_IS_ORG",
+                "text": "泰安OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "156653",
+                        "id": "CLOUD_TA_XUJIALOU",
+                        "text": "泰安-新灵加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_BSDJ_IS_ORG",
+                "id": "BEST_BSDJ_IS_ORG",
+                "text": "百世宝盛道吉组织",
+                "children": [
+                    {
+                        "pk": "175653",
+                        "id": "TY_BSDJ",
+                        "text": "宝盛道吉-太原直营仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "175654",
+                        "id": "TY_JM",
+                        "text": "宝盛道吉-太原加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_GZLN_IS_ORG",
+                "id": "SAAS_GZLN_IS_ORG",
+                "text": "百世广州岭南SAAS组织",
+                "children": [
+                    {
+                        "pk": "176654",
+                        "id": "GZLN_SAAS",
+                        "text": "岭南电商园",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_GZ_IS_ORG",
+                "id": "EC_GZ_IS_ORG",
+                "text": "广州电子商务OFC",
+                "children": [
+                    {
+                        "pk": "185654",
+                        "id": "EC_GZ_NS",
+                        "text": "广州OFC-南沙仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "134653",
+                        "id": "EC_GZ_YF",
+                        "text": "广州OFC-永峰仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "100542",
+                        "id": "EC_GZ_WH",
+                        "text": "广州-市莲仓(歌莉娅)",
+                        "children": []
+                    },
+                    {
+                        "pk": "109221",
+                        "id": "EC_WH_KM",
+                        "text": "广州OFC-科贸仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "139655",
+                        "id": "WH_EC_GZ_B2B",
+                        "text": "广州中粮B2B仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "107621",
+                        "id": "EC_WH_PY",
+                        "text": "广州OFC-南村仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109347",
+                        "id": "EC_GZ_SL",
+                        "text": "广州OFC-市莲仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109239",
+                        "id": "EC_GZ_SJ",
+                        "text": "广州OFC-中润仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_TJ_OFC_IS_ORG",
+                "id": "CLOUD_TJ_OFC_IS_ORG",
+                "text": "天津OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "197653",
+                        "id": "CLOUD_TJ_FX",
+                        "text": "天津-海泰加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "best028_IS_ORG",
+                "id": "best028_IS_ORG",
+                "text": "百世康宝莱组织",
+                "children": [
+                    {
+                        "pk": "108421",
+                        "id": "wh_bj01",
+                        "text": "北京-天河仓2",
+                        "children": []
+                    },
+                    {
+                        "pk": "118653",
+                        "id": "WH_HL_GZ",
+                        "text": "广州-永峰仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "Best_SH_LN_IS_ORG",
+                "id": "Best_SH_LN_IS_ORG",
+                "text": "百世上海李宁组织",
+                "children": [
+                    {
+                        "pk": "109086",
+                        "id": "EC_LN_TH",
+                        "text": "李宁EC-新协路仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "104221",
+                        "id": "EC_LN",
+                        "text": "上海OFC-华新仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "104421",
+                        "id": "SNC_LN",
+                        "text": "上海-华丹仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_YK_IS_ORG",
+                "id": "BEST_YK_IS_ORG",
+                "text": "百世元凯服饰组织",
+                "children": [
+                    {
+                        "pk": "109338",
+                        "id": "SH_YK_WH",
+                        "text": "上海盈港仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_SH_RETRO_IS_ORG",
+                "id": "BEST_SH_RETRO_IS_ORG",
+                "text": "百世瑞雀组织",
+                "children": [
+                    {
+                        "pk": "109536",
+                        "id": "SAAS_RETRO",
+                        "text": "瑞雀仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109167",
+                        "id": "SH_RETRO",
+                        "text": "上海-港源商务",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_XJ_IS_ORG",
+                "id": "ORG_XJ_IS_ORG",
+                "text": "乌市电子商务OFC",
+                "children": [
+                    {
+                        "pk": "109582",
+                        "id": "WH_EC_XJ",
+                        "text": "新疆-高新仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_CHANGSHA_IS_ORG",
+                "id": "EC_CHANGSHA_IS_ORG",
+                "text": "长沙电子商务OFC",
+                "children": [
+                    {
+                        "pk": "109609",
+                        "id": "EC_CHANGSHA_HUANBAO",
+                        "text": "长沙-环保仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_NANJING_IS_ORG",
+                "id": "CLOUD_NANJING_IS_ORG",
+                "text": "南京OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "145655",
+                        "id": "CLOUD_NJ_XIAXI",
+                        "text": "南京-栖霞加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_VISHOW_IS_ORG",
+                "id": "SAAS_VISHOW_IS_ORG",
+                "text": "百世SAAS威秀组织",
+                "children": [
+                    {
+                        "pk": "157653",
+                        "id": "WH_HOUXI",
+                        "text": "威秀-后溪仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "167653",
+                        "id": "WH_GUANGZHOU",
+                        "text": "威秀-深圳仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_WF_OFC_IS_ORG",
+                "id": "CLOUD_WF_OFC_IS_ORG",
+                "text": "潍坊OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "174653",
+                        "id": "CLOUD_WF_GX",
+                        "text": "潍坊-高新加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "KA_3M_IS_ORG",
+                "id": "KA_3M_IS_ORG",
+                "text": "百世3M组织",
+                "children": [
+                    {
+                        "pk": "189654",
+                        "id": "RDC_SHANGHAI",
+                        "text": "3MRDC-上海仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_WH_OFC_IS_ORG",
+                "id": "CLOUD_WH_OFC_IS_ORG",
+                "text": "威海OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "192653",
+                        "id": "CLOUD_WH_WD",
+                        "text": "威海-文登加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_TUHUSAAS_IS_ORG",
+                "id": "ORG_TUHUSAAS_IS_ORG",
+                "text": "途虎组织SAAS",
+                "children": [
+                    {
+                        "pk": "196653",
+                        "id": "WH_TUHUSAAS",
+                        "text": "途虎武汉自有仓SAAS",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "best030_IS_ORG",
+                "id": "best030_IS_ORG",
+                "text": "百世COTY组织",
+                "children": [
+                    {
+                        "pk": "109023",
+                        "id": "CDRDC001",
+                        "text": "成都-朱昌琼（阿迪达斯）",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_SH_RETRO_EC_IS_ORG",
+                "id": "BEST_SH_RETRO_EC_IS_ORG",
+                "text": "百世瑞雀电子商务",
+                "children": [
+                    {
+                        "pk": "109275",
+                        "id": "SH_RETRO_EC",
+                        "text": "EC盈港仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "KA_ORG_IS_ORG",
+                "id": "KA_ORG_IS_ORG",
+                "text": "KA快递直客业务组织",
+                "children": [
+                    {
+                        "pk": "109393",
+                        "id": "WH_VIPSHOPJIT",
+                        "text": "唯品会JIT仓库",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_TAIZHOU_IS_ORG",
+                "id": "CLOUD_TAIZHOU_IS_ORG",
+                "text": "台州OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "115653",
+                        "id": "CLOUD_TAIZHOU_LUQIAO",
+                        "text": "台州-路桥加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_SZ_IS_ORG",
+                "id": "EC_SZ_IS_ORG",
+                "text": "苏州电子商务OFC",
+                "children": [
+                    {
+                        "pk": "129653",
+                        "id": "EC_SZ_ANTONG",
+                        "text": "苏州OFC-通安仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "125653",
+                        "id": "EC_SZ_HD",
+                        "text": "苏州OFC-活动仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "GZ_YC_OFC_IS_ORG",
+                "id": "GZ_YC_OFC_IS_ORG",
+                "text": "广州OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "131653",
+                        "id": "EC_GZ_RH",
+                        "text": "广州-人和加盟仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109473",
+                        "id": "EC_GZ_DGZ",
+                        "text": "广州-迎龙加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BJ_YC_OFC_IS_ORG",
+                "id": "BJ_YC_OFC_IS_ORG",
+                "text": "北京OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "132653",
+                        "id": "EC_BJ_BXY",
+                        "text": "北京-顺义加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_JINAN_IS_ORG",
+                "id": "EC_JINAN_IS_ORG",
+                "text": "济南电子商务OFC",
+                "children": [
+                    {
+                        "pk": "136653",
+                        "id": "EC_JINAN_VIP",
+                        "text": "唯品会虚拟仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "123653",
+                        "id": "EC_JINAN_HANDU",
+                        "text": "济南OFC-韩都仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_AH_OFC_IS_ORG",
+                "id": "CLOUD_AH_OFC_IS_ORG",
+                "text": "合肥OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "142653",
+                        "id": "EC_HF_BM",
+                        "text": "合肥OFC-白马仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_CQ_IS_ORG",
+                "id": "EC_CQ_IS_ORG",
+                "text": "重庆电子商务OFC",
+                "children": [
+                    {
+                        "pk": "181654",
+                        "id": "CQ_MIDEA",
+                        "text": "重庆-空港仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_TMALL_IS_ORG",
+                "id": "EC_TMALL_IS_ORG",
+                "text": "百世天猫超市组织",
+                "children": [
+                    {
+                        "pk": "183653",
+                        "id": "EC_JINHUA_JINYI",
+                        "text": "金华OFC-金义仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "KA_NEWHOPE_IS_ORG",
+                "id": "KA_NEWHOPE_IS_ORG",
+                "text": "百世新希望组织",
+                "children": [
+                    {
+                        "pk": "188659",
+                        "id": "KA_NEWHOPE_CHENGDU",
+                        "text": "新希望成都仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_CHENGDU_IS_ORG",
+                "id": "EC_CHENGDU_IS_ORG",
+                "text": "成都电子商务OFC",
+                "children": [
+                    {
+                        "pk": "106221",
+                        "id": "EC_WH_CHENGDU",
+                        "text": "成都-双流仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "179653",
+                        "id": "EC_WH_CDJUMEI",
+                        "text": "成都聚美仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "185653",
+                        "id": "CD_MIDEA",
+                        "text": "成都美的仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_YIWU_IS_ORG",
+                "id": "EC_YIWU_IS_ORG",
+                "text": "义乌OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "106623",
+                        "id": "EC_WH_OFC_YIWU",
+                        "text": "义乌OFC-明月仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_LEECOOPER_IS_ORG",
+                "id": "BEST_LEECOOPER_IS_ORG",
+                "text": "百世LEECOOPER组织",
+                "children": [
+                    {
+                        "pk": "109203",
+                        "id": "HZ_LEECOOPER",
+                        "text": "杭州-海宁仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "best_IS_ORG",
+                "id": "best_IS_ORG",
+                "text": "百世中国",
+                "children": [
+                    {
+                        "pk": "109311",
+                        "id": "BESTWH",
+                        "text": "百世中国仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_TQ_IS_ORG",
+                "id": "ORG_TQ_IS_ORG",
+                "text": "天阙贸易组织",
+                "children": [
+                    {
+                        "pk": "109482",
+                        "id": "WH_TQ_BJ",
+                        "text": "北京-天河仓3",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "WH_YC_OFC_IS_ORG",
+                "id": "WH_YC_OFC_IS_ORG",
+                "text": "武汉OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "109527",
+                        "id": "EC_WH_MH",
+                        "text": "武汉OFC-马湖仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_XM_IS_ORG",
+                "id": "EC_XM_IS_ORG",
+                "text": "杭州电子商务OFC",
+                "children": [
+                    {
+                        "pk": "109563",
+                        "id": "EC_HZ_HN",
+                        "text": "杭州OFC-海宁仓（茵曼）",
+                        "children": []
+                    },
+                    {
+                        "pk": "173654",
+                        "id": "EC_HZ_PIANDUAN",
+                        "text": "杭州OFC-海宁仓（片断）",
+                        "children": []
+                    },
+                    {
+                        "pk": "184653",
+                        "id": "EC_HZ_CHNT_FC",
+                        "text": "杭州OFC-滨江仓（正泰）",
+                        "children": []
+                    },
+                    {
+                        "pk": "179654",
+                        "id": "HZ_CHNT",
+                        "text": "杭州正泰自营仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "100544",
+                        "id": "EC_XM_WH",
+                        "text": "杭州OFC-海宁仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "139653",
+                        "id": "EC_HZ_YSGM",
+                        "text": "杭州OFC-海宁仓（棉果果棉）",
+                        "children": []
+                    },
+                    {
+                        "pk": "140653",
+                        "id": "WH_EC_HZ_B2B",
+                        "text": "杭州中粮B2B仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "158653",
+                        "id": "EC_HZ_ZSN",
+                        "text": "杭州OFC-海宁仓(卓诗尼)",
+                        "children": []
+                    },
+                    {
+                        "pk": "163653",
+                        "id": "EC_HZ_CHNT",
+                        "text": "杭州OFC-海宁仓（正泰）",
+                        "children": []
+                    },
+                    {
+                        "pk": "114653",
+                        "id": "WH_HG_HZ",
+                        "text": "汇购项目-杭州仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_XIAMEN_IS_ORG",
+                "id": "CLOUD_XIAMEN_IS_ORG",
+                "text": "厦门OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "126653",
+                        "id": "CLOUD_XIAMEN_XIANGAN",
+                        "text": "厦门-翔安加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_CC_OFC_IS_ORG",
+                "id": "CLOUD_CC_OFC_IS_ORG",
+                "text": "长春OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "149653",
+                        "id": "CLOUD_CC_ERDAOLIUBU",
+                        "text": "长春-凯旋加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_GZ_DCS_IS_ORG",
+                "id": "SAAS_GZ_DCS_IS_ORG",
+                "text": "百世大常生SAAS组织",
+                "children": [
+                    {
+                        "pk": "172653",
+                        "id": "SZ_DCS",
+                        "text": "深圳-大常生仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "KA_BAIDUOER_IS_ORG",
+                "id": "KA_BAIDUOER_IS_ORG",
+                "text": "百世百多尔组织",
+                "children": [
+                    {
+                        "pk": "179655",
+                        "id": "KA_BAIDUOER_CHENGDU",
+                        "text": "成都百多尔",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "best015_IS_ORG",
+                "id": "best015_IS_ORG",
+                "text": "百世大连李宁组织",
+                "children": [
+                    {
+                        "pk": "100441",
+                        "id": "DLYD001",
+                        "text": "大连-西北仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109320",
+                        "id": "THFH",
+                        "text": "退货复核仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_DEXUN_IS_ORG",
+                "id": "ORG_DEXUN_IS_ORG",
+                "text": "广州德讯电子商务组织SAAS",
+                "children": [
+                    {
+                        "pk": "109401",
+                        "id": "DEXUN_ZHS",
+                        "text": "广州德讯-中山仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_DWOLVES_IS_ORG",
+                "id": "ORG_DWOLVES_IS_ORG",
+                "text": "百世与狼共舞组织",
+                "children": [
+                    {
+                        "pk": "109428",
+                        "id": "WH_DWOLVES",
+                        "text": "与狼共舞厦门BSC仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_JINGJIANG_IS_ORG",
+                "id": "CLOUD_JINGJIANG_IS_ORG",
+                "text": "靖江OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "109653",
+                        "id": "CLOUD_JINGJIANG_JINZHI",
+                        "text": "靖江OFC-金志仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_FEILIPU_IS_ORG",
+                "id": "BEST_FEILIPU_IS_ORG",
+                "text": "百世飞利浦组织",
+                "children": [
+                    {
+                        "pk": "133653",
+                        "id": "CD_SLC",
+                        "text": "成都-双流仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_HZ_OFC_IS_ORG",
+                "id": "CLOUD_HZ_OFC_IS_ORG",
+                "text": "杭州OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "143654",
+                        "id": "CLOUD_HZ_JIUBAO",
+                        "text": "杭州-九堡加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_SZ_OFC_IS_ORG",
+                "id": "CLOUD_SZ_OFC_IS_ORG",
+                "text": "深圳OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "150653",
+                        "id": "CLOUD_EC_SHEKOU",
+                        "text": "深圳-公明加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_ECOVACS_IS_ORG",
+                "id": "SAAS_ECOVACS_IS_ORG",
+                "text": "百世SAAS科沃斯组织",
+                "children": [
+                    {
+                        "pk": "151653",
+                        "id": "SAAS_ECOVACS_ZY",
+                        "text": "科沃斯自有SAAS仓库",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_SH_OFC_IS_ORG",
+                "id": "CLOUD_SH_OFC_IS_ORG",
+                "text": "上海OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "155653",
+                        "id": "CLOUD_SH_LUJIAZUI",
+                        "text": "上海-杨高加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_SZ_OFC_IS_ORG",
+                "id": "EC_SZ_OFC_IS_ORG",
+                "text": "苏州OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "200653",
+                        "id": "EC_SZ_WUZHONG",
+                        "text": "苏州-吴中加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_DAHUA_IS_ORG",
+                "id": "BEST_DAHUA_IS_ORG",
+                "text": "百世大华组织",
+                "children": [
+                    {
+                        "pk": "104821",
+                        "id": "DAHUABJ",
+                        "text": "北京-霍氏文化",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST020_IS_ORG",
+                "id": "BEST020_IS_ORG",
+                "text": "百世成都李宁组织",
+                "children": [
+                    {
+                        "pk": "108021",
+                        "id": "CDLT001",
+                        "text": "成都-朱昌琼（乐途）",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST _IT_SERVICE_IS_ORG",
+                "id": "BEST _IT_SERVICE_IS_ORG",
+                "text": "百世IT设备管理仓",
+                "children": [
+                    {
+                        "pk": "109122",
+                        "id": "BEST_IT_WH",
+                        "text": "总部IT仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_APOLLO_IS_ORG",
+                "id": "BEST_APOLLO_IS_ORG",
+                "text": "百世太阳神组织",
+                "children": [
+                    {
+                        "pk": "109293",
+                        "id": "HZ_APOLLO",
+                        "text": "杭州-海宁仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_IVYKKI_IS_ORG",
+                "id": "BEST_IVYKKI_IS_ORG",
+                "text": "百世艾维组织",
+                "children": [
+                    {
+                        "pk": "109464",
+                        "id": "IVYKKI_PD",
+                        "text": "艾维盘点暂存仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109437",
+                        "id": "NB_IVYKKI",
+                        "text": "宁波-聚才仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_SHENZHEN_IS_ORG",
+                "id": "EC_SHENZHEN_IS_ORG",
+                "text": "深圳电子商务OFC",
+                "children": [
+                    {
+                        "pk": "109500",
+                        "id": "EC_WH_CZ",
+                        "text": "深圳OFC-长圳仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "121653",
+                        "id": "EC_WH_GM",
+                        "text": "深圳OFC-光明仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "106621",
+                        "id": "EC_WH_OSA",
+                        "text": "深圳OFC-龙华仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "109518",
+                        "id": "EC_SZ_YY",
+                        "text": "深圳OFC-银叶仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "162653",
+                        "id": "EC_SZ_GLS",
+                        "text": "深圳OFC-歌力思仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_YOUEMEI_IS_ORG",
+                "id": "SAAS_YOUEMEI_IS_ORG",
+                "text": "百世SAAS优衣美组织",
+                "children": [
+                    {
+                        "pk": "109599",
+                        "id": "EC_SZ_YY_YEM",
+                        "text": "深圳OFC-银叶仓（优衣美）",
+                        "children": []
+                    },
+                    {
+                        "pk": "109608",
+                        "id": "EC_JS_SQ_YEM",
+                        "text": "江苏OFC-宿迁仓（优衣美）",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_TAIYUAN_IS_ORG",
+                "id": "CLOUD_TAIYUAN_IS_ORG",
+                "text": "太原OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "109626",
+                        "id": "CLOUD_TAIYUAN_YIFEN",
+                        "text": "太原OFC-漪汾仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_FEDRALM_IS_ORG",
+                "id": "ORG_FEDRALM_IS_ORG",
+                "text": "百世辉门组织",
+                "children": [
+                    {
+                        "pk": "116653",
+                        "id": "WH_BJ_FEDRALM",
+                        "text": "北京-天河仓2",
+                        "children": []
+                    },
+                    {
+                        "pk": "109572",
+                        "id": "WH_FEDRALM",
+                        "text": "辉门昆山宝湾仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "GZ_ GOELIA_IS_ORG",
+                "id": "GZ_ GOELIA_IS_ORG",
+                "text": "百世歌莉娅SAAS组织",
+                "children": [
+                    {
+                        "pk": "151654",
+                        "id": "GOELIA_EC",
+                        "text": "歌莉娅电商仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_WENZHOU_IS_ORG",
+                "id": "EC_WENZHOU_IS_ORG",
+                "text": "温州电子商务OFC",
+                "children": [
+                    {
+                        "pk": "159653",
+                        "id": "EC_HZ_LW",
+                        "text": "温州OFC-龙湾仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_WH_IS_ORG",
+                "id": "EC_WH_IS_ORG",
+                "text": "武汉电子商务OFC",
+                "children": [
+                    {
+                        "pk": "181653",
+                        "id": "WH_MIDEA",
+                        "text": "武汉-美的仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "100761",
+                        "id": "WH_EC_WH",
+                        "text": "武汉OFC-横天仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_WX_OFC_IS_ORG",
+                "id": "CLOUD_WX_OFC_IS_ORG",
+                "text": "无锡OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "194653",
+                        "id": "CLOUD_WX_XIYU",
+                        "text": "无锡-锡玉加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_BONDED_AREA_IS_ORG",
+                "id": "BEST_BONDED_AREA_IS_ORG",
+                "text": "百世保税区组织",
+                "children": [
+                    {
+                        "pk": "199653",
+                        "id": "KJ_NB_BL",
+                        "text": "宁波-北仑仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_NINGBO_IS_ORG",
+                "id": "EC_NINGBO_IS_ORG",
+                "text": "宁波电子商务OFC",
+                "children": [
+                    {
+                        "pk": "106622",
+                        "id": "EC_WH_OFC_NINGBO",
+                        "text": "宁波OFC-北仑仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SEPTWOLVES_IS_ORG",
+                "id": "SEPTWOLVES_IS_ORG",
+                "text": "七匹狼DC组织",
+                "children": [
+                    {
+                        "pk": "109302",
+                        "id": "SEPTWOLVES_DC_SZ",
+                        "text": "七匹狼深圳物流仓库",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "KA_HAERBIN_LINING_IS_ORG",
+                "id": "KA_HAERBIN_LINING_IS_ORG",
+                "text": "百世李宁哈尔滨组织",
+                "children": [
+                    {
+                        "pk": "120653",
+                        "id": "HRB_JIAOJIE",
+                        "text": "交接仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_JTCG_IS_ORG",
+                "id": "BEST_JTCG_IS_ORG",
+                "text": "百世集团采购组织",
+                "children": [
+                    {
+                        "pk": "128653",
+                        "id": "BEST_WUHAN",
+                        "text": "集团采购-武汉仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_LACHAPELLE_IS_ORG",
+                "id": "SAAS_LACHAPELLE_IS_ORG",
+                "text": "百世SAAS拉夏贝尔组织",
+                "children": [
+                    {
+                        "pk": "154653",
+                        "id": "WH_TAICANG",
+                        "text": "拉夏贝尔-太仓仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_SY_OFC_IS_ORG",
+                "id": "CLOUD_SY_OFC_IS_ORG",
+                "text": "沈阳OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "169653",
+                        "id": "CLOUD_SY_HUAHUI",
+                        "text": "沈阳-文溯加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "KA_ZYQC_IS_ORG",
+                "id": "KA_ZYQC_IS_ORG",
+                "text": "百世中邮器材组织",
+                "children": [
+                    {
+                        "pk": "171653",
+                        "id": "KA_ZYQC_DAPENG",
+                        "text": "合肥-大彭仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_HAERBIN_IS_ORG",
+                "id": "CLOUD_HAERBIN_IS_ORG",
+                "text": "哈尔滨OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "177653",
+                        "id": "CLOUD_HAERBIN_XIANGFANG",
+                        "text": "哈尔滨-香坊加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_ZZ_OFC_IS_ORG",
+                "id": "CLOUD_ZZ_OFC_IS_ORG",
+                "text": "郑州OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "178653",
+                        "id": "CLOUD_ZZ_HS",
+                        "text": "郑州-华山加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SASS_SZDH_IS_ORG",
+                "id": "SASS_SZDH_IS_ORG",
+                "text": "百世SAAS深圳黛奥组织",
+                "children": [
+                    {
+                        "pk": "178654",
+                        "id": "SASS_SZDH_GUANGZHOU",
+                        "text": "黛奥SAAS仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_SJZ_IS_ORG",
+                "id": "EC_SJZ_IS_ORG",
+                "text": "百世河北OFC组织",
+                "children": [
+                    {
+                        "pk": "187653",
+                        "id": "EC_SJZ_PZ",
+                        "text": "石家庄-普众仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_HEZE_OFC_IS_ORG",
+                "id": "CLOUD_HEZE_OFC_IS_ORG",
+                "text": "菏泽OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "190653",
+                        "id": "CLOUD_HZ_CHUANGXIN",
+                        "text": "菏泽-创新加盟仓",
+                        "children": []
+                    },
+                    {
+                        "pk": "199654",
+                        "id": "CLOUD_HZ_CHAMA",
+                        "text": "菏泽-茶马加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_BJ_AG_IS_ORG",
+                "id": "BEST_BJ_AG_IS_ORG",
+                "text": "百世艾高组织",
+                "children": [
+                    {
+                        "pk": "100521",
+                        "id": "BJ_AG",
+                        "text": "北京-天河仓1",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_BJ_LFLH_IS_ORG",
+                "id": "BEST_BJ_LFLH_IS_ORG",
+                "text": "百世力方力合组织",
+                "children": [
+                    {
+                        "pk": "109059",
+                        "id": "BJ_LFLH",
+                        "text": "北京-天河仓1",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_HEBEI_IS_ORG",
+                "id": "EC_HEBEI_IS_ORG",
+                "text": "河北OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "109410",
+                        "id": "EC_WH_OFC_HEBEI",
+                        "text": "河北OFC-白沟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_FEISU_IS_ORG",
+                "id": "SAAS_FEISU_IS_ORG",
+                "text": "百世SAAS飞速组织",
+                "children": [
+                    {
+                        "pk": "111653",
+                        "id": "CS_FEISU_WH",
+                        "text": "长沙飞速仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_WENZHOU_IS_ORG",
+                "id": "CLOUD_WENZHOU_IS_ORG",
+                "text": "温州OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "114655",
+                        "id": "CLOUD_WENZHOU_YANGYI",
+                        "text": "温州OFC-仰义仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "ORG_NANJING_IS_ORG",
+                "id": "ORG_NANJING_IS_ORG",
+                "text": "南京电子商务OFC",
+                "children": [
+                    {
+                        "pk": "133654",
+                        "id": "WH_EC_NJ",
+                        "text": "南京OFC-瑞年仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "BEST_SHIGE_IS_ORG",
+                "id": "BEST_SHIGE_IS_ORG",
+                "text": "百世郑州狮格组织",
+                "children": [
+                    {
+                        "pk": "160653",
+                        "id": "WH_ZZ_ZK",
+                        "text": "郑州—郑开仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "EC_TIANJIN_IS_ORG",
+                "id": "EC_TIANJIN_IS_ORG",
+                "text": "天津电子商务OFC",
+                "children": [
+                    {
+                        "pk": "161653",
+                        "id": "TJ_EC_DL",
+                        "text": "天津OFC-东丽仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_CQ_OFC_IS_ORG",
+                "id": "CLOUD_CQ_OFC_IS_ORG",
+                "text": "重庆OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "164653",
+                        "id": "CLOUD_CQ_SHAPINGBA",
+                        "text": "重庆-璧山加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "CLOUD_XZ_OFC_IS_ORG",
+                "id": "CLOUD_XZ_OFC_IS_ORG",
+                "text": "徐州OFC加盟仓",
+                "children": [
+                    {
+                        "pk": "168653",
+                        "id": "CLOUD_XZ_XINYI",
+                        "text": "徐州-新沂加盟仓",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "pk": "SAAS_EXPRESS_IS_ORG",
+                "id": "SAAS_EXPRESS_IS_ORG",
+                "text": "直客优派项目",
+                "children": [
+                    {
+                        "pk": "173653",
+                        "id": "WINE",
+                        "text": "酒饮国际广州黄埔仓",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+]

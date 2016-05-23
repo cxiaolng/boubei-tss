@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>时空互钻, 二级空间</title>
+
+<link href="common.css" rel="stylesheet">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="common.js"></script>
+
+<script src="../../tools/echarts/echarts-all-2.1.10.js"></script>
+<script src="echart.js"></script>
+
+<style type="text/css">
+	body {
+		margin: 0 auto;
+	}
+	body>div {
+		width: 99%;
+		height:33%;
+		min-height:270px;
+	}
+	#research { right: 5px; left: inherit; }
+</style>
+
+<script type="text/javascript">
+
+var autoSize, title, data;
+
+window.onresize = show;
+
+window.onload = function() {
+	var globalValiable = window.parent.globalValiable;
+	if(globalValiable && globalValiable.data) {
+		title = globalValiable.title;
+		data = globalValiable.data
+		show();
+		return true;
+	}
+
+	title = "货量";
+	$.ajax({
+		url : "data/2.json",
+		method : "GET",
+		type : "json",
+		waiting : true,
+		ondata : function() {
+			data = this.getResponseJSON();
+			show();
+		}
+	});	  
+}
+
+var cDay, cSpace1;
+
+function show() {	
+ 	autoAdjustSize("canvasDiv1");
+ 	autoAdjustSize("canvasDiv2");
+
+ 	showDay();
+	showSpace1();
+}
+
+function showDay(space) {
+	var temp = [], isSpace1 = false;
+
+	if(space) {
+		data.each(function(i, item){
+			if( item.space1 === space ) {
+				isSpace1 = true;
+			}
+		});
+
+		data.each(function(i, item) {
+			if(isSpace1) {
+				if( item.space1 === space ) {
+					temp.push(item);
+				}
+			}
+			else {
+				if( item.space1 === cSpace1 && item.space2 === space ) {
+					temp.push(item);
+				}
+			}
+		});
+	} else {
+		temp = data.slice(0);
+	}
+ 
+	var result = groupby(temp, "day");
+	result.each(function(i, item){
+		item.name = item.day;
+	});
+	echartLine2D("canvasDiv1", (space||"") + title + "走势", result, "", showSpace1);
+
+	if(isSpace1) {
+		cSpace1 = space;
+		showSpace2();
+	}
+}
+
+function showSpace1(day) {
+	var temp = [];
+	data.each(function(i, item){
+		if(!day || item.day === day) {
+			temp.push(item);
+		}
+	});
+
+	var result = groupby(temp, "space1");
+	result.each(function(i, item){
+		item.name = item.space1;
+	});
+	echartColumn2D("canvasDiv2", (day||"") + title + "分布", result, showDay);
+
+	cDay = day;
+
+	cSpace1 && showSpace2();
+}
+
+function showSpace2(day) {
+	if(!cSpace1) return;
+
+	cDay = day ||　cDay;
+
+	tssJS("#canvasDiv3").css("height", "200px");
+
+	var temp = [];
+	data.each(function(i, item){
+		if( (!cDay || item.day === cDay) && item.space1 === cSpace1 ) {
+			temp.push(item);
+		}
+	});
+
+	var result = groupby(temp, "space2");
+	result.each(function(i, item){
+		item.name = item.space2;
+	});
+	echartColumn2D("canvasDiv3", (cDay||"") + cSpace1 + title + "分布", result, showDay);
+}
+
+</script>
+</head>
+
+<body>
+
+	<div>
+		<div id='canvasDiv1'></div>
+	</div>
+
+	<div>
+		<div id='canvasDiv2'></div>
+	</div>
+
+	<div style="height:0px; min-height:0px;">
+		<div id='canvasDiv3'></div>
+	</div>
+
+</body>
+</html>

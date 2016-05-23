@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>云仓看板</title>
+<link rel="shortcut icon" href="images/tab.ico">
+<link rel="Bookmark" href="mages/tab.ico">
+
+<link rel="stylesheet" href="../../tools/tssJS/css/boubei.css">
+<link rel="stylesheet" href="../bi_template/common.css">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="../bi_template/common.js"></script>
+<script src="../bi_template/ichart.js"></script>
+<script src="../../tools/ichartjs/ichart.1.1.min.js"></script>
+
+<style type="text/css">
+
+body { background-color:#D2E8F7;  }
+
+/* 主体样式 */
+#content {  position: relative; width: 100%; }
+#content h2 { height:22px; line-height:22px; font-size:12px; text-indent:13px; background-color:#D2E8F7; }
+
+#gridBox1{ float: left; height: 360px; width: 30%; }
+#scrollGrid{ padding: 0px 2px 0;  height: 338px; overflow: auto; }
+#scrollGrid table { width: 100%; max-width: 100%; }
+#scrollGrid table>tr:hover { background-color: #FFD700; }
+#scrollGrid table>tr>th, 
+#scrollGrid table>tr>td { padding-left: 3px; line-height: 22px; vertical-align: top; border-top: 1px solid #ddd; text-align: left;}
+#scrollGrid table .even{ background-color: #EEEEEE; }
+#scrollGrid table .odd { background-color: #FFF; }
+
+ 
+#chartBox1 { float: left; height: 360px; overflow: hidden; width: 70%; }
+#reportBox { float: left; height: 340px; width: 100%; }
+
+.tabmenu { width:100%; height:23px; }
+.tabmenu ul { list-style-type: none;  padding-top:6px;  }
+.tabmenu li { text-align:center; float:left; width:100px; background-color: #9370DB; cursor:pointer; margin-left: 1px; border-radius: 6px 6px 0 0; color:#fff;}
+.tabmenu .cli { font-weight: bold; background-color: #FF6347; border-bottom:#fff 1px solid; cursor:default; }
+     
+#conditionBox {
+    width: 250px;
+    height: 120px;
+    display:none;
+    background-color:#BEC6EE;
+    border:1px solid #416371;
+    border-radius: 5px;
+    padding:15px;
+    line-height: 30px;
+}
+#conditionButton {
+    margin-left: 50px;
+    margin-top: 15px;
+}
+
+/* relogin相关 */
+#relogin_box { width:300px; border: solid 1px #99b1c4; border-radius:5px; background-color:#EEEEEE; font-size: 15px; }
+#relogin_box h1 { line-height:40px; padding:0px 10px; background-color:#003399; color:#fff; }
+#relogin_box span { display:block; height: 30px; margin:15px 0px; padding:0px 10px; } 
+#relogin_box span input { margin-left: 10px; }
+#relogin_box #loginName, 
+#relogin_box #password { width:250px; height: 22px; font-size: 13px; border-radius:3px; border:1px solid #0C6F73; padding-left: 5px; }
+#relogin_box .bottonBox input { background-color: #999999; color: #FFFFFF; cursor: pointer;
+         border-radius: 3px; border: 1px solid #88D0E7; width: 117px; height: 25px; font-size: 14px;  }
+#relogin_box .bottonBox input:hover { font-weight: bold; background-color: #003399; }
+
+</style>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+    var globalValiable = {}, method = 'POST'; // 用来存放传递给iframe页面的信息
+
+    URL_DATA_SERVICE1   = '../../api/json/' + 'SORank';
+    URL_DATA_SERVICE2   = '../../api/json/' + 'SOProgress';
+    URL_DATA_SERVICE3   = '../../api/json/' + 'SOShipPM';
+    URL_DATA_SERVICE4   = '../../api/json/' + 'SOShipPH';
+
+    if (location.protocol === 'file:' || true) {
+        method = 'GET';
+        URL_DATA_SERVICE1 = 'data/kanban/1.json?';
+        URL_DATA_SERVICE2 = 'data/kanban/2.json?';
+        URL_DATA_SERVICE3 = 'data/kanban/3.json?';
+        URL_DATA_SERVICE4 = 'data/kanban/4.json?';
+    }
+
+    window.setInterval(refresh, 1000 * 180);  // 每180秒刷新一次
+
+    function refresh(isClickRefresh) {
+        if( !isClickRefresh ) {
+             queryTodaySO(); // 点击仓库或货主触发刷新时无需刷新此grid
+        }
+       
+        queryKanban();
+
+        var arrayli = $1("reportBox").getElementsByTagName("li"); // 获取li数组
+        for(var i=0; i < arrayli.length; i++) {
+            if(arrayli[i].className == "cli") {
+                eval("tab" + (i + 1) + "Function()");
+            }                
+        }
+    }
+
+    function queryTodaySO() {
+        var queryParams = getTimeCondition();;
+        queryParams.param2 = queryParams.searchTimeFrom;  
+        queryParams.param3 = queryParams.searchTimeTo;  
+
+        delete queryParams.searchTimeFrom;
+        delete queryParams.searchTimeTo;
+ 
+        tssJS.ajax({
+            url : URL_DATA_SERVICE1,
+            method : method,
+            params : queryParams,
+            type : "json",
+            waiting : true,
+            ondata : function() { 
+                var result = JSON.parse(this.getResponseText());
+
+                // 先对数据按维度进行处理
+                var dimension = $1("dimension").value;
+                var tempMap = {};
+                if(dimension == "1") {
+                    for(var i = 0; i < result.length; i++) {
+                        var row = result[i];
+                        var key = row["whid"];
+
+                        row["货主"] += "(" + row["订单数量"] + ")";
+                        if(tempMap[key] == null) {
+                            row["订单数量"] = parseInt(row["订单数量"]);
+                            row["仓库"] =  row["仓库"];
+                            tempMap[key] = row;
+                        } 
+                        else {
+                            tempMap[key]["货主"] += "<br/>" + row["货主"];
+                            tempMap[key]["customerid"] += "," + row["customerid"];
+                            tempMap[key]["订单数量"] += parseInt(row["订单数量"]);
+                        }
+                    }
+                }
+                else if(dimension == "2") {
+                    for(var i = 0; i < result.length; i++) {
+                        var row = result[i];
+                        var key = row["customerid"];
+
+                        row["仓库"] += "(" + row["订单数量"] + ")";
+                        if(tempMap[key] == null) {
+                            row["订单数量"] = parseInt(row["订单数量"]);
+                            row["货主"] = row["货主"];
+                            tempMap[key] = row;
+                        } else {
+                            tempMap[key]["仓库"] += "<br/>" + row["仓库"];
+                            tempMap[key]["whcode"] += "," + row["whcode"];
+                            tempMap[key]["whid"] += "," + row["whid"];
+                            tempMap[key]["订单数量"] += parseInt(row["订单数量"]);
+                        }
+                    }
+                }
+
+                if(dimension != "0") {
+                    result = [];
+                    for(var key in tempMap) {
+                        result.push(tempMap[key]);
+                    } 
+
+                    function sortNumber(a,b) {
+                        return b["订单数量"] - a["订单数量"];
+                    }
+                    result.sort(sortNumber);
+                }             
+
+                var scrollGrid = $1("scrollGrid");
+                scrollGrid.innerHTML = "";
+                var table = document.createElement("table");
+                scrollGrid.appendChild(table);
+
+                for(var i = 0; i < result.length; i++) {
+                    var row = result[i];
+
+                    var tr = document.createElement("tr");
+                    tr.className = (i % 2 == 0 ? "odd" : "even");
+                    table.appendChild(tr);
+                    tr.row = row;
+
+                    var td0 = document.createElement("td");
+                    td0.innerHTML = (i + 1);
+                    td0.style.width = "25px";
+                    tr.appendChild(td0);
+
+                    var td1 = document.createElement("td");
+                    if(dimension == "0" || dimension == "1") {
+                        td1.innerHTML = "<a href='#'>" + row["仓库"] + "</a>";
+                        td1.firstChild.onclick = function() {
+                            var row = this.parentNode.parentNode.row;
+                            globalValiable._whName = row["仓库"];
+                            globalValiable._whCode = row["whcode"];
+                            globalValiable._whId   = row["whid"];
+
+                            delete globalValiable._customerName;
+                            globalValiable._customerId = row["customerid"];
+
+                            refresh(true);
+                        };
+                    }
+                    else {
+                         td1.innerHTML = row["仓库"];
+                    }
+
+                    var td2 = document.createElement("td");
+                    if(dimension == "0" || dimension == "2") {
+                        td2.innerHTML = "<a href='#'>" + row["货主"] + "</a>";
+                        td2.firstChild.onclick = function() {
+                            var row = this.parentNode.parentNode.row;
+
+                            delete globalValiable._whName;
+                            globalValiable._whCode = row["whcode"];
+                            globalValiable._whId   = row["whid"];
+
+                            globalValiable._customerName = row["货主"];
+                            globalValiable._customerId   = row["customerid"];
+
+                            refresh(true);
+                        }
+                    }
+                    else {
+                         td2.innerHTML = row["货主"];
+                    }
+
+                    if(dimension == "2") {
+                        td2.style.width = "38%";
+                        td1.style.width = "43%";
+                        tr.appendChild(td2);
+                        tr.appendChild(td1);
+                    }   
+                    else {
+                        td1.style.width = "35%";
+                        td2.style.width = "46%";
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                    }
+
+                    var td = document.createElement("td");
+                    td.innerHTML = row["订单数量"];
+                    td.style.textAlign = "right";
+                    td.style.padding = "0 5px 0 0";
+                    tr.appendChild(td);
+                }
+            }
+        });
+    }
+
+    function getTimeCondition() {
+        var timeFrom = $1("searchTimeFrom").value;
+        var timeTo = $1("searchTimeTo").value;
+
+        var queryParams = {};
+        var today = new Date();
+        queryParams.searchTimeTo = timeTo ? timeTo : today.format('yyyy-MM-dd') + " 23:00:00";  
+
+        today.setDate(today.getDate() - 1);
+        queryParams.searchTimeFrom = timeFrom ? timeFrom : today.format('yyyy-MM-dd') + " 16:00:00";  
+
+        return queryParams;
+    }
+
+    function queryKanban() {
+        var queryParams = getTimeCondition();
+
+        if(globalValiable._whCode != null) {
+            queryParams.whCodes = globalValiable._whCode;
+        }
+        if(globalValiable._customerId != null) {
+            queryParams.customerIds = globalValiable._customerId;
+        }
+ 
+        tssJS.ajax({
+            url : URL_DATA_SERVICE2,
+            params : queryParams,
+            method : method,
+            type : "json",
+            waiting : true,
+            ondata : function() {
+                var originData = eval(this.getResponseText());
+                if (originData) {
+                    drawKanban(originData);
+                }
+            }
+        });
+
+        function drawKanban(originData) {
+            var values1 = [];
+            var values2 = [];
+            var max = 0;
+            for(var i = 0; i < originData.length; i++) {
+                values1[i] = originData[i][1]; 
+                values2[i] = originData[i][2]; 
+                max = Math.max(max, values1[i] + values2[i]);
+            }
+            max = $round(Math.round(max));
+
+            var data = [
+                        {
+                            name : '已完成',
+                            value: values2,
+                            color:'green'
+                        },
+                        {
+                            name : '待做',
+                            value: values1,
+                            color:'red'
+                        }
+                     ];
+      
+
+            var autoSize  = autoAdjustSize("canvasDiv");
+            var labels = ["创建","取消","分配","拣货","验货", "称重", "发运"];
+
+             var preTitle = globalValiable._customerName ? globalValiable._customerName : globalValiable._whName;
+            var fromStr = queryParams.searchTimeFrom.substring(5, 16).replace('-', '月').replace(' ', '日').replace(':00', '点');
+            var toStr   = queryParams.searchTimeTo.substring(5, 16).replace('-', '月').replace(' ', '日').replace(':00', '点');
+            var timeScope = '【' + fromStr + ' 至 ' + toStr + '】';
+            var title = (preTitle ? preTitle : "") + timeScope + ', 更新于【' + getLastFlushTime() + '】';
+            var unitName = "单";
+            var canvasName = 'canvasDiv';
+
+            drawColumn3D(canvasName, data, labels, max, title, unitName, autoSize[0], autoSize[1]);
+        }
+    }
+ 
+    function tabChange(obj) {
+        var arrayli = tssJS("li", obj.parentNode); // 获取li数组
+        for(var i=0; i < arrayli.length; i++) {
+            if(obj == arrayli[i]) {
+                if(arrayli[i].className == "cli") {
+                    return;
+                }
+
+                arrayli[i].className = "cli";
+                
+                eval("tab" + (i + 1) + "Function()");
+            }
+            else {
+                arrayli[i].className = "";
+            }
+        }
+    }
+
+    function tab1Function() {
+        var queryParams = {};
+        if(globalValiable._whId != null) {
+            queryParams._whIds = globalValiable._whId;
+        }
+        if(globalValiable._customerId != null) {
+            queryParams._customerIds = globalValiable._customerId;
+        }
+
+        tssJS.ajax({
+            url : URL_DATA_SERVICE3,
+            method : "GET",
+            params : queryParams,
+            type : "json",
+            waiting : true,
+            ondata : function() { 
+                var result = eval(this.getResponseText());
+                if(result == null || result.length == 0) return;
+
+                globalValiable.data = [];  // 先清空数据
+
+                var resultMap = {};
+                for(var i = 0; i < result.length; i++) {
+                    resultMap[result[i].name] = result[i].value;
+                }
+
+                var now = new Date();
+                var index = now.getHours() * 60 + now.getMinutes();
+                globalValiable.data = [];
+
+                var dayMinutes = everyMinuteOfDay();
+                for(var i = index; i < 24 * 60; i++) {
+                    var name = dayMinutes[i];
+                    var value = resultMap[name] || 0;
+                    globalValiable.data.push( {"name": name, "value": value} )
+                }
+
+                for(var i = 0; i < index; i++) {
+                    if(i >= 2 * 60 && i <= 8 * 60) {
+                        continue;  // 凌晨2点到8点不统计，一般没有发货数据
+                    }
+
+                    var name = dayMinutes[i];
+                    var value = resultMap[name] || 0;
+                    globalValiable.data.push( {"name": name, "value": value} )
+                }
+                
+                // 数据在iframe里展示
+                $1("chatFrame").setAttribute("src", "../bi_template/ichart.html?type=Line2D");
+            }
+        });
+    }
+
+    function everyMinuteOfDay() {
+        var array = [];
+        for(var i = 0; i < 24; i++) {
+             for(var j = 0; j < 60; j++) {
+                array.push( (i < 10 ? "0" : "") + i + ":" + (j < 10 ? "0" : "") + j );
+             }
+        }
+        return array;
+    }
+
+    function tab2Function() {
+        var queryParams = {};
+        if(globalValiable._whId != null) {
+            queryParams._whIds = globalValiable._whId;
+        }
+        if(globalValiable._customerId != null) {
+            queryParams._customerIds = globalValiable._customerId;
+        }
+
+        tssJS.ajax({
+            url : URL_DATA_SERVICE4,
+            method : method,
+            params : queryParams,
+            type : "json",
+            waiting : true,
+            ondata : function() { 
+                var result = eval(this.getResponseText());
+                if(result == null || result.length == 0) return;
+ 
+                globalValiable.data = [];  // 先清空数据
+                for(var i = 1; i < result.length; i++) {
+                    globalValiable.data.push( result[i] )
+                }
+                
+                // 数据在iframe里展示
+                $1("chatFrame").setAttribute("src", "../bi_template/ichart.html?type=Column3D");
+            }
+        });
+    }
+
+    function tab3Function() {
+        var queryParams = {};
+        if(globalValiable._whId != null) {
+            queryParams._whIds = globalValiable._whId;
+        }
+        if(globalValiable._customerId != null) {
+            queryParams._customerIds = globalValiable._customerId;
+        }
+
+        tssJS.ajax({
+            url : URL_DATA_SERVICE4,
+            method : method,
+            params : queryParams,
+            type : "json",
+            waiting : true,
+            ondata : function() { 
+                var result = eval(this.getResponseText());
+                if(result == null || result.length == 0) return;
+ 
+                globalValiable.data = [];  // 先清空数据
+                for(var i = 1; i < result.length; i++) {
+                    globalValiable.data.push( result[i] )
+                }
+                
+                // 数据在iframe里展示
+                $1("chatFrame").setAttribute("src", "../bi_template/ichart.html?type=Pie3D");
+            }
+        });
+    }
+
+    function autoAdjustSize(elementID) {
+        var _width  = $1(elementID).parentNode.offsetWidth - 5;
+        var _height = $1(elementID).parentNode.offsetHeight - 5;
+
+        return [ _width, _height];
+    }
+
+
+    var FROMEWORK_CODE = "TSS", CONTEXTPATH  = "tss/";
+
+    window.onload = function() {
+        $.ajax({
+            url : "../../auth/user/operatorInfo",
+            method : "POST",
+            headers: {"appCode": FROMEWORK_CODE},
+            params : {"anonymous": "true"}, 
+            onresult : function() {
+                refresh();
+                tab1Function();
+            }
+        }); // 触发一下自定义登陆，以便能正常读取仓库权限
+
+        $1("dimension").onchange = queryTodaySO;
+
+        var autoSize  = autoAdjustSize("content");
+        $1("reportBox").style.height = (autoSize[1] - 360 - 28) + "px";
+
+        var today = new Date();
+        $1("searchTimeTo").value = today.format('yyyy-MM-dd') + " 23:00:00";  
+
+        today.setDate(today.getDate() - 1);
+        $1("searchTimeFrom").value = today.format('yyyy-MM-dd') + " 16:00:00"; 
+
+        tssJS.createCalendar($1("searchTimeFrom"), true);
+        tssJS.createCalendar($1("searchTimeTo"), true); 
+
+        $1("conditionButton").onclick = function() {
+            queryTodaySO();
+            queryKanban();
+            $("#conditionBox").hide();
+            $("#defaultTimeTag").hide();
+        }        
+    }
+
+//-->
+</SCRIPT>
+ 
+</head>
+
+<body>
+
+<div id="content">
+ 
+    <div id="gridBox1">
+        <h2><span id="defaultTimeTag">昨16点至今</span><a href="#" onclick="$('#conditionBox').show(true).position(300, 100).css('zIndex', 9999)">【设置时间】</a>单量排名       
+            <select id="dimension" style="float:right;margin-top:1px;;margin-right:18px;">
+                <option value="0" selected>按仓库、项目</option>
+                <option value="1">按仓库</option>
+                <option value="2">按项目</option>
+            </select>
+        </h2>
+        <div id="scrollGrid"></div>
+    </div>
+
+    <div id="conditionBox">
+        <label>时间从:</label> <input id="searchTimeFrom" /> <br/>
+        <label>时间到:</label> <input id="searchTimeTo" /> <br/>
+        <input type="button" value="确 定" class="tssbutton blue" id="conditionButton"/>
+    </div>
+
+    <div id="chartBox1">
+        <h2>订单作业进度</h2>
+        <div id="canvasDiv"></div>
+    </div>
+
+    <div id="reportBox" class="tabbox">
+        <div class="tabmenu">
+            <ul>
+                <li onclick="tabChange(this)" class="cli">发货单数(分钟)</li>
+                <li onclick="tabChange(this)">发货单数(小时)</li>
+                <li onclick="tabChange(this)">发货单数(饼图)</li>
+            </ul>
+        </div>
+        <iframe id="chatFrame" src="" style="width:100%;height:100%;" frameborder="0"></iframe>
+    </div>
+ 
+</div>
+  
+</body>
+
+</html>

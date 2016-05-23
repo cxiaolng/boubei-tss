@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<strategies> 
+  <strategy code="taskpool" name="端口扫描任务池"> 
+    <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
+    <poolContainerClass>com.boubei.tss.cache.extension.EhcacheContainer</poolContainerClass>  
+    <cyclelife>5000</cyclelife>  
+    <interruptTime>1000</interruptTime>  
+	<poolSize>30</poolSize>  
+    <initNum>10</initNum>  
+    <disabled>0</disabled>  
+    <customizerClass>com.boubei.tss.cache.ScannerTaskPoolCustomizer</customizerClass>  
+    <accessMethod>1</accessMethod>  
+  </strategy>  
+  
+  <strategy code="threadpool" name="线程池"> 
+    <poolClass>com.boubei.tss.cache.extension.threadpool.ThreadPool</poolClass>  
+	<poolContainerClass>com.boubei.tss.cache.extension.MapContainer</poolContainerClass>  
+    <cyclelife>0</cyclelife>  
+    <interruptTime>1000</interruptTime>  
+	<poolSize>10</poolSize>  
+    <initNum>5</initNum>  
+    <disabled>0</disabled>  
+    <customizerClass>com.boubei.tss.cache.extension.threadpool.ThreadPoolCustomizer</customizerClass>  
+  </strategy>  
+  
+  <strategy code="SHORT" name="服务数据缓存（短期）"> 
+    <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
+    <poolSize>10</poolSize>  
+    <cyclelife>5000</cyclelife>  
+    <accessMethod>5</accessMethod>  
+  </strategy>
+  <strategy code="SHORT-2" name="服务数据缓存（短期）2"> 
+    <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
+    <poolSize>10</poolSize>  
+    <cyclelife>5000</cyclelife>  
+    <accessMethod>5</accessMethod>  
+  </strategy>
+  <strategy code="SHORT-3" name="服务数据缓存（短期）3"> 
+    <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
+    <poolSize>10</poolSize>  
+    <cyclelife>5000</cyclelife>  
+    <accessMethod>5</accessMethod>  
+  </strategy>
+  
+  <strategy code="LONG" name="服务数据缓存（长期）"> 
+    <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
+    <interruptTime>1000</interruptTime>  
+	<poolSize>10</poolSize>  
+    <cyclelife>1000000</cyclelife>  
+    <accessMethod>5</accessMethod>  
+  </strategy>
+ 
+  <strategy code="NODEAD" name="服务数据缓存（不死）"> 
+    <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
+    <poolSize>10</poolSize>  
+    <cyclelife>0</cyclelife>  
+    <accessMethod>5</accessMethod>  
+  </strategy>
+  
+  <strategy code="SimplePool" name="SimplePool"/>
+  
+</strategies>

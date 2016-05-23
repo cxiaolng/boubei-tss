@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>转仓发货分析</title>
+
+<link rel="stylesheet" href="../../tools/tssJS/css/boubei.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/icon.css">
+<link rel="stylesheet" href="../bi_template/common.css">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+<script src="../bi_template/common.js"></script>
+ 
+<script src="../../tools/easyui/jquery.min.js"></script>
+<script src="../../tools/easyui/jquery.easyui.min.js"></script>
+
+<script src="../../tools/echarts/echarts-all-2.1.10.js"></script>
+
+<style>
+
+body { background-color: #fff; height: 95%;}
+
+.bibt {
+    left: 252px; top: 5px;
+}
+
+#canvasDiv {
+    min-height: 300px;
+    margin-top: 10px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+    URL_DATA2 = '/tss/api/json/GetTopZCSkus';
+    URL_DATA3 = '/tss/api/json/GetZCDetails';
+    URL_DATA4 = '/tss/api/json/GetWHs';
+
+    var _params = {}, skuIDs, skuCodes, whs, _data, data1, data2, 
+        FIELD_DEFINE0, FIELD_DEFINE1, FIELD_DEFINE2, FIELD_DEFINE3, method = 'POST';
+
+    $(function() {
+        initResearhBt();
+
+        var globalValiable = window.parent.globalValiable;
+        if(globalValiable && globalValiable.data) {
+            _params = globalValiable.queryParams;
+            _data = globalValiable.data;
+
+            query();
+            return;
+        }
+
+        // just Test
+        method = 'GET';
+        URL_DATA1 = 'data/fc/zcfhfx_1.json?';
+        URL_DATA2 = 'data/fc/zcfhfx_topSKU3.json?';
+        URL_DATA3 = 'data/fc/zcfhfx_2.json?';
+        URL_DATA4 = 'data/fc/wh_list.json?';
+
+        tssJS.ajax({
+            url : URL_DATA1,
+            method : "GET",
+            type : "json",
+            waiting : true,
+            ondata : function() {
+                _data = this.getResponseJSON();
+                query();
+            }
+        });   
+    });
+
+     function query() {
+        if( !whs ) {
+            tssJS.ajax({
+                url : URL_DATA4,
+                method : "GET",
+                type : "json",
+                waiting : true,
+                ondata : function() {
+                    var whList = this.getResponseJSON();
+                    whs = {};
+                    whList.each(function(i, wh) {
+                        whs[wh.code] = wh.name;
+                    });
+
+                    whs["汇总占比"] = "汇总占比";
+
+                    query2();
+                }
+            });
+        } 
+        else {
+            query2();
+        }
+    }
+ 
+    function query2() {
+        var customerCode = _params.param1;
+
+        // 先清空
+        data1 = [];
+        data2 = []; 
+        skuIDs = [];
+        skuCodes = [];
+
+        FIELD_DEFINE0 = [];
+        FIELD_DEFINE1 = [];
+        FIELD_DEFINE2 = [];
+        FIELD_DEFINE3 = [];
+
+        show();
+
+        // TOPX SKU
+        tssJS.ajax({
+            url : URL_DATA2,
+            type: 'json',
+            method: method,
+            params: { "param1": customerCode, "param2": _params.param2, "param3": _params.param3, "param4": _params.param5 },
+            waiting : true,
+            ondata : function() {
+                var skudata = this.getResponseJSON();
+                if(skudata == null || skudata.length == 0) {
+                    return tssJS.alert("您查询的客户在当前查询时间段内没有做过任何发货。");
+                }
+
+                skudata.each(function(i, item){
+                    skuIDs.push(item.id);
+                    skuCodes.push(item.skucode);
+                });
+
+                // 转仓发货明细
+                tssJS.ajax({
+                    url : URL_DATA3,
+                    type: 'json',
+                    method: method,
+                    params: { 
+                        "param1": customerCode, 
+                        "param2": _params.param2, 
+                        "param3": _params.param3, 
+                        "param4": _params.param6, 
+                        "param5": skuCodes.join(",") 
+                    },
+                    waiting : true,
+                    ondata : function() {
+                        var data3 = this.getResponseJSON();
+                        showDetails(data3);
+                    }
+                }); 
+            }
+        }); 
+    }
+
+    function show() {
+        var autoSize = autoAdjustSize("t1");
+        tssJS("#t2").css("height", autoSize[1] + "px");
+
+        var legends = [], xpoints = [], series = [];
+
+        // 先计算合计行
+        var periods = {};
+        _data.each(function(i, row) {
+            var period = row.period;
+            var item = periods[period]; 
+            if(!item) {
+                item = {"wh": "汇总占比", "period": period, "num1": 0, "num2": 0};
+                periods[period] = item;
+                _data.push(item);
+
+                xpoints.push(period);
+            }
+
+            item.num1 += row.num1;
+            item.num2 += row.num2;
+        });
+
+        // 再把日期变成横排
+        var whMap = [], _periods = [];
+        _data.each(function(i, row) {
+            var period = row.period;
+            var item = whMap[row.wh]; 
+            if(!item) {
+                item = {"wh": whs[row.wh], "tnum1": 0, "tnum2": 0};
+                whMap[row.wh] = item;
+                data1.push(item);
+
+                item.x = {
+                    name: whs[row.wh],
+                    type: 'line',
+                    data:[]
+                }
+                series.push(item.x);
+                legends.push(whs[row.wh]);
+            }
+
+            var tempTotal = row.num1;
+            item.x.data.push(divide(row.num2, tempTotal));
+            item[period + "_1"] = row.num2 == 0 ? '' : row.num2;
+            item[period + "_2"] = row.num2 == 0 ? '' : calculatePercent(row.num2, tempTotal);
+
+            item.tnum1 += row.num1;
+            item.tnum2 += row.num2;
+            tempTotal = item.tnum1;
+            item['total_1'] = item.tnum2 == 0 ? '' : item.tnum2;
+            item['total_2'] = item.tnum2 == 0 ? '' : calculatePercent(item.tnum2, tempTotal);
+            
+            if( !_periods.contains(period) ) {
+                _periods.push(period);
+
+                FIELD_DEFINE0.push({title: period,     field: period, width:120, align:'center', colspan:2});
+                FIELD_DEFINE1.push({title: '转仓单数', field: period + '_1', width:65, align:'right'});
+                FIELD_DEFINE1.push({title: '转仓率',   field: period + '_2', width:55, align:'center'});
+            }
+        });
+
+        FIELD_DEFINE0.push({title: '汇总',     field: 'total',   width:120, align:'center', colspan:2});
+        FIELD_DEFINE1.push({title: '转仓单数', field: 'total_1', width:65, align:'right'});
+        FIELD_DEFINE1.push({title: '转仓率',   field: 'total_2', width:55, align:'center'});
+
+        $('#t1').datagrid({
+            rownumbers : true,
+            frozenColumns: [[    
+                 {title:'仓库', field:'wh', width:120, align:'center'}
+             ]], 
+            columns:[FIELD_DEFINE0, FIELD_DEFINE1],
+            data: data1,
+            rowStyler: rowStyler
+        });
+
+        // 折线图
+        var option = {
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data: legends
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    magicType : {show: true, type: ['line', 'bar']},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data: xpoints
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: '{value} %'
+                    }
+                }
+            ],
+            series : series
+        };          
+
+        var chartObj = echarts.init($1("canvasDiv"));
+        chartObj.setOption(option);   
+    }
+
+    function showDetails(result) {
+        // 先计算合计行
+        var map = {}, skus = [];
+        result.each(function(i, row) {
+            var key = row.sku + "_" + row.period;
+            var item = map[key]; 
+            if(!item) {
+                item = {"sku": row.sku , "wh": "汇总占比", "period": row.period, "num": 0, "num1": 0, "num2": 0};
+                map[key] = item;
+                result.push(item);
+            }
+
+            item.num += row.num;
+            item.num1 += row.num1;
+            item.num2 += row.num2;
+
+            if( !skus.contains(row.sku) ) {
+                skus.push(row.sku);
+            }
+        });
+
+        // 再把日期变成横排
+        var whMap = [], periods = [], _data2 = [];
+
+        result.each(function(i, row) {
+            var period = row.period;
+            var key = row.sku + "_" + row.wh;
+            var item = whMap[key]; 
+            if(!item) {
+                item = {"wh": whs[row.wh], "sku": row.sku, "tnum": 0, "tnum1": 0, "tnum2": 0};
+                whMap[key] = item;
+                _data2.push(item);
+            }
+            var tempTotal = row.num;
+            item[period + "_1"] = row.num1 == 0 ? '' : row.num1;
+            item[period + "_2"] = row.num1 == 0 ? '' : calculatePercent(row.num1, tempTotal);
+            item[period + "_3"] = row.num2 == 0 ? '' : row.num2;
+            item[period + "_4"] = row.num2 == 0 ? '' : calculatePercent(row.num2, tempTotal);
+
+            item.tnum += row.num;
+            item.tnum1 += row.num1;
+            item.tnum2 += row.num2;
+            tempTotal = item.tnum;
+            item['total_1'] = item.tnum1 == 0 ? '' : item.tnum1;
+            item['total_2'] = item.tnum1 == 0 ? '' : calculatePercent(item.tnum1, tempTotal);
+            item['total_3'] = item.tnum2 == 0 ? '' : item.tnum2;
+            item['total_4'] = item.tnum2 == 0 ? '' : calculatePercent(item.tnum2, tempTotal);
+            
+            if( !periods.contains(period) ) {
+                periods.push(period);
+                FIELD_DEFINE2.push({title: period,     field: period, width:200, align:'center', colspan:4});
+                FIELD_DEFINE3.push({title: '缺货转仓', field: period + '_1', width:55, align:'right'});
+                FIELD_DEFINE3.push({title: '占比',     field: period + '_2', width:45, align:'center'});
+                FIELD_DEFINE3.push({title: '关联转仓', field: period + '_3', width:55, align:'right'});
+                FIELD_DEFINE3.push({title: '占比',     field: period + '_4', width:45, align:'center'});
+            }
+        });
+
+        FIELD_DEFINE2.push({title: '汇总',     field: 'total',   width:200, align:'center', colspan:4});
+        FIELD_DEFINE3.push({title: '缺货转仓', field: 'total_1', width:55, align:'right'});
+        FIELD_DEFINE3.push({title: '占比',     field: 'total_2', width:45, align:'center'});
+        FIELD_DEFINE3.push({title: '关联转仓', field: 'total_3', width:55, align:'right'});
+        FIELD_DEFINE3.push({title: '占比',     field: 'total_4', width:45, align:'center'});
+
+        // 按货品及货品的总转仓发货量由高到低降序排序
+        var sortMap = {};
+        skuCodes.each(function(n, sku){
+            sortMap[sku] = [];
+        });
+
+        $.each(sortMap, function(sku, v){
+            _data2.each(function(i, row){
+                if(row.sku === sku) {
+                    v.push(row);
+                }
+            });
+        });
+        $.each(sortMap, function(sku, v){
+            v.sort(function(row1, row2) {
+                return (row1.total_1||0) + (row1.total_3||0) > (row2.total_1||0) + (row2.total_3||0) ? -1 : 1;
+            });
+        });
+
+        skuCodes.each(function(n, sku){
+            sortMap[sku].each(function(i, row) {
+                data2.push(row);
+            });
+        });
+
+
+
+        $('#t2').datagrid({
+            rownumbers : true,
+            frozenColumns: [[    
+                 {title:'SKU', field:'sku', align:'center', width:120},
+                 {title:'仓库', field:'wh', align:'center', width:120}
+             ]],   
+            columns:[FIELD_DEFINE2, FIELD_DEFINE3],
+            data: data2,
+            rowStyler: rowStyler
+        });
+    }  
+
+    function rowStyler(index,row){
+        if (row.wh.indexOf('汇总') >= 0){
+            return 'background-color:#CCFFCC;';
+        }
+    }
+
+    function exportCSV1() {
+        var columns = [{title:'仓库', field:'wh'}];
+        
+        FIELD_DEFINE1.each(function(i, column) {
+            columns.push(column);
+        });
+        FIELD_DEFINE0.each(function(i, column) {
+            columns.push(column);
+        });
+
+        data2CSV("zcfh1", columns, data1);
+    }
+
+    function exportCSV2() {
+        var columns = [{title:'SKU', field:'sku'}, {title:'仓库', field:'wh'}];
+
+        FIELD_DEFINE3.each(function(i, column) {
+            columns.push(column);
+        });
+        FIELD_DEFINE2.each(function(i, column) {
+            columns.push(column);
+        });
+
+        data2CSV("zcfh2", columns, data2);
+    }
+     
+</script>
+</head>
+
+<body>
+
+    <input type="button" value="导出汇总" class="tssbutton blue bibt" style="margin-left:85px;" onclick="exportCSV1()">
+    <input type="button" value="导出明细" class="tssbutton blue bibt" style="margin-left:170px;" onclick="exportCSV2()">
+
+    <div class="easyui-tabs" data-options="fit:true" border="false" >
+        
+        <div id="d1" title="货品转仓发货汇总" border="false" >
+            <table id="t1" style="max-height:300px;" border="false" ></table>
+            <div id='canvasDiv'></div>
+        </div>
+
+        <div id="d2" title="货品转仓发货明细" border="false" >
+            <table id="t2" style="height:500px;" border="false" ></table>
+        </div>
+
+    </div>
+
+</body>
+</html>

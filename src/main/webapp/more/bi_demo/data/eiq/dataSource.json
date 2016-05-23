@@ -1,0 +1,7 @@
+[{
+	"id": "connectionpool-1",
+	"text":"WMS 只读库"
+},{
+	"id": "connpool-wms-mysql",
+	"text":"WMS MYSQL库"
+}]

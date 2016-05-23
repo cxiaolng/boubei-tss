@@ -1,0 +1,1597 @@
+[
+    {
+        "id": 100120,
+        "code": "SY001",
+        "name": "沈阳BYD"
+    },
+    {
+        "id": 100401,
+        "code": "XM003",
+        "name": "厦门森达"
+    },
+    {
+        "id": 100542,
+        "code": "EC_GZ_WH",
+        "name": "广州-市莲仓(歌莉娅)"
+    },
+    {
+        "id": 100741,
+        "code": "JY42Z",
+        "name": "佳怡物流"
+    },
+    {
+        "id": 100221,
+        "code": "cs001",
+        "name": "长沙美的仓库"
+    },
+    {
+        "id": 100544,
+        "code": "EC_XM_WH",
+        "name": "杭州OFC-海宁仓"
+    },
+    {
+        "id": 100721,
+        "code": "zhongritong",
+        "name": "阿里中日通仓库"
+    },
+    {
+        "id": 100781,
+        "code": "NJ_BW",
+        "name": "南京百威仓"
+    },
+    {
+        "id": 100863,
+        "code": "HBSS_HHHT",
+        "name": "盛世呼和浩特仓库"
+    },
+    {
+        "id": 100881,
+        "code": "sh005",
+        "name": "上海INTHEF仓库"
+    },
+    {
+        "id": 100281,
+        "code": "yahoo",
+        "name": "雅虎中国馆"
+    },
+    {
+        "id": 100301,
+        "code": "XM002",
+        "name": "厦门一动N"
+    },
+    {
+        "id": 100321,
+        "code": "QC83Z",
+        "name": "脱普成都仓库"
+    },
+    {
+        "id": 100361,
+        "code": "gz001",
+        "name": "广州Kellogg"
+    },
+    {
+        "id": 100481,
+        "code": "YN001",
+        "name": "昆明HUB"
+    },
+    {
+        "id": 100541,
+        "code": "EC_EMSDG_WH",
+        "name": "东莞EMS电子商务仓库"
+    },
+    {
+        "id": 100561,
+        "code": "HZYZF001",
+        "name": "燕之坊仓库"
+    },
+    {
+        "id": 100661,
+        "code": "best_ps_001",
+        "name": "PS食品室（2013压力测试仓）"
+    },
+    {
+        "id": 100801,
+        "code": "HBSS_SJZ",
+        "name": "盛世石家庄仓库"
+    },
+    {
+        "id": 100861,
+        "code": "HBSS_BJ",
+        "name": "盛世北京仓库"
+    },
+    {
+        "id": 100862,
+        "code": "HBSS_BT",
+        "name": "盛世包头仓库"
+    },
+    {
+        "id": 100921,
+        "code": "CDYD001",
+        "name": "成都-双流仓（一动）"
+    },
+    {
+        "id": 100941,
+        "code": "FUJIYA-GZ",
+        "name": "不二家广州仓"
+    },
+    {
+        "id": 100961,
+        "code": "XM_SEPTWOLVES_DC_LANLANG",
+        "name": "七匹狼总部调拨仓_蓝狼"
+    },
+    {
+        "id": 100981,
+        "code": "NYYD001",
+        "name": "南宁-科园仓"
+    },
+    {
+        "id": 101001,
+        "code": "sh006",
+        "name": "上海LESHOP仓库"
+    },
+    {
+        "id": 104821,
+        "code": "DAHUABJ",
+        "name": "北京-霍氏文化"
+    },
+    {
+        "id": 102421,
+        "code": "WH_EC_BJ_Oriflame",
+        "name": "欧瑞莲北京DC"
+    },
+    {
+        "id": 105021,
+        "code": "SH_MH_EC",
+        "name": "上海OFC-凤溪仓"
+    },
+    {
+        "id": 100200,
+        "code": "BJ_LN",
+        "name": "北京-天河仓1(NDC仓)"
+    },
+    {
+        "id": 100240,
+        "code": "GX001",
+        "name": "南宁李宁仓库"
+    },
+    {
+        "id": 100261,
+        "code": "SYYD001",
+        "name": "沈阳一动"
+    },
+    {
+        "id": 101021,
+        "code": "cd002",
+        "name": "成都明一乳业仓"
+    },
+    {
+        "id": 100581,
+        "code": "sh004",
+        "name": "上海Kellogg仓库"
+    },
+    {
+        "id": 101221,
+        "code": "hf001",
+        "name": "合肥晶弘仓库"
+    },
+    {
+        "id": 101421,
+        "code": "BJ_HY",
+        "name": "北京-天河仓3"
+    },
+    {
+        "id": 102621,
+        "code": "NNCP",
+        "name": "南宁残品仓"
+    },
+    {
+        "id": 103421,
+        "code": "WH_EC_XJ_Oriflame",
+        "name": "乌市-金湖仓"
+    },
+    {
+        "id": 105422,
+        "code": "XM_EC_TONGZHUANG",
+        "name": "七匹狼新渠道-利诺仓"
+    },
+    {
+        "id": 105221,
+        "code": "CCYD001",
+        "name": "长春一动仓库"
+    },
+    {
+        "id": 105421,
+        "code": "XM_EC_LANLANG",
+        "name": "厦门OFC-集美仓（七匹狼蓝狼）"
+    },
+    {
+        "id": 105621,
+        "code": "WH_EC_MIIOW",
+        "name": "武汉OFC-银柏仓"
+    },
+    {
+        "id": 100020,
+        "code": "sz001",
+        "name": "宏讯电子"
+    },
+    {
+        "id": 100060,
+        "code": "fz001",
+        "name": "新天国际酒业"
+    },
+    {
+        "id": 100080,
+        "code": "ly001",
+        "name": "临沂仓库"
+    },
+    {
+        "id": 100220,
+        "code": "BEST_SH_TAOBAO_WH",
+        "name": "上海OFC-盈港仓"
+    },
+    {
+        "id": 100140,
+        "code": "SY002",
+        "name": "沈阳-天河中储"
+    },
+    {
+        "id": 100183,
+        "code": "XM001",
+        "name": "厦门一动"
+    },
+    {
+        "id": 100381,
+        "code": "cs002",
+        "name": "长沙-恒顺物流"
+    },
+    {
+        "id": 100421,
+        "code": "CSYD002",
+        "name": "长沙一动仓库2"
+    },
+    {
+        "id": 100621,
+        "code": "wanma001",
+        "name": "万马奔腾"
+    },
+    {
+        "id": 100521,
+        "code": "BJ_AG",
+        "name": "北京-天河仓1"
+    },
+    {
+        "id": 100681,
+        "code": "DJ001",
+        "name": "百世饮料仓"
+    },
+    {
+        "id": 100701,
+        "code": "XM_EC_WH",
+        "name": "厦门OFC-集美仓（七匹狼旗舰店）"
+    },
+    {
+        "id": 100761,
+        "code": "WH_EC_WH",
+        "name": "武汉OFC-横天仓"
+    },
+    {
+        "id": 101621,
+        "code": "hf002",
+        "name": "格力小家电仓库"
+    },
+    {
+        "id": 101821,
+        "code": "sh007",
+        "name": "上海-港源商务"
+    },
+    {
+        "id": 103021,
+        "code": "FZYD001",
+        "name": "福州一动仓"
+    },
+    {
+        "id": 104221,
+        "code": "EC_LN",
+        "name": "上海OFC-华新仓"
+    },
+    {
+        "id": 104222,
+        "code": "SHYD001",
+        "name": "上海一动仓"
+    },
+    {
+        "id": 104421,
+        "code": "SNC_LN",
+        "name": "上海-华丹仓"
+    },
+    {
+        "id": 104223,
+        "code": "HZYD001",
+        "name": "杭州一动仓"
+    },
+    {
+        "id": 104621,
+        "code": "BJ_TH",
+        "name": "退货仓"
+    },
+    {
+        "id": 100000,
+        "code": "sh001",
+        "name": "上海INTHEF仓库(OLD)"
+    },
+    {
+        "id": 100001,
+        "code": "sh002",
+        "name": "上海HUB"
+    },
+    {
+        "id": 100040,
+        "code": "cd001",
+        "name": "长城葡萄酒"
+    },
+    {
+        "id": 100160,
+        "code": "sh003",
+        "name": "上海KOLON仓库"
+    },
+    {
+        "id": 100260,
+        "code": "zz001",
+        "name": "郑州仓库"
+    },
+    {
+        "id": 100341,
+        "code": "CSYD001",
+        "name": "长沙-东风仓"
+    },
+    {
+        "id": 100441,
+        "code": "DLYD001",
+        "name": "大连-西北仓"
+    },
+    {
+        "id": 100501,
+        "code": "CSYD003",
+        "name": "长沙一动仓库3"
+    },
+    {
+        "id": 100601,
+        "code": "TJYD001",
+        "name": "天津-中环仓"
+    },
+    {
+        "id": 100841,
+        "code": "BS84Z",
+        "name": "脱普成都百世仓"
+    },
+    {
+        "id": 100821,
+        "code": "WH_EC_BJ",
+        "name": "北京OFC-天河仓"
+    },
+    {
+        "id": 100864,
+        "code": "HBSS_BD",
+        "name": "盛世保定仓库"
+    },
+    {
+        "id": 100901,
+        "code": "XM_SEPTWOLVES_DC",
+        "name": "厦门OFC-同安仓"
+    },
+    {
+        "id": 102821,
+        "code": "BJ_LT",
+        "name": "北京-天河仓1(LOTTO仓)"
+    },
+    {
+        "id": 103221,
+        "code": "sh008",
+        "name": "上海固特异仓库"
+    },
+    {
+        "id": 106622,
+        "code": "EC_WH_OFC_NINGBO",
+        "name": "宁波OFC-北仑仓"
+    },
+    {
+        "id": 106623,
+        "code": "EC_WH_OFC_YIWU",
+        "name": "义乌OFC-明月仓"
+    },
+    {
+        "id": 106821,
+        "code": "BJ_NDC",
+        "name": "北京NDC"
+    },
+    {
+        "id": 106822,
+        "code": "GZ_NDC",
+        "name": "广州NDC"
+    },
+    {
+        "id": 107621,
+        "code": "EC_WH_PY",
+        "name": "广州OFC-南村仓"
+    },
+    {
+        "id": 109032,
+        "code": "SZGX001",
+        "name": "苏州-木桥仓"
+    },
+    {
+        "id": 109041,
+        "code": "XM_EC_GRN",
+        "name": "厦门OFC-翔安仓"
+    },
+    {
+        "id": 109050,
+        "code": "25011",
+        "name": "同安海盟仓"
+    },
+    {
+        "id": 109068,
+        "code": "QZ_DC",
+        "name": "泉州仓"
+    },
+    {
+        "id": 109122,
+        "code": "BEST_IT_WH",
+        "name": "总部IT仓"
+    },
+    {
+        "id": 109152,
+        "code": "3124J01",
+        "name": "杭州HUB"
+    },
+    {
+        "id": 109153,
+        "code": "3124E01",
+        "name": "上海HUB"
+    },
+    {
+        "id": 109157,
+        "code": "3307A00",
+        "name": "无锡分拨"
+    },
+    {
+        "id": 109163,
+        "code": "3307J04",
+        "name": "台州分拨"
+    },
+    {
+        "id": 109167,
+        "code": "SH_RETRO",
+        "name": "上海-港源商务"
+    },
+    {
+        "id": 109176,
+        "code": "SH_HY",
+        "name": "上海-鹿吉仓"
+    },
+    {
+        "id": 109185,
+        "code": "CHQ_MSHWL",
+        "name": "重庆-冠生园"
+    },
+    {
+        "id": 109222,
+        "code": "EC_NANCHANG_WH",
+        "name": "南昌OFC-华顺仓"
+    },
+    {
+        "id": 109230,
+        "code": "WH_JINJIANG",
+        "name": "晋江EC仓"
+    },
+    {
+        "id": 109248,
+        "code": "WH_OSA",
+        "name": "深圳OFC-龙岗仓"
+    },
+    {
+        "id": 109257,
+        "code": "WH01",
+        "name": "一号库"
+    },
+    {
+        "id": 109275,
+        "code": "SH_RETRO_EC",
+        "name": "EC盈港仓"
+    },
+    {
+        "id": 106621,
+        "code": "EC_WH_OSA",
+        "name": "深圳OFC-龙华仓"
+    },
+    {
+        "id": 106421,
+        "code": "EC_WH_OFC_SHENZHEN",
+        "name": "深圳电子商务OFC仓库"
+    },
+    {
+        "id": 107221,
+        "code": "hz01",
+        "name": "杭州-海宁明盛"
+    },
+    {
+        "id": 107821,
+        "code": "sh009",
+        "name": "上海BabyTree仓库"
+    },
+    {
+        "id": 108421,
+        "code": "wh_bj01",
+        "name": "北京-天河仓2"
+    },
+    {
+        "id": 109059,
+        "code": "BJ_LFLH",
+        "name": "北京-天河仓1"
+    },
+    {
+        "id": 109077,
+        "code": "WH_EC_CD_Oriflame",
+        "name": "成都-双流仓（欧瑞莲）"
+    },
+    {
+        "id": 109086,
+        "code": "EC_LN_TH",
+        "name": "李宁EC-新协路仓"
+    },
+    {
+        "id": 109095,
+        "code": "WH_BJ_PARKSON",
+        "name": "北京-张仪仓"
+    },
+    {
+        "id": 109104,
+        "code": "XM_EC_WH_DWOLVES",
+        "name": "厦门OFC-天凤仓"
+    },
+    {
+        "id": 109154,
+        "code": "3124405",
+        "name": "深圳HUB"
+    },
+    {
+        "id": 109155,
+        "code": "3307400",
+        "name": "广州分拨"
+    },
+    {
+        "id": 109158,
+        "code": "3307E00",
+        "name": "上海分拨"
+    },
+    {
+        "id": 109159,
+        "code": "3307J00",
+        "name": "萧山分拨"
+    },
+    {
+        "id": 109160,
+        "code": "3307J01",
+        "name": "金华分拨"
+    },
+    {
+        "id": 109161,
+        "code": "3307J02",
+        "name": "嘉兴分拨"
+    },
+    {
+        "id": 109164,
+        "code": "3307A01",
+        "name": "南京分拨"
+    },
+    {
+        "id": 109177,
+        "code": "JWPANDIAN",
+        "name": "JASONWOOD盘点仓"
+    },
+    {
+        "id": 109212,
+        "code": "FH",
+        "name": "交接复核仓"
+    },
+    {
+        "id": 109231,
+        "code": "XM_EC_TM",
+        "name": "厦门临时仓"
+    },
+    {
+        "id": 109239,
+        "code": "EC_GZ_SJ",
+        "name": "广州OFC-中润仓"
+    },
+    {
+        "id": 109267,
+        "code": "LN_HW",
+        "name": "李宁户外仓"
+    },
+    {
+        "id": 107021,
+        "code": "CQZQ",
+        "name": "重庆-冠生园"
+    },
+    {
+        "id": 106221,
+        "code": "EC_WH_CHENGDU",
+        "name": "成都-双流仓"
+    },
+    {
+        "id": 107421,
+        "code": "EC_3COLOUR_HZ",
+        "name": "杭州OFC-夏娜交接仓"
+    },
+    {
+        "id": 108021,
+        "code": "CDLT001",
+        "name": "成都-朱昌琼（乐途）"
+    },
+    {
+        "id": 108221,
+        "code": "JASONWOOD",
+        "name": "杭州-JASONWOOD"
+    },
+    {
+        "id": 109023,
+        "code": "CDRDC001",
+        "name": "成都-朱昌琼（阿迪达斯）"
+    },
+    {
+        "id": 108821,
+        "code": "XMYH001",
+        "name": "厦门悦昊仓"
+    },
+    {
+        "id": 109113,
+        "code": "WH_EC_GZ_Oriflame",
+        "name": "广州-市莲仓（欧瑞莲）"
+    },
+    {
+        "id": 109145,
+        "code": "5657000",
+        "name": "百世快运总部"
+    },
+    {
+        "id": 109146,
+        "code": "3124G02",
+        "name": "天津HUB"
+    },
+    {
+        "id": 109147,
+        "code": "3124203",
+        "name": "北京HUB"
+    },
+    {
+        "id": 109148,
+        "code": "3124410",
+        "name": "广州HUB"
+    },
+    {
+        "id": 109156,
+        "code": "3307401",
+        "name": "虎门分拨"
+    },
+    {
+        "id": 109162,
+        "code": "3307J03",
+        "name": "温州分拨"
+    },
+    {
+        "id": 109194,
+        "code": "CDRDC002",
+        "name": "成都-朱昌琼（丁家宜）"
+    },
+    {
+        "id": 109203,
+        "code": "HZ_LEECOOPER",
+        "name": "杭州-海宁仓"
+    },
+    {
+        "id": 109221,
+        "code": "EC_WH_KM",
+        "name": "广州OFC-科贸仓"
+    },
+    {
+        "id": 109293,
+        "code": "HZ_APOLLO",
+        "name": "杭州-海宁仓"
+    },
+    {
+        "id": 109311,
+        "code": "BESTWH",
+        "name": "百世中国仓"
+    },
+    {
+        "id": 109347,
+        "code": "EC_GZ_SL",
+        "name": "广州OFC-市莲仓"
+    },
+    {
+        "id": 109365,
+        "code": "LN_EC",
+        "name": "上海李宁EC仓"
+    },
+    {
+        "id": 109374,
+        "code": "NYYD002",
+        "name": "南宁销地仓"
+    },
+    {
+        "id": 109375,
+        "code": "CDYD002",
+        "name": "成都-双流仓（销地仓）"
+    },
+    {
+        "id": 109376,
+        "code": "BJ_LN_XD_HW",
+        "name": "北京销地仓"
+    },
+    {
+        "id": 109377,
+        "code": "BJ_LN_XD",
+        "name": "北京-天河仓1(销地仓)"
+    },
+    {
+        "id": 109383,
+        "code": "HFYD001",
+        "name": "合肥-大彭仓"
+    },
+    {
+        "id": 109428,
+        "code": "WH_DWOLVES",
+        "name": "与狼共舞厦门BSC仓"
+    },
+    {
+        "id": 109446,
+        "code": "CD_VIP",
+        "name": "成都唯品会"
+    },
+    {
+        "id": 109455,
+        "code": "SH_LJ_WH",
+        "name": "上海OFC-曹安仓"
+    },
+    {
+        "id": 109447,
+        "code": "WH_ANHAI",
+        "name": "泉州OFC-安海仓"
+    },
+    {
+        "id": 109482,
+        "code": "WH_TQ_BJ",
+        "name": "北京-天河仓3"
+    },
+    {
+        "id": 109510,
+        "code": "WH_BJ_LF",
+        "name": "北京OFC-天河仓（乐蜂）"
+    },
+    {
+        "id": 109511,
+        "code": "WH_SH_LF",
+        "name": "上海OFC-盈港仓（乐蜂）"
+    },
+    {
+        "id": 109284,
+        "code": "best_ps_002",
+        "name": "压力测试仓1"
+    },
+    {
+        "id": 109302,
+        "code": "SEPTWOLVES_DC_SZ",
+        "name": "七匹狼深圳物流仓库"
+    },
+    {
+        "id": 109320,
+        "code": "THFH",
+        "name": "退货复核仓"
+    },
+    {
+        "id": 109329,
+        "code": "WH_HG_BJ",
+        "name": "百世汇通汇购仓库"
+    },
+    {
+        "id": 109338,
+        "code": "SH_YK_WH",
+        "name": "上海盈港仓"
+    },
+    {
+        "id": 109356,
+        "code": "WH_JINSHAN",
+        "name": "劲霸金山仓库"
+    },
+    {
+        "id": 109392,
+        "code": "WH_VIPSHOPJIT",
+        "name": "唯品会JIT仓"
+    },
+    {
+        "id": 109393,
+        "code": "WH_VIPSHOPJIT",
+        "name": "唯品会JIT仓库"
+    },
+    {
+        "id": 109401,
+        "code": "DEXUN_ZHS",
+        "name": "广州德讯-中山仓"
+    },
+    {
+        "id": 109410,
+        "code": "EC_WH_OFC_HEBEI",
+        "name": "河北OFC-白沟仓"
+    },
+    {
+        "id": 109419,
+        "code": "BJ_VIP",
+        "name": "北京唯品会"
+    },
+    {
+        "id": 109437,
+        "code": "NB_IVYKKI",
+        "name": "宁波-聚才仓"
+    },
+    {
+        "id": 109464,
+        "code": "IVYKKI_PD",
+        "name": "艾维盘点暂存仓"
+    },
+    {
+        "id": 109473,
+        "code": "EC_GZ_DGZ",
+        "name": "广州OFC-东莞庄仓"
+    },
+    {
+        "id": 109483,
+        "code": "SH_VIP",
+        "name": "上海唯品会"
+    },
+    {
+        "id": 109491,
+        "code": "WH_QINGMEN",
+        "name": "泉州OFC-清濛仓"
+    },
+    {
+        "id": 109500,
+        "code": "EC_WH_CZ",
+        "name": "深圳OFC-长圳仓"
+    },
+    {
+        "id": 109509,
+        "code": "BJ_VMI",
+        "name": "北京-天河仓1(VMI仓)"
+    },
+    {
+        "id": 109501,
+        "code": "WH_GZ_LF",
+        "name": "广州OFC-市莲仓（乐蜂）"
+    },
+    {
+        "id": 109518,
+        "code": "EC_SZ_YY",
+        "name": "深圳OFC-银叶仓"
+    },
+    {
+        "id": 109527,
+        "code": "EC_WH_MH",
+        "name": "武汉OFC-马湖仓"
+    },
+    {
+        "id": 109536,
+        "code": "SAAS_RETRO",
+        "name": "瑞雀仓"
+    },
+    {
+        "id": 109545,
+        "code": "LZYD001",
+        "name": "兰州-晏坪仓"
+    },
+    {
+        "id": 109554,
+        "code": "ELAND",
+        "name": "上海OFC-莲花仓"
+    },
+    {
+        "id": 109555,
+        "code": "WH_XJGY",
+        "name": "上海OFC-周浦仓"
+    },
+    {
+        "id": 109563,
+        "code": "EC_HZ_HN",
+        "name": "杭州OFC-海宁仓（茵曼）"
+    },
+    {
+        "id": 109572,
+        "code": "WH_FEDRALM",
+        "name": "辉门昆山宝湾仓"
+    },
+    {
+        "id": 109581,
+        "code": "XAYD001",
+        "name": "西安-双五仓"
+    },
+    {
+        "id": 109582,
+        "code": "WH_EC_XJ",
+        "name": "新疆-高新仓"
+    },
+    {
+        "id": 109590,
+        "code": "WH_METRO_SH",
+        "name": "上海-麦德龙自有仓"
+    },
+    {
+        "id": 109599,
+        "code": "EC_SZ_YY_YEM",
+        "name": "深圳OFC-银叶仓（优衣美）"
+    },
+    {
+        "id": 109608,
+        "code": "EC_JS_SQ_YEM",
+        "name": "江苏OFC-宿迁仓（优衣美）"
+    },
+    {
+        "id": 109609,
+        "code": "EC_CHANGSHA_HUANBAO",
+        "name": "长沙-环保仓"
+    },
+    {
+        "id": 109617,
+        "code": "WH_RH",
+        "name": "北京-天河仓3(荣辉)"
+    },
+    {
+        "id": 109626,
+        "code": "CLOUD_TAIYUAN_YIFEN",
+        "name": "太原OFC-漪汾仓"
+    },
+    {
+        "id": 109635,
+        "code": "XM_SEPWOLVES_SHANGYING",
+        "name": "七匹狼总部调拨仓_尚盈"
+    },
+    {
+        "id": 109644,
+        "code": "BJ_LN_RDC",
+        "name": "北京-天河仓4"
+    },
+    {
+        "id": 109653,
+        "code": "CLOUD_JINGJIANG_JINZHI",
+        "name": "靖江OFC-金志仓"
+    },
+    {
+        "id": 110653,
+        "code": "XM_SEPWOLVES_ZONGBU",
+        "name": "七匹狼总部退货仓"
+    },
+    {
+        "id": 111653,
+        "code": "CS_FEISU_WH",
+        "name": "长沙飞速仓"
+    },
+    {
+        "id": 112653,
+        "code": "WMSdisplay001",
+        "name": "WMS产品展示"
+    },
+    {
+        "id": 113653,
+        "code": "WH_EC_LZ_Oriflame",
+        "name": "兰州-万兴仓"
+    },
+    {
+        "id": 114653,
+        "code": "WH_HG_HZ",
+        "name": "汇购项目-杭州仓"
+    },
+    {
+        "id": 114654,
+        "code": "WH_TJ_PARKSON",
+        "name": "天津百盛仓库（SAAS）"
+    },
+    {
+        "id": 114655,
+        "code": "CLOUD_WENZHOU_YANGYI",
+        "name": "温州OFC-仰义仓"
+    },
+    {
+        "id": 115653,
+        "code": "CLOUD_TAIZHOU_LUQIAO",
+        "name": "台州OFC-路桥仓"
+    },
+    {
+        "id": 116653,
+        "code": "WH_BJ_FEDRALM",
+        "name": "北京-天河仓2"
+    },
+    {
+        "id": 117653,
+        "code": "KA_LINING_HAERBIN",
+        "name": "哈尔滨-香坊仓"
+    },
+    {
+        "id": 118653,
+        "code": "WH_HL_GZ",
+        "name": "广州-永峰仓"
+    },
+    {
+        "id": 119653,
+        "code": "DQYD001",
+        "name": "哈尔滨-香坊仓"
+    },
+    {
+        "id": 120653,
+        "code": "HRB_JIAOJIE",
+        "name": "交接仓"
+    },
+    {
+        "id": 121653,
+        "code": "EC_WH_GM",
+        "name": "深圳OFC-光明仓"
+    },
+    {
+        "id": 122653,
+        "code": "XJ_JIAOJIE",
+        "name": "交接仓（新疆RDC）"
+    },
+    {
+        "id": 122654,
+        "code": "KA_LINING_XNJIANG",
+        "name": "新疆-庐山仓(一动)"
+    },
+    {
+        "id": 122656,
+        "code": "SH_EC_QP",
+        "name": "上海OFC-青浦仓"
+    },
+    {
+        "id": 123653,
+        "code": "EC_JINAN_HANDU",
+        "name": "济南OFC-韩都仓"
+    },
+    {
+        "id": 126653,
+        "code": "CLOUD_XIAMEN_XIANGAN",
+        "name": "厦门OFC-翔安仓"
+    },
+    {
+        "id": 124653,
+        "code": "WH_HZ_JINGJIA",
+        "name": "杭州OFC-海宁仓(静佳)-项目暂停"
+    },
+    {
+        "id": 125653,
+        "code": "EC_SZ_HD",
+        "name": "苏州OFC-活动仓"
+    },
+    {
+        "id": 127653,
+        "code": "XJ_XDC",
+        "name": "新疆-庐山仓(销地仓)"
+    },
+    {
+        "id": 128653,
+        "code": "BEST_WUHAN",
+        "name": "集团采购-武汉仓"
+    },
+    {
+        "id": 129653,
+        "code": "EC_SZ_ANTONG",
+        "name": "苏州OFC-通安仓"
+    },
+    {
+        "id": 130653,
+        "code": "XM_SEPWOLVES_XASY",
+        "name": "七匹狼总部调拨仓（翔安尚盈）"
+    },
+    {
+        "id": 131653,
+        "code": "EC_GZ_RH",
+        "name": "广州OFC-人和仓"
+    },
+    {
+        "id": 132653,
+        "code": "EC_BJ_BXY",
+        "name": "北京OFC-北小营仓"
+    },
+    {
+        "id": 133653,
+        "code": "CD_SLC",
+        "name": "成都-双流仓"
+    },
+    {
+        "id": 133654,
+        "code": "WH_EC_NJ",
+        "name": "南京OFC-瑞年仓"
+    },
+    {
+        "id": 134653,
+        "code": "EC_GZ_YF",
+        "name": "广州OFC-永峰仓"
+    },
+    {
+        "id": 135653,
+        "code": "CQYD001",
+        "name": "重庆RDC"
+    },
+    {
+        "id": 136653,
+        "code": "EC_JINAN_VIP",
+        "name": "唯品会虚拟仓"
+    },
+    {
+        "id": 137653,
+        "code": "SH_CA_WH",
+        "name": "上海OFC-3M仓"
+    },
+    {
+        "id": 137654,
+        "code": "CESHI 1",
+        "name": "测试1仓"
+    },
+    {
+        "id": 137655,
+        "code": "CESHI 2",
+        "name": "测试2仓"
+    },
+    {
+        "id": 138653,
+        "code": "CESHI-BD",
+        "name": "保定测试"
+    },
+    {
+        "id": 138654,
+        "code": "CESHI-SJZ",
+        "name": "石家庄测试"
+    },
+    {
+        "id": 138655,
+        "code": "CESHI-BJ",
+        "name": "北京测试"
+    },
+    {
+        "id": 138656,
+        "code": "CESHI-HS",
+        "name": "呼市测试"
+    },
+    {
+        "id": 139653,
+        "code": "EC_HZ_YSGM",
+        "name": "杭州OFC-海宁仓（棉果果棉）"
+    },
+    {
+        "id": 139654,
+        "code": "WH_EC_BJ_B2B",
+        "name": "北京中粮B2B仓"
+    },
+    {
+        "id": 139655,
+        "code": "WH_EC_GZ_B2B",
+        "name": "广州中粮B2B仓"
+    },
+    {
+        "id": 140653,
+        "code": "WH_EC_HZ_B2B",
+        "name": "杭州中粮B2B仓"
+    },
+    {
+        "id": 141653,
+        "code": "EC_GZ_RH_DEL",
+        "name": "广州OFC-白马仓"
+    },
+    {
+        "id": 142653,
+        "code": "EC_HF_BM",
+        "name": "合肥OFC-白马仓"
+    },
+    {
+        "id": 143653,
+        "code": "BEST_PS",
+        "name": "百世-食品仓（2014压力测试仓）"
+    },
+    {
+        "id": 143654,
+        "code": "CLOUD_HZ_JIUBAO",
+        "name": "杭州OFC-九堡仓"
+    },
+    {
+        "id": 144653,
+        "code": "CLOUD_HZ_ZHUANTANG",
+        "name": "杭州OFC-转塘仓"
+    },
+    {
+        "id": 146653,
+        "code": "PScs",
+        "name": "配置流程测试"
+    },
+    {
+        "id": 145655,
+        "code": "CLOUD_NJ_XIAXI",
+        "name": "南京OFC_栖霞仓"
+    },
+    {
+        "id": 147653,
+        "code": "LN_DL_RDC",
+        "name": "李宁大连RDC"
+    },
+    {
+        "id": 148653,
+        "code": "WH_EC_BJ_AIGAO",
+        "name": "艾高电子商务仓"
+    },
+    {
+        "id": 149653,
+        "code": "CLOUD_CC_ERDAOLIUBU",
+        "name": "二道六部仓"
+    },
+    {
+        "id": 150653,
+        "code": "CLOUD_EC_SHEKOU",
+        "name": "深圳OFC-蛇口仓"
+    },
+    {
+        "id": 151653,
+        "code": "SAAS_ECOVACS_ZY",
+        "name": "科沃斯自有SAAS仓库"
+    },
+    {
+        "id": 151655,
+        "code": "XM_EC_HX",
+        "name": "厦门OFC-后溪仓"
+    },
+    {
+        "id": 151654,
+        "code": "GOELIA_EC",
+        "name": "歌莉娅电商仓"
+    },
+    {
+        "id": 153653,
+        "code": "SEPTWOLVES_CO_SZ",
+        "name": "七匹狼深圳分公司仓库"
+    },
+    {
+        "id": 153654,
+        "code": "EC_BJ_BDC",
+        "name": "北京OFC-八大处仓"
+    },
+    {
+        "id": 154653,
+        "code": "WH_TAICANG",
+        "name": "拉夏贝尔-太仓仓"
+    },
+    {
+        "id": 155653,
+        "code": "CLOUD_SH_LUJIAZUI",
+        "name": "上海OFC-陆家嘴仓"
+    },
+    {
+        "id": 156653,
+        "code": "CLOUD_TA_XUJIALOU",
+        "name": "泰安OFC-徐家楼仓"
+    },
+    {
+        "id": 157653,
+        "code": "WH_HOUXI",
+        "name": "威秀-后溪仓"
+    },
+    {
+        "id": 158653,
+        "code": "EC_HZ_ZSN",
+        "name": "杭州OFC-海宁仓(卓诗尼)"
+    },
+    {
+        "id": 159653,
+        "code": "EC_HZ_LW",
+        "name": "温州OFC-龙湾仓"
+    },
+    {
+        "id": 160653,
+        "code": "WH_ZZ_ZK",
+        "name": "郑州—郑开仓"
+    },
+    {
+        "id": 161653,
+        "code": "TJ_EC_DL",
+        "name": "天津OFC-东丽仓"
+    },
+    {
+        "id": 162653,
+        "code": "EC_SZ_GLS",
+        "name": "深圳OFC-歌力思仓"
+    },
+    {
+        "id": 163653,
+        "code": "EC_HZ_CHNT",
+        "name": "杭州OFC-海宁仓（正泰）"
+    },
+    {
+        "id": 164653,
+        "code": "CLOUD_CQ_SHAPINGBA",
+        "name": "重庆OFC-沙坪坝仓"
+    },
+    {
+        "id": 164654,
+        "code": "CLOUD_JN_LIXIASANBU",
+        "name": "济南OFC-吉日仓"
+    },
+    {
+        "id": 175653,
+        "code": "TY_BSDJ",
+        "name": "宝盛道吉-太原直营仓"
+    },
+    {
+        "id": 176653,
+        "code": "TY_JJ",
+        "name": "交接仓"
+    },
+    {
+        "id": 179655,
+        "code": "KA_BAIDUOER_CHENGDU",
+        "name": "成都百多尔"
+    },
+    {
+        "id": 185654,
+        "code": "EC_GZ_NS",
+        "name": "广州OFC-南沙仓"
+    },
+    {
+        "id": 177654,
+        "code": "CLOUD_JN_CQ",
+        "name": "济南OFC-长清仓"
+    },
+    {
+        "id": 177657,
+        "code": "TJYD001",
+        "name": "天津-中环仓(新)"
+    },
+    {
+        "id": 173654,
+        "code": "EC_HZ_PIANDUAN",
+        "name": "杭州OFC-海宁仓（片断）"
+    },
+    {
+        "id": 177655,
+        "code": "LZYD001",
+        "name": "兰州-晏坪仓(新)"
+    },
+    {
+        "id": 177658,
+        "code": "KA_LINING_HAERBIN",
+        "name": "哈尔滨-香坊仓(新)"
+    },
+    {
+        "id": 177662,
+        "code": "NYYD002",
+        "name": "南宁销地仓(新)"
+    },
+    {
+        "id": 177667,
+        "code": "XJ_XDC",
+        "name": "新疆-庐山仓(销地仓)（新）"
+    },
+    {
+        "id": 177668,
+        "code": "CSYD001",
+        "name": "长沙-东风仓（新）"
+    },
+    {
+        "id": 177670,
+        "code": "XAYD001",
+        "name": "西安-双五仓"
+    },
+    {
+        "id": 178654,
+        "code": "SASS_SZDH_GUANGZHOU",
+        "name": "黛奥SAAS仓"
+    },
+    {
+        "id": 181654,
+        "code": "CQ_MIDEA",
+        "name": "重庆-空港仓"
+    },
+    {
+        "id": 181655,
+        "code": "SH_EC_SS",
+        "name": "上海OFC-佘山仓"
+    },
+    {
+        "id": 187653,
+        "code": "EC_SJZ_PZ",
+        "name": "石家庄-普众仓"
+    },
+    {
+        "id": 165653,
+        "code": "EC_HZ_ZSN_FC",
+        "name": "杭州OFC-卓诗尼（分仓）"
+    },
+    {
+        "id": 167653,
+        "code": "WH_GUANGZHOU",
+        "name": "威秀-深圳仓"
+    },
+    {
+        "id": 168653,
+        "code": "CLOUD_XZ_XINYI",
+        "name": "徐州OFC-新沂仓"
+    },
+    {
+        "id": 170653,
+        "code": "WH_SH_DX",
+        "name": "上海—洞薛仓"
+    },
+    {
+        "id": 171653,
+        "code": "KA_ZYQC_DAPENG",
+        "name": "合肥-大彭仓"
+    },
+    {
+        "id": 174653,
+        "code": "CLOUD_WF_GX",
+        "name": "潍坊-高新仓"
+    },
+    {
+        "id": 175654,
+        "code": "TY_JM",
+        "name": "宝盛道吉-太原加盟仓"
+    },
+    {
+        "id": 177656,
+        "code": "LZ_XDC",
+        "name": "兰州销地仓(新)"
+    },
+    {
+        "id": 179653,
+        "code": "EC_WH_CDJUMEI",
+        "name": "成都聚美仓"
+    },
+    {
+        "id": 180653,
+        "code": "GOELIA_O2O",
+        "name": "歌莉娅O2O仓"
+    },
+    {
+        "id": 183653,
+        "code": "EC_JINHUA_JINYI",
+        "name": "金华OFC-金义仓"
+    },
+    {
+        "id": 188655,
+        "code": "CLOUD_SH_LUJI",
+        "name": "上海OFC-鹿吉仓"
+    },
+    {
+        "id": 173653,
+        "code": "WINE",
+        "name": "酒饮国际广州黄埔仓"
+    },
+    {
+        "id": 177663,
+        "code": "CDYD001",
+        "name": "成都-双流仓（一动）(新)"
+    },
+    {
+        "id": 177666,
+        "code": "KA_LINING_XNJIANG",
+        "name": "新疆-庐山仓(一动)（新）"
+    },
+    {
+        "id": 178653,
+        "code": "CLOUD_ZZ_HS",
+        "name": "郑州OFC-华山仓"
+    },
+    {
+        "id": 182653,
+        "code": "EC_BJ_MJ",
+        "name": "北京OFC-马驹仓"
+    },
+    {
+        "id": 184653,
+        "code": "EC_HZ_CHNT_FC",
+        "name": "杭州OFC-滨江仓（正泰）"
+    },
+    {
+        "id": 184658,
+        "code": "SAAS_YUANSHI_GUANGZHOU",
+        "name": "广州缘石-中潤仓"
+    },
+    {
+        "id": 166653,
+        "code": "LZ_XDC",
+        "name": "兰州销地仓"
+    },
+    {
+        "id": 176654,
+        "code": "GZLN_SAAS",
+        "name": "岭南电商园"
+    },
+    {
+        "id": 177653,
+        "code": "CLOUD_HAERBIN_XIANGFANG",
+        "name": "哈尔滨OFC香坊仓"
+    },
+    {
+        "id": 177660,
+        "code": "DQYD001",
+        "name": "大庆-香坊仓(新)"
+    },
+    {
+        "id": 179654,
+        "code": "HZ_CHNT",
+        "name": "杭州正泰自营仓"
+    },
+    {
+        "id": 186653,
+        "code": "cs_cw_0001",
+        "name": "cece"
+    },
+    {
+        "id": 189653,
+        "code": "BS_NB",
+        "name": "宁波北仑仓（临时）"
+    },
+    {
+        "id": 177659,
+        "code": "CLOUD_EC_LONGHUA",
+        "name": "深圳OFC-龙华仓"
+    },
+    {
+        "id": 177665,
+        "code": "CQYD001",
+        "name": "重庆RDC(新)"
+    },
+    {
+        "id": 177669,
+        "code": "HFYD001",
+        "name": "合肥-大彭仓（新）"
+    },
+    {
+        "id": 188656,
+        "code": "TMALL",
+        "name": "天猫测试仓"
+    },
+    {
+        "id": 169653,
+        "code": "CLOUD_SY_HUAHUI",
+        "name": "沈阳-华慧仓"
+    },
+    {
+        "id": 172653,
+        "code": "SZ_DCS",
+        "name": "深圳-大常生仓"
+    },
+    {
+        "id": 177661,
+        "code": "NYYD001",
+        "name": "南宁-科园仓(新)"
+    },
+    {
+        "id": 177664,
+        "code": "CDYD002",
+        "name": "成都-双流仓（销地仓）(新)"
+    },
+    {
+        "id": 181653,
+        "code": "WH_MIDEA",
+        "name": "武汉-美的仓"
+    },
+    {
+        "id": 185653,
+        "code": "CD_MIDEA",
+        "name": "成都美的仓"
+    },
+    {
+        "id": 188659,
+        "code": "KA_NEWHOPE_CHENGDU",
+        "name": "新希望成都仓"
+    },
+    {
+        "id": 189654,
+        "code": "RDC_SHANGHAI",
+        "name": "3MRDC-上海仓"
+    }
+]

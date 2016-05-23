@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grid>
+	<declare sequence="true">
+		<column caption="所属文章ID" name="articleId" mode="number" display="none"/>
+		<column caption="附件件序号" name="seqNo" mode="number" display="none"/>
+		<column caption="类型" name="type" mode="string" values="1|2" texts="图片|文档"/>
+		<column caption="文件名" name="name" mode="string"/>
+		<column caption="下载地址" name="relationUrl" mode="string"/>
+		<column caption="上传后名称" name="fileName" mode="string" display="none"/>
+		<column caption="文件后缀" name="fileExt" mode="string" display="none"/>
+	</declare>
+	<data>
+	</data>
+</grid>
