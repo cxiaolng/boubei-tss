@@ -4,7 +4,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.record.Record;
 import com.boubei.tss.dm.record.RecordService;
@@ -12,7 +12,7 @@ import com.boubei.tss.dm.report.Report;
 import com.boubei.tss.dm.report.ReportDao;
 import com.boubei.tss.dm.report.ReportService;
 
-public class WashDataJobTest extends TxTestSupport4DM {
+public class WashDataJobTest extends AbstractDMTest {
 	
 	@Autowired ReportService reportService;
 	@Autowired RecordService recordService;

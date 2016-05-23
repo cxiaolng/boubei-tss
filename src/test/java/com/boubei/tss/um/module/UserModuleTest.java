@@ -8,18 +8,13 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.framework.Global;
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
-import com.boubei.tss.framework.sso.context.Context;
-import com.boubei.tss.framework.test.TestUtil;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.UserAction;
 import com.boubei.tss.um.entity.Group;
@@ -33,7 +28,7 @@ import com.boubei.tss.util.DateUtil;
 /**
  * 用户相关模块的单元测试
  */
-public class UserModuleTest extends TxSupportTest4UM {
+public class UserModuleTest extends AbstractUMTest {
     
 	@Autowired UserAction action;
     
@@ -46,17 +41,8 @@ public class UserModuleTest extends TxSupportTest4UM {
     Group assitantGroup;
     User user1;
     
-    @Before
-    public void setUp() {
-    	Global.setContext(super.applicationContext);
-        
-    	request = new MockHttpServletRequest();
-		Context.setResponse(response = new MockHttpServletResponse());
-        
-        // 初始化虚拟登录用户信息
-        login(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
-    
-        init();
+    public void init() {
+    	super.init();
         
     	// 检查初始化的组是否存在
     	List<?> groups = groupService.findGroups();
@@ -102,8 +88,8 @@ public class UserModuleTest extends TxSupportTest4UM {
     }
     
     @After
-    public void tearDown() {
-    	TestUtil.printLogs(logService);
+    public void tearDown() throws Exception {
+    	_TestUtil.printLogs(logService);
     	super.tearDown();
     }
     

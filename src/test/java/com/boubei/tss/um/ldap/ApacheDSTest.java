@@ -45,7 +45,7 @@ public class ApacheDSTest {
 			LdapConnection conn = LdapUtils.createAdminConnection(server);
 
 			
-			Dn dn = new Dn("o=BouBei");
+			Dn dn = new Dn("o=jinhe");
 			Entry result = conn.lookup(dn);
 			log.info("Found entry : " + result);
 
@@ -68,21 +68,21 @@ public class ApacheDSTest {
 	private void prepareData() throws Exception {
     	
     	SchemaManager schemaManager = service.getSchemaManager();
-    	Partition store = apacheDS.addPartition("TSS", "o=BouBei", false);
+    	Partition store = apacheDS.addPartition("TSS", "o=jinhe", false);
     	
-        Dn suffixDn = new Dn( schemaManager, "o=BouBei" );
+        Dn suffixDn = new Dn( schemaManager, "o=jinhe" );
         long index = 1L;
 
         // 公司
         Entry entry = new DefaultEntry( schemaManager, suffixDn,
             "objectClass: organization",
-            "o: BouBei",
+            "o: jinhe",
             "postalCode: 1",
             "postOfficeBox: 1" );
         LdapUtils.injectEntryInStore( store, entry, index++ );
         
         // 销售部
-        Dn dn = new Dn( schemaManager, "ou=Sales,o=BouBei" );
+        Dn dn = new Dn( schemaManager, "ou=Sales,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: organizationalUnit",
@@ -92,7 +92,7 @@ public class ApacheDSTest {
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // 研发部
-        dn = new Dn( schemaManager, "ou=RD,o=BouBei" );
+        dn = new Dn( schemaManager, "ou=RD,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: organizationalUnit",
@@ -102,7 +102,7 @@ public class ApacheDSTest {
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // 销售部员工
-        dn = new Dn( schemaManager, "cn=JIM BEAN,ou=Sales,o=BouBei" );
+        dn = new Dn( schemaManager, "cn=JIM BEAN,ou=Sales,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: person",
@@ -115,7 +115,7 @@ public class ApacheDSTest {
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // RD下的IT部
-        dn = new Dn( schemaManager, "ou=IT,ou=RD,o=BouBei" );
+        dn = new Dn( schemaManager, "ou=IT,ou=RD,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: organizationalUnit",
@@ -125,7 +125,7 @@ public class ApacheDSTest {
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // RD的员工
-        dn = new Dn( schemaManager, "cn=Jack Daniels,ou=RD,o=BouBei" );
+        dn = new Dn( schemaManager, "cn=Jack Daniels,ou=RD,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: person",
@@ -137,7 +137,7 @@ public class ApacheDSTest {
             "postOfficeBox: 6" );
         LdapUtils.injectEntryInStore( store, entry, index++ );
         
-        Dn adminDn = new Dn( schemaManager, "cn=admin,ou=RD,o=BouBei" );
+        Dn adminDn = new Dn( schemaManager, "cn=admin,ou=RD,o=jinhe" );
         entry = new DefaultEntry( schemaManager, adminDn,
             "objectClass: top",
             "objectClass: person",

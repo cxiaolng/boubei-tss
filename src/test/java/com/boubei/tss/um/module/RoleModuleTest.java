@@ -8,17 +8,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.framework.Global;
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.sso.context.Context;
-import com.boubei.tss.framework.test.TestUtil;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.RoleAction;
 import com.boubei.tss.um.dao.IRoleDao;
@@ -37,7 +32,7 @@ import com.boubei.tss.um.service.IUserService;
 /**
  * 角色相关模块的单元测试
  */
-public class RoleModuleTest extends TxSupportTest4UM {
+public class RoleModuleTest extends AbstractUMTest {
     
 	@Autowired RoleAction action;
     
@@ -52,17 +47,9 @@ public class RoleModuleTest extends TxSupportTest4UM {
     
     Calendar calendar;
     
-    @Before
-    public void setUp() {
-    	Global.setContext(super.applicationContext);
-        
-    	request = new MockHttpServletRequest();
-		Context.setResponse(response = new MockHttpServletResponse());
-        
-        // 初始化虚拟登录用户信息
-        login(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
-    
-        init();
+    public void init() {
+
+        super.init();
         
         calendar = new GregorianCalendar();
         calendar.add(UMConstants.ROLE_LIFE_TYPE, UMConstants.ROLE_LIFE_TIME);
@@ -233,7 +220,7 @@ public class RoleModuleTest extends TxSupportTest4UM {
         action.getPermissionMatrix(response, request, "2", 1, role1Id);
         
         // 检查资源和权限对象
-        TestUtil.printEntity(super.permissionHelper, GroupPermission.class.getName());
+        _TestUtil.printEntity(super.permissionHelper, GroupPermission.class.getName());
         List<?> list = super.permissionHelper.getEntities("from " + GroupPermission.class.getName());
         for(Object temp : list) {
         	GroupPermission gp = (GroupPermission) temp;
@@ -266,7 +253,7 @@ public class RoleModuleTest extends TxSupportTest4UM {
         action.savePermission(response, request, "2", 0, resourceId);
         action.getPermissionMatrix(response, request, "2", 0, resourceId);
         
-        TestUtil.printEntity(super.permissionHelper, "GroupPermission");
+        _TestUtil.printEntity(super.permissionHelper, "GroupPermission");
         
         // 界面上操作授权时，每一次都会把之前产生的授权信息也传递回来；而本测试没有第一步资源给角色1的授权信息加上，相当于删除了第一步的授权信息
         
@@ -274,7 +261,7 @@ public class RoleModuleTest extends TxSupportTest4UM {
         request.addParameter("applicationId", "tss");
         request.addParameter("resourceType", UMConstants.GROUP_RESOURCE_TYPE_ID);
         action.getPermissionMatrix(response, request, "2", 1, role1Id);
-        TestUtil.printEntity(super.permissionHelper, "RoleUserMapping");
+        _TestUtil.printEntity(super.permissionHelper, "RoleUserMapping");
         
         printVisibleMainGroups(3); // 主用户组（Main-Group）、 财务部 、财务一部
         

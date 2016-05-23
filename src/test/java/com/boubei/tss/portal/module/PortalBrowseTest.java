@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.TxSupportTest4Portal;
+import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.action.ComponentAction;
 import com.boubei.tss.portal.action.NavigatorAction;
 import com.boubei.tss.portal.action.PortalAction;
@@ -19,7 +19,7 @@ import com.boubei.tss.portal.entity.Theme;
 /**
  * 测试门户动态浏览
  */
-public class PortalBrowseTest extends TxSupportTest4Portal {
+public class PortalBrowseTest extends AbstractPortalTest {
     
     @Autowired PortalAction portalAction;
     @Autowired ComponentAction elementAction;

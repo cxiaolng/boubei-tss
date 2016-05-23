@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.framework.MailUtil;
 import com.boubei.tss.framework.sso.Environment;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.MessageAction;
 import com.boubei.tss.um.entity.Message;
 import com.boubei.tss.um.helper.MessageQueryCondition;
 import com.boubei.tss.util.DateUtil;
 
-public class MessageActionTest extends TxSupportTest4UM {
+public class MessageActionTest extends AbstractUMTest {
 	
 	@Autowired MessageAction messageAction;
 	

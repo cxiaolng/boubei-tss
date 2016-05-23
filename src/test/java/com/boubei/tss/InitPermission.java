@@ -1,11 +1,10 @@
-package com.boubei.tss.dm;
+package com.boubei.tss;
 
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
@@ -28,8 +27,7 @@ import com.boubei.tss.um.service.ILoginService;
  */
 @ContextConfiguration(
         locations={
-          "classpath:META-INF/framework-spring.xml",  
-          "classpath:META-INF/remote/um-remote.xml",
+          "classpath:META-INF/spring-framework.xml",  
           "classpath:META-INF/spring.xml"
         } 
       )
@@ -48,7 +46,7 @@ public class InitPermission extends AbstractTransactionalJUnit4SpringContextTest
         Global.setContext(super.applicationContext);
     }
     
-    @Test
+//    @Test
     public void initPermission() {
         // 初始化虚拟登录用户信息
         OperatorDTO loginUser = new OperatorDTO(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);

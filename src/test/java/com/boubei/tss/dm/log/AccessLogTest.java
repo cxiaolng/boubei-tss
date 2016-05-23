@@ -8,12 +8,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.data.sqlquery.AbstractSO;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.report.ReportAction;
 
-public class AccessLogTest extends TxTestSupport4DM {
+public class AccessLogTest extends AbstractDMTest {
 	
 	@Autowired XXService service;
 	@Autowired private ReportAction action;

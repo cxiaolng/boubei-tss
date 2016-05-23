@@ -7,7 +7,7 @@ public class TestDownloadServlet {
     public static void testDownload(){
         while(true){
             try {
-                java.net.URL url = new java.net.URL("http://localhost:8088/cms/download.fun?id=881&seqNo=3");
+                java.net.URL url = new java.net.URL("http://localhost:8088/cms/download?id=881&seqNo=3");
                 java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
                 conn.connect(); 
                 java.io.InputStream in = conn.getInputStream(); 

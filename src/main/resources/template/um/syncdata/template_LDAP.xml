@@ -1,6 +1,6 @@
 <params>
 	<url>ldap://localhost:10389</url>
-	<user>cn=admin2,ou=RD2,o=BouBei</user>
+	<user>cn=admin2,ou=RD2,o=jinhe</user>
 	<password>123456</password>
 	<groupSql>
 		&lt;attributes&gt;

@@ -14,7 +14,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.cms.AbstractTestSupport;
+import com.boubei.tss._TestUtil;
+import com.boubei.tss.cms.AbstractCMSTest;
 import com.boubei.tss.cms.CMSConstants;
 import com.boubei.tss.cms.DownloadServlet;
 import com.boubei.tss.cms.entity.Article;
@@ -25,13 +26,12 @@ import com.boubei.tss.cms.lucene.ArticleContent;
 import com.boubei.tss.cms.lucene.IndexHelper;
 import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.component.progress.Progressable;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.util.DateUtil;
 
 /**
  * 文章发布相关模块的单元测试。
  */
-public class ArticlePublishTest extends AbstractTestSupport {
+public class ArticlePublishTest extends AbstractCMSTest {
 	
 	@Test
     public void testArticlePublish() {
@@ -174,7 +174,7 @@ public class ArticlePublishTest extends AbstractTestSupport {
         // 最后删除文章、栏目、站点
         super.deleteSite(siteId);
         
-        assertTrue(TestUtil.printLogs(logService) > 0);
+        assertTrue(_TestUtil.printLogs(logService) > 0);
     }
     
     private void publishArticle(Long channelId, String category) {

@@ -10,7 +10,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.RoleAction;
 import com.boubei.tss.um.action.SubAuthorizeAction;
@@ -23,7 +23,7 @@ import com.boubei.tss.um.service.IUserService;
 /**
  * 授权信息相关搜索测试
  */
-public class GeneralSearchTest extends TxSupportTest4UM {
+public class GeneralSearchTest extends AbstractUMTest {
 	
     @Autowired GeneralSearchAction action;
     

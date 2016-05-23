@@ -11,17 +11,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.cms.service.IRemoteArticleService;
 import com.boubei.tss.framework.sso.context.ApplicationContext;
 import com.boubei.tss.framework.sso.context.Context;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.TxSupportTest4Portal;
+import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.dao.INavigatorDao;
 import com.boubei.tss.portal.entity.Navigator;
 import com.boubei.tss.util.XMLDocUtil;
 
-public class FreeMarkerParserTest extends TxSupportTest4Portal {
+public class FreeMarkerParserTest extends AbstractPortalTest {
 	
 	@Autowired INavigatorDao navigatorDao;
 	
@@ -56,7 +56,7 @@ public class FreeMarkerParserTest extends TxSupportTest4Portal {
 
     @Test
     public void test1() throws Exception {
-    	String tempDir = TestUtil.getTempDir();
+    	String tempDir = _TestUtil.getTempDir();
         String templateStr = "<#assign manager = statics[\"com.boubei.tss.portal.engine.StaticManager\"] />" +
                 "<#assign data = manager.listFiles(\"" + tempDir + "\") />" +
                 "${data.get(0)} \n <#list data as file> ${file} \n </#list> ";

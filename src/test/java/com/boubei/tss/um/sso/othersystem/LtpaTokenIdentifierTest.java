@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import com.boubei.tss.framework.exception.UserIdentificationException;
 import com.boubei.tss.framework.sso.IdentityCard;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 
-public class LtpaTokenIdentifierTest extends TxSupportTest4UM {
+public class LtpaTokenIdentifierTest extends AbstractUMTest {
  
 	@Test
 	public void test() {

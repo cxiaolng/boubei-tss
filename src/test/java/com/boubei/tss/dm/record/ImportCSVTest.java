@@ -12,18 +12,18 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.record.file.ImportCSV;
 import com.boubei.tss.dm.report._Reporter;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.framework.web.servlet.AfterUpload;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.FileHelper;
 
-public class ImportCSVTest extends TxTestSupport4DM {
+public class ImportCSVTest extends AbstractDMTest {
 	
 	@Autowired RecordService recordService;
 	@Autowired _Recorder recorder;
@@ -68,7 +68,7 @@ public class ImportCSVTest extends TxTestSupport4DM {
 		Assert.assertEquals(0, list.size());
 	}
 	
-	static String UPLOAD_PATH = TestUtil.getTempDir() + "/upload/record/";
+	static String UPLOAD_PATH = _TestUtil.getTempDir() + "/upload/record/";
 	static int SIZE = 10 * 10000;  // 10万 12秒
 	
 	 // 上传附件

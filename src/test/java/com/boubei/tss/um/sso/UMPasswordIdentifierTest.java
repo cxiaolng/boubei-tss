@@ -8,17 +8,17 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.framework.sso.SSOConstants;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.entity.User;
 import com.boubei.tss.um.service.IUserService;
 import com.boubei.tss.util.InfoEncoder;
 
-public class UMPasswordIdentifierTest extends TxSupportTest4UM {
+public class UMPasswordIdentifierTest extends AbstractUMTest {
 	
 	@Autowired IUserService userService;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		super.setUp();
 		
 		User admin = userService.getUserById(-1L);

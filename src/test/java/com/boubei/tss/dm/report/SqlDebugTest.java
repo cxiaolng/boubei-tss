@@ -13,11 +13,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.data.sqlquery.SqlConfig;
 import com.boubei.tss.framework.sso.context.Context;
 
-public class SqlDebugTest extends TxTestSupport4DM {
+public class SqlDebugTest extends AbstractDMTest {
     
     @Autowired private ReportAction action;
     @Autowired private _Reporter display;

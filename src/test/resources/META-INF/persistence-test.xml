@@ -8,12 +8,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider> 
 		
 		<!-- 实体映射 -->
-		<mapping-file>META-INF/framework-orm.xml</mapping-file>
-		<mapping-file>META-INF/framework-test-orm.xml</mapping-file>
-		<mapping-file>META-INF/um-orm.xml</mapping-file>
-		<mapping-file>META-INF/dm-orm.xml</mapping-file>
-		<mapping-file>META-INF/cms-orm.xml</mapping-file>
-		<mapping-file>META-INF/portal-orm.xml</mapping-file>
+		<mapping-file>META-INF/orm-tss.xml</mapping-file>
+		<mapping-file>META-INF/orm-test.xml</mapping-file>
 		 
 		<properties>
 			<!-- 使用spring配置里的 generateDdl=true，这里的无效 -->

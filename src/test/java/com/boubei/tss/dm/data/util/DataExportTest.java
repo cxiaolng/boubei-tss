@@ -9,11 +9,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.data.InvSnapshotVO;
 import com.boubei.tss.dm.data.sqlquery.AbstractExportSO;
 
-public class DataExportTest extends TxTestSupport4DM {
+public class DataExportTest extends AbstractDMTest {
 	
 	@Test
 	public void test() {

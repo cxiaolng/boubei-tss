@@ -10,6 +10,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
@@ -21,26 +22,53 @@ import org.easymock.IMocksControl;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.boubei.tss.AbstractTssTest;
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.cms.action.ArticleAction;
 import com.boubei.tss.cms.action.ChannelAction;
+import com.boubei.tss.cms.dao.IArticleDao;
+import com.boubei.tss.cms.dao.IChannelDao;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.job.PublishManger;
 import com.boubei.tss.cms.service.IArticleService;
-import com.boubei.tss.framework.test.TestUtil;
+import com.boubei.tss.cms.service.IChannelService;
 import com.boubei.tss.framework.web.servlet.AfterUpload;
 import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.FileHelper;
+import com.boubei.tss.util.URLUtil;
 
-public class AbstractTestSupport extends TxSupportTest4CMS {
+public class AbstractCMSTest extends AbstractTssTest { 
+ 
+    @Autowired protected IChannelService channelService;
+    @Autowired protected IArticleService articleService;
+    @Autowired protected IChannelDao channelDao;
+    @Autowired protected IArticleDao articleDao;
+    
+    protected File tempDir1;
+    protected File tempDir2;
+    protected File tempDir3;
+    
+    public static String CK_FILE_PATH = "application.properties";
+ 
+    protected void init() {
+    	super.init();
+    	
+    	URL url = URLUtil.getResourceFileUrl(CK_FILE_PATH);
+        String log4jPath = url.getPath(); 
+        File classDir = new File(log4jPath).getParentFile();
+        Assert.assertTrue(FileHelper.checkFile(classDir, CK_FILE_PATH));
+        
+        tempDir1 = FileHelper.createDir(classDir + "/temp1");
+        tempDir2 = FileHelper.createDir(classDir + "/temp2");
+        tempDir3 = FileHelper.createDir(classDir + "/temp3");
+    }
     
 //    static String UPLOAD_PATH = ParamConfig.getAttribute(Servlet4Upload.UPLOAD_PATH);
-    static String UPLOAD_PATH = TestUtil.getTempDir() + "/upload";
+    static String UPLOAD_PATH = _TestUtil.getTempDir() + "/upload";
     
 	@Autowired protected ChannelAction channelAction;
     @Autowired protected ArticleAction articleAction;
-    
-    @Autowired protected IArticleService articleService;
     @Autowired protected PublishManger   publishManger;
     
     // 新建站点
@@ -48,7 +76,7 @@ public class AbstractTestSupport extends TxSupportTest4CMS {
         Channel site = new Channel();
         site.setParentId(CMSConstants.HEAD_NODE_ID);
         site.setName("我的门户" + System.currentTimeMillis());
-        site.setPath(super.tempDir1.getPath());
+        site.setPath(tempDir1.getPath());
         site.setDocPath("doc");
         site.setImagePath("img");
         site.setOverdueDate("0");
@@ -127,7 +155,7 @@ public class AbstractTestSupport extends TxSupportTest4CMS {
 			Assert.assertFalse(e.getMessage(), true);
 		}
 	    
-	    TestUtil.printEntity(super.permissionHelper, "Attachment"); 
+	    _TestUtil.printEntity(super.permissionHelper, "Attachment"); 
     }
     
     // 上传图片
@@ -175,7 +203,7 @@ public class AbstractTestSupport extends TxSupportTest4CMS {
 			Assert.assertFalse(e.getMessage(), true);
 		}
 	    
-	    TestUtil.printEntity(super.permissionHelper, "Attachment"); 
+	    _TestUtil.printEntity(super.permissionHelper, "Attachment"); 
     }
     
     protected void deleteSite(Long siteId) {

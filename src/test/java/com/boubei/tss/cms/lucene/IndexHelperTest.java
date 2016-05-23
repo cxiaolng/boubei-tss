@@ -6,13 +6,13 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.job.JobStrategy;
 import com.boubei.tss.cms.lucene.executor.DefaultIndexExecutor;
 import com.boubei.tss.cms.lucene.executor.KeywordIndexExecutor;
 import com.boubei.tss.cms.lucene.executor.TitleIndexExecutor;
 import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 
@@ -39,7 +39,7 @@ public class IndexHelperTest {
 	}
 	
 	private Set<ArticleContent> prepareData(int size) {
-        String tmpDir = TestUtil.getTempDir() ;
+        String tmpDir = _TestUtil.getTempDir() ;
         String path = tmpDir + "/123.xml";
         FileHelper.writeFile(new File(path), "<root/>");
         

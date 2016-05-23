@@ -24,7 +24,6 @@ import com.boubei.tss.framework.component.param.ParamService;
 import com.boubei.tss.framework.sso.IdentityCard;
 import com.boubei.tss.framework.sso.TokenUtil;
 import com.boubei.tss.framework.sso.context.Context;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.entity.Component;
 import com.boubei.tss.portal.entity.Navigator;
@@ -83,8 +82,8 @@ public class InitDatabase extends AbstractTransactionalJUnit4SpringContextTests 
     public void step1() {
     	log.info("init tss databse step2 starting......");
  
-        String sqlpath = TestUtil.getInitSQLDir();
-        TestUtil.excuteSQL(sqlpath);
+        String sqlpath = _TestUtil.getInitSQLDir();
+        _TestUtil.excuteSQL(sqlpath);
  
         log.info("init tss databse step1 over.");
     }
@@ -117,7 +116,7 @@ public class InitDatabase extends AbstractTransactionalJUnit4SpringContextTests 
      */
     private void initUM() {
         /* 初始化应用系统、资源、权限项 */
-        String sqlpath = TestUtil.getInitSQLDir();
+        String sqlpath = _TestUtil.getInitSQLDir();
         Document doc = XMLDocUtil.createDocByAbsolutePath(sqlpath + "/../tss-resource-config.xml");
         resourceService.setInitial(true);
         resourceService.applicationResourceRegister(doc, UMConstants.PLATFORM_SYSTEM_APP);

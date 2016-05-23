@@ -1,8 +1,7 @@
-package com.boubei.tss.framework;
+package com.boubei.tss.util.proxy;
 
 import org.junit.Test;
 
-import com.boubei.tss.framework.test.CGLIBProfiler;
 import com.boubei.tss.util.proxy.ProxyProfiler;
 
 

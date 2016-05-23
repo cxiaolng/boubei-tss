@@ -10,17 +10,17 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.boubei.tss.cms.AbstractTestSupport;
+import com.boubei.tss._TestUtil;
+import com.boubei.tss.cms.AbstractCMSTest;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.helper.ArticleQueryCondition;
 import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.test.TestUtil;
 
 /**
  * 文章站点栏目相关模块的单元测试。
  */
-public class ArticleModuleTest extends AbstractTestSupport {
+public class ArticleModuleTest extends AbstractCMSTest {
  
 	@Test
     public void testArticleModule() {
@@ -104,6 +104,6 @@ public class ArticleModuleTest extends AbstractTestSupport {
         
         deleteSite(siteId);
         
-        assertTrue(TestUtil.printLogs(logService) > 0);
+        assertTrue(_TestUtil.printLogs(logService) > 0);
     }
 }

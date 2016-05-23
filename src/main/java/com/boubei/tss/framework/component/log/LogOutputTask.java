@@ -1,5 +1,6 @@
 package com.boubei.tss.framework.component.log;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,9 +12,11 @@ import com.boubei.tss.framework.persistence.connpool.Output2DBTask;
  * 
  * @author 金普俊 2007-1-8
  */
-public class LogOutputTask extends Output2DBTask {
+public class LogOutputTask extends Output2DBTask implements Serializable {
 
-    protected void createRecords(Connection conn) throws SQLException {
+	private static final long serialVersionUID = 4414166319649429147L;
+
+	protected void createRecords(Connection conn) throws SQLException {
     	String insertSql = "insert into component_log" +
                 "(operatorId, operatorName, operatorIP, operationCode, operateTable, operateTime, content, methodExcuteTime, operatorBrowser) " +
                 "values(?, ?, ?, ?, ?, ?, ?, ?, ?)"; 

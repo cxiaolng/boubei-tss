@@ -15,12 +15,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.boubei.tss.dm.DMConstants;
+import com.boubei.tss.H2DBServer;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.test.H2DBServer;
-import com.boubei.tss.framework.test.IH2DBServer;
+import com.boubei.tss.dm.DMConstants;
 
 public class SQLExcutorH2Test {
 	
@@ -122,7 +121,7 @@ public class SQLExcutorH2Test {
 	}
 	
 	private void initSourceTable() {
-		IH2DBServer dbserver = new H2DBServer();
+		H2DBServer dbserver = new H2DBServer();
 		Connection conn = dbserver.getH2Connection();
 		
         try {

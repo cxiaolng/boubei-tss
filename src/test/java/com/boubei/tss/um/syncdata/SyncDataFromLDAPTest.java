@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.component.progress.Progressable;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Application;
 import com.boubei.tss.um.entity.Group;
@@ -33,7 +33,7 @@ import com.boubei.tss.util.URLUtil;
 /**
  * 测试用户同步
  */
-public class SyncDataFromLDAPTest extends TxSupportTest4UM {
+public class SyncDataFromLDAPTest extends AbstractUMTest {
 
 	@Autowired ISyncService syncService;
 	@Autowired IResourceService resourceService;
@@ -43,7 +43,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
 	DirectoryService service;
  
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		super.setUp();
 		
 		apacheDS = new ApacheDS();
@@ -74,7 +74,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
 		mainGroup.setName("金禾");
 		mainGroup.setGroupType(Group.MAIN_GROUP_TYPE);
 		mainGroup.setFromApp(UMConstants.TSS_APPLICATION_ID);
-		mainGroup.setFromGroupId("o=BouBei");
+		mainGroup.setFromGroupId("o=jinhe");
 		
 		groupService.createNewGroup(mainGroup, "", "-1");
 		Long mainGroupId = mainGroup.getId();
@@ -84,7 +84,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
         Assert.assertNotNull(application);
         application.setDataSourceType(UMConstants.DATA_SOURCE_TYPE_LDAP);
         
-        URL template = URLUtil.getResourceFileUrl("template/syncdata/template_LDAP.xml");
+        URL template = URLUtil.getResourceFileUrl("template/um/syncdata/template_LDAP.xml");
         String paramDesc = FileHelper.readFile(new File(template.getPath()));
         application.setParamDesc(paramDesc);
         
@@ -112,21 +112,21 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
 	
 	private void prepareData() throws Exception {
     	SchemaManager schemaManager = service.getSchemaManager();
-    	Partition store = apacheDS.addPartition("TSS", "o=BouBei", false);
+    	Partition store = apacheDS.addPartition("TSS", "o=jinhe", false);
     	
-        Dn suffixDn = new Dn( schemaManager, "o=BouBei" );
+        Dn suffixDn = new Dn( schemaManager, "o=jinhe" );
         long index = 1L;
 
         // 公司
         Entry entry = new DefaultEntry( schemaManager, suffixDn,
             "objectClass: organization",
-            "o: BouBei",
+            "o: jinhe",
             "postalCode: 1",
             "postOfficeBox: 1" );
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // 销售部
-        Dn dn = new Dn( schemaManager, "ou=Sales,o=BouBei" );
+        Dn dn = new Dn( schemaManager, "ou=Sales,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: organizationalUnit",
@@ -136,7 +136,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // 研发部
-        dn = new Dn( schemaManager, "ou=RD2,o=BouBei" );
+        dn = new Dn( schemaManager, "ou=RD2,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: organizationalUnit",
@@ -146,7 +146,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // RD2下的IT部
-        dn = new Dn( schemaManager, "ou=IT,ou=RD2,o=BouBei" );
+        dn = new Dn( schemaManager, "ou=IT,ou=RD2,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: organizationalUnit",
@@ -156,7 +156,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
         LdapUtils.injectEntryInStore( store, entry, index++ );
 
         // 销售部员工
-        dn = new Dn( schemaManager, "cn=JIM BEAN,ou=Sales,o=BouBei" );
+        dn = new Dn( schemaManager, "cn=JIM BEAN,ou=Sales,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: person",
@@ -167,7 +167,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
         LdapUtils.injectEntryInStore( store, entry, index++ );
         
         // RD2的员工
-        dn = new Dn( schemaManager, "cn=Jack Daniels,ou=RD2,o=BouBei" );
+        dn = new Dn( schemaManager, "cn=Jack Daniels,ou=RD2,o=jinhe" );
         entry = new DefaultEntry( schemaManager, dn,
             "objectClass: top",
             "objectClass: person",
@@ -178,7 +178,7 @@ public class SyncDataFromLDAPTest extends TxSupportTest4UM {
             "uid: Jack");
         LdapUtils.injectEntryInStore( store, entry, index++ );
         
-        Dn adminDn = new Dn( schemaManager, "cn=admin2,ou=RD2,o=BouBei" );
+        Dn adminDn = new Dn( schemaManager, "cn=admin2,ou=RD2,o=jinhe" );
         entry = new DefaultEntry( schemaManager, adminDn,
             "objectClass: top",
             "objectClass: person",

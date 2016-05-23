@@ -6,12 +6,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.sso.context.Context;
 
-public class DataServiceListTest extends TxTestSupport4DM {
+public class DataServiceListTest extends AbstractDMTest {
     
     @Autowired private ReportAction action;
     @Autowired private _Reporter display;

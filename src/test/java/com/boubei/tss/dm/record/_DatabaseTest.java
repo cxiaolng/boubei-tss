@@ -8,12 +8,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.util.EasyUtils;
 
-public class _DatabaseTest extends TxTestSupport4DM  {
+public class _DatabaseTest extends AbstractDMTest  {
 
 /*
 public class _DatabaseTest  {

@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.report.permission.ReportResource;
 import com.boubei.tss.framework.component.log.LogQueryCondition;
 import com.boubei.tss.framework.component.log.LogService;
@@ -24,7 +24,7 @@ import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 
-public class ReportActionTest extends TxTestSupport4DM {
+public class ReportActionTest extends AbstractDMTest {
     
     @Autowired private ReportAction action;
     @Autowired private LogService logService;

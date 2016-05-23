@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.test.TestUtil;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss._TestUtil;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.RoleAction;
 import com.boubei.tss.um.action.SubAuthorizeAction;
@@ -25,7 +25,7 @@ import com.boubei.tss.um.service.IUserService;
 /**
  * 角色转授策略相关模块的单元测试
  */
-public class SubAuthorizeModuleTest extends TxSupportTest4UM {
+public class SubAuthorizeModuleTest extends AbstractUMTest {
     
 	@Autowired SubAuthorizeAction action;
 	@Autowired RoleAction roleAction;
@@ -126,8 +126,8 @@ public class SubAuthorizeModuleTest extends TxSupportTest4UM {
         
         action.delete(response, strategyId);
         
-        TestUtil.printEntity(super.permissionHelper, "RoleGroup");
-        TestUtil.printEntity(super.permissionHelper, "RoleUser");
+        _TestUtil.printEntity(super.permissionHelper, "RoleGroup");
+        _TestUtil.printEntity(super.permissionHelper, "RoleUser");
         
         login(mainUser.getId(), mainUser.getLoginName()); // 更好登录用户，看其权限
         printUserRoleMapping(mainUser.getId(), 1); // 匿名角色 （转授策略删除了）

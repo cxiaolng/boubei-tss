@@ -117,33 +117,33 @@ public final class UMConstants {
 	/**
 	 * Grid模板文件的路径定义
 	 */
-	public static final String GENERAL_SEARCH_ROLE_GRID     = "template/grid/gs_role_info.xml";// 综合查询根据用户搜索角色情况的Grid模板
-	public static final String GENERAL_SEARCH_USER_GRID     = "template/grid/gs_user_info.xml";//综合查询根据角色搜索用户情况的Grid模板	
-	public static final String GENERAL_SEARCH_STRATEGY_GRID = "template/grid/gs_subauth_info.xml";// 综合查询搜索用户因转授而获得的角色的情况的Grid模板
+	public static final String GENERAL_SEARCH_ROLE_GRID     = "template/um/grid/gs_role_info.xml";// 综合查询根据用户搜索角色情况的Grid模板
+	public static final String GENERAL_SEARCH_USER_GRID     = "template/um/grid/gs_user_info.xml";//综合查询根据角色搜索用户情况的Grid模板	
+	public static final String GENERAL_SEARCH_STRATEGY_GRID = "template/um/grid/gs_subauth_info.xml";// 综合查询搜索用户因转授而获得的角色的情况的Grid模板
 	
-	public static final String MAIN_USER_GRID  = "template/grid/user_list.xml"; //用户组下的用户浏览Grid模板
+	public static final String MAIN_USER_GRID  = "template/um/grid/user_list.xml"; //用户组下的用户浏览Grid模板
 	
 	/**
 	 *  XForm模板文件的路径定义
 	 */
-	public static final String GROUP_MAIN_XFORM  = "template/xform/group_main.xml";    
-	public static final String GROUP_ASSISTANT_XFORM  = "template/xform/group_assistant.xml";
+	public static final String GROUP_MAIN_XFORM  = "template/um/xform/group_main.xml";    
+	public static final String GROUP_ASSISTANT_XFORM  = "template/um/xform/group_assistant.xml";
 	
-	public static final String USER_REGISTER_XFORM  = "template/xform/user_register.xml";  
-	public static final String USER_BASEINFO_XFORM  = "template/xform/user_baseinfo.xml"; 
+	public static final String USER_REGISTER_XFORM  = "template/um/xform/user_register.xml";  
+	public static final String USER_BASEINFO_XFORM  = "template/um/xform/user_baseinfo.xml"; 
 	
-	public static final String ROLE_XFORM      = "template/xform/role.xml";    
-	public static final String ROLEGROUP_XFORM = "template/xform/roleGroup.xml"; 
-	public static final String STRATEGY_XFORM  = "template/xform/subauth.xml"; 
+	public static final String ROLE_XFORM      = "template/um/xform/role.xml";    
+	public static final String ROLEGROUP_XFORM = "template/um/xform/roleGroup.xml"; 
+	public static final String STRATEGY_XFORM  = "template/um/xform/subauth.xml"; 
     
-	public static final String RESOURCETYPE_XFORM      = "template/xform/resourceType.xml";        //ResourceType(新建)
-	public static final String APPLICATION_XFORM       = "template/xform/application.xml";         //Application(新建)
-	public static final String OTHER_APPLICATION_XFORM = "template/xform/application_other.xml";   //其他应用系统(新建)
-	public static final String OPERATION_XFORM         = "template/xform/operation.xml";           //Operation对象
-	public static final String SERACH_PERMISSION_XFORM = "template/xform/searchpermission.xml";    //查询权限的
-	public static final String AUTH_METHOD_XFORM       = "template/xform/authenticatemethod.xml";  //设置用户认证方式
-    public static final String PASSWORD_FORGET_XFORM   = "template/xform/password_forget.xml";     //密码忘记提示 
-    public static final String PASSWORD_CHANGE_XFORM   = "template/xform/password_change.xml";     //密码修改
+	public static final String RESOURCETYPE_XFORM      = "template/um/xform/resourceType.xml";        //ResourceType(新建)
+	public static final String APPLICATION_XFORM       = "template/um/xform/application.xml";         //Application(新建)
+	public static final String OTHER_APPLICATION_XFORM = "template/um/xform/application_other.xml";   //其他应用系统(新建)
+	public static final String OPERATION_XFORM         = "template/um/xform/operation.xml";           //Operation对象
+	public static final String SERACH_PERMISSION_XFORM = "template/um/xform/searchpermission.xml";    //查询权限的
+	public static final String AUTH_METHOD_XFORM       = "template/um/xform/authenticatemethod.xml";  //设置用户认证方式
+    public static final String PASSWORD_FORGET_XFORM   = "template/um/xform/password_forget.xml";     //密码忘记提示 
+    public static final String PASSWORD_CHANGE_XFORM   = "template/um/xform/password_change.xml";     //密码修改
 
 	/**
 	 * 对象节点 Tree 图标文件的路径定义

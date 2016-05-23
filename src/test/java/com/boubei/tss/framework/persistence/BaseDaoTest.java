@@ -5,11 +5,11 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.TxTestSupport;
+import com.boubei.tss.framework.AbstractFrameworkTest;
 import com.boubei.tss.framework.mock.dao._IGroupDAO;
 import com.boubei.tss.framework.mock.model._User;
 
-public class BaseDaoTest extends TxTestSupport { 
+public class BaseDaoTest extends AbstractFrameworkTest { 
     
     @Autowired _IGroupDAO dao;
 

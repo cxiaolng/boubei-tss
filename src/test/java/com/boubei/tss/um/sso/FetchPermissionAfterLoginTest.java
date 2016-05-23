@@ -11,13 +11,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.framework.sso.SSOConstants;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Group;
 import com.boubei.tss.um.entity.User;
 import com.boubei.tss.um.service.IUserService;
 
-public class FetchPermissionAfterLoginTest extends TxSupportTest4UM {
+public class FetchPermissionAfterLoginTest extends AbstractUMTest {
 	
 	@Autowired protected IUserService userService;
 

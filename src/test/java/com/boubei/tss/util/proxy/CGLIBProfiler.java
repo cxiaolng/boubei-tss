@@ -8,7 +8,7 @@
  * ================================================================== 
 */
 
-package com.boubei.tss.framework.test;
+package com.boubei.tss.util.proxy;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;

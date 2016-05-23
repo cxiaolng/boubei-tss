@@ -1,24 +1,20 @@
 package com.boubei.tss.um.module;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.Config;
-import com.boubei.tss.framework.Global;
 import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.component.progress.ProgressPool;
 import com.boubei.tss.framework.sso.Environment;
-import com.boubei.tss.framework.sso.context.Context;
-import com.boubei.tss.framework.test.TestUtil;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.GroupAction;
 import com.boubei.tss.um.dao.IGroupDao;
@@ -33,7 +29,7 @@ import com.boubei.tss.um.service.IUserService;
  * 注：排序组时，事务内组表的decode发生了变化，但资源视图内的相应decode值取出来还是排序以前的值，即视图的数据未更新。
  *    TODO 需要排查上述情况出现的原因，是H2数据库问题？抑或其他原因？
  */
-public class GroupModuleTest extends TxSupportTest4UM {
+public class GroupModuleTest extends AbstractUMTest {
     
 	static final String APPLICATION_ID = Config.getAttribute(Config.APPLICATION_CODE).toLowerCase();
 
@@ -46,17 +42,8 @@ public class GroupModuleTest extends TxSupportTest4UM {
     Group mainGroup1;
     Long mainGroupId;
     
-    @Before
-    public void setUp() {
-    	Global.setContext(super.applicationContext);
-        
-    	request = new MockHttpServletRequest();
-		Context.setResponse(response = new MockHttpServletResponse());
-        
-        // 初始化虚拟登录用户信息
-        login(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
-    
-        init();
+    public void init() {
+        super.init();
         
     	// 检查初始化的组是否存在
     	List<?> groups = groupService.findGroups();
@@ -88,8 +75,8 @@ public class GroupModuleTest extends TxSupportTest4UM {
     }
     
     @After
-    public void tearDown() {
-    	TestUtil.printLogs(logService);
+    public void tearDown() throws Exception {
+    	_TestUtil.printLogs(logService);
     	super.tearDown();
     }
     

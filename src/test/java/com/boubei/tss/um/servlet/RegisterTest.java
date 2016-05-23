@@ -5,9 +5,9 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 
-public class RegisterTest extends TxSupportTest4UM {
+public class RegisterTest extends AbstractUMTest {
     
 	@Test
     public void testDoPost() {

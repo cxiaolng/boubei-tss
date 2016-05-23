@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.sso.context.Context;
 
-public class _ReporterTest extends TxTestSupport4DM {
+public class _ReporterTest extends AbstractDMTest {
     
     @Autowired private ReportAction action;
     @Autowired private _Reporter _reporter;

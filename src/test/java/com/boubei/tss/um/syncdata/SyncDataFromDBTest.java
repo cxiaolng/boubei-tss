@@ -17,10 +17,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.boubei.tss.H2DBServer;
 import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.component.progress.Progressable;
-import com.boubei.tss.framework.test.H2DBServer;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.GroupAction;
 import com.boubei.tss.um.entity.Application;
@@ -33,7 +33,7 @@ import com.boubei.tss.util.URLUtil;
 /**
  * 测试用户同步
  */
-public class SyncDataFromDBTest extends TxSupportTest4UM {
+public class SyncDataFromDBTest extends AbstractUMTest {
 
 	@Autowired GroupAction groupAction;
 	
@@ -44,7 +44,7 @@ public class SyncDataFromDBTest extends TxSupportTest4UM {
 	String applicationId = UMConstants.TSS_APPLICATION_ID;
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		super.setUp();
 		
 		mainGroup = new Group();
@@ -60,7 +60,7 @@ public class SyncDataFromDBTest extends TxSupportTest4UM {
 		Application application = resourceService.getApplication(UMConstants.TSS_APPLICATION_ID);
         assertNotNull(application);
         application.setDataSourceType(UMConstants.DATA_SOURCE_TYPE_DB);
-        URL template = URLUtil.getResourceFileUrl("template/syncdata/template_DB.xml");
+        URL template = URLUtil.getResourceFileUrl("template/um/syncdata/template_DB.xml");
         String paramDesc = FileHelper.readFile(new File(template.getPath()));
         application.setParamDesc(paramDesc);
         resourceService.saveApplication(application);

@@ -1,4 +1,4 @@
-package com.boubei.tss.framework.test;
+package com.boubei.tss;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,10 +6,8 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 import org.h2.tools.Server;
-import org.springframework.stereotype.Component;
 
-@Component
-public class H2DBServer implements IH2DBServer {  
+public class H2DBServer {  
     
     protected Logger log = Logger.getLogger(this.getClass());
     
@@ -75,15 +73,7 @@ public class H2DBServer implements IH2DBServer {
             log.info("关闭H2 database成功...端口号：" + port);  
         }  
     }  
-
-    public boolean isPrepareed() {
-        return isPrepareed;
-    }
-
-    public void setPrepareed(boolean isPrepareed) {
-        this.isPrepareed = isPrepareed;
-    }
-
+ 
 	public Connection getH2Connection() {
 		return conn;
 	}  

@@ -7,9 +7,9 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 
-public class ResetPasswordTest extends TxSupportTest4UM {
+public class ResetPasswordTest extends AbstractUMTest {
     
 	@Test
     public void testDoPost() {

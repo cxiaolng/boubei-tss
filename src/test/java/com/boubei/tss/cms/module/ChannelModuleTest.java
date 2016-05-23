@@ -10,17 +10,17 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.boubei.tss.cms.AbstractTestSupport;
+import com.boubei.tss._TestUtil;
+import com.boubei.tss.cms.AbstractCMSTest;
 import com.boubei.tss.cms.CMSConstants;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.entity.permission.ChannelResource;
 import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.test.TestUtil;
 
 /**
  * 文章站点栏目相关模块的单元测试。
  */
-public class ChannelModuleTest extends AbstractTestSupport {
+public class ChannelModuleTest extends AbstractCMSTest {
  
 	@Test
     public void testChannelModule() {
@@ -117,7 +117,7 @@ public class ChannelModuleTest extends AbstractTestSupport {
         list = channelDao.getEntities(" from Channel where site.id = ?", siteId);
         assertTrue(list.size() == 0);
         
-        assertTrue(TestUtil.printLogs(logService) > 0);
+        assertTrue(_TestUtil.printLogs(logService) > 0);
     }
     
 }

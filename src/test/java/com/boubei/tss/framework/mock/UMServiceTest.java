@@ -9,7 +9,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.TxTestSupport;
+import com.boubei.tss.framework.AbstractFrameworkTest;
 import com.boubei.tss.framework.mock.dao._IUserDAO;
 import com.boubei.tss.framework.mock.model._Group;
 import com.boubei.tss.framework.mock.model._GroupRole;
@@ -19,7 +19,7 @@ import com.boubei.tss.framework.mock.model._User;
 import com.boubei.tss.framework.mock.service._IUMSerivce;
 import com.boubei.tss.framework.persistence.Temp;
 
-public class UMServiceTest extends TxTestSupport { 
+public class UMServiceTest extends AbstractFrameworkTest { 
     
     @Autowired _IUMSerivce umSerivce;
     

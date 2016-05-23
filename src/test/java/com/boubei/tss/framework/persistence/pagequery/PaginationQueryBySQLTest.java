@@ -4,14 +4,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.TxTestSupport;
+import com.boubei.tss.framework.AbstractFrameworkTest;
 import com.boubei.tss.framework.mock.UMQueryCondition;
 import com.boubei.tss.framework.mock.dao._IUserDAO;
 import com.boubei.tss.framework.mock.model._Group;
 import com.boubei.tss.framework.mock.model._User;
 import com.boubei.tss.framework.mock.service._IUMSerivce;
 
-public class PaginationQueryBySQLTest  extends TxTestSupport { 
+public class PaginationQueryBySQLTest  extends AbstractFrameworkTest { 
     
     @Autowired _IUMSerivce umSerivce;
     @Autowired _IUserDAO userDao;

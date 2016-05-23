@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <strategies> 
+
+  <strategy code="connectionpool" name="数据库连接池"> 
+    <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
+    <poolSize>10</poolSize>  
+    <cyclelife>0</cyclelife>  
+    <interruptTime>1000</interruptTime>  
+    <initNum>5</initNum>  
+    <disabled>0</disabled> <!-- 数据库连接池配置为启用 -->
+	<visible>1</visible>  
+    <customizerClass>com.boubei.tss.framework.persistence.connpool.ConnPoolCustomizer</customizerClass>  
+	<paramFile>H2.properties</paramFile>
+  </strategy> 
+  
   <strategy code="taskpool" name="端口扫描任务池"> 
     <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
     <poolContainerClass>com.boubei.tss.cache.extension.EhcacheContainer</poolContainerClass>  
@@ -24,6 +37,12 @@
     <customizerClass>com.boubei.tss.cache.extension.threadpool.ThreadPoolCustomizer</customizerClass>  
   </strategy>  
   
+  <strategy code="SHORTER" name="服务数据缓存（1分钟）"> 
+    <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
+    <poolSize>1000</poolSize>  
+    <cyclelife>60000</cyclelife>  
+    <accessMethod>5</accessMethod>  
+  </strategy>
   <strategy code="SHORT" name="服务数据缓存（短期）"> 
     <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
     <poolSize>10</poolSize>  

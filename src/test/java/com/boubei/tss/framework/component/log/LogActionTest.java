@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.TxTestSupport;
+import com.boubei.tss.framework.AbstractFrameworkTest;
 import com.boubei.tss.framework.mock.model._Group;
 import com.boubei.tss.framework.mock.model._User;
 import com.boubei.tss.framework.mock.service._IUMSerivce;
@@ -18,7 +18,7 @@ import com.boubei.tss.framework.web.dispaly.XmlPrintWriter;
 import com.boubei.tss.framework.web.dispaly.grid.GridDataDecoder;
 import com.boubei.tss.framework.web.dispaly.grid.GridDataEncoder;
 
-public class LogActionTest extends TxTestSupport {
+public class LogActionTest extends AbstractFrameworkTest {
 
 	@Autowired private LogAction action;
 	@Autowired private LogService logService;

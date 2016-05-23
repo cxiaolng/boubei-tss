@@ -6,9 +6,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.boubei.tss.framework.sso.SSOConstants;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 
-public class GetLoginInfoTest extends TxSupportTest4UM {
+public class GetLoginInfoTest extends AbstractUMTest {
     
 	@Test
     public void testDoPost() {

@@ -3,16 +3,16 @@ package com.boubei.tss.framework.component.timer;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.TxTestSupport;
+import com.boubei.tss.framework.AbstractFrameworkTest;
 import com.boubei.tss.framework.component.cache.CacheHelper;
 import com.boubei.tss.framework.component.param.Param;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.util.EasyUtils;
 
-public class SchedulerBeanTest extends TxTestSupport {
+public class SchedulerBeanTest extends AbstractFrameworkTest {
 	
 	String jobConfig = "com.boubei.tss.framework.component.timer.DemoJob | 10,20,30,40,55 * * * * ? | " +
 			"1:报表一:lovejava@163.com,lovejava@163.com:param1=0,param2=0\n" + 
@@ -41,7 +41,7 @@ public class SchedulerBeanTest extends TxTestSupport {
 		// DemoJob配了每分钟里10,20,30,40,55执行
 		try { Thread.sleep(1000 * 16); } catch (InterruptedException e) { }
 		
-		TestUtil.printLogs(logService);
+		_TestUtil.printLogs(logService);
 	}
 	
 	@Test

@@ -1,6 +1,6 @@
 product=tss
-version=3.4
+version=3.3
 type=Commercial
-expiry=2017-06-22
+expiry=2016-06-22
 macaddress=6C-62-6D-C6-49-9E
-signature=302c021447d67eb352cd9f53ead1af2bdb168d112bf8ab65021467f412434ba9d3336c96c22f3d592d785c841be1
+signature=302c021411982ebc58bedeed723eb77e0ef239e11693397f02141e124a735efd514012b4bb9773247b2da212bf53

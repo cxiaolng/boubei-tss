@@ -1,6 +1,7 @@
-package com.boubei.tss.framework.test;
+package com.boubei.tss;
 
 import org.junit.Test;
+
 
 public class H2DBServerTest {
 	

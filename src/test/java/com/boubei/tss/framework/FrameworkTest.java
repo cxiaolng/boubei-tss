@@ -18,7 +18,7 @@ public class FrameworkTest {
 		Assert.assertTrue( (Integer)result[0] > 0 );
 	}
 	
-//	@Test
+	@Test
 	public void testLiceence() {
 		Assert.assertTrue(Framework.validateTSS());
 	}

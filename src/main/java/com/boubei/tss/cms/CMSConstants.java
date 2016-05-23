@@ -43,14 +43,13 @@ public interface CMSConstants {
     static final Integer STRATEGY_TYPE_EXPIRE  = 3; // 文章过期策略
 
     // XForm 模板
-    static final String XFORM_SITE     = "template/xform/Site.xml";
-    static final String XFORM_CHANNEL  = "template/xform/Channel.xml";
-    static final String XFORM_ARTICLE  = "template/xform/Article.xml";
-    static final String XFORM_SEARCH_ARTICLE = "template/xform/SearchArticle.xml";
+    static final String XFORM_SITE     = "template/cms/xform_site.xml";
+    static final String XFORM_CHANNEL  = "template/cms/xform_channel.xml";
+    static final String XFORM_ARTICLE  = "template/cms/xform_article.xml";
     
     // Grid 模板
-    static final String GRID_TEMPLATE_ARTICLELIST = "template/grid/ArticleList.xml";
-    static final String GRID_ATTACHSLIST          = "template/grid/AttachsList.xml";
+    static final String GRID_ARTICLELIST = "template/cms/grid_article.xml";
+    static final String GRID_ATTACHSLIST = "template/cms/grid_attach.xml";
     
     // 资源授权相关
     static final String RESOURCE_TYPE_CHANNEL  = "3";   // 资源类型  站点栏目

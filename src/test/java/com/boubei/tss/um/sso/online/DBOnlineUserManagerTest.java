@@ -25,14 +25,14 @@ import org.junit.Test;
 import com.boubei.tss.framework.Global;
 import com.boubei.tss.framework.sso.online.IOnlineUserManager;
 import com.boubei.tss.framework.sso.online.OnlineUser;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 
-public class DBOnlineUserManagerTest extends TxSupportTest4UM { 
+public class DBOnlineUserManagerTest extends AbstractUMTest { 
     
     IOnlineUserManager manager;
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
     	super.setUp();
     	manager = (IOnlineUserManager) Global.getBean("DBOnlineUserManagerService");
     }

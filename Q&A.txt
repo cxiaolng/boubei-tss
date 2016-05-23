@@ -51,11 +51,11 @@ service nginx start
 
 数据录入表创建常见错误：
 1、字段重名：Duplicate column name ‘position’   — MySQL
-                     ORA-00957: duplicate column name --Oracle
+          ORA-00957: duplicate column name  -- Oracle
 2、字段名称太长：ORA-00972: identifier is too long
      比如：in_op_data_collection的  motor_registeration_certificate
 3、表名冲突，已经有同名的表存在了：ORA-00955: name is already used by an existing object
-4、字段命名不合法，一般是和数据库的关键字冲突了，ORA-00904: : invalid identifier
+4、字段命名不合法，一般是和数据库的关键字冲突了，ORA-00904: invalid identifier
      比如date、number、group、order、select、from这些词
    ORA-00936: missing expression 可能是因为record的字段里包含了oracle的某关键字
 
@@ -78,6 +78,6 @@ service nginx start
 2、超级管理员的角色，这个角色是神一般的存在，能无视一切阻碍，对所有资源拥有绝对权限，甭管你是私人资源还是角色资源。
 
 打包注意：
-1、BtrBI的10.8.72.70机器安裝的是JDK6，打包只能用JDK1.6,  用1.7會出錯  
+1、btrbi的生产机器安裝的是JDK6，打包只能用JDK1.6,  用1.7會出錯  
 
 $("#P16_iframe")[0].contentWindow

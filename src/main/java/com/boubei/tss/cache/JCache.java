@@ -74,6 +74,7 @@ public class JCache {
  
 	/**
 	 * 根据缓存策略文件里的配置初始化各个缓存池。
+	 * 如果某一个cache初始化失败，在它之后的cache将不会被初始化。
 	 */
 	private void initPools(String cacheConfigFile) {
 		try {
@@ -98,7 +99,7 @@ public class JCache {
 				pools.put(poolCode, strategy.getPoolInstance());
 			}
 		} catch (Exception e) {
-			log.info("根据缓存策略配置文件初始化缓存池失败 " + e);
+			log.info("根据缓存策略配置文件初始化缓存池失败: " + e);
 		}
 	}
 

@@ -60,7 +60,7 @@ public class ArticleAction extends BaseActionSupport {
                 articles.add(article);
             }
         }
-		GridDataEncoder gEncoder = new GridDataEncoder(articles, CMSConstants.GRID_TEMPLATE_ARTICLELIST);
+		GridDataEncoder gEncoder = new GridDataEncoder(articles, CMSConstants.GRID_ARTICLELIST);
 
 		print(new String[]{"ArticleList", "PageInfo"}, new Object[]{gEncoder, pageInfo});
 	} 
@@ -171,7 +171,7 @@ public class ArticleAction extends BaseActionSupport {
         condition.getPage().setPageNum(page);
 		
 		Object[] data = articleService.searchArticleList(condition);
-		GridDataEncoder gEncoder = new GridDataEncoder(data[0], CMSConstants.GRID_TEMPLATE_ARTICLELIST);
+		GridDataEncoder gEncoder = new GridDataEncoder(data[0], CMSConstants.GRID_ARTICLELIST);
         print(new String[]{"ArticleList", "PageInfo"}, new Object[]{gEncoder, (PageInfo)data[1]});
 	}	
 	

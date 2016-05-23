@@ -9,7 +9,7 @@ import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.boubei.tss.cms.AbstractTestSupport;
+import com.boubei.tss.cms.AbstractCMSTest;
 import com.boubei.tss.cms.CMSConstants;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Channel;
@@ -22,7 +22,7 @@ import com.boubei.tss.framework.component.progress.Progressable;
 /**
  * 定时策略相关模块的单元测试。
  */
-public class CMSJobsTest extends AbstractTestSupport {
+public class CMSJobsTest extends AbstractCMSTest {
 	
 	Long siteId;
 	Long channel1Id;

@@ -5,10 +5,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.TxTestSupport;
-import com.boubei.tss.framework.test.TestUtil;
+import com.boubei.tss._TestUtil;
+import com.boubei.tss.framework.AbstractFrameworkTest;
 
-public class ParamActionTest extends TxTestSupport {
+public class ParamActionTest extends AbstractFrameworkTest {
 	
 	@Autowired private ParamAction action;
 
@@ -77,6 +77,6 @@ public class ParamActionTest extends TxTestSupport {
 		
 		action.get2Tree(response);
 		
-		TestUtil.printLogs(logService);
+		_TestUtil.printLogs(logService);
 	}
 }

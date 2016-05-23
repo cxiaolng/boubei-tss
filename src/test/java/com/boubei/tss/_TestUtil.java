@@ -1,4 +1,4 @@
-package com.boubei.tss.framework.test;
+package com.boubei.tss;
 
 import java.io.File;
 import java.sql.Connection;
@@ -19,9 +19,9 @@ import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 
-public class TestUtil {
+public class _TestUtil {
 	
-	protected static Logger log = Logger.getLogger(TestUtil.class);
+	protected static Logger log = Logger.getLogger(_TestUtil.class);
 	
 	static final String PROJECT_NAME = "boubei-tss";
 	

@@ -7,15 +7,10 @@ import java.util.List;
 
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.sso.context.Context;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.RoleAction;
 import com.boubei.tss.um.entity.Group;
@@ -26,7 +21,7 @@ import com.boubei.tss.um.helper.dto.OperatorDTO;
 import com.boubei.tss.um.service.IRoleService;
 import com.boubei.tss.um.service.IUserService;
 
-public class LoginServiceTest extends TxSupportTest4UM {
+public class LoginServiceTest extends AbstractUMTest {
 	
 	@Autowired RoleAction roleAction;
     @Autowired IRoleService roleService;
@@ -36,17 +31,9 @@ public class LoginServiceTest extends TxSupportTest4UM {
     User mainUser;
     Long role1Id;
     
-    @Before
-    public void setUp() {
-    	Global.setContext(super.applicationContext);
-        
-    	request = new MockHttpServletRequest();
-		Context.setResponse(response = new MockHttpServletResponse());
-        
-        // 初始化虚拟登录用户信息
-        login(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
-    
-        init();
+    public void init() {
+ 
+        super.init();
         
         Calendar calendar = new GregorianCalendar();
         calendar.add(UMConstants.ROLE_LIFE_TYPE, UMConstants.ROLE_LIFE_TIME);
@@ -87,7 +74,6 @@ public class LoginServiceTest extends TxSupportTest4UM {
         request.addParameter("Role2GroupIds", "" + mainGroup.getId());
         roleAction.saveRole(response, request, role1);
         role1Id = role1.getId();
- 
     }
     
 	@Test

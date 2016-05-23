@@ -8,11 +8,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.TxSupportTest4Portal;
+import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.action.NavigatorAction;
 import com.boubei.tss.portal.action.PortalAction;
 import com.boubei.tss.portal.entity.Navigator;
@@ -28,7 +28,7 @@ import com.boubei.tss.um.UMConstants;
 /**
  * 导航栏模块的单元测试。
  */
-public class NavigatorModuleTest extends TxSupportTest4Portal {
+public class NavigatorModuleTest extends AbstractPortalTest {
     
     @Autowired PortalAction portalAction;
     @Autowired NavigatorAction menuAction;
@@ -166,7 +166,7 @@ public class NavigatorModuleTest extends TxSupportTest4Portal {
         
         portalAction.delete(response, root.getId());
         
-        assertTrue(TestUtil.printLogs(logService) > 0);
+        assertTrue(_TestUtil.printLogs(logService) > 0);
         
         Assert.assertEquals(PortalConstants.NAVIGATOR_RESOURCE_TYPE, menu1.getResourceType());
         Assert.assertEquals(PortalConstants.NAVIGATOR_RESOURCE_TYPE, new NavigatorResource().getResourceType());

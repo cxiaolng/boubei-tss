@@ -5,9 +5,9 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 
-public class DataSourceManagerTest extends TxTestSupport4DM {
+public class DataSourceManagerTest extends AbstractDMTest {
 	
 	@Autowired DataSourceManager dsManager;
 

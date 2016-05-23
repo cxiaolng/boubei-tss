@@ -7,14 +7,10 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.sso.context.Context;
-import com.boubei.tss.um.TxSupportTest4UM;
+import com.boubei.tss.um.AbstractUMTest;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.ResourceAction;
 import com.boubei.tss.um.dao.IResourceTypeDao;
@@ -28,22 +24,11 @@ import com.boubei.tss.util.BeanUtil;
 /**
  * 系统、资源、权限项相关模块的单元测试
  */
-public class ResourceModuleTest extends TxSupportTest4UM {
+public class ResourceModuleTest extends AbstractUMTest {
     
     @Autowired ResourceAction action;
     @Autowired IResourceService service;
     @Autowired IResourceTypeDao resourceTypeDao;
-    
-    @Before
-    public void setUp() {
-    	Global.setContext(super.applicationContext);
-		Context.setResponse(response = new MockHttpServletResponse());
-        
-        // 初始化虚拟登录用户信息
-        login(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
-    
-        init();
-    }
   
     @Test
     public void testApplication() {

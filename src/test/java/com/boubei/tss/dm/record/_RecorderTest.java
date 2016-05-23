@@ -17,18 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.record.file.CreateAttach;
 import com.boubei.tss.dm.record.file.RecordAttach;
 import com.boubei.tss.framework.component.log.LogService;
 import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.framework.web.servlet.AfterUpload;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.FileHelper;
 
-public class _RecorderTest extends TxTestSupport4DM {
+public class _RecorderTest extends AbstractDMTest {
 	
 	@Autowired LogService logService;
 	@Autowired RecordService recordService;
@@ -153,7 +153,7 @@ public class _RecorderTest extends TxTestSupport4DM {
 		Assert.assertTrue(result.size() == 0);
 		
 		try { Thread.sleep(1000); } catch (Exception e) { } // 等待修改日志输出
-		assertTrue(TestUtil.printLogs(logService) > 0);
+		assertTrue(_TestUtil.printLogs(logService) > 0);
 		
 		try {
 			request = new MockHttpServletRequest();
@@ -168,7 +168,7 @@ public class _RecorderTest extends TxTestSupport4DM {
 	}
 	
 	
-	static String UPLOAD_PATH = TestUtil.getTempDir() + "/upload/record/";
+	static String UPLOAD_PATH = _TestUtil.getTempDir() + "/upload/record/";
 	
 	 // 上传附件
     private void uploadDocFile(Long recordId, Object itemId) {
@@ -195,7 +195,7 @@ public class _RecorderTest extends TxTestSupport4DM {
 			Assert.assertFalse(e.getMessage(), true);
 		}
 	    
-	    TestUtil.printEntity(super.permissionHelper, "RecordAttach"); 
+	    _TestUtil.printEntity(super.permissionHelper, "RecordAttach"); 
     }
 	
 }

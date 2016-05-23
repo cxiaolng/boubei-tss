@@ -12,13 +12,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.sso.Environment;
-import com.boubei.tss.framework.test.TestUtil;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.PortalDispatcher;
-import com.boubei.tss.portal.TxSupportTest4Portal;
+import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.action.ComponentAction;
 import com.boubei.tss.portal.action.NavigatorAction;
 import com.boubei.tss.portal.action.PortalAction;
@@ -32,7 +32,7 @@ import com.boubei.tss.portal.entity.ThemePersonal;
 /**
  * 门户结构相关模块的单元测试。
  */
-public class PortalModuleTest extends TxSupportTest4Portal {
+public class PortalModuleTest extends AbstractPortalTest {
     
     @Autowired PortalAction portalAction;
     @Autowired ComponentAction elementAction;
@@ -231,7 +231,7 @@ public class PortalModuleTest extends TxSupportTest4Portal {
         list = portalService.getActivePortals();
         assertFalse(list.contains(root));
         
-        assertTrue(TestUtil.printLogs(logService) > 0);
+        assertTrue(_TestUtil.printLogs(logService) > 0);
     }
     
     @Test

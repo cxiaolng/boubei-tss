@@ -3,7 +3,7 @@ package com.boubei.tss.dm.report.timer;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.dm.TxTestSupport4DM;
+import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.dm.report.Report;
 import com.boubei.tss.dm.report.ReportService;
 import com.boubei.tss.framework.component.param.Param;
@@ -11,7 +11,7 @@ import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.um.UMConstants;
 
-public class ReportJobTest extends TxTestSupport4DM {
+public class ReportJobTest extends AbstractDMTest {
 	
 	@Autowired private ReportService service;
 

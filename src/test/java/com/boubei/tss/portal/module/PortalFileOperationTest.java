@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.TxSupportTest4Portal;
+import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.action.FileAction;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
@@ -15,7 +15,7 @@ import com.boubei.tss.util.URLUtil;
 /**
  * 管理门户、页面、布局器、修饰器、布局器等的附件资源的模块的单元测试。
  */
-public class PortalFileOperationTest extends TxSupportTest4Portal {
+public class PortalFileOperationTest extends AbstractPortalTest {
     
 	@Autowired FileAction fileAction;
  
