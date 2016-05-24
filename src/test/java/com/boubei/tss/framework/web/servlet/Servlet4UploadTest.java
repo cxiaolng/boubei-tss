@@ -56,7 +56,7 @@ public class Servlet4UploadTest {
             
             EasyMock.expect(part.getHeader("content-disposition")).andReturn("attachment;filename=\"1234.txt\"");
             
-            URL url = URLUtil.getResourceFileUrl("log4j.properties");
+            URL url = URLUtil.getResourceFileUrl("application.properties");
             String log4jPath = url.getPath(); 
             EasyMock.expect(part.getInputStream()).andReturn(new FileInputStream(log4jPath));
             

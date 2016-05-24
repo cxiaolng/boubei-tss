@@ -6,9 +6,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.framework.AbstractFrameworkTest;
+import com.boubei.tss.framework.AbstractTest4F;
 
-public class ParamActionTest extends AbstractFrameworkTest {
+public class ParamActionTest extends AbstractTest4F {
 	
 	@Autowired private ParamAction action;
 

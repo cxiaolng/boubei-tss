@@ -8,23 +8,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.AbstractDMTest;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.util.EasyUtils;
 
-public class _DatabaseTest extends AbstractDMTest  {
-
-/*
-public class _DatabaseTest  {
-	@Before
-	public void setUp() {
-		OperatorDTO loginUser = new OperatorDTO(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
-    	String token = TokenUtil.createToken("1234567890", UMConstants.ADMIN_USER_ID); 
-        IdentityCard card = new IdentityCard(token, loginUser);
-        Context.initIdentityInfo(card);
-	}
-*/
+public class _DatabaseTest extends AbstractTest4DM  {
 	
 	@Test
 	public void testMySQL() {

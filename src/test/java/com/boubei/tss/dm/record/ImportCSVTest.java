@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.AbstractDMTest;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.record.file.ImportCSV;
@@ -23,7 +23,7 @@ import com.boubei.tss.framework.web.servlet.AfterUpload;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.FileHelper;
 
-public class ImportCSVTest extends AbstractDMTest {
+public class ImportCSVTest extends AbstractTest4DM {
 	
 	@Autowired RecordService recordService;
 	@Autowired _Recorder recorder;

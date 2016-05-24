@@ -10,7 +10,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.RoleAction;
 import com.boubei.tss.um.entity.Group;
@@ -21,7 +21,7 @@ import com.boubei.tss.um.helper.dto.OperatorDTO;
 import com.boubei.tss.um.service.IRoleService;
 import com.boubei.tss.um.service.IUserService;
 
-public class LoginServiceTest extends AbstractUMTest {
+public class LoginServiceTest extends AbstractTest4UM {
 	
 	@Autowired RoleAction roleAction;
     @Autowired IRoleService roleService;

@@ -13,11 +13,11 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-import com.boubei.tss.dm.AbstractDMTest;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.data.sqlquery.SqlConfig;
 import com.boubei.tss.framework.sso.context.Context;
 
-public class SqlDebugTest extends AbstractDMTest {
+public class SqlDebugTest extends AbstractTest4DM {
     
     @Autowired private ReportAction action;
     @Autowired private _Reporter display;
@@ -56,11 +56,11 @@ public class SqlDebugTest extends AbstractDMTest {
         	new Thread() {
         		public void run() {
         			Map<String, String> requestMap = new HashMap<String, String>();
-        			requestMap.put("param1", "0");
+        			requestMap.put("param1", "-12");
 					Object ret = service.queryReport(reportId, requestMap , 1, 0, -1L);
 					
 					// 查看打出来的是不是同一个对象，是的话说明cache拦截器在queryCache拦截器后执行，正常。
-					System.out.println("-------------" + Thread.currentThread().getId() + "-------------" + ret); 
+					System.out.println("------" + Thread.currentThread().getId() + "------" + ret); 
 					for(Object obj : results) {
 						Assert.assertEquals(obj, ret);
 					}

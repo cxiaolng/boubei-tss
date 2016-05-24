@@ -7,11 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.AbstractFrameworkTest;
+import com.boubei.tss.framework.AbstractTest4F;
 import com.boubei.tss.framework.mock.model._Group;
 import com.boubei.tss.framework.mock.service._IUMSerivce;
 
-public class DecodeInterceptorTest extends AbstractFrameworkTest { 
+public class DecodeInterceptorTest extends AbstractTest4F { 
     
     @Autowired _IUMSerivce umSerivce;
     

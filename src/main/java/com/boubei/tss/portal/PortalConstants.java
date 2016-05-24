@@ -10,8 +10,8 @@ public interface PortalConstants {
     /**
      * 模板路径
      */
-    public static final String PORTALSTRUCTURE_XFORM = "template/xform/Structure.xml";     // 门户结构
-    public static final String RELEASE_XFORM_TEMPLET = "template/xform/ReleaseConfig.xml"; // 门户发布信息模板
+    public static final String PORTALSTRUCTURE_XFORM = "template/portal/Structure.xml";     // 门户结构
+    public static final String RELEASE_XFORM_TEMPLET = "template/portal/ReleaseConfig.xml"; // 门户发布信息模板
 
     /**
      * 资源文件目录

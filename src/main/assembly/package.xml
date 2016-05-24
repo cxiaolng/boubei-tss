@@ -1,0 +1,45 @@
+<assembly  
+	xmlns ="http://maven.apache.org/POM/4.0.0"  
+	xmlns:xsi ="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation ="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/assembly-1.0.0.xsd" > 
+     
+	 <id>package</id> 
+     <formats> 
+         <format>jar</format> 
+     </formats> 
+     <includeBaseDirectory>false</includeBaseDirectory> 
+     <fileSets> 
+         <fileSet> 
+			 <directory>target/classes</directory>
+			 <outputDirectory>/</outputDirectory>
+			 <includes>
+				<include>META-INF/remote/*.xml</include>
+				<include>**/um/UMConstants.class</include>
+				<include>**/um/permission/**/**.class</include>
+				<include>**/um/entity/Operation.class</include>
+				<include>**/um/entity/permission/RoleUserMapping.class</include>
+				<include>**/um/entity/permission/RoleUserMappingId.class</include>
+				<include>**/um/entity/permission/ViewRoleUser.class</include>
+				<include>**/um/entity/permission/ViewRoleUser4SubAuthorize.class</include>
+				<include>**/um/entity/permission/ViewRoleUserId.class</include>
+				<include>**/um/helper/dto/**.class</include>
+				<include>**/um/helper/PasswordRule.class</include>
+				<include>**/um/sso/*.class</include>
+				<include>**/um/servlet/GetLoginInfoServlet.class</include>
+				<include>**/um/service/ILoginService.class</include>
+			 </includes>
+         </fileSet> 
+     </fileSets> 
+ 
+ 	<!--
+     <dependencySets> 
+         <dependencySet> 
+			 <outputDirectory>/lib</outputDirectory>
+			 <includes>
+				<include>com.jinhe.tss:cache</include>
+			    <include>com.jinhe.tss:framework</include>
+			 </includes>
+         </dependencySet> 
+     </dependencySets>
+     -->
+</assembly>

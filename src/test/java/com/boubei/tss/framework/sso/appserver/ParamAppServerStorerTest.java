@@ -12,14 +12,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.AbstractFrameworkTest;
+import com.boubei.tss.framework.AbstractTest4F;
 import com.boubei.tss.framework.component.param.Param;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.component.param.ParamService;
 import com.boubei.tss.util.XMLDocUtil;
 
-public class ParamAppServerStorerTest extends AbstractFrameworkTest {
+public class ParamAppServerStorerTest extends AbstractTest4F {
     
     @Autowired private ParamService paramService;
     

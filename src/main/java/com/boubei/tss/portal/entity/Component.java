@@ -86,7 +86,7 @@ public class Component extends OperateInfo implements IEntity, ILevelTreeNode, I
     }
     
     public String getTemplatePath()    { 
-        return "template/xform/C-" + getComponentType() + ".xml";
+        return "template/portal/C-" + getComponentType() + ".xml";
     }
     
     public String getComponentType()     { 

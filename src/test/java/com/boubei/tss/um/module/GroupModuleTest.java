@@ -14,7 +14,7 @@ import com.boubei.tss.framework.Config;
 import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.component.progress.ProgressPool;
 import com.boubei.tss.framework.sso.Environment;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.GroupAction;
 import com.boubei.tss.um.dao.IGroupDao;
@@ -29,7 +29,7 @@ import com.boubei.tss.um.service.IUserService;
  * 注：排序组时，事务内组表的decode发生了变化，但资源视图内的相应decode值取出来还是排序以前的值，即视图的数据未更新。
  *    TODO 需要排查上述情况出现的原因，是H2数据库问题？抑或其他原因？
  */
-public class GroupModuleTest extends AbstractUMTest {
+public class GroupModuleTest extends AbstractTest4UM {
     
 	static final String APPLICATION_ID = Config.getAttribute(Config.APPLICATION_CODE).toLowerCase();
 

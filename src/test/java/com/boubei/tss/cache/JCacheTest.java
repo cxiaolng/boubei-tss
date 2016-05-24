@@ -18,10 +18,10 @@ public class JCacheTest {
 	 */
 	@Test
 	public void testJCache() {
-		Assert.assertTrue( cache.listCachePools().size() == 8 );
+		Assert.assertEquals( 10, cache.listCachePools().size() );
 		
 		Assert.assertNotNull(cache.getThreadPool());
-		Assert.assertNull(cache.getConnectionPool());
+		Assert.assertNotNull(cache.getConnectionPool());
 		Assert.assertNull(cache.getPool(null));
 		Assert.assertNull(cache.getPool("NotExsit"));
 	}

@@ -5,21 +5,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.AbstractDMTest;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.sso.context.Context;
 
-public class DataServiceListTest extends AbstractDMTest {
+public class DataServiceListTest extends AbstractTest4DM {
     
     @Autowired private ReportAction action;
     @Autowired private _Reporter display;
+    
+    protected void init() {
+    	super.init();
+        
+        if(paramService.getParam(DMConstants.DATA_SERVICE_CONFIG) == null) {
+        	String dsVal = "/tss/btr/orgs|分公司列表,/tss/btr/centers|分拨列表";
+        	ParamManager.addSimpleParam(ParamConstants.DEFAULT_PARENT_ID, DMConstants.DATA_SERVICE_CONFIG, "特殊数据服务", dsVal);
+        }
+    }
 
     @Test
     public void test1() {  
-    	String dsVal = "/tss/btr/orgs|分公司列表,/tss/btr/centers|分拨列表";
-    	ParamManager.addSimpleParam(ParamConstants.DEFAULT_PARENT_ID, DMConstants.DATA_SERVICE_CONFIG, "特殊数据服务", dsVal);
     	
         HttpServletResponse response = Context.getResponse();
         

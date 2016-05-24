@@ -3,7 +3,7 @@
 <strategies> 
   <strategy code="connectionpool" name="数据库连接池"> 
     <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
-    <poolSize>10</poolSize>  
+    <poolSize>100</poolSize>  
     <cyclelife>3600000</cyclelife>  
     <interruptTime>1000</interruptTime>  
     <initNum>5</initNum>  

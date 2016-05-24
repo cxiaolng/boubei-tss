@@ -12,7 +12,7 @@ import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.AbstractPortalTest;
+import com.boubei.tss.portal.AbstractTest4Portal;
 import com.boubei.tss.portal.action.NavigatorAction;
 import com.boubei.tss.portal.action.PortalAction;
 import com.boubei.tss.portal.entity.Navigator;
@@ -28,7 +28,7 @@ import com.boubei.tss.um.UMConstants;
 /**
  * 导航栏模块的单元测试。
  */
-public class NavigatorModuleTest extends AbstractPortalTest {
+public class NavigatorModuleTest extends AbstractTest4Portal {
     
     @Autowired PortalAction portalAction;
     @Autowired NavigatorAction menuAction;

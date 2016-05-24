@@ -7,7 +7,7 @@
 	<artifactId>tss</artifactId>
 	<packaging>war</packaging>
 	<version>4.1</version>
-	<name>TSS Project</name>
+	<name>BouBei TSS Project</name>
 	
 	<organization>
 		<name>boubei software</name>
@@ -77,12 +77,6 @@
 			</exclusions>
 		</dependency>
 
-		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-			<version>2.7.2</version>
-		</dependency>
-
 		<!-- SPRING DEPENDENCIES -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -147,6 +141,20 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
+		
+		<!-- Oracle DB driver 4 release -->
+		<dependency>
+			<groupId>ojdbc</groupId>
+			<artifactId>ojdbc</artifactId>
+			<version>14</version>
+		</dependency>
+
+		<!-- Mysql DB driver 4 release -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
 
 		<!-- Other DEPENDENCIES -->
 		<dependency>
@@ -177,21 +185,6 @@
 			<version>1.8.6</version>
 		</dependency>
 
-		<!-- H2 DEPENDENCIES -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.2.125</version>
-		</dependency>
-		
-		<!-- JETTY DEPENDENCIES -->
-		<dependency>
-			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all</artifactId>
-			<version>8.1.12.v20130726</version>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- Jackson JSON Mapper -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -210,7 +203,7 @@
 			<version>2.6</version>
 		</dependency>
 
-		<!--  cms DEPENDENCIES -->
+		<!--  CMS DEPENDENCIES -->
 		<dependency>
 			<groupId>org.apache.lucene</groupId>
 			<artifactId>lucene-core</artifactId>
@@ -244,6 +237,22 @@
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
 			<version>2.3</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- H2 DEPENDENCIES -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.2.125</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Jetty DEPENDENCIES -->
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all</artifactId>
+			<version>8.1.12.v20130726</version>
 			<scope>test</scope>
 		</dependency>
 		
@@ -294,21 +303,8 @@
 	      <version>1.4</version>
 	      <scope>test</scope>
 	    </dependency>
-
-		<!-- Oracle DB driver 4 release -->
-		<dependency>
-			<groupId>ojdbc</groupId>
-			<artifactId>ojdbc</artifactId>
-			<version>14</version>
-		</dependency>
-
-		<!-- Mysql DB driver 4 release -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
-		</dependency>
-
+		
+		<!-- provided -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -353,24 +349,9 @@
 						<include>**/*Test.java </include>
 					</includes>
 					<testFailureIgnore>true</testFailureIgnore>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.12.v20130726</version>
-				<configuration>
-					<webAppConfig>
-						<contextPath>/tss</contextPath>
-					</webAppConfig>
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>9000</port>
-						</connector>
-					</connectors>
-					<stopPort>9966</stopPort>
-					<stopKey>tss</stopKey>
+					<argLine>
+						-Xms256m -Xmx1024m -XX:MaxPermSize=256M
+					</argLine>
 				</configuration>
 			</plugin>
 
@@ -413,6 +394,24 @@
 					</execution>
 				</executions>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.12.v20130726</version>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/tss</contextPath>
+					</webAppConfig>
+					<connectors>
+						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+							<port>9000</port>
+						</connector>
+					</connectors>
+					<stopPort>9966</stopPort>
+					<stopKey>tss</stopKey>
+				</configuration>
+			</plugin>
 
 			<plugin>
 	            <groupId>com.atlassian.maven.plugins</groupId>
@@ -442,10 +441,12 @@
 						<configuration>
 							<tasks>
 								<echo>
-									process log4j.properties: set log4j.logger to ${log.level};
+									process log4j.properties: set log4j.logger.com.boubei to ${log.level};
 								</echo>
-								<replaceregexp file="${basedir}/target/classes/log4j.properties"
-									match="=debug" replace="=${log.level}" byline="true" />
+								<replaceregexp 
+									file="${basedir}/target/classes/log4j.properties"
+									match="log4j.logger.com.boubei=debug" 
+									replace="log4j.logger.com.boubei=${log.level}" byline="true" />
 									
 								<echo>
 									process application.properties: set job.enable to ${job.enable};
@@ -526,7 +527,7 @@
 				<artifactId> maven-assembly-plugin </artifactId>
 				<version>2.4</version>
 				<configuration >
-					<finalName>tss-base-${tss.version}</finalName>
+					<finalName>tss-base-${version}</finalName>
 					<appendAssemblyId>false</appendAssemblyId>
 					<descriptors>
 						<descriptor>src/main/assembly/package.xml</descriptor>
@@ -569,7 +570,7 @@
 		<profile>
 			<id>boubei</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
 				<environment>boubei</environment>
@@ -602,5 +603,34 @@
 			<url>file://</url>
 		</site>
 	</distributionManagement>
+	
+	<repositories>
+		<repository>
+			<id>Central</id>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>Codehaus Snapshots</id>
+			<url>http://snapshots.repository.codehaus.org</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+        <repository>
+            <id>com.springsource.repository.maven.release</id>  
+			<url>http://maven.springframework.org/release/</url> 
+        </repository>
+		
+    </repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Codehaus repository</id>
+			<url>http://repository.codehaus.org/</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>

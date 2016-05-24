@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.ResourceAction;
 import com.boubei.tss.um.dao.IResourceTypeDao;
@@ -24,7 +24,7 @@ import com.boubei.tss.util.BeanUtil;
 /**
  * 系统、资源、权限项相关模块的单元测试
  */
-public class ResourceModuleTest extends AbstractUMTest {
+public class ResourceModuleTest extends AbstractTest4UM {
     
     @Autowired ResourceAction action;
     @Autowired IResourceService service;

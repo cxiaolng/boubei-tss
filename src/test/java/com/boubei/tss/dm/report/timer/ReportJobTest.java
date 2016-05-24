@@ -3,7 +3,7 @@ package com.boubei.tss.dm.report.timer;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.dm.AbstractDMTest;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.report.Report;
 import com.boubei.tss.dm.report.ReportService;
 import com.boubei.tss.framework.component.param.Param;
@@ -11,16 +11,22 @@ import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.um.UMConstants;
 
-public class ReportJobTest extends AbstractDMTest {
+public class ReportJobTest extends AbstractTest4DM {
 	
 	@Autowired private ReportService service;
+	
+	protected void init() {
+    	super.init();
+        
+        if(paramService.getParam(UMConstants.EMAIL_MACRO) == null) {
+        	Param paramL = ParamManager.addComboParam(ParamConstants.DEFAULT_PARENT_ID, UMConstants.EMAIL_MACRO, "常用收件人组");
+    		ParamManager.addParamItem(paramL.getId(), "jinhetss@163.com", "JK", ParamConstants.COMBO_PARAM_MODE);
+        }
+    }
 
 	@Test
 	public void testReportJob() {
 		
-		Param paramL = ParamManager.addComboParam(ParamConstants.DEFAULT_PARENT_ID, UMConstants.EMAIL_MACRO, "常用收件人组");
-		ParamManager.addParamItem(paramL.getId(), "jinhetss@163.com", "JK", ParamConstants.COMBO_PARAM_MODE);
-        
         Report report1 = new Report();
         report1.setType(Report.TYPE1);
         report1.setParentId(Report.DEFAULT_PARENT_ID);
@@ -51,8 +57,5 @@ public class ReportJobTest extends AbstractDMTest {
         	log.error(e.getCause());
         }
 	}
-	
-    protected String getDefaultSource(){
-    	return "connectionpool";
-    }
+
 }

@@ -1,11 +1,11 @@
 package com.boubei.tss.dm;
 
-import com.boubei.tss.AbstractTssTest;
+import com.boubei.tss.AbstractTest4TSS;
 import com.boubei.tss.framework.component.param.Param;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 
-public abstract class AbstractDMTest extends AbstractTssTest { 
+public abstract class AbstractTest4DM extends AbstractTest4TSS { 
     
     protected String getDefaultSource(){
     	return "connectionpool";
@@ -25,6 +25,10 @@ public abstract class AbstractDMTest extends AbstractTssTest {
 			String tmpDir = System.getProperty("java.io.tmpdir") + "temp";
 			log.info("临时文件导出目录：" + tmpDir);
 			ParamManager.addSimpleParam(ParamConstants.DEFAULT_PARENT_ID, DMConstants.TEMP_EXPORT_PATH, "临时文件导出目录", tmpDir);
+        }
+        if(paramService.getParam(DMConstants.SCRIPT_MACRO) == null) {
+        	Param paramL = ParamManager.addComboParam(ParamConstants.DEFAULT_PARENT_ID, DMConstants.SCRIPT_MACRO, "常用脚本段");
+        	ParamManager.addParamItem(paramL.getId(), "1=1", "testMacro", ParamConstants.COMBO_PARAM_MODE);
         }
     }
     

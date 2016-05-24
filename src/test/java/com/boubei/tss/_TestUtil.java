@@ -55,8 +55,8 @@ public class _TestUtil {
     public static void excuteSQL(String sqlDir, boolean isTSS) {  
         log.info("正在执行目录：" + sqlDir+ "下的SQL脚本。。。。。。");  
         
-        Pool connectionPool = JCache.getInstance().getConnectionPool();
-		Cacheable connItem = connectionPool.checkOut(0);
+        Pool connePool = JCache.getInstance().getConnectionPool();
+		Cacheable connItem = connePool.checkOut(0);
 		
         try {  
         	Connection conn = (Connection) connItem.getValue();
@@ -86,11 +86,11 @@ public class _TestUtil {
             log.info("成功执行目录：" + sqlDir+ "下的SQL脚本!");
             
             stat.close();  
-            conn.close();  
+//            conn.close();  
         } catch (Exception e) {  
             throw new RuntimeException("目录：" + sqlDir+ "下的SQL脚本执行出错：", e);
         } finally {
-        	connectionPool.checkIn(connItem);
+        	connePool.checkIn(connItem);
         }
     }
     
@@ -107,10 +107,6 @@ public class _TestUtil {
         Integer logCount = (Integer) result.getTotalRows();
         
         log.debug("本次测试共生成了 " + logCount + " 条日志");
-        for(Object temp : logs) {
-            log.debug(temp);
-        }
-        log.debug("\n");
         
         return logs.size();
     }

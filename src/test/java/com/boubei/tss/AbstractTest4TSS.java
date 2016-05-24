@@ -43,7 +43,7 @@ import com.boubei.tss.util.XMLDocUtil;
         , inheritLocations = false // 是否要继承父测试用例类中的 Spring 配置文件，默认为 true
       )
 @TransactionConfiguration(defaultRollback = false) // 不自动回滚，否则后续的test中没有初始化的数据
-public abstract class AbstractTssTest extends AbstractTransactionalJUnit4SpringContextTests { 
+public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4SpringContextTests { 
  
     protected Logger log = Logger.getLogger(this.getClass());    
     
@@ -77,13 +77,16 @@ public abstract class AbstractTssTest extends AbstractTransactionalJUnit4SpringC
         initContext();
         
         dbserver = new H2DBServer();
-
+        
         init();
     }
     
     @After
     public void tearDown() throws Exception {
-        dbserver.stopServer();
+    	if(dbserver != null) {
+    		dbserver.stopServer();
+            dbserver = null;
+    	}
     }
  
     /**
@@ -91,7 +94,7 @@ public abstract class AbstractTssTest extends AbstractTransactionalJUnit4SpringC
      */
     protected void init() {
     	// 初始化数据库脚本
-    	String sqlpath = _TestUtil.getInitSQLDir();
+		String sqlpath = _TestUtil.getInitSQLDir();
     	log.info( " sql path : " + sqlpath);
         _TestUtil.excuteSQL(sqlpath + "/framework");
         _TestUtil.excuteSQL(sqlpath + "/um");

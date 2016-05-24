@@ -23,8 +23,15 @@ public final class DMConstants {
 	public final static String FROM_USER_ID = "fromUserId";
 	
 	public final static String ACLOG_IGNORE_REPORT = "ACLOG_IGNORE_REPORT";
-	
 	public final static String DATA_SERVICE_CONFIG = "DATA_SERVICE_CONFIG";
+	
+	// XForm 模板
+	public static final String XFORM_GROUP = "template/dm/group_xform.xml";
+	public static final String XFORM_REPORT = "template/dm/report_xform.xml";
+	public static final String XFORM_RECORD = "template/dm/record_xform.xml";
+    
+    // Grid 模板
+	public static final String GRID_RECORD_ATTACH = "template/dm/record_attach_grid.xml";
     
     /**
      * 报表模板资源文件目录

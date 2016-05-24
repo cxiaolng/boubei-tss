@@ -25,9 +25,9 @@ import org.junit.Test;
 import com.boubei.tss.framework.Global;
 import com.boubei.tss.framework.sso.online.IOnlineUserManager;
 import com.boubei.tss.framework.sso.online.OnlineUser;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 
-public class DBOnlineUserManagerTest extends AbstractUMTest { 
+public class DBOnlineUserManagerTest extends AbstractTest4UM { 
     
     IOnlineUserManager manager;
     

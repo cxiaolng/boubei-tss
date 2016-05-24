@@ -211,7 +211,7 @@ public abstract class AbstractPool implements Pool {
         Cacheable item =  checkOut();
         while (item == null  &&  (System.currentTimeMillis() - time < timeout)) {
             try {
-                log.debug("缓存池【" + getName() + "】中没有可用的缓存项......等待 " + timeout + "（毫秒）");
+                log.debug("【" + getName() + "】中没有可用的缓存项......等待 " + timeout + "（毫秒）");
                 wait(timeout); // wait需要结合synchronized，线程wait后会先释放对象锁，待wait时间（timeout）到了或其他线程notify后再收回对象锁，继续执行。
                 item = checkOut();
             } 
@@ -221,7 +221,7 @@ public abstract class AbstractPool implements Pool {
         }
         
         if(item == null) {
-            String errorMsg = "缓存池【" + getName() + "】已满，且各缓存项都处于使用状态，等待超时(" + timeout + ")。可考虑修改缓存策略！";
+            String errorMsg = "【" + getName() + "】已满，且各缓存项都处于使用状态，等待超时(" + timeout + ")。可考虑修改缓存策略！" + this;
             log.error(errorMsg);
             throw new RuntimeException(errorMsg);
         }

@@ -16,8 +16,8 @@ import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.portal.AbstractTest4Portal;
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.action.ComponentAction;
 import com.boubei.tss.portal.dao.IComponentDao;
 import com.boubei.tss.portal.entity.Component;
@@ -28,7 +28,7 @@ import com.boubei.tss.util.URLUtil;
 /**
  * Portlet相关模块的单元测试。
  */
-public class ComponentModuleTest extends AbstractPortalTest {
+public class ComponentModuleTest extends AbstractTest4Portal {
     
     @Autowired ComponentAction componentAction;
     

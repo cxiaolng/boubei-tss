@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.boubei.tss.dm._Util;
+import com.boubei.tss.dm.DMUtil;
 import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.EasyUtils;
 
@@ -75,6 +75,6 @@ public class SOUtil {
     }
 	
     public static String freemarkerParse(String script, AbstractSO so) {
-    	return _Util.freemarkerParse(script, SOUtil.getProperties(so));
+    	return DMUtil.freemarkerParse(script, SOUtil.getProperties(so));
     }
 }

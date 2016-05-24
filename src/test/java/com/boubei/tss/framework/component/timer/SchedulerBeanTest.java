@@ -5,14 +5,14 @@ import org.junit.Test;
 
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.AbstractFrameworkTest;
+import com.boubei.tss.framework.AbstractTest4F;
 import com.boubei.tss.framework.component.cache.CacheHelper;
 import com.boubei.tss.framework.component.param.Param;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.util.EasyUtils;
 
-public class SchedulerBeanTest extends AbstractFrameworkTest {
+public class SchedulerBeanTest extends AbstractTest4F {
 	
 	String jobConfig = "com.boubei.tss.framework.component.timer.DemoJob | 10,20,30,40,55 * * * * ? | " +
 			"1:报表一:lovejava@163.com,lovejava@163.com:param1=0,param2=0\n" + 

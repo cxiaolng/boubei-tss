@@ -11,7 +11,7 @@ public class CacheHelperTest {
 		Assert.assertNull(CacheHelper.getLongerCache());
 		Assert.assertNotNull(CacheHelper.getNoDeadCache());
 		Assert.assertNotNull(CacheHelper.getShortCache());
-		Assert.assertNull(CacheHelper.getShorterCache());
+		Assert.assertNotNull(CacheHelper.getShorterCache());
 	}
 
 }

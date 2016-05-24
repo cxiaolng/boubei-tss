@@ -4,10 +4,10 @@
 
   <strategy code="connectionpool" name="数据库连接池"> 
     <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
-    <poolSize>10</poolSize>  
+    <poolSize>100</poolSize>  
     <cyclelife>0</cyclelife>  
-    <interruptTime>1000</interruptTime>  
-    <initNum>5</initNum>  
+    <interruptTime>3000</interruptTime>  
+    <initNum>10</initNum>  
     <disabled>0</disabled> <!-- 数据库连接池配置为启用 -->
 	<visible>1</visible>  
     <customizerClass>com.boubei.tss.framework.persistence.connpool.ConnPoolCustomizer</customizerClass>  
@@ -16,7 +16,7 @@
   
   <strategy code="taskpool" name="端口扫描任务池"> 
     <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
-    <poolContainerClass>com.boubei.tss.cache.extension.EhcacheContainer</poolContainerClass>  
+    <poolContainerClass>com.boubei.tss.cache.extension.MapContainer</poolContainerClass>  
     <cyclelife>5000</cyclelife>  
     <interruptTime>1000</interruptTime>  
 	<poolSize>30</poolSize>  

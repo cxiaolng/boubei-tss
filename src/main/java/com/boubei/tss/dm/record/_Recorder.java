@@ -239,7 +239,7 @@ public class _Recorder extends BaseActionSupport {
     		@PathVariable("recordId") Long recordId, @PathVariable("itemId") Long itemId) {
 		
 		List<?> list = recordService.getAttachList(recordId, itemId);
-        GridDataEncoder attachGrid = new GridDataEncoder(list, "template/record_attach_grid.xml");
+        GridDataEncoder attachGrid = new GridDataEncoder(list, DMConstants.GRID_RECORD_ATTACH);
         print("RecordAttach", attachGrid);
     }
 	

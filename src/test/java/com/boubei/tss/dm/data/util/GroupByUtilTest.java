@@ -7,7 +7,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.boubei.tss.dm.data.InvSnapshotVO;
+import com.boubei.tss.dm.data.sqlquery.InvSnapshotVO;
 
 public class GroupByUtilTest {
  

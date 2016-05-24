@@ -6,22 +6,16 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.AbstractDMTest;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.param.ParamManager;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.framework.sso.context.Context;
 
-public class ScriptParseTest extends AbstractDMTest {
+public class ScriptParseTest extends AbstractTest4DM {
     
     @Autowired private ReportAction action;
     @Autowired private _Reporter display;
 
     @Test
     public void test1() {      
-    	Param paramL = ParamManager.addComboParam(ParamConstants.DEFAULT_PARENT_ID, DMConstants.SCRIPT_MACRO, "常用脚本段");
-    	ParamManager.addParamItem(paramL.getId(), "1=1", "testMacro", ParamConstants.COMBO_PARAM_MODE);
     	
         HttpServletResponse response = Context.getResponse();
         MockHttpServletRequest  request = new MockHttpServletRequest();

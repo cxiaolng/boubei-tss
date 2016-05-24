@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.AbstractFrameworkTest;
+import com.boubei.tss.framework.AbstractTest4F;
 import com.boubei.tss.framework.component.param.Param;
 import com.boubei.tss.framework.component.param.ParamManager;
 
-public class CacheActionTest extends AbstractFrameworkTest {
+public class CacheActionTest extends AbstractTest4F {
 	
 	@Autowired private CacheAction action;
  

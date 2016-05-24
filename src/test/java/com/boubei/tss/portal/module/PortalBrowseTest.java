@@ -3,12 +3,13 @@ package com.boubei.tss.portal.module;
 import static org.junit.Assert.assertFalse;
 import junit.framework.Assert;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpServletRequest;
 
+import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.portal.AbstractTest4Portal;
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.action.ComponentAction;
 import com.boubei.tss.portal.action.NavigatorAction;
 import com.boubei.tss.portal.action.PortalAction;
@@ -19,7 +20,7 @@ import com.boubei.tss.portal.entity.Theme;
 /**
  * 测试门户动态浏览
  */
-public class PortalBrowseTest extends AbstractPortalTest {
+public class PortalBrowseTest extends AbstractTest4Portal {
     
     @Autowired PortalAction portalAction;
     @Autowired ComponentAction elementAction;
@@ -32,11 +33,15 @@ public class PortalBrowseTest extends AbstractPortalTest {
     Structure section1;
     Structure portletInstance4;
     Theme defaultTheme;
-    
-    @Before
-    public void setUp() throws Exception {
-    	 super.setUp();
-    	 
+ 
+    public void init() {
+         super.init();
+         
+         // 门户浏览时，freemarker解析时需要用到request里的参数
+         MockHttpServletRequest request2 = new MockHttpServletRequest();
+         request2.setSession(request.getSession());
+         Context.initRequestContext(request2); 
+         
          Long parentId = PortalConstants.ROOT_ID;
          
          // 新建portal

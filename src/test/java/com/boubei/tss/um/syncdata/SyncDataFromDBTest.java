@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.boubei.tss.H2DBServer;
 import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.component.progress.Progressable;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.GroupAction;
 import com.boubei.tss.um.entity.Application;
@@ -33,7 +33,7 @@ import com.boubei.tss.util.URLUtil;
 /**
  * 测试用户同步
  */
-public class SyncDataFromDBTest extends AbstractUMTest {
+public class SyncDataFromDBTest extends AbstractTest4UM {
 
 	@Autowired GroupAction groupAction;
 	

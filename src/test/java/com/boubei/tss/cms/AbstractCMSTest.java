@@ -22,7 +22,7 @@ import org.easymock.IMocksControl;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.AbstractTssTest;
+import com.boubei.tss.AbstractTest4TSS;
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.cms.action.ArticleAction;
 import com.boubei.tss.cms.action.ChannelAction;
@@ -38,7 +38,7 @@ import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 
-public class AbstractCMSTest extends AbstractTssTest { 
+public class AbstractCMSTest extends AbstractTest4TSS { 
  
     @Autowired protected IChannelService channelService;
     @Autowired protected IArticleService articleService;

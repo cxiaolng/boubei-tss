@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.UserAction;
 import com.boubei.tss.um.entity.Group;
@@ -28,7 +28,7 @@ import com.boubei.tss.util.DateUtil;
 /**
  * 用户相关模块的单元测试
  */
-public class UserModuleTest extends AbstractUMTest {
+public class UserModuleTest extends AbstractTest4UM {
     
 	@Autowired UserAction action;
     

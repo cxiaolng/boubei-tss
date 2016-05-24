@@ -15,7 +15,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.dom4j.Document;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm._Util;
+import com.boubei.tss.dm.DMUtil;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.record.Record;
 import com.boubei.tss.dm.record.permission.RecordPermission;
@@ -184,7 +184,7 @@ public abstract class _Database {
 		Map<Integer, Object> paramsMap = new HashMap<Integer, Object>();
 		int index = 0;
 		for(String field : this.fieldCodes) {
-			Object value = _Util.preTreatValue(valuesMap.get(field), fieldTypes.get(index));
+			Object value = DMUtil.preTreatValue(valuesMap.get(field), fieldTypes.get(index));
 			paramsMap.put(++index, value);
 		}
 		paramsMap.put(++index, new Timestamp(new Date().getTime())); 
@@ -231,7 +231,7 @@ public abstract class _Database {
 		String tags = "";
 		for(String field : this.fieldCodes) {
 			Object value = valuesMap.get(field);
-			value = _Util.preTreatValue((String)value, fieldTypes.get(index));
+			value = DMUtil.preTreatValue((String)value, fieldTypes.get(index));
 			
 			paramsMap.put(++index, value);
 			tags += field + "=?, ";
@@ -256,7 +256,7 @@ public abstract class _Database {
 		Map<Integer, Object> paramsMap = new HashMap<Integer, Object>();
 		int index = 0, fieldIndex = this.fieldCodes.indexOf(field);
 		
-		paramsMap.put(++index, _Util.preTreatValue( value, fieldTypes.get(fieldIndex) ));
+		paramsMap.put(++index, DMUtil.preTreatValue( value, fieldTypes.get(fieldIndex) ));
 		paramsMap.put(++index, new Timestamp(new Date().getTime()));
 		paramsMap.put(++index, Environment.getUserCode());
 		
@@ -337,27 +337,27 @@ public abstract class _Database {
 			if(fieldIndex >= 0) {
 				String paramType = this.fieldTypes.get(fieldIndex);
 				
-				String[] vals = _Util.preTreatScopeValue(valueStr);				
+				String[] vals = DMUtil.preTreatScopeValue(valueStr);				
 				if(vals.length == 1) {
 					condition += " and " + key + " = ? ";
-					paramsMap.put(paramsMap.size() + 1, _Util.preTreatValue(vals[0], paramType));
+					paramsMap.put(paramsMap.size() + 1, DMUtil.preTreatValue(vals[0], paramType));
 				}
 				else if(vals.length == 2) {
 					String val1 = vals[0], val2 = vals[1];
 					if(!EasyUtils.isNullOrEmpty(val1)) {
 						condition += " and " + key + " >= ? ";
-						paramsMap.put(paramsMap.size() + 1, _Util.preTreatValue(val1, paramType));
+						paramsMap.put(paramsMap.size() + 1, DMUtil.preTreatValue(val1, paramType));
 					}
 					if(!EasyUtils.isNullOrEmpty(val2)) {
 						condition += " and " + key + " <= ? ";
-						paramsMap.put(paramsMap.size() + 1, _Util.preTreatValue(val2, paramType));
+						paramsMap.put(paramsMap.size() + 1, DMUtil.preTreatValue(val2, paramType));
 					}
 				}
 			}
 		}
 		
 		if( !EasyUtils.isNullOrEmpty(this.customizeTJ) ) {
-			condition += " and " + _Util.customizeParse(this.customizeTJ);
+			condition += " and " + DMUtil.customizeParse(this.customizeTJ);
 		}
 		
 		// 设置排序方式

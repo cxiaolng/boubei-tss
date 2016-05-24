@@ -5,6 +5,12 @@ import org.junit.runners.Suite;
 
 import com.boubei.tss.dm.data.DataSourceManagerTest;
 import com.boubei.tss.dm.data.WashDataJobTest;
+import com.boubei.tss.dm.data.sqlquery.AbstractVOTest;
+import com.boubei.tss.dm.data.sqlquery.SOUtilTest;
+import com.boubei.tss.dm.data.sqlquery.SQLExcutorH2Test;
+import com.boubei.tss.dm.data.sqlquery.SqlConfigTest;
+import com.boubei.tss.dm.data.util.DataExportTest;
+import com.boubei.tss.dm.data.util.GroupByUtilTest;
 import com.boubei.tss.dm.ext.SyncUserRoleJobTest;
 import com.boubei.tss.dm.log.AccessLogTest;
 import com.boubei.tss.dm.other.Json2ListTest;
@@ -23,9 +29,10 @@ import com.boubei.tss.dm.report.timer.ReportJobTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	_UtilTest.class,
+	DMUtilTest.class,
 	Json2ListTest.class,
 	RegTest.class,
+	AccessLogTest.class,
 	_ReporterTest.class,
 	DataServiceListTest.class,
 	ReportActionTest.class,
@@ -37,10 +44,15 @@ import com.boubei.tss.dm.report.timer.ReportJobTest;
 	BuildTableTest.class,
 	ImportCSVTest.class,
 	RecordTest.class,
-	AccessLogTest.class,
 	SyncUserRoleJobTest.class,
 	DataSourceManagerTest.class,
-	WashDataJobTest.class
+	WashDataJobTest.class,
+	AbstractVOTest.class,
+	SOUtilTest.class,
+	SqlConfigTest.class,
+	SQLExcutorH2Test.class,
+	DataExportTest.class,
+	GroupByUtilTest.class
 })
 public class _AllDMTests {
  

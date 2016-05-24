@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.boubei.tss._TestUtil;
 import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.persistence.IEntity;
@@ -63,7 +62,7 @@ public class RecordAttach implements IEntity, IGridNode {
 	public static String getAttachDir(Long recordId, Long itemId) {
 		String attachDir = ParamManager.getValue(DMConstants.TEMP_EXPORT_PATH);
         if(attachDir == null) {
-        	attachDir = _TestUtil.getTempDir();
+        	attachDir = System.getProperty("java.io.tmpdir");
         }
         attachDir = attachDir + "/" + recordId + "/" + itemId;
         

@@ -7,11 +7,11 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.boubei.tss.framework.sso.SSOConstants;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.entity.User;
 import com.boubei.tss.um.service.IUserService;
 
-public class GetPasswordTest extends AbstractUMTest {
+public class GetPasswordTest extends AbstractTest4UM {
     
     @Autowired IUserService userService;
     

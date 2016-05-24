@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.sso.IdentityGetter;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 
-public class UMIdentityGetterTest extends AbstractUMTest {
+public class UMIdentityGetterTest extends AbstractTest4UM {
 	
 	@Test
 	public void testTranslator() {

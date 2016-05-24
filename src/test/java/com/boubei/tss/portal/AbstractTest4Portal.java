@@ -12,14 +12,10 @@ import org.easymock.EasyMock;
 import org.easymock.IMocksControl;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockHttpServletRequest;
 
-import com.boubei.tss.AbstractTssTest;
+import com.boubei.tss.AbstractTest4TSS;
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.sso.IdentityCard;
-import com.boubei.tss.framework.sso.TokenUtil;
-import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.web.servlet.AfterUpload;
 import com.boubei.tss.portal.entity.Component;
 import com.boubei.tss.portal.entity.Structure;
@@ -27,39 +23,14 @@ import com.boubei.tss.portal.helper.CreateComponent;
 import com.boubei.tss.portal.helper.MovePortalFile;
 import com.boubei.tss.portal.service.IComponentService;
 import com.boubei.tss.portal.service.IPortalService;
-import com.boubei.tss.um.helper.dto.OperatorDTO;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 import com.boubei.tss.util.XMLDocUtil;
 
-public abstract class AbstractPortalTest extends AbstractTssTest { 
+public abstract class AbstractTest4Portal extends AbstractTest4TSS { 
  
     @Autowired protected IComponentService componentService;
     @Autowired protected IPortalService portalService;
-    
-	// for FreeMarker
-	protected void initIdentityCard() {
-		request = request == null ? new MockHttpServletRequest() : request;
-        Context.initRequestContext(request);
-        
-        IdentityCard card = new IdentityCard("token", OperatorDTO.ADMIN);
-        Context.initIdentityInfo(card);
-	}
- 
-    /**
-     * 初始化CMS的动态属性相关模板
-     */
-    protected void init() {
-    	super.init();
-        
-        // 门户浏览时，freemarker解析时需要用到request里的参数
-        MockHttpServletRequest request2 = new MockHttpServletRequest();
-        request2.setSession(request.getSession());
-        Context.initRequestContext(request2); 
-        
-        /* 初始化默认的修饰器，布局器 */
-        initializeDefaultElement();
-    }
     
     protected static String MODEL_PORTAL_DIR;
     protected static String MODEL_LAYOUT_DIR;
@@ -73,10 +44,19 @@ public abstract class AbstractPortalTest extends AbstractTssTest {
     protected static Component defaultDecorator;
     protected static Long defaultDecoratorId;
     
+    protected void init() {
+    	super.init();
+        
+        /* 初始化默认的修饰器，布局器 */
+		initializeDefaultElement();
+    }
+    
     /**
      * 初始化默认的修饰器，布局器
      */
     private void initializeDefaultElement() {
+    	if(componentService.getAllComponentsAndGroups().size() >= 4) return;
+    	
         // 初始化Portal测试的组件模型存放目录（model目录）及freemarker文件的目录
         String portalTargetPath = _TestUtil.getProjectDir() + "/target";
         
@@ -125,17 +105,6 @@ public abstract class AbstractPortalTest extends AbstractTssTest {
         defaultDecorator.setDefinition(document.asXML());
         componentService.saveComponent(defaultDecorator);
         defaultDecoratorId = defaultDecorator.getId();
-    }
-    
-    protected void login(Long userId, String loginName) {
-    	OperatorDTO loginUser = new OperatorDTO(userId, loginName);
-    	String token = TokenUtil.createToken("1234567890", userId); 
-        IdentityCard card = new IdentityCard(token, loginUser);
-        Context.initIdentityInfo(card);
-        
-        // 获取登陆用户的权限（拥有的角色）并保存到用户权限（拥有的角色）对应表
-        List<Object[]> userRoles = loginSerivce.getUserRolesAfterLogin(userId);
-        permissionService.saveUserRolesAfterLogin(userRoles, userId);
     }
     
     protected void importComponent(Long groupId, String filePath) {

@@ -7,32 +7,30 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpServletRequest;
 
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.cms.service.IRemoteArticleService;
-import com.boubei.tss.framework.sso.context.ApplicationContext;
+import com.boubei.tss.framework.sso.IdentityCard;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.portal.AbstractTest4Portal;
 import com.boubei.tss.portal.PortalConstants;
-import com.boubei.tss.portal.AbstractPortalTest;
 import com.boubei.tss.portal.dao.INavigatorDao;
 import com.boubei.tss.portal.entity.Navigator;
+import com.boubei.tss.um.helper.dto.OperatorDTO;
 import com.boubei.tss.util.XMLDocUtil;
 
-public class FreeMarkerParserTest extends AbstractPortalTest {
+public class FreeMarkerParserTest extends AbstractTest4Portal {
 	
 	@Autowired INavigatorDao navigatorDao;
 	
 	Navigator menu;
 	
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
+	public void init()  {
+		super.init();
 		
-		Context.initApplicationContext(new ApplicationContext());
- 
 		menu = new Navigator();
         menu.setType(Navigator.TYPE_MENU);
         menu.setName("测试菜单" + System.currentTimeMillis());
@@ -40,6 +38,15 @@ public class FreeMarkerParserTest extends AbstractPortalTest {
         menu.setParentId(PortalConstants.ROOT_ID);
         menu.setSeqNo(navigatorDao.getNextSeqNo(menu.getParentId()));
         navigatorDao.save(menu);
+	}
+	
+	// for FreeMarker
+	protected void initIdentityCard() {
+		request = request == null ? new MockHttpServletRequest() : request;
+        Context.initRequestContext(request);
+        
+        IdentityCard card = new IdentityCard("token", OperatorDTO.ADMIN);
+        Context.initIdentityInfo(card);
 	}
     
     @Test

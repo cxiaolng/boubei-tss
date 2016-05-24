@@ -31,11 +31,11 @@ import com.boubei.tss.framework.sso.context.Context;
 	  }   
 ) 
 @TransactionConfiguration(defaultRollback = true) // DB数据自动回滚
-public abstract class AbstractFrameworkTest extends AbstractTransactionalJUnit4SpringContextTests { 
+public abstract class AbstractTest4F extends AbstractTransactionalJUnit4SpringContextTests { 
  
-    protected static Logger log = Logger.getLogger(AbstractFrameworkTest.class);    
+    protected static Logger log = Logger.getLogger(AbstractTest4F.class);    
     
-    @Autowired protected H2DBServer dbserver;
+    protected H2DBServer dbserver;
     
     @Autowired protected LogService logService;
     @Autowired protected ParamService paramService;

@@ -8,15 +8,15 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.dm.AbstractDMTest;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.data.sqlquery.AbstractSO;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.report.ReportAction;
 
-public class AccessLogTest extends AbstractDMTest {
+public class AccessLogTest extends AbstractTest4DM {
 	
 	@Autowired XXService service;
-	@Autowired private ReportAction action;
+	@Autowired ReportAction action;
 	
 	@Test
 	public void test() throws InterruptedException {

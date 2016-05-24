@@ -10,9 +10,9 @@ import java.util.ResourceBundle;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.boubei.tss.framework.AbstractFrameworkTest;
+import com.boubei.tss.framework.AbstractTest4F;
 
-public class ParamServiceTest extends AbstractFrameworkTest {
+public class ParamServiceTest extends AbstractTest4F {
     
     /** 导入application.properties文件 */
     @Test

@@ -63,9 +63,9 @@ public class RecordAction extends BaseActionSupport {
     public void getRecord(HttpServletRequest request, HttpServletResponse response, @PathVariable("type") int type) {
         String uri = null;
         if(Record.TYPE0 == type) {
-            uri = "template/group_xform.xml";
+            uri = DMConstants.XFORM_GROUP;
         } else {
-            uri = "template/record_xform.xml";
+            uri = DMConstants.XFORM_RECORD;
         }
         
         XFormEncoder xformEncoder;

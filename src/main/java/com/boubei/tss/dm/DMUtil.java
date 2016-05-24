@@ -26,9 +26,9 @@ import com.boubei.tss.util.EasyUtils;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
-public class _Util {
+public class DMUtil {
 	
-	static Logger log = Logger.getLogger(_Util.class);
+	static Logger log = Logger.getLogger(DMUtil.class);
 	
 	// 判断是否为区间查询（从 。。。 到 。。。）
 	public static String[] preTreatScopeValue(String value) {
@@ -161,7 +161,7 @@ public class _Util {
 	public static String customizeParse(String script, Map<String, Object> dataMap) {
 		ScriptParser scriptParser = ScriptParserFactory.getParser();
       	if(scriptParser == null) {
-      		script = _Util.freemarkerParse(script, dataMap);
+      		script = DMUtil.freemarkerParse(script, dataMap);
       	} else {
       		script = scriptParser.parse(script, dataMap);
       	}

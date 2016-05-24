@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.AbstractFrameworkTest;
+import com.boubei.tss.framework.AbstractTest4F;
 import com.boubei.tss.framework.mock.model._Group;
 import com.boubei.tss.framework.mock.model._User;
 import com.boubei.tss.framework.mock.service._IUMSerivce;
@@ -21,7 +21,7 @@ import freemarker.template.TemplateException;
  * 测试了日志解析、日志Annotation、线程池、异步输出日志
  * 
  */
-public class BusinessLogTest extends AbstractFrameworkTest {
+public class BusinessLogTest extends AbstractTest4F {
     
     @Autowired private _IUMSerivce umSerivce;
     @Autowired private LogService logService;

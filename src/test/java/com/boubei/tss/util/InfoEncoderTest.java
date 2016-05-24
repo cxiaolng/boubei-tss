@@ -11,7 +11,7 @@ public class InfoEncoderTest {
         InfoEncoder test = new InfoEncoder();
         
         String encodedMsg = test.createEncryptor("Jon.King");
-		assertEquals(encodedMsg, "TcftExflLdPiFfNNVkG9JQ==");
+		assertEquals("0q7lY7PAMeMid9RK9PA7ew==", encodedMsg);
         assertEquals("Jon.King", test.createDecryptor(encodedMsg));
         
         String md5PWD = InfoEncoder.string2MD5("Admin_123456");

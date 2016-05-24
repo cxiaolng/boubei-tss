@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm._Util;
+import com.boubei.tss.dm.DMUtil;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.data.util.DataExport;
 import com.boubei.tss.dm.log.AccessLog;
@@ -236,7 +236,7 @@ public class _Reporter extends BaseActionSupport {
         for(Map<String, Object> row : excutor.result ) {
         	for(String key : row.keySet()) {
         		Object value = row.get(key);
-        		row.put(key, _Util.preTreatValue(value));
+        		row.put(key, DMUtil.preTreatValue(value));
         	}
         }
         

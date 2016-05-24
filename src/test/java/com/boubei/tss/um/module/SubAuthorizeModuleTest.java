@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.RoleAction;
 import com.boubei.tss.um.action.SubAuthorizeAction;
@@ -25,7 +25,7 @@ import com.boubei.tss.um.service.IUserService;
 /**
  * 角色转授策略相关模块的单元测试
  */
-public class SubAuthorizeModuleTest extends AbstractUMTest {
+public class SubAuthorizeModuleTest extends AbstractTest4UM {
     
 	@Autowired SubAuthorizeAction action;
 	@Autowired RoleAction roleAction;

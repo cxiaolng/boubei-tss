@@ -13,7 +13,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.boubei.tss.dm._Util;
+import com.boubei.tss.dm.DMUtil;
 import com.boubei.tss.dm.data.sqlquery.SOUtil;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.framework.SecurityUtil;
@@ -161,7 +161,7 @@ public class ReportServiceImpl implements ReportService {
 		}
           
 		// 宏代码池
-      	Map<String, Object> fmDataMap = _Util.getFreemarkerDataMap(loginUserId);
+      	Map<String, Object> fmDataMap = DMUtil.getFreemarkerDataMap(loginUserId);
       	
 		/* 先预解析，以判断request参数是否用做了宏代码。后续还将有一次解析，以支持宏嵌套。 
 		 * eg： ${GetWHListByLogonUser} --> param里的script宏（... user_id = ${fromUserId}) ... ）
@@ -242,7 +242,7 @@ public class ReportServiceImpl implements ReportService {
 				// 判断参数是否只用于freemarker解析
 				else if ( !"true".equals(isMacrocode) ) {
 					try {
-						Object value = _Util.preTreatValue(paramValue, paramType);
+						Object value = DMUtil.preTreatValue(paramValue, paramType);
 						paramsMap.put(paramsMap.size() + 1, value);
 					} 
 					catch(Exception e) {
@@ -258,7 +258,7 @@ public class ReportServiceImpl implements ReportService {
         // 结合 requestMap 进行 freemarker解析 sql，允许指定sql预处理类。
       	fmDataMap.put("report.id", reportId);
       	fmDataMap.put("report.name", reportName); // 用于解析出错时定位report
-      	reportScript = _Util.customizeParse(reportScript, fmDataMap);
+      	reportScript = DMUtil.customizeParse(reportScript, fmDataMap);
           
 		SQLExcutor excutor = new SQLExcutor(false);
 		String datasource = report.getDatasource();

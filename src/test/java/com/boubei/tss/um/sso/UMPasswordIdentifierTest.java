@@ -8,12 +8,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.framework.sso.SSOConstants;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.entity.User;
 import com.boubei.tss.um.service.IUserService;
 import com.boubei.tss.util.InfoEncoder;
 
-public class UMPasswordIdentifierTest extends AbstractUMTest {
+public class UMPasswordIdentifierTest extends AbstractTest4UM {
 	
 	@Autowired IUserService userService;
 	

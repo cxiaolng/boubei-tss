@@ -9,7 +9,6 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-import com.boubei.tss.dm.data.InvSnapshotVO;
 
 public class AbstractVOTest {
 	

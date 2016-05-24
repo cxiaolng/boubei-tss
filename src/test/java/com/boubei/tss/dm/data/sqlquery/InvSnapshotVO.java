@@ -1,4 +1,4 @@
-package com.boubei.tss.dm.data;
+package com.boubei.tss.dm.data.sqlquery;
 
 import java.util.Date;
 import java.util.List;

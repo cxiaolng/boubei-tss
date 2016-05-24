@@ -14,13 +14,12 @@ import org.apache.directory.server.core.api.partition.Partition;
 import org.apache.directory.server.ldap.LdapServer;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.component.progress.Progressable;
-import com.boubei.tss.um.AbstractUMTest;
+import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Application;
 import com.boubei.tss.um.entity.Group;
@@ -33,7 +32,7 @@ import com.boubei.tss.util.URLUtil;
 /**
  * 测试用户同步
  */
-public class SyncDataFromLDAPTest extends AbstractUMTest {
+public class SyncDataFromLDAPTest extends AbstractTest4UM {
 
 	@Autowired ISyncService syncService;
 	@Autowired IResourceService resourceService;
@@ -42,9 +41,8 @@ public class SyncDataFromLDAPTest extends AbstractUMTest {
 	LdapServer server;
 	DirectoryService service;
  
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
+	public void init() {
+		super.init();
 		
 		apacheDS = new ApacheDS();
 		try {

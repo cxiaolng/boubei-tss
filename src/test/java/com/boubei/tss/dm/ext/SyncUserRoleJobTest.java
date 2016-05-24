@@ -4,11 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.AbstractDMTest;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.util.EasyUtils;
 
-public class SyncUserRoleJobTest extends AbstractDMTest {
+public class SyncUserRoleJobTest extends AbstractTest4DM {
 
 	@Test
 	public void testJob() {

@@ -2,11 +2,11 @@ package com.boubei.tss.um;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.AbstractTssTest;
+import com.boubei.tss.AbstractTest4TSS;
 import com.boubei.tss.um.permission.ResourcePermission;
 import com.boubei.tss.um.service.IGroupService;
 
-public abstract class AbstractUMTest extends AbstractTssTest { 
+public abstract class AbstractTest4UM extends AbstractTest4TSS { 
  
 	@Autowired protected ResourcePermission resourcePermission;
 	@Autowired protected IGroupService groupService;

@@ -19,7 +19,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.dm.AbstractDMTest;
+import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.record.file.CreateAttach;
 import com.boubei.tss.dm.record.file.RecordAttach;
 import com.boubei.tss.framework.component.log.LogService;
@@ -28,7 +28,7 @@ import com.boubei.tss.framework.web.servlet.AfterUpload;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.FileHelper;
 
-public class _RecorderTest extends AbstractDMTest {
+public class _RecorderTest extends AbstractTest4DM {
 	
 	@Autowired LogService logService;
 	@Autowired RecordService recordService;
