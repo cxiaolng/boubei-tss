@@ -6,12 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.component.log.IBusinessLogger;
-import com.boubei.tss.framework.component.log.Log;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.sso.ILoginCustomizer;
 import com.boubei.tss.framework.sso.SSOConstants;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.log.IBusinessLogger;
+import com.boubei.tss.modules.log.Log;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.permission.PermissionService;
 import com.boubei.tss.um.service.ILoginService;

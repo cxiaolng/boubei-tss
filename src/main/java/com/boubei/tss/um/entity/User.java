@@ -15,13 +15,13 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.entityaop.OperateInfo;
 import com.boubei.tss.framework.web.dispaly.grid.GridAttributesMap;
 import com.boubei.tss.framework.web.dispaly.grid.IGridNode;
 import com.boubei.tss.framework.web.dispaly.tree.ITreeNode;
 import com.boubei.tss.framework.web.dispaly.tree.TreeAttributesMap;
 import com.boubei.tss.framework.web.dispaly.xform.IXForm;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.sso.UMPasswordIdentifier;
 import com.boubei.tss.util.BeanUtil;

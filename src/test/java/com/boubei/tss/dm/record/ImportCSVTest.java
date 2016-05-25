@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
 import org.easymock.EasyMock;
 import org.easymock.IMocksControl;
 import org.junit.Assert;
@@ -13,8 +12,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.AbstractTest4DM;
+import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.record.file.ImportCSV;
@@ -28,8 +27,6 @@ public class ImportCSVTest extends AbstractTest4DM {
 	@Autowired RecordService recordService;
 	@Autowired _Recorder recorder;
 	@Autowired _Reporter reporter;
-	
-	Logger log = Logger.getLogger(this.getClass());
 	
 	@Test
 	public void test() {

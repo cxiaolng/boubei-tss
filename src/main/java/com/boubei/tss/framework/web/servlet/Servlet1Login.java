@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boubei.tss.framework.component.param.ParamConfig;
 import com.boubei.tss.framework.web.dispaly.SuccessMessageEncoder;
 import com.boubei.tss.framework.web.dispaly.XmlPrintWriter;
+import com.boubei.tss.modules.param.ParamConfig;
 
 /**
  * <p> 系统登录Servlet。 </p>

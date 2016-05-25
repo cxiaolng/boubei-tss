@@ -12,7 +12,7 @@ import org.dom4j.Element;
 
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.component.cache.CacheHelper;
+import com.boubei.tss.cache.extension.CacheHelper;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.MacrocodeCompiler;
 import com.boubei.tss.util.URLUtil;

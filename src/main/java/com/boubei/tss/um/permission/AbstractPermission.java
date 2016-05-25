@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.IEntity;
+import com.boubei.tss.modules.param.ParamConstants;
 
 /**
  * 权限表超类。

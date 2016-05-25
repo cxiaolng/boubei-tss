@@ -2,8 +2,8 @@ package com.boubei.tss.portal.dao;
 
 import java.util.List;
 
-import com.boubei.tss.framework.component.cache.CacheLife;
-import com.boubei.tss.framework.component.cache.Cached;
+import com.boubei.tss.cache.aop.Cached;
+import com.boubei.tss.cache.extension.CacheLife;
 import com.boubei.tss.framework.persistence.ITreeSupportDao;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.entity.Navigator;

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.report.Report;
 import com.boubei.tss.dm.report.ReportService;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.param.ParamManager;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.um.UMConstants;
 
 public class ReportJobTest extends AbstractTest4DM {

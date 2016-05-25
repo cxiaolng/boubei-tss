@@ -15,7 +15,6 @@ import com.boubei.tss.um.entity.permission.RoleUserMappingId;
 import com.boubei.tss.um.entity.permission.ViewRoleUser;
 import com.boubei.tss.um.entity.permission.ViewRoleUser4SubAuthorize;
 import com.boubei.tss.um.entity.permission.ViewRoleUserId;
-import com.boubei.tss.um.sso.UMIdentityGetter;
 
 public class JustTest {
 	
@@ -26,6 +25,8 @@ public class JustTest {
 		g1.setId(1L);
 		g1.setName("Root");
 		g1.setParentId(0L);
+		
+		g1.getSeqNo();
 		
 		GroupPermission p1 = new GroupPermission();
 		p1.setId(1L);
@@ -92,7 +93,5 @@ public class JustTest {
 		PermissionDTO pt = new PermissionDTO(new Object[6]);
 		pt.getRoleId();
 		pt.getPermissionState();
-		
-		new UMIdentityGetter().indentify(null, "123456");
 	}
 }

@@ -16,12 +16,12 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.boubei.tss.H2DBServer;
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.framework.component.log.LogService;
-import com.boubei.tss.framework.component.param.ParamService;
 import com.boubei.tss.framework.sso.DemoOperator;
 import com.boubei.tss.framework.sso.IdentityCard;
 import com.boubei.tss.framework.sso.TokenUtil;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.log.LogService;
+import com.boubei.tss.modules.param.ParamService;
 
 @ContextConfiguration(
 	  locations={
@@ -35,7 +35,7 @@ public abstract class AbstractTest4F extends AbstractTransactionalJUnit4SpringCo
  
     protected static Logger log = Logger.getLogger(AbstractTest4F.class);    
     
-    protected H2DBServer dbserver;
+    @Autowired protected H2DBServer dbserver;
     
     @Autowired protected LogService logService;
     @Autowired protected ParamService paramService;
@@ -47,9 +47,15 @@ public abstract class AbstractTest4F extends AbstractTransactionalJUnit4SpringCo
     public void setUp() throws Exception {
         Global.setContext(super.applicationContext);
         
-        dbserver = new H2DBServer();
-        
-        _TestUtil.excuteSQL(_TestUtil.getInitSQLDir() + "/framework");
+        if(paramService.getParam(0L) == null) {
+			String sqlpath = _TestUtil.getInitSQLDir();
+	    	log.info( " sql path : " + sqlpath);
+	        _TestUtil.excuteSQL(sqlpath + "/framework");
+	        _TestUtil.excuteSQL(sqlpath + "/um");
+	        _TestUtil.excuteSQL(sqlpath + "/dm");
+	    	_TestUtil.excuteSQL(sqlpath + "/cms");
+	    	_TestUtil.excuteSQL(sqlpath + "/portal");
+    	}
         
         String token = TokenUtil.createToken(new Random().toString(), 12L); 
         IdentityCard card = new IdentityCard(token, new DemoOperator(12L));

@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.MailUtil;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
@@ -15,6 +14,7 @@ import com.boubei.tss.um.action.MessageAction;
 import com.boubei.tss.um.entity.Message;
 import com.boubei.tss.um.helper.MessageQueryCondition;
 import com.boubei.tss.util.DateUtil;
+import com.boubei.tss.util.MailUtil;
 
 public class MessageActionTest extends AbstractTest4UM {
 	

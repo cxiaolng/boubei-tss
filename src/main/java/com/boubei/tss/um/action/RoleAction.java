@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.web.dispaly.tree.LevelTreeParser;
 import com.boubei.tss.framework.web.dispaly.tree.TreeEncoder;
 import com.boubei.tss.framework.web.dispaly.tree.TreeNodeOptionsEncoder;
 import com.boubei.tss.framework.web.dispaly.xform.XFormEncoder;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Role;
 import com.boubei.tss.um.entity.permission.RolePermission;

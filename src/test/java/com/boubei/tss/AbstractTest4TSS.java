@@ -15,12 +15,12 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.component.log.LogService;
-import com.boubei.tss.framework.component.param.ParamService;
 import com.boubei.tss.framework.sso.IdentityCard;
 import com.boubei.tss.framework.sso.SSOConstants;
 import com.boubei.tss.framework.sso.TokenUtil;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.log.LogService;
+import com.boubei.tss.modules.param.ParamService;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.helper.dto.OperatorDTO;
 import com.boubei.tss.um.permission.PermissionHelper;
@@ -42,7 +42,7 @@ import com.boubei.tss.util.XMLDocUtil;
         } 
         , inheritLocations = false // 是否要继承父测试用例类中的 Spring 配置文件，默认为 true
       )
-@TransactionConfiguration(defaultRollback = false) // 不自动回滚，否则后续的test中没有初始化的数据
+@TransactionConfiguration(defaultRollback = true) // 不自动回滚，否则后续的test中没有初始化的数据
 public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4SpringContextTests { 
  
     protected Logger log = Logger.getLogger(this.getClass());    
@@ -54,7 +54,7 @@ public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4Spring
     @Autowired protected LogService logService;
     @Autowired protected ParamService paramService;
     
-    protected H2DBServer dbserver;
+    @Autowired protected H2DBServer dbserver;
  
     protected MockHttpServletResponse response;
     protected MockHttpServletRequest request;
@@ -75,9 +75,6 @@ public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4Spring
     @Before
     public void setUp() throws Exception {
         initContext();
-        
-        dbserver = new H2DBServer();
-        
         init();
     }
     
@@ -94,13 +91,16 @@ public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4Spring
      */
     protected void init() {
     	// 初始化数据库脚本
-		String sqlpath = _TestUtil.getInitSQLDir();
-    	log.info( " sql path : " + sqlpath);
-        _TestUtil.excuteSQL(sqlpath + "/framework");
-        _TestUtil.excuteSQL(sqlpath + "/um");
-        _TestUtil.excuteSQL(sqlpath + "/dm");
-    	_TestUtil.excuteSQL(sqlpath + "/cms");
-    	_TestUtil.excuteSQL(sqlpath + "/portal");
+    	if(paramService.getParam(0L) == null) {
+    		
+			String sqlpath = _TestUtil.getInitSQLDir();
+	    	log.info( " sql path : " + sqlpath);
+	        _TestUtil.excuteSQL(sqlpath + "/framework");
+	        _TestUtil.excuteSQL(sqlpath + "/um");
+	        _TestUtil.excuteSQL(sqlpath + "/dm");
+	    	_TestUtil.excuteSQL(sqlpath + "/cms");
+	    	_TestUtil.excuteSQL(sqlpath + "/portal");
+    	}
     	
     	// 初始化虚拟登录用户信息
         login(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);

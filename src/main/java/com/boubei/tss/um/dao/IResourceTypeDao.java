@@ -1,7 +1,7 @@
 package com.boubei.tss.um.dao;
 
-import com.boubei.tss.framework.component.cache.CacheLife;
-import com.boubei.tss.framework.component.cache.Cached;
+import com.boubei.tss.cache.aop.Cached;
+import com.boubei.tss.cache.extension.CacheLife;
 import com.boubei.tss.framework.persistence.IDao;
 import com.boubei.tss.um.entity.ResourceType;
 import com.boubei.tss.um.entity.ResourceTypeRoot;

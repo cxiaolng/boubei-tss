@@ -17,11 +17,11 @@ import com.boubei.tss.cms.entity.permission.ChannelResource;
 import com.boubei.tss.cms.job.IndexJob;
 import com.boubei.tss.cms.job.PublishManger;
 import com.boubei.tss.cms.service.IChannelService;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.web.dispaly.tree.LevelTreeParser;
 import com.boubei.tss.framework.web.dispaly.tree.TreeEncoder;
 import com.boubei.tss.framework.web.dispaly.xform.XFormEncoder;
 import com.boubei.tss.framework.web.mvc.ProgressActionSupport;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.um.permission.PermissionHelper;
 import com.boubei.tss.util.EasyUtils;
  

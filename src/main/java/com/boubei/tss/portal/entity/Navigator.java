@@ -18,11 +18,11 @@ import javax.persistence.UniqueConstraint;
 
 import org.dom4j.Element;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.entityaop.IDecodable;
 import com.boubei.tss.framework.persistence.entityaop.OperateInfo;
 import com.boubei.tss.framework.web.dispaly.tree.TreeAttributesMap;
 import com.boubei.tss.framework.web.dispaly.xform.IXForm;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.entity.permission.NavigatorResource;
 import com.boubei.tss.um.permission.IResource;

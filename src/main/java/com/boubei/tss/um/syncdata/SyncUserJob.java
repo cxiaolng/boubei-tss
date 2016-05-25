@@ -3,9 +3,9 @@ package com.boubei.tss.um.syncdata;
 import java.util.Map;
 
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.Progressable;
-import com.boubei.tss.framework.component.timer.AbstractJob;
+import com.boubei.tss.framework.timer.AbstractJob;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.um.entity.Group;
 import com.boubei.tss.um.service.IGroupService;
 import com.boubei.tss.util.EasyUtils;

@@ -2,8 +2,8 @@ package com.boubei.tss.um.service;
 
 import java.util.List;
 
-import com.boubei.tss.framework.component.cache.CacheLife;
-import com.boubei.tss.framework.component.cache.Cached;
+import com.boubei.tss.cache.aop.Cached;
+import com.boubei.tss.cache.extension.CacheLife;
 import com.boubei.tss.um.helper.dto.GroupDTO;
 import com.boubei.tss.um.helper.dto.OperatorDTO;
 

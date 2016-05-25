@@ -20,9 +20,9 @@ import org.apache.log4j.Logger;
 
 import com.boubei.tss.framework.Config;
 import com.boubei.tss.framework.SecurityUtil;
-import com.boubei.tss.framework.component.param.ParamConfig;
 import com.boubei.tss.framework.sso.SSOConstants;
 import com.boubei.tss.framework.sso.context.RequestContext;
+import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.util.EasyUtils;
 
 /**

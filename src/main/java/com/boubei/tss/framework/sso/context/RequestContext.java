@@ -59,7 +59,7 @@ public class RequestContext {
 	private RewriteableHttpServletRequest request;
  
 	protected RequestContext(HttpServletRequest request) {
-		this.request = RewriteableHttpServletRequestWrapper.getRewriteableHttpServletRequest(request);
+		this.request = RewriteableHttpServletRequestWrapper.wrapRequest(request);
 	}
 	
 	public RewriteableHttpServletRequest getRequest() {

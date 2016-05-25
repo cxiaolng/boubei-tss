@@ -357,6 +357,12 @@
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.16</version>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.0</version>
 				<configuration>
@@ -364,23 +370,7 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.16</version>
-			</plugin>
-
-			<!-- findbugs -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<xmlOutput>true</xmlOutput>
-					<effort>Max</effort>
-				</configuration>
-			</plugin>
-			<!-- test coverage -->
+			<!-- test coverage: mvn cobertura:cobertura -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
@@ -393,6 +383,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<!-- JDK7版本要加入以下設定
+                <configuration>
+                    <argLine>-XX:-UseSplitVerifier</argLine>
+                </configuration>
+                 -->
 			</plugin>
 			
 			<plugin>
@@ -589,6 +584,7 @@
 
 	<reporting>
 		<plugins>
+			<!-- mvn dashboard:dashboard -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>dashboard-maven-plugin</artifactId>

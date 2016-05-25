@@ -9,13 +9,13 @@ import org.springframework.stereotype.Component;
 
 import com.boubei.tss.framework.Config;
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.IEntity;
 import com.boubei.tss.framework.persistence.TreeSupportDao;
 import com.boubei.tss.framework.persistence.entityaop.IDecodable;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.web.dispaly.tree.ILevelTreeNode;
 import com.boubei.tss.framework.web.rmi.HttpInvokerProxyFactory;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.permission.RoleUserMapping;
 import com.boubei.tss.um.entity.permission.RoleUserMappingId;

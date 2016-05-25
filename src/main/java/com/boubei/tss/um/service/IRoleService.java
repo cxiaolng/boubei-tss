@@ -3,7 +3,7 @@ package com.boubei.tss.um.service;
 import java.util.List;
 import java.util.Map;
 
-import com.boubei.tss.framework.component.log.Logable;
+import com.boubei.tss.modules.log.Logable;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Role;
 import com.boubei.tss.um.permission.filter.PermissionTag;

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.ProgressPool;
 import com.boubei.tss.framework.exception.BusinessException;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.ProgressPool;
 
 /**
  * 支持进度条显示的MVC Action基类

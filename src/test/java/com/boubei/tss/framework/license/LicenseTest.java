@@ -11,7 +11,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
-import com.boubei.tss.framework.Framework;
+import com.boubei.tss.framework.SystemInfo;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.FileHelper;
 
@@ -59,7 +59,7 @@ public class LicenseTest {
         String licenseType = manager.getLicenseType(license.product, license.version);
 		assertEquals("Commercial", licenseType);
         
-        Assert.assertTrue(Framework.validateTSS());
+        Assert.assertTrue(SystemInfo.validateTSS());
     }
 }
 

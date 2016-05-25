@@ -13,9 +13,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.portal.AbstractTest4Portal;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.action.ComponentAction;

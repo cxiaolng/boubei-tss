@@ -18,10 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.boubei.tss.dm.DMConstants;
+import com.boubei.tss.dm.DMUtil;
 import com.boubei.tss.dm.data.sqlquery.AbstractExportSO;
 import com.boubei.tss.dm.data.sqlquery.AbstractVO;
-import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.util.EasyUtils;
 
@@ -32,7 +31,7 @@ public class DataExport {
 	static Logger log = Logger.getLogger(DataExport.class);
 	
 	public static String getExportPath() {
-		return ParamManager.getValue(DMConstants.TEMP_EXPORT_PATH).replace("\n", "") + "/export";
+		return DMUtil.getExportPath().replace("\n", "") + "/export";
 	}
 	
 	/**

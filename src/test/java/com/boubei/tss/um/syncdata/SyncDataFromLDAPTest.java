@@ -17,8 +17,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.Progressable;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Application;

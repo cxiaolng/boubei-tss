@@ -9,8 +9,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.boubei.tss.dm.AbstractTest4DM;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.param.ParamConstants;
 
 public class _ReporterTest extends AbstractTest4DM {
     

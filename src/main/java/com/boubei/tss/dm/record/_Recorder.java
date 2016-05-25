@@ -24,7 +24,7 @@ import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.record.file.RecordAttach;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.component.cache.CacheHelper;
+import com.boubei.tss.cache.extension.CacheHelper;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.exception.ExceptionEncoder;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;

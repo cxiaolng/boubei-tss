@@ -1,6 +1,6 @@
 package com.boubei.tss.um.helper;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamConstants;
 
 /**
  * 定义密码规则。

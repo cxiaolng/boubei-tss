@@ -18,7 +18,7 @@ public class JCacheTest {
 	 */
 	@Test
 	public void testJCache() {
-		Assert.assertEquals( 10, cache.listCachePools().size() );
+		Assert.assertTrue( cache.listCachePools().size() >= 11 );
 		
 		Assert.assertNotNull(cache.getThreadPool());
 		Assert.assertNotNull(cache.getConnectionPool());

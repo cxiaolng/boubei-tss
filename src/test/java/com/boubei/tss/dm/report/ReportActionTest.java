@@ -14,13 +14,13 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.report.permission.ReportResource;
-import com.boubei.tss.framework.component.log.LogQueryCondition;
-import com.boubei.tss.framework.component.log.LogService;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.timer.SchedulerBean;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.framework.timer.SchedulerBean;
+import com.boubei.tss.modules.log.LogQueryCondition;
+import com.boubei.tss.modules.log.LogService;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 

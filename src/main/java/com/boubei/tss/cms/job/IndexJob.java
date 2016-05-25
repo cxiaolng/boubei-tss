@@ -7,9 +7,9 @@ import java.util.Set;
 
 import com.boubei.tss.cms.lucene.ArticleContent;
 import com.boubei.tss.cms.lucene.IndexHelper;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.ProgressManager;
-import com.boubei.tss.framework.component.progress.Progressable;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.ProgressManager;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.util.EasyUtils;
 
 /**

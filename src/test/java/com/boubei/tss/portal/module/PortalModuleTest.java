@@ -7,18 +7,17 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.portal.AbstractTest4Portal;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.PortalDispatcher;
-import com.boubei.tss.portal.AbstractTest4Portal;
 import com.boubei.tss.portal.action.ComponentAction;
 import com.boubei.tss.portal.action.NavigatorAction;
 import com.boubei.tss.portal.action.PortalAction;
@@ -44,12 +43,11 @@ public class PortalModuleTest extends AbstractTest4Portal {
     Structure page1;
     Structure page2;
     Structure section1;
-    Component portlet;
+    Structure portlet;
     Theme defaultTheme;
     
-    @Before
-    public void setUp() throws Exception {
-    	 super.setUp();
+    public void init() {
+    	 super.init();
     	 
          Long parentId = PortalConstants.ROOT_ID;
          
@@ -75,9 +73,9 @@ public class PortalModuleTest extends AbstractTest4Portal {
          section1 = createPageOrSection(page1, "版面一", "section1", Structure.TYPE_SECTION);
          Structure section2 = createPageOrSection(page2, "版面二", "section2", Structure.TYPE_SECTION);
          
-         portlet = createTestPortlet();
-         createPortletInstance(section1, "portletInstance1", "portletInstance1", portlet);
-         Structure temp = createPortletInstance(section2, "portletInstance2", "portletInstance2", portlet);
+         Component _portlet = createTestPortlet();
+         portlet = createPortletInstance(section1, "portletInstance1", "portletInstance1", _portlet);
+         Structure temp = createPortletInstance(section2, "portletInstance2", "portletInstance2", _portlet);
          
          portalAction.getStructureInfo(response, request, root.getId());
          portalAction.getStructureInfo(response, request, page1.getId());

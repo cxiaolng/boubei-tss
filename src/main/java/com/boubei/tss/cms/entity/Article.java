@@ -20,11 +20,11 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.boubei.tss.cms.CMSConstants;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.entityaop.OperateInfo;
 import com.boubei.tss.framework.web.dispaly.grid.GridAttributesMap;
 import com.boubei.tss.framework.web.dispaly.grid.IGridNode;
 import com.boubei.tss.framework.web.dispaly.xform.IXForm;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.DateUtil;
 

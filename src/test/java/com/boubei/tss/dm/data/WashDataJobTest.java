@@ -2,6 +2,7 @@ package com.boubei.tss.dm.data;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.AbstractTest4DM;
@@ -12,6 +13,7 @@ import com.boubei.tss.dm.report.Report;
 import com.boubei.tss.dm.report.ReportDao;
 import com.boubei.tss.dm.report.ReportService;
 
+@TransactionConfiguration(defaultRollback = false)
 public class WashDataJobTest extends AbstractTest4DM {
 	
 	@Autowired ReportService reportService;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.record.file.RecordAttach;
-import com.boubei.tss.framework.component.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.util.EasyUtils;
 
 @Service("RecordService")

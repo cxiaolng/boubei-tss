@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.framework.component.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.RoleAction;

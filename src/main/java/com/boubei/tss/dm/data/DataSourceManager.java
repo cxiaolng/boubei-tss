@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.component.cache.CacheHelper;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.param.ParamManager;
-import com.boubei.tss.framework.component.param.ParamService;
+import com.boubei.tss.cache.extension.CacheHelper;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamManager;
+import com.boubei.tss.modules.param.ParamService;
 
 @Controller
 @RequestMapping("/ds")

@@ -3,10 +3,10 @@ package com.boubei.tss.framework;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.boubei.tss.framework.component.param.ParamListener;
-import com.boubei.tss.framework.component.param.ParamManager;
-import com.boubei.tss.framework.component.param.ParamService;
 import com.boubei.tss.framework.sso.online.IOnlineUserManager;
+import com.boubei.tss.modules.param.ParamListener;
+import com.boubei.tss.modules.param.ParamManager;
+import com.boubei.tss.modules.param.ParamService;
 
 /**
  * <p>

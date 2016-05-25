@@ -3,7 +3,6 @@ package com.boubei.tss.um.sso;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,9 +16,8 @@ public class UMPasswordIdentifierTest extends AbstractTest4UM {
 	
 	@Autowired IUserService userService;
 	
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
+	public void init() {
+		super.init();
 		
 		User admin = userService.getUserById(-1L);
 		admin.setPassword("123456");

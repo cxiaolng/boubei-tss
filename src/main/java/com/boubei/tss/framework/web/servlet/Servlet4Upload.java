@@ -16,10 +16,10 @@ import javax.servlet.http.Part;
 
 import org.apache.log4j.Logger;
 
-import com.boubei.tss.framework.component.param.ParamConfig;
 import com.boubei.tss.framework.exception.ExceptionEncoder;
 import com.boubei.tss.framework.web.dispaly.XmlPrintWriter;
 import com.boubei.tss.framework.web.dispaly.xmlhttp.XmlHttpEncoder;
+import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.FileHelper;
 
@@ -84,17 +84,25 @@ public class Servlet4Upload extends HttpServlet {
         
 		// 获取上传的文件真实名字(含后缀)
 		String contentDisp = part.getHeader("content-disposition");
-		String fileName = "";
+		String orignFileName = "";
 		String[] items = contentDisp.split(";");
 		for (String item : items) {
 			if (item.trim().startsWith("filename")) {
-				fileName = item.substring(item.indexOf("=") + 2, item.length() - 1);
+				orignFileName = item.substring(item.indexOf("=") + 2, item.length() - 1);
 				break;
 			}
 		}
 		
-		String subfix = FileHelper.getFileSuffix(fileName);
-        String newFileName = System.currentTimeMillis() + "." + subfix;
+		String subfix = FileHelper.getFileSuffix(orignFileName), newFileName;
+		
+		// 允许使用原文件名
+		String useOrignName = request.getParameter("useOrignName");
+		if(useOrignName != null) {
+			newFileName = orignFileName;
+		} else {
+			newFileName = System.currentTimeMillis() + "." + subfix; // 重命名
+		}
+		
         String newFilePath = savePath + File.separator + newFileName;
         
         // 自定义输出到指定目录
@@ -110,8 +118,9 @@ public class Servlet4Upload extends HttpServlet {
 		String afterUploadClass = request.getParameter("afterUploadClass");
 		if(afterUploadClass != null) {
 			AfterUpload afterUpload = (AfterUpload) BeanUtil.newInstanceByName(afterUploadClass);
-			return afterUpload.processUploadFile(request, newFilePath, fileName);
+			return afterUpload.processUploadFile(request, newFilePath, orignFileName);
 		}
+		
 		return null;
 	}
 }

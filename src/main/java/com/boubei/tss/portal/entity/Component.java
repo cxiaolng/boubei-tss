@@ -13,13 +13,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.IEntity;
 import com.boubei.tss.framework.persistence.entityaop.IDecodable;
 import com.boubei.tss.framework.persistence.entityaop.OperateInfo;
 import com.boubei.tss.framework.web.dispaly.tree.ILevelTreeNode;
 import com.boubei.tss.framework.web.dispaly.tree.TreeAttributesMap;
 import com.boubei.tss.framework.web.dispaly.xform.IXForm;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.util.BeanUtil;
 

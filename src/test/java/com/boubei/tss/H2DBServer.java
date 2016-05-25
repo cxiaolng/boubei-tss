@@ -6,7 +6,9 @@ import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
 import org.h2.tools.Server;
+import org.springframework.stereotype.Component;
 
+@Component
 public class H2DBServer {  
     
     protected Logger log = Logger.getLogger(this.getClass());

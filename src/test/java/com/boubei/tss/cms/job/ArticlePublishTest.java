@@ -15,7 +15,7 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.cms.AbstractCMSTest;
+import com.boubei.tss.cms.AbstractTest4CMS;
 import com.boubei.tss.cms.CMSConstants;
 import com.boubei.tss.cms.DownloadServlet;
 import com.boubei.tss.cms.entity.Article;
@@ -24,14 +24,14 @@ import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.job.JobStrategy;
 import com.boubei.tss.cms.lucene.ArticleContent;
 import com.boubei.tss.cms.lucene.IndexHelper;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.Progressable;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.util.DateUtil;
 
 /**
  * 文章发布相关模块的单元测试。
  */
-public class ArticlePublishTest extends AbstractCMSTest {
+public class ArticlePublishTest extends AbstractTest4CMS {
 	
 	@Test
     public void testArticlePublish() {

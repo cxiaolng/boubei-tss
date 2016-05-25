@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
-import com.boubei.tss.framework.component.timer.AbstractJob;
+import com.boubei.tss.framework.timer.AbstractJob;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.EasyUtils;
 

@@ -15,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.AbstractTest4TSS;
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.web.servlet.AfterUpload;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.portal.entity.Component;
 import com.boubei.tss.portal.entity.Structure;
 import com.boubei.tss.portal.helper.CreateComponent;

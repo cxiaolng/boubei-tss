@@ -7,9 +7,9 @@ import javax.naming.NamingException;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
-import com.boubei.tss.framework.component.param.ParamConfig;
 import com.boubei.tss.framework.sso.IPWDOperator;
 import com.boubei.tss.framework.sso.IdentityGetter;
+import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.um.sso.UMIdentityGetter;
 import com.boubei.tss.util.EasyUtils;
  

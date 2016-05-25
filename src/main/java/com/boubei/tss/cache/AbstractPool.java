@@ -116,7 +116,7 @@ public abstract class AbstractPool implements Pool {
         }
         
         if (item == null && released) {
-            log.debug("getObjectOnly 获取不到，原因：缓存池【" + getName() + "】已经被释放，所有缓存项都已经被清空!");
+            log.debug("getObjectOnly 获取不到，原因：【" + getName() + "】已被释放，所有缓存项都已被清空!");
         }
         
 		return item; 
@@ -221,7 +221,8 @@ public abstract class AbstractPool implements Pool {
         }
         
         if(item == null) {
-            String errorMsg = "【" + getName() + "】已满，且各缓存项都处于使用状态，等待超时(" + timeout + ")。可考虑修改缓存策略！" + this;
+            String errorMsg = "【" + getName() + "】已满，等待超时(" + timeout + ")！" + getFree().size() + "/"
+            		+ getUsing().size() + "/" +  this.getCacheStrategy().poolSize;
             log.error(errorMsg);
             throw new RuntimeException(errorMsg);
         }
@@ -238,7 +239,7 @@ public abstract class AbstractPool implements Pool {
         // 判断对象是否存在using池中，是的话将对象从using池中移出，否则抛出异常
 		Cacheable temp = getUsing().remove(key);
 		if( !item.equals(temp) ) {
-            logError("试图返回不是using池中的对象到free中，返回失败！ " + getName() + "【" + item + " --> " + temp + "】");
+            logError("试图返回不是using池中的对象到free池中，返回失败！ " + getName() + "【" + item + " --> " + temp + "】");
         }
 		
         Object value = item.getValue();

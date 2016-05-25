@@ -122,6 +122,7 @@ public final class UMConstants {
 	public static final String GENERAL_SEARCH_STRATEGY_GRID = "template/um/grid/gs_subauth_info.xml";// 综合查询搜索用户因转授而获得的角色的情况的Grid模板
 	
 	public static final String MAIN_USER_GRID  = "template/um/grid/user_list.xml"; //用户组下的用户浏览Grid模板
+	public static final String MESSAGE_GRID  = "template/um/grid/message_grid.xml";
 	
 	/**
 	 *  XForm模板文件的路径定义

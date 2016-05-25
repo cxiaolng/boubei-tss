@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.boubei.tss.cache.extension.CacheHelper;
+
 /**
  * 测试缓存池的存取方式，FIFO、LIFO、LRU、LFU、Radom等。
  * 并顺带测试测试容量、事件、生命周期等相关。
@@ -16,7 +18,7 @@ public class JCacheAccessTest {
 	
 	@Before
 	public void setUp() {
-		pool = JCache.getInstance().getPool("NODEAD");
+		pool = CacheHelper.getNoDeadCache();
 	}
 	
 	@After
@@ -29,6 +31,8 @@ public class JCacheAccessTest {
 	 */
 	@Test
 	public void testPoolAccessLFU() {
+		pool.flush();
+		pool.init();
 		pool.getCacheStrategy().setAccessMethod(Container.ACCESS_LFU);
 		
 		Assert.assertEquals(0, pool.size());

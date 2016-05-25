@@ -11,16 +11,16 @@ package com.boubei.tss.cache.extension.threadpool;
 
 import org.apache.log4j.Logger;
 
+import com.boubei.tss.cache.DefaultCacheCustomizer;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.TimeWrapper;
-import com.boubei.tss.cache.extension.DefaultCustomizer;
 
 /** 
  * 线程池自定义类。
  * 创建、验证、销毁工作线程。
  */
-public class ThreadPoolCustomizer extends DefaultCustomizer {
+public class ThreadPoolCustomizer extends DefaultCacheCustomizer {
     
     protected Logger log = Logger.getLogger(this.getClass());
   

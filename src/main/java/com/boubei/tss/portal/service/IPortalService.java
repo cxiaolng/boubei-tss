@@ -2,7 +2,7 @@ package com.boubei.tss.portal.service;
 
 import java.util.List;
 
-import com.boubei.tss.framework.component.log.Logable;
+import com.boubei.tss.modules.log.Logable;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.engine.model.PortalNode;
 import com.boubei.tss.portal.entity.ReleaseConfig;

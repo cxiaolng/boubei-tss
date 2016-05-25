@@ -16,7 +16,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.boubei.tss.cms.AbstractCMSTest;
+import com.boubei.tss.cms.AbstractTest4CMS;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 
@@ -26,10 +26,10 @@ public class ImageProcessorTest {
 	
 	@Before
 	public void setUp() {
-		URL url = URLUtil.getResourceFileUrl(AbstractCMSTest.CK_FILE_PATH);
+		URL url = URLUtil.getResourceFileUrl(AbstractTest4CMS.CK_FILE_PATH);
         String log4jPath = url.getPath(); 
         File classDir = new File(log4jPath).getParentFile();
-        Assert.assertTrue(FileHelper.checkFile(classDir, AbstractCMSTest.CK_FILE_PATH));
+        Assert.assertTrue(FileHelper.checkFile(classDir, AbstractTest4CMS.CK_FILE_PATH));
         
         tempDir1 = FileHelper.createDir(classDir + "/temp1");
 	}

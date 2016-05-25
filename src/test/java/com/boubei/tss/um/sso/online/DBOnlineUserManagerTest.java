@@ -19,7 +19,6 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.boubei.tss.framework.Global;
@@ -31,9 +30,8 @@ public class DBOnlineUserManagerTest extends AbstractTest4UM {
     
     IOnlineUserManager manager;
     
-    @Before
-    public void setUp() throws Exception {
-    	super.setUp();
+    public void init() {
+    	super.init();
     	manager = (IOnlineUserManager) Global.getBean("DBOnlineUserManagerService");
     }
     

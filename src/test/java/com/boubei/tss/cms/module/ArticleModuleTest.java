@@ -11,16 +11,16 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.cms.AbstractCMSTest;
+import com.boubei.tss.cms.AbstractTest4CMS;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.helper.ArticleQueryCondition;
-import com.boubei.tss.framework.component.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamConstants;
 
 /**
  * 文章站点栏目相关模块的单元测试。
  */
-public class ArticleModuleTest extends AbstractCMSTest {
+public class ArticleModuleTest extends AbstractTest4CMS {
  
 	@Test
     public void testArticleModule() {

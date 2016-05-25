@@ -27,13 +27,13 @@ import com.boubei.tss.cms.helper.ArticleQueryCondition;
 import com.boubei.tss.cms.service.IArticleService;
 import com.boubei.tss.cms.service.IRemoteArticleService;
 import com.boubei.tss.framework.Config;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.web.dispaly.grid.GridDataEncoder;
 import com.boubei.tss.framework.web.dispaly.xform.XFormEncoder;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.EasyUtils;
  

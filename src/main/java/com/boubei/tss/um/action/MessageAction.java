@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.boubei.tss.framework.MailUtil;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
 import com.boubei.tss.framework.web.dispaly.grid.GridDataEncoder;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Message;
 import com.boubei.tss.um.helper.MessageQueryCondition;
 import com.boubei.tss.um.service.ILoginService;
 import com.boubei.tss.um.service.IMessageService;
 import com.boubei.tss.util.EasyUtils;
+import com.boubei.tss.util.MailUtil;
 import com.boubei.tss.util.XMLDocUtil;
 
 @Controller
@@ -81,7 +82,7 @@ public class MessageAction extends BaseActionSupport {
         condition.getPage().setPageNum(page);
         PageInfo pi = messageService.getInboxList(condition);
         
-        GridDataEncoder gridEncoder = new GridDataEncoder(pi.getItems(), XMLDocUtil.createDoc("template/grid/message_grid.xml"));
+        GridDataEncoder gridEncoder = new GridDataEncoder(pi.getItems(), XMLDocUtil.createDoc(UMConstants.MESSAGE_GRID));
         print( new String[]{"MsgList", "PageInfo"}, new Object[]{gridEncoder, pi} );
     }
     

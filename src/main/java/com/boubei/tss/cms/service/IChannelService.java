@@ -8,7 +8,7 @@ import com.boubei.tss.cms.CMSConstants;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.lucene.ArticleContent;
-import com.boubei.tss.framework.component.log.Logable;
+import com.boubei.tss.modules.log.Logable;
 import com.boubei.tss.um.permission.filter.PermissionFilter4Create;
 import com.boubei.tss.um.permission.filter.PermissionFilter4Move;
 import com.boubei.tss.um.permission.filter.PermissionFilter4Sort;

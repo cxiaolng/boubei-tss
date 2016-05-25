@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.component.cache.CacheHelper;
-import com.boubei.tss.framework.component.param.ParamConstants;
+import com.boubei.tss.cache.extension.CacheHelper;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.PortalDispatcher;
 import com.boubei.tss.portal.dao.IComponentDao;

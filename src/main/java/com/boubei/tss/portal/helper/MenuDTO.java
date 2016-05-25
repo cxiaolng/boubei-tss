@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.portal.entity.Navigator;
 
 public class MenuDTO {

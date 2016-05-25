@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.boubei.tss.framework.component.cache.CacheHelper;
-import com.boubei.tss.framework.component.cache.CacheLife;
+import com.boubei.tss.cache.extension.CacheHelper;
+import com.boubei.tss.cache.extension.CacheLife;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.web.dispaly.tree.LevelTreeParser;
 import com.boubei.tss.framework.web.dispaly.tree.StrictLevelTreeParser;

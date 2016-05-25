@@ -11,10 +11,10 @@ import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
 import com.boubei.tss.framework.Config;
-import com.boubei.tss.framework.component.log.LogQueryCondition;
-import com.boubei.tss.framework.component.log.LogService;
 import com.boubei.tss.framework.persistence.IDao;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
+import com.boubei.tss.modules.log.LogQueryCondition;
+import com.boubei.tss.modules.log.LogService;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
@@ -24,6 +24,16 @@ public class _TestUtil {
 	protected static Logger log = Logger.getLogger(_TestUtil.class);
 	
 	static final String PROJECT_NAME = "boubei-tss";
+	
+    static String dbDriverName = Config.getAttribute("db.connection.driver_class");
+    
+    public static boolean isH2Database() {
+    	return dbDriverName != null && dbDriverName.indexOf("h2") >= 0;
+    }
+    
+    public static boolean isMysqlDatabase() {
+        return dbDriverName != null && dbDriverName.indexOf("mysql") >= 0;
+    }
 	
 	public static String getTempDir() {
 		return System.getProperty("java.io.tmpdir");
@@ -38,7 +48,7 @@ public class _TestUtil {
 	
     public static String getInitSQLDir() {
     	String dbType = "mysql";
-    	if( Config.isH2Database() ) {
+    	if( isH2Database() ) {
     		dbType = "h2";
     	}
         return getProjectDir() + "/sql/" + dbType;
@@ -60,7 +70,7 @@ public class _TestUtil {
 		
         try {  
         	Connection conn = (Connection) connItem.getValue();
-            Statement stat = conn.createStatement();  
+            Statement stmt = conn.createStatement();  
             
             List<File> sqlFiles = FileHelper.listFilesByTypeDeeply(".sql", new File(sqlDir));
             for(File sqlFile : sqlFiles) {
@@ -77,16 +87,15 @@ public class _TestUtil {
                 	if( EasyUtils.isNullOrEmpty(sql) ) continue;
                 	
                 	log.debug(sql);  
-                	stat.execute(sql);
+                	stmt.execute(sql);
                 }
 				
                 log.info("SQL脚本：" + fileName+ " 执行完毕。");  
             }
  
             log.info("成功执行目录：" + sqlDir+ "下的SQL脚本!");
+            stmt.close(); 
             
-            stat.close();  
-//            conn.close();  
         } catch (Exception e) {  
             throw new RuntimeException("目录：" + sqlDir+ "下的SQL脚本执行出错：", e);
         } finally {

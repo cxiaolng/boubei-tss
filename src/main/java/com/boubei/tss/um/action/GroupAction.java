@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.boubei.tss.framework.component.progress.ProgressManager;
-import com.boubei.tss.framework.component.progress.Progressable;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.web.dispaly.tree.ITreeTranslator;
 import com.boubei.tss.framework.web.dispaly.tree.LevelTreeParser;
 import com.boubei.tss.framework.web.dispaly.tree.TreeEncoder;
 import com.boubei.tss.framework.web.dispaly.xform.XFormEncoder;
 import com.boubei.tss.framework.web.mvc.ProgressActionSupport;
+import com.boubei.tss.modules.progress.ProgressManager;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.entity.Group;
 import com.boubei.tss.um.helper.GroupTreeParser;

@@ -18,13 +18,13 @@ import com.boubei.tss.dm.data.util.DataExport;
 import com.boubei.tss.dm.report.Report;
 import com.boubei.tss.dm.report.ReportService;
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.MailUtil;
-import com.boubei.tss.framework.component.timer.AbstractJob;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.framework.timer.AbstractJob;
 import com.boubei.tss.um.service.ILoginService;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.EasyUtils;
+import com.boubei.tss.util.MailUtil;
 
 /**
  * com.boubei.tss.dm.report.timer.ReportJob | 0 36 10 * * ? | 268:各省日货量流向:lovejava@163.com,BL01037:param1=today-1

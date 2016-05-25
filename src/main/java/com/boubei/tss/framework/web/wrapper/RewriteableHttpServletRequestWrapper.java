@@ -40,7 +40,7 @@ public class RewriteableHttpServletRequestWrapper extends HttpServletRequestWrap
 	 * @param request
 	 * @return
 	 */
-	public static RewriteableHttpServletRequest getRewriteableHttpServletRequest(HttpServletRequest request) {
+	public static RewriteableHttpServletRequest wrapRequest(HttpServletRequest request) {
 		if (request instanceof RewriteableHttpServletRequest) {
 			return (RewriteableHttpServletRequest) request;
 		}

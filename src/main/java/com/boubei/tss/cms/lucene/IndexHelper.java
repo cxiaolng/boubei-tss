@@ -22,8 +22,8 @@ import com.boubei.tss.cms.helper.ArticleHelper;
 import com.boubei.tss.cms.job.JobStrategy;
 import com.boubei.tss.cms.lucene.executor.IndexExecutor;
 import com.boubei.tss.cms.lucene.executor.IndexExecutorFactory;
-import com.boubei.tss.framework.component.progress.Progress;
 import com.boubei.tss.framework.exception.BusinessException;
+import com.boubei.tss.modules.progress.Progress;
 import com.boubei.tss.util.FileHelper;
 
 public class IndexHelper {

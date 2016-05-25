@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.dom4j.Element;
 
-import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.exception.BusinessException;
+import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.XMLDocUtil;
 

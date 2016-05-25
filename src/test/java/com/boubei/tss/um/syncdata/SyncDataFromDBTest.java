@@ -13,13 +13,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.H2DBServer;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.Progressable;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.GroupAction;
@@ -43,9 +42,8 @@ public class SyncDataFromDBTest extends AbstractTest4UM {
 	Group mainGroup;
 	String applicationId = UMConstants.TSS_APPLICATION_ID;
 	
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
+	public void init() {
+		super.init();
 		
 		mainGroup = new Group();
 		mainGroup.setParentId(UMConstants.MAIN_GROUP_ID);

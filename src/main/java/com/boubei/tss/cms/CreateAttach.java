@@ -16,25 +16,21 @@ public class CreateAttach implements AfterUpload {
 	Logger log = Logger.getLogger(this.getClass());
 
 	public String processUploadFile(HttpServletRequest request,
-			String filepath, String oldfileName) throws Exception {
+			String filepath, String orignFileName) throws Exception {
 
 		Long articleId = Long.parseLong(request.getParameter("articleId"));
 		Long channelId = Long.parseLong(request.getParameter("channelId"));
 		int type = Integer.parseInt(request.getParameter("type"));
 		
-		int separatorIndex = oldfileName.lastIndexOf("\\");
-		if(separatorIndex > 0) {
-			oldfileName = oldfileName.substring(separatorIndex + 1);
-		}
-		separatorIndex = oldfileName.lastIndexOf("/");
-		if(separatorIndex > 0) {
-			oldfileName = oldfileName.substring(separatorIndex + 1);
+		int separatorIndex = Math.max(orignFileName.lastIndexOf("\\"), orignFileName.lastIndexOf("/"));
+		if( separatorIndex >= 0) {
+			orignFileName = orignFileName.substring(separatorIndex + 1);
 		}
 
 		// 保存附件信息
 		File targetFile = new File(filepath);
 		IArticleService articleService = (IArticleService) Global.getBean("ArticleService");
-		Attachment attachObj = articleService.processFile(targetFile, articleId, channelId, type, oldfileName);
+		Attachment attachObj = articleService.processFile(targetFile, articleId, channelId, type, orignFileName);
 
 		// 向前台返回成功信息
 		String downloadUrl = attachObj.getRelationUrl();
@@ -43,6 +39,6 @@ public class CreateAttach implements AfterUpload {
 		String fileExt = attachObj.getFileExt();
 		
 		return "parent.addAttachments(" + seqNo + ", '" + fileName + "', '" 
-				+ fileExt + "', '" + oldfileName + "', '" + downloadUrl + "')";
+				+ fileExt + "', '" + orignFileName + "', '" + downloadUrl + "')";
 	}
 }

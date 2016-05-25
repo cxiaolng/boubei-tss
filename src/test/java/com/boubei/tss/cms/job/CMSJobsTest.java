@@ -6,30 +6,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import com.boubei.tss.cms.AbstractCMSTest;
+import com.boubei.tss.cms.AbstractTest4CMS;
 import com.boubei.tss.cms.CMSConstants;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.lucene.ArticleContent;
 import com.boubei.tss.cms.lucene.executor.KeywordIndexExecutor;
 import com.boubei.tss.cms.lucene.executor.TitleIndexExecutor;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.Progressable;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.Progressable;
 
 /**
  * 定时策略相关模块的单元测试。
  */
-public class CMSJobsTest extends AbstractCMSTest {
+public class CMSJobsTest extends AbstractTest4CMS {
 	
 	Long siteId;
 	Long channel1Id;
 	
-    @Before
-    public void setUp() throws Exception {
-        super.setUp();
+    public void init() {
+        super.init();
  
     	// 新建站点
         Channel site = createSite();

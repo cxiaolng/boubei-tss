@@ -59,6 +59,8 @@ public class JCachePoolTest {
 	@Test
 	public void testTaskPool() {
 		Pool taskpool = cache.getTaskPool();
+		taskpool.flush();
+		taskpool.init();
 		
 		Cacheable taskItem = taskpool.checkOut(0);
 		assertNotNull(taskItem.getAccessed());

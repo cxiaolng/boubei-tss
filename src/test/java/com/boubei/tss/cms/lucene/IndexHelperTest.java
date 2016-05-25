@@ -12,7 +12,7 @@ import com.boubei.tss.cms.job.JobStrategy;
 import com.boubei.tss.cms.lucene.executor.DefaultIndexExecutor;
 import com.boubei.tss.cms.lucene.executor.KeywordIndexExecutor;
 import com.boubei.tss.cms.lucene.executor.TitleIndexExecutor;
-import com.boubei.tss.framework.component.progress.Progress;
+import com.boubei.tss.modules.progress.Progress;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 

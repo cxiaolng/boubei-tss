@@ -12,9 +12,9 @@ package com.boubei.tss.framework.persistence.connpool;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.boubei.tss.cache.DefaultCacheCustomizer;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.TimeWrapper;
-import com.boubei.tss.cache.extension.DefaultCustomizer;
 
 /**
  * <pre>
@@ -23,7 +23,7 @@ import com.boubei.tss.cache.extension.DefaultCustomizer;
  * 在本类中定义了如何创建、验证、销毁数据库连接。
  * </pre>
  */
-public class ConnPoolCustomizer extends DefaultCustomizer {
+public class ConnPoolCustomizer extends DefaultCacheCustomizer {
     
 	public Cacheable create() {
 		Connection conn = _Connection.getInstanse(strategy.paramFile).getConnection();

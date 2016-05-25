@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.framework.component.param.ParamConfig;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.entity.Component;
 import com.boubei.tss.portal.helper.ComponentHelper;

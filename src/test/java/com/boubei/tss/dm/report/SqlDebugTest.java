@@ -50,7 +50,7 @@ public class SqlDebugTest extends AbstractTest4DM {
         Report reportx = service.getReport(reportId, true);
         Assert.assertNotNull(reportx);
         
-        // test queryCacheInterceptor
+        // test QueryCacheInterceptor
         final List<Object> results = new ArrayList<Object>();
         for(int i = 0; i < 10; i++) {
         	new Thread() {
@@ -68,7 +68,7 @@ public class SqlDebugTest extends AbstractTest4DM {
     			}
         	}.start();
         	
-        	try { Thread.sleep(3); } catch (InterruptedException e) { }
+        	try { Thread.sleep(10); } catch (InterruptedException e) { }
         }
         
         try { Thread.sleep(3*1000); } catch (InterruptedException e) { }

@@ -8,7 +8,7 @@ import org.dom4j.Node;
 
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.framework.component.cache.CacheHelper;
+import com.boubei.tss.cache.extension.CacheHelper;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.util.XMLDocUtil;
 

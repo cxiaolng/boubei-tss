@@ -9,10 +9,10 @@ import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.sso.appserver.AppServer;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.dao.INavigatorDao;
 import com.boubei.tss.portal.entity.Navigator;

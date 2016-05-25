@@ -3,7 +3,7 @@ package com.boubei.tss.dm.record;
 import java.util.List;
 
 import com.boubei.tss.dm.record.file.RecordAttach;
-import com.boubei.tss.framework.component.log.Logable;
+import com.boubei.tss.modules.log.Logable;
 import com.boubei.tss.um.permission.filter.PermissionFilter4Create;
 import com.boubei.tss.um.permission.filter.PermissionFilter4Sort;
 import com.boubei.tss.um.permission.filter.PermissionTag;

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.TreeSupportDao;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.um.dao.IRoleDao;
 import com.boubei.tss.um.entity.Role;
 import com.boubei.tss.um.entity.SubAuthorize;

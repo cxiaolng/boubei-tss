@@ -2,8 +2,8 @@ package com.boubei.tss.um.service;
 
 import java.util.Map;
 
-import com.boubei.tss.framework.component.log.Logable;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
+import com.boubei.tss.modules.log.Logable;
 import com.boubei.tss.um.entity.User;
  
 public interface IUserService {

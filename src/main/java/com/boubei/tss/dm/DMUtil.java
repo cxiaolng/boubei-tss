@@ -16,10 +16,10 @@ import org.apache.log4j.Logger;
 
 import com.boubei.tss.dm.report.ScriptParser;
 import com.boubei.tss.dm.report.ScriptParserFactory;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.EasyUtils;
 
@@ -29,6 +29,20 @@ import freemarker.template.Template;
 public class DMUtil {
 	
 	static Logger log = Logger.getLogger(DMUtil.class);
+	
+	public static String getExportPath() {
+		String exportPath = null;
+		try {
+			exportPath = ParamManager.getValue(DMConstants.TEMP_EXPORT_PATH);
+		} catch(Exception e) {
+			
+		} finally {
+			if(exportPath == null) {
+	        	exportPath = System.getProperty("java.io.tmpdir");
+	        }
+		}
+        return exportPath;
+	}
 	
 	// 判断是否为区间查询（从 。。。 到 。。。）
 	public static String[] preTreatScopeValue(String value) {

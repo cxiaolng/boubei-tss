@@ -2,9 +2,9 @@ package com.boubei.tss.dm;
 
 import java.util.regex.Pattern;
 
-import com.boubei.tss.framework.component.param.ParamConfig;
-import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.sso.Environment;
+import com.boubei.tss.modules.param.ParamConfig;
+import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.util.EasyUtils;
 

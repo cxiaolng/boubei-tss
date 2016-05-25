@@ -13,11 +13,11 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.record.permission.RecordResource;
-import com.boubei.tss.framework.component.log.LogQueryCondition;
-import com.boubei.tss.framework.component.log.LogService;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.log.LogQueryCondition;
+import com.boubei.tss.modules.log.LogService;
+import com.boubei.tss.modules.param.ParamConstants;
 
 public class RecordTest extends AbstractTest4DM {
     

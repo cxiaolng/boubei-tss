@@ -1,7 +1,7 @@
 package com.boubei.tss.cms;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.modules.param.ParamConstants;
 
 /** 
  * CMS常用常量定义

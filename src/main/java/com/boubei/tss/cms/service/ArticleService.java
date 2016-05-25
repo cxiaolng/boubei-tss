@@ -51,7 +51,7 @@ public class ArticleService implements IArticleService {
 		String fileSuffix = FileHelper.getFileSuffix(fileName);
 		
 		// file指向剪切后的地址
-		file = new File(siteRootPath + "/" +fileName); 
+		file = new File(siteRootPath + "/" + fileName); 
 		
 		// 保存附件信息对象
 		Attachment attachment = new Attachment();
@@ -63,26 +63,22 @@ public class ArticleService implements IArticleService {
 		attachment.setUrl(CMSConstants.DOWNLOAD_SERVLET_URL);
 		attachment.setArticleId(articleId);
 		
-		// 对附件进行重命名
-		fileName = System.currentTimeMillis() + "." + fileSuffix;
-		String newPath = file.getParent() + "/" + fileName;
-        file.renameTo(new File(newPath));
-		file = new File(newPath);
+		String filepath = file.getPath();
 
 		/* 缩略图质量太差
 		if (attachment.isImage()) { // 如果是图片，则为其制作缩略图
 			try {
-				newPath = new ImageProcessor(newPath).resize(0.68);
+				filepath = new ImageProcessor(filepath).resize(0.68);
 			} catch (Exception e) {
 				log.error("制作附近图片的缩略图失败。", e);
-				newPath = file.getPath(); // 如果缩略失败，则还是采用原图片
+				filepath = file.getPath(); // 如果缩略失败，则还是采用原图片
 			}
 		}
 		*/
 
 		String year = new SimpleDateFormat("yyyy").format(new Date());
-		int index = newPath.indexOf(year);
-		attachment.setLocalPath(newPath.substring(index).replaceAll("\\\\", "/"));
+		int index = filepath.indexOf(year);
+		attachment.setLocalPath(filepath.substring(index).replaceAll("\\\\", "/"));
 		attachment.setUploadDate(new Date());
 		
 		articleDao.createObject(attachment);

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.JCache;
-import com.boubei.tss.cache.extension.ReusablePool;
+import com.boubei.tss.cache.ReusablePool;
 import com.boubei.tss.framework.persistence.connpool._Connection.DatasourceConnectionProvider;
 import com.boubei.tss.framework.persistence.connpool._Connection.IConnectionProvider;
 

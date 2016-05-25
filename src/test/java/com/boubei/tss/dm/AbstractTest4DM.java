@@ -1,9 +1,9 @@
 package com.boubei.tss.dm;
 
 import com.boubei.tss.AbstractTest4TSS;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.param.ParamManager;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamManager;
 
 public abstract class AbstractTest4DM extends AbstractTest4TSS { 
     

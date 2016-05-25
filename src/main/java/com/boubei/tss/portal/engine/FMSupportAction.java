@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.boubei.tss.framework.Config;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConfig;
-import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConfig;
+import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;

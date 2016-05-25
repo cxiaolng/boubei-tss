@@ -3,23 +3,35 @@
 <strategies> 
 
   <strategy code="connectionpool" name="数据库连接池"> 
-    <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
+    <poolClass>com.boubei.tss.cache.ReusablePool</poolClass>  
     <poolSize>100</poolSize>  
     <cyclelife>0</cyclelife>  
     <interruptTime>3000</interruptTime>  
-    <initNum>10</initNum>  
+    <initNum>5</initNum>  
     <disabled>0</disabled> <!-- 数据库连接池配置为启用 -->
 	<visible>1</visible>  
     <customizerClass>com.boubei.tss.framework.persistence.connpool.ConnPoolCustomizer</customizerClass>  
 	<paramFile>H2.properties</paramFile>
   </strategy> 
   
+  <strategy code="connectionpool2" name="数据库连接池2"> 
+    <poolClass>com.boubei.tss.cache.ReusablePool</poolClass>  
+    <poolSize>10</poolSize>  
+    <cyclelife>0</cyclelife>  
+    <interruptTime>1000</interruptTime>  
+    <initNum>5</initNum>  
+    <disabled>0</disabled>
+	<visible>1</visible>  
+    <customizerClass>com.boubei.tss.framework.persistence.connpool.ConnPoolCustomizer</customizerClass>  
+	<paramFile>H2.properties</paramFile>
+  </strategy> 
+  
   <strategy code="taskpool" name="端口扫描任务池"> 
-    <poolClass>com.boubei.tss.cache.extension.ReusablePool</poolClass>  
-    <poolContainerClass>com.boubei.tss.cache.extension.MapContainer</poolContainerClass>  
+    <poolClass>com.boubei.tss.cache.ReusablePool</poolClass>  
+    <poolContainerClass>com.boubei.tss.cache.MapContainer</poolContainerClass>  
     <cyclelife>5000</cyclelife>  
     <interruptTime>1000</interruptTime>  
-	<poolSize>30</poolSize>  
+	<poolSize>1000</poolSize>  
     <initNum>10</initNum>  
     <disabled>0</disabled>  
     <customizerClass>com.boubei.tss.cache.ScannerTaskPoolCustomizer</customizerClass>  
@@ -28,7 +40,7 @@
   
   <strategy code="threadpool" name="线程池"> 
     <poolClass>com.boubei.tss.cache.extension.threadpool.ThreadPool</poolClass>  
-	<poolContainerClass>com.boubei.tss.cache.extension.MapContainer</poolContainerClass>  
+	<poolContainerClass>com.boubei.tss.cache.MapContainer</poolContainerClass>  
     <cyclelife>0</cyclelife>  
     <interruptTime>1000</interruptTime>  
 	<poolSize>10</poolSize>  
@@ -67,6 +79,14 @@
     <interruptTime>1000</interruptTime>  
 	<poolSize>10</poolSize>  
     <cyclelife>1000000</cyclelife>  
+    <accessMethod>5</accessMethod>  
+  </strategy>
+  
+  <strategy code="LONGER" name="服务数据缓存（长期）2"> 
+    <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
+    <interruptTime>1000</interruptTime>  
+	<poolSize>10</poolSize>  
+    <cyclelife>2000000</cyclelife>  
     <accessMethod>5</accessMethod>  
   </strategy>
  

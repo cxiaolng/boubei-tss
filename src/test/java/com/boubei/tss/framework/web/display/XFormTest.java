@@ -7,11 +7,11 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import com.boubei.tss.framework.component.log.Log;
-import com.boubei.tss.framework.component.log.LogAction;
 import com.boubei.tss.framework.web.dispaly.XmlPrintWriter;
 import com.boubei.tss.framework.web.dispaly.xform.XFormDecoder;
 import com.boubei.tss.framework.web.dispaly.xform.XFormEncoder;
+import com.boubei.tss.modules.log.Log;
+import com.boubei.tss.modules.log.LogAction;
 
 public class XFormTest {
 	

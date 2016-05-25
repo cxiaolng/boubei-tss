@@ -9,16 +9,16 @@
 */
 package com.boubei.tss.cache.extension.workqueue;
 
+import com.boubei.tss.cache.DefaultCacheCustomizer;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.TimeWrapper;
-import com.boubei.tss.cache.extension.DefaultCustomizer;
 import com.boubei.tss.util.BeanUtil;
 
 /**
  * 任务池自定义类
  * 
  */
-public abstract class TaskPoolCustomizer extends DefaultCustomizer {
+public abstract class TaskPoolCustomizer extends DefaultCacheCustomizer {
     
     public Cacheable create() {
         String taskClassName = getTaskClass();

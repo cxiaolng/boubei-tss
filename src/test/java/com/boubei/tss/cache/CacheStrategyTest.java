@@ -35,9 +35,9 @@ public class CacheStrategyTest {
 		Assert.assertTrue(5 == strategy.getAccessMethod());
 		Assert.assertEquals("LONG", strategy.getCode());
 		Assert.assertEquals("服务数据缓存（长期）", strategy.getName());
-		Assert.assertEquals("com.boubei.tss.cache.extension.DefaultCustomizer", strategy.getCustomizerClass());
+		Assert.assertEquals("com.boubei.tss.cache.DefaultCacheCustomizer", strategy.getCustomizerClass());
 		Assert.assertEquals("com.boubei.tss.cache.ObjectPool", strategy.getPoolClass());
-		Assert.assertEquals("com.boubei.tss.cache.extension.MapContainer", strategy.getPoolContainerClass());
+		Assert.assertEquals("com.boubei.tss.cache.MapContainer", strategy.getPoolContainerClass());
 		
 		Assert.assertTrue(1000000 == strategy.getCyclelife());
 		Assert.assertTrue(0  == strategy.getInitNum());
@@ -54,8 +54,8 @@ public class CacheStrategyTest {
 		strategy2.setName("数据缓存（长期）");
 		strategy2.setInterruptTime(2000l);
 		strategy2.setCyclelife(3000l);
-		strategy2.setPoolContainerClass("com.boubei.tss.cache.extension.EhcacheContainer");
-		strategy2.setPoolClass("com.boubei.tss.cache.extension.ReusablePool");
+		strategy2.setPoolContainerClass("com.boubei.tss.cache.MapContainer");
+		strategy2.setPoolClass("com.boubei.tss.cache.ReusablePool");
 		strategy2.setCustomizerClass("com.boubei.tss.cache.ScannerTaskPoolCustomizer");
 		
 		strategy.fireEventIfChanged(strategy2);

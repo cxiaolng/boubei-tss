@@ -46,7 +46,7 @@ public class Servlet3MultiRequest extends HttpServlet {
 			for (Element requestNode : requestNodes) {
                 String servletPath = requestNode.attributeValue("url"); //获取子请求的ServletPath
 				
-                RewriteableHttpServletRequest rRequest = RewriteableHttpServletRequestWrapper.getRewriteableHttpServletRequest(request);
+                RewriteableHttpServletRequest rRequest = RewriteableHttpServletRequestWrapper.wrapRequest(request);
                 rRequest.setHeader(RequestContext.MULTI_REQUEST, "true");
 				rRequest.setServletPath(servletPath);
 				XmlHttpDecoder.decode(requestNode, rRequest);

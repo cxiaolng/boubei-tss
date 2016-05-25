@@ -13,12 +13,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.sso.IOperator;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.dao.IGroupDao;
 import com.boubei.tss.um.dao.IUserDao;

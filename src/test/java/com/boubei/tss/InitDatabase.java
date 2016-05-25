@@ -17,13 +17,13 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.component.param.Param;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.param.ParamManager;
-import com.boubei.tss.framework.component.param.ParamService;
 import com.boubei.tss.framework.sso.IdentityCard;
 import com.boubei.tss.framework.sso.TokenUtil;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamManager;
+import com.boubei.tss.modules.param.ParamService;
 import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.portal.entity.Component;
 import com.boubei.tss.portal.entity.Navigator;

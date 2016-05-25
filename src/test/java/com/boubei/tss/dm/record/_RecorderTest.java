@@ -11,20 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import org.easymock.EasyMock;
 import org.easymock.IMocksControl;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 import com.boubei.tss._TestUtil;
-import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.AbstractTest4DM;
+import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.dm.record.file.CreateAttach;
 import com.boubei.tss.dm.record.file.RecordAttach;
-import com.boubei.tss.framework.component.log.LogService;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.web.servlet.AfterUpload;
+import com.boubei.tss.modules.log.LogService;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.FileHelper;
 
@@ -36,9 +35,8 @@ public class _RecorderTest extends AbstractTest4DM {
 	
 	Long recordId;
 	
-	@Before
-	public void setUp() throws Exception {
-		super.setUp();
+	public void init() {
+		super.init();
 		
 		String tblDefine = "[ {'label':'类型', 'code':'f1', 'type':'number', 'nullable':'false'}," +
         		"{'label':'名称', 'code':'f2', 'type':'string'}," +

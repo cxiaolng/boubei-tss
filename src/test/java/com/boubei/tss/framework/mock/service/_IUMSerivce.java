@@ -2,11 +2,11 @@ package com.boubei.tss.framework.mock.service;
 
 import java.util.List;
 
-import com.boubei.tss.framework.component.log.Logable;
 import com.boubei.tss.framework.mock.model._Group;
 import com.boubei.tss.framework.mock.model._GroupRole;
 import com.boubei.tss.framework.mock.model._Role;
 import com.boubei.tss.framework.mock.model._User;
+import com.boubei.tss.modules.log.Logable;
 
 public interface _IUMSerivce {
     

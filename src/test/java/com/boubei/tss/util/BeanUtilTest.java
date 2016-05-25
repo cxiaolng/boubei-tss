@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.boubei.tss.cache.CacheStrategy;
-import com.boubei.tss.cache.extension.MapContainer;
+import com.boubei.tss.cache.MapContainer;
 
 public class BeanUtilTest {
 	

@@ -11,10 +11,10 @@ import org.dom4j.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.Progressable;
 import com.boubei.tss.framework.exception.BusinessException;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.dao.IApplicationDao;
 import com.boubei.tss.um.dao.IGroupDao;

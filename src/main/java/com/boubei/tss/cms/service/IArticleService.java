@@ -5,8 +5,8 @@ import java.io.File;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Attachment;
 import com.boubei.tss.cms.helper.ArticleQueryCondition;
-import com.boubei.tss.framework.component.log.Logable;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
+import com.boubei.tss.modules.log.Logable;
 
 public interface IArticleService {
 

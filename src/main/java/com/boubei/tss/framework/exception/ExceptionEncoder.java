@@ -11,10 +11,6 @@ import javax.servlet.ServletResponse;
 import org.apache.log4j.Logger;
 
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.MailUtil;
-import com.boubei.tss.framework.component.log.IBusinessLogger;
-import com.boubei.tss.framework.component.log.Log;
-import com.boubei.tss.framework.component.param.ParamConfig;
 import com.boubei.tss.framework.exception.convert.ExceptionConvertorFactory;
 import com.boubei.tss.framework.exception.convert.IExceptionConvertor;
 import com.boubei.tss.framework.sso.Environment;
@@ -23,7 +19,11 @@ import com.boubei.tss.framework.sso.context.RequestContext;
 import com.boubei.tss.framework.web.dispaly.ErrorMessageEncoder;
 import com.boubei.tss.framework.web.dispaly.IDataEncoder;
 import com.boubei.tss.framework.web.dispaly.XmlPrintWriter;
+import com.boubei.tss.modules.log.IBusinessLogger;
+import com.boubei.tss.modules.log.Log;
+import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.util.EasyUtils;
+import com.boubei.tss.util.MailUtil;
 
 /**
  * 异常信息编码器。

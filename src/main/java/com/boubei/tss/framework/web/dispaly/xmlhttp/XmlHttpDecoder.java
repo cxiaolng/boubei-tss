@@ -34,7 +34,7 @@ public class XmlHttpDecoder {
 	 */
 	public static RewriteableHttpServletRequest decode(Element element, HttpServletRequest request) {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		RewriteableHttpServletRequest req = RewriteableHttpServletRequestWrapper.getRewriteableHttpServletRequest(httpRequest);
+		RewriteableHttpServletRequest req = RewriteableHttpServletRequestWrapper.wrapRequest(httpRequest);
 
 		// 输出请求（request）的详细信息：请求数据流
         log.debug("---------------------------- Request ----------------------------");

@@ -11,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss._TestUtil;
 import com.boubei.tss.framework.Config;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.ProgressPool;
 import com.boubei.tss.framework.sso.Environment;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.ProgressPool;
 import com.boubei.tss.um.AbstractTest4UM;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.action.GroupAction;

@@ -11,10 +11,10 @@ import com.boubei.tss.cms.CMSConstants;
 import com.boubei.tss.cms.entity.Article;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.service.IChannelService;
-import com.boubei.tss.framework.component.progress.Progress;
-import com.boubei.tss.framework.component.progress.ProgressManager;
-import com.boubei.tss.framework.component.progress.Progressable;
 import com.boubei.tss.framework.exception.BusinessException;
+import com.boubei.tss.modules.progress.Progress;
+import com.boubei.tss.modules.progress.ProgressManager;
+import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.permission.PermissionHelper;
 

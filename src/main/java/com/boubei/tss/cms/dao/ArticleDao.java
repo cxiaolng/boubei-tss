@@ -12,10 +12,10 @@ import com.boubei.tss.cms.entity.Attachment;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.helper.ArticleHelper;
 import com.boubei.tss.cms.helper.ArticleQueryCondition;
-import com.boubei.tss.framework.component.param.ParamConstants;
 import com.boubei.tss.framework.persistence.BaseDao;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
 import com.boubei.tss.framework.persistence.pagequery.PaginationQueryByHQL;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.util.EasyUtils;
 
 /**

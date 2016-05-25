@@ -11,15 +11,15 @@ import com.boubei.tss.dm.record.RecordService;
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.report.ReportService;
 import com.boubei.tss.framework.Global;
-import com.boubei.tss.framework.MailUtil;
-import com.boubei.tss.framework.component.timer.AbstractJob;
 import com.boubei.tss.framework.exception.ExceptionEncoder;
 import com.boubei.tss.framework.sso.IdentityCard;
 import com.boubei.tss.framework.sso.TokenUtil;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.framework.timer.AbstractJob;
 import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.helper.dto.OperatorDTO;
 import com.boubei.tss.util.EasyUtils;
+import com.boubei.tss.util.MailUtil;
 
 /**
  * 用于清洗数据的JOB，利用report和record一进一出的功能，将数据清洗到指定的数据表（支持跨DB）

@@ -6,8 +6,8 @@
    
    	<!-- framework -->	
    	<entity class="com.boubei.tss.framework.persistence.Temp"/>
-	<entity class="com.boubei.tss.framework.component.log.Log"/>
-	<entity class="com.boubei.tss.framework.component.param.Param"/>
+	<entity class="com.boubei.tss.modules.log.Log"/>
+	<entity class="com.boubei.tss.modules.param.Param"/>
 	
     <entity class="com.boubei.tss.um.sso.online.DBOnlineUser"/>
  

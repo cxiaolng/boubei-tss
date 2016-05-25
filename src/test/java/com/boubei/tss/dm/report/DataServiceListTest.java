@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.DMConstants;
-import com.boubei.tss.framework.component.param.ParamConstants;
-import com.boubei.tss.framework.component.param.ParamManager;
 import com.boubei.tss.framework.sso.context.Context;
+import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.modules.param.ParamManager;
 
 public class DataServiceListTest extends AbstractTest4DM {
     

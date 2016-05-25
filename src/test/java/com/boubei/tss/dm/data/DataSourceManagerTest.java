@@ -19,7 +19,7 @@ public class DataSourceManagerTest extends AbstractTest4DM {
 		String code = "connpool-h2";
 		String name = "测试数据源";
 		String value = "{\"customizerClass\": \"com.boubei.tss.framework.persistence.connpool.ConnPoolCustomizer\",  " +
-				" \"poolClass\": \"com.boubei.tss.cache.extension.ReusablePool\",   " +
+				" \"poolClass\": \"com.boubei.tss.cache.ReusablePool\",   " +
 				" \"code\": \"connpool-h2\",  " +
 				" \"name\": \"测试数据源\",   " +
 				" \"cyclelife\": \"180000\",  " +

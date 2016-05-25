@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSessionListener;
 import org.apache.log4j.Logger;
 
 import com.boubei.tss.framework.Config;
-import com.boubei.tss.framework.component.param.ParamConfig;
 import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.sso.online.IOnlineUserManager;
 import com.boubei.tss.framework.sso.online.OnlineUserManagerFactory;
+import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.util.EasyUtils;
 
 /**

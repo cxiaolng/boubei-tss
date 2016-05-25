@@ -9,8 +9,6 @@
  */
 package com.boubei.tss.cache;
 
-import com.boubei.tss.cache.extension.DefaultCustomizer;
-import com.boubei.tss.cache.extension.MapContainer;
 import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.EasyUtils;
 
@@ -45,7 +43,7 @@ public class CacheStrategy {
 	static final String BASE_POOL_CLASS = ObjectPool.class.getName();
 
 	final static String DEFAULT_CONTAINER  = MapContainer.class.getName();
-	final static String DEFAULT_CUSTOMIZER = DefaultCustomizer.class.getName();
+	final static String DEFAULT_CUSTOMIZER = DefaultCacheCustomizer.class.getName();
 
 	/** 缓存策略的名称 */
 	public String name; 

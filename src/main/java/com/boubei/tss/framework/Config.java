@@ -23,7 +23,7 @@ public class Config {
 	/** 配置文件中应用编号属性名：系统获取Code值，如TSS、CMS */
 	public static final String APPLICATION_CODE = "application.code";
 
-	/** Spring配置文件， 默认为spring/applicationContext.xml */
+	/** Spring配置文件， 默认为spring.xml */
 	public static final String SPRING_CONTEXT_PATH = "aplication.context";
 
 	/** session过期时间的配置名称 */
@@ -89,15 +89,5 @@ public class Config {
             }
         }
         return set;
-    }
- 
-    static String dbDriverName = Config.getAttribute("db.connection.driver_class");
-    
-    public static boolean isH2Database() {
-    	return dbDriverName != null && dbDriverName.indexOf("h2") >= 0;
-    }
-    
-    public static boolean isMysqlDatabase() {
-        return dbDriverName != null && dbDriverName.indexOf("mysql") >= 0;
     }
 }

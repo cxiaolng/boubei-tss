@@ -10,8 +10,5 @@ public class ConfigTest {
 		Assert.assertEquals(2, Config.getAttributesSet("test").size());
 		
 		Assert.assertEquals("TSS", Config.getAttribute("application.code"));
-		
-		Assert.assertTrue(Config.isH2Database());
-		Assert.assertFalse(Config.isMysqlDatabase());
 	}
 }

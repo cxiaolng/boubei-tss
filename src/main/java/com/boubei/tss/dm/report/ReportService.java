@@ -3,11 +3,11 @@ package com.boubei.tss.dm.report;
 import java.util.List;
 import java.util.Map;
 
+import com.boubei.tss.cache.aop.Cached;
+import com.boubei.tss.cache.aop.QueryCached;
+import com.boubei.tss.cache.extension.CacheLife;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
-import com.boubei.tss.framework.component.cache.CacheLife;
-import com.boubei.tss.framework.component.cache.Cached;
-import com.boubei.tss.framework.component.cache.QueryCached;
-import com.boubei.tss.framework.component.log.Logable;
+import com.boubei.tss.modules.log.Logable;
 import com.boubei.tss.um.permission.filter.PermissionFilter4Create;
 import com.boubei.tss.um.permission.filter.PermissionFilter4Sort;
 import com.boubei.tss.um.permission.filter.PermissionTag;

@@ -3,7 +3,7 @@
         "id": 82,
         "code": "taskpool",
         "name": "日志输出任务池",
-        "value": "{\"visible\":\"1\",\"customizerClass\":\"com.boubei.tss.framework.component.log.LogOutputTaskPoolCustomizer\",\"initNum\":\"50\",\"poolContainerClass\":\"com.boubei.tss.cache.extension.MapContainer\",\"code\":\"taskpool\",\"cyclelife\":\"1000\",\"accessMethod\":\"3\",\"poolClass\":\"com.boubei.tss.cache.extension.ReusablePool\",\"name\":\"日志输出任务池\",\"interruptTime\":\"200\",\"poolSize\":\"1000\",\"disabled\":\"0\"}",
+        "value": "{\"visible\":\"1\",\"customizerClass\":\"com.boubei.tss.modules.log.LogOutputTaskPoolCustomizer\",\"initNum\":\"50\",\"poolContainerClass\":\"com.boubei.tss.cache.extension.MapContainer\",\"code\":\"taskpool\",\"cyclelife\":\"1000\",\"accessMethod\":\"3\",\"poolClass\":\"com.boubei.tss.cache.extension.ReusablePool\",\"name\":\"日志输出任务池\",\"interruptTime\":\"200\",\"poolSize\":\"1000\",\"disabled\":\"0\"}",
         "text": null,
         "modality": 0,
         "type": 1,
