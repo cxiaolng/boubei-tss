@@ -3,9 +3,20 @@ function isArray(v){
     return Object.prototype.toString.call(v) === '[object Array]';
 } 
 
-function groupby(arr, fields, vFiled) {
-	vFiled = vFiled || "value";
-	var result = [], keySet = [], map = {}, fields = fields.split(",");
+// groupby(data, 'f1,f2,f3', 'v1,v2,v3', 2)
+/* 
+	var a = [
+		{'org': '浙江', 'city': '杭州', 'site': '九堡', 'v1': 1, 'v2': '2.2', 'v3': 3}, 
+		{'org': '浙江', 'city': '杭州', 'site': '下沙', 'v1': null, 'v2': 2, 'v3': '3.3'}
+	];
+	groupby(a, 'org,city', 'v1,v2,v3');
+ */
+function groupby(arr, fields, vFileds, x) {
+	vFileds = vFileds || "value";
+	var result = [], keySet = [], map = {}, 
+		fields = fields.split(","), 
+		vFileds = vFileds.split(",");
+
 	arr.each(function(i, row){
 		var key = [];
 		fields.each(function(i, f){
@@ -14,15 +25,25 @@ function groupby(arr, fields, vFiled) {
 		key = key.join(",");
 
 		if( !map[key] ) {
-			map[key] = 0
+			map[key] = {};
+			vFileds.each(function(i, vf){
+				map[key][vf] = 0;
+			});
+
 			keySet.push(key);
 		}
-		map[key] = map[key] + row[vFiled];
+
+		vFileds.each(function(i, vf){
+			map[key][vf] += parseFloat(row[vf] || '0');
+		});
 	});
 
 	keySet.each(function(i, key) {
-		var item = {}, key = key.split(",");
-		item[vFiled] = parseFloat( map[key].toFixed(1) );
+		var item = {}, key = key.split(","), vMap = map[key];
+		vFileds.each(function(i, vf){
+			item[vf] = parseFloat( vMap[vf].toFixed( x || 1) );
+		});
+
 		fields.each(function(i, f){
 			item[f] = key[i];
 		});

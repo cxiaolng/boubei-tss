@@ -203,7 +203,11 @@ public class _Reporter extends BaseActionSupport {
      */
     @RequestMapping("/json/{report}")
     @ResponseBody
-    public Object showAsJson(HttpServletRequest request, @PathVariable("report") String report) {
+    public Object showAsJson(HttpServletRequest request, HttpServletResponse response, 
+    		@PathVariable("report") String report) {
+    	
+    	response.setHeader("Access-Control-Allow-Origin", "*"); // 允许跨域访问
+    	
     	Long reportId;
     	try {
     		reportId = Long.valueOf(report);
@@ -260,7 +264,7 @@ public class _Reporter extends BaseActionSupport {
 			ObjectMapper objectMapper = new ObjectMapper();
 			String jsonString;
 			try {
-				jsonString = objectMapper.writeValueAsString( showAsJson(request, report) );
+				jsonString = objectMapper.writeValueAsString( showAsJson(request, response, report) );
 			} catch (Exception e) {  
 				jsonString = "";
       	    }  

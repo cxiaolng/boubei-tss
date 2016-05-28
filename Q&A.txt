@@ -83,7 +83,38 @@ service nginx start
 $("#P16_iframe")[0].contentWindow
 
 jinhe-tss切换至boubei-tss步骤：
-1、cache.xml 存到数据库里的cache配置（param里）
-2、资源视图、权限的class路径
-3、um_user表UMPasswordIdntifier的路径
-4、timer job的路径
+1、cache.xml自身
+2、存到数据库里的cache配置（param里）
+3、资源视图、权限的class路径
+4、um_user表UMPasswordIdntifier的路径
+5、timer job的路径 （param里）
+
+
+SET SQL_SAFE_UPDATES = 0;
+
+update demo_bi.um_resourcetype set resourceTable = replace(resourceTable, '.jinhe.', '.boubei.')
+    where resourceTable like '%.jinhe.%';
+update demo_bi.um_resourcetype set resourceTable = replace(resourceTable, '.boubei.dm', '.boubei.tss.dm')
+    where resourceTable like '%.boubei.dm%';
+
+update demo_bi.um_resourcetype set permissionTable = replace(permissionTable, '.jinhe.', '.boubei.')
+    where permissionTable like '%.jinhe.%';
+update demo_bi.um_resourcetype set permissionTable = replace(permissionTable, '.boubei.dm', '.boubei.tss.dm')
+    where permissionTable like '%.boubei.dm%';
+
+update demo_bi.um_user set authMethod = replace(authMethod, '.jinhe.', '.boubei.')
+    where authMethod like '%.jinhe.%';
+
+update demo_bi.component_param set value = replace(value, '.jinhe.', '.boubei.')
+    where value like '%.jinhe.%';
+update demo_bi.component_param set value = replace(value, '.boubei.dm', '.boubei.tss.dm')
+    where value like '%.boubei.dm%';
+
+update demo_bi.component_param set value = replace(value, 'framework.component.log', 'modules.log')
+    where value like '%framework.component.log%';
+update demo_bi.component_param set value = replace(value, 'extension.ReusablePool', 'ReusablePool')
+    where value like '%extension.ReusablePool%';
+
+SELECT * FROM demo_bi.component_param  where value like '%.boubei.%';
+
+

@@ -38,11 +38,11 @@ public class ScriptParseTest extends AbstractTest4DM {
         
         request.addParameter("param1", "2013-10-01");
         request.addParameter("param2", "-1");
-        display.showAsJson(request, reportId.toString());
+        display.showAsJson(request, response, reportId.toString());
         
         request.removeParameter("param2");
         request.addParameter("param2", "阿斯达");
-        display.showAsJson(request, reportId.toString());
+        display.showAsJson(request, response, reportId.toString());
     }
     
 }

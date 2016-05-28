@@ -39,21 +39,22 @@ import com.boubei.tss.util.XMLDocUtil;
 
 /**
  * 初始化数据库。
+ * 初始化时需要把spring.xml 里 <property name="generateDdl" value="true"/> 设为true
  * 
  * 步骤：
+ * 0、将 src/test/resources "Remove from build path"（需使用 src/main/resources目录下的配置文件）
+ *    改完后重新 clean 一下 project
  * 0、创建一个空的MySQL库（比如wms），并把application.properties里的连接改过去
  * 1、先放开 step1 和 step2 方法上的@Test注释
  * 2、确保 step1 在 step2 前面执行
  * 3、注释掉 step1 和 step2 方法上的@Test
  * 4、把 application.properties 的数据库连接改回原来的
- * 
- * 需使用 src/main/resources目录下的配置文件，比如persistence.xml, application.properties等。
- * 初始化时需要把spring.xml 里 <property name="generateDdl" value="true"/> 设为true
+ * 5、重新执行: mvn clean eclipse:eclipse, 刷新 project
  */
 @ContextConfiguration(
         locations={
-          "classpath:META-INF/framework-spring.xml",  
-          "classpath:META-INF/um-spring.xml",
+          "classpath:META-INF/spring-framework.xml",  
+          "classpath:META-INF/spring-um.xml",
           "classpath:META-INF/spring.xml"
         } 
       )
@@ -150,7 +151,7 @@ public class InitDatabase extends AbstractTransactionalJUnit4SpringContextTests 
         Component defaultLayout = new Component();
         defaultLayout.setIsDefault(ParamConstants.TRUE);
         defaultLayout.setParentId(layoutGroup.getId());   
-        Document document = XMLDocUtil.createDoc("template/initialize/defaultLayout.xml");
+        Document document = XMLDocUtil.createDoc("template/portal/defaultLayout.xml");
         org.dom4j.Element propertyElement = document.getRootElement().element("property");
         String layoutName = propertyElement.elementText("name");
         defaultLayout.setName(layoutName);
@@ -169,7 +170,7 @@ public class InitDatabase extends AbstractTransactionalJUnit4SpringContextTests 
         defaultDecorator.setIsDefault(ParamConstants.TRUE);
         defaultDecorator.setParentId(decoratorGroup.getId());
         
-        document = XMLDocUtil.createDoc("template/initialize/defaultDecorator.xml");
+        document = XMLDocUtil.createDoc("template/portal/defaultDecorator.xml");
         propertyElement = document.getRootElement().element("property");
         String decoratorName = propertyElement.elementText("name");
         defaultDecorator.setName(decoratorName);

@@ -8,10 +8,10 @@
    	<entity class="com.boubei.tss.framework.persistence.Temp"/>
 	<entity class="com.boubei.tss.modules.log.Log"/>
 	<entity class="com.boubei.tss.modules.param.Param"/>
-	
-    <entity class="com.boubei.tss.um.sso.online.DBOnlineUser"/>
  
 	<!-- um -->	
+	<entity class="com.boubei.tss.um.sso.online.DBOnlineUser"/>
+	
 	<entity class="com.boubei.tss.um.entity.Application"/>
 	<entity class="com.boubei.tss.um.entity.ResourceType"/>
 	<entity class="com.boubei.tss.um.entity.ResourceTypeRoot"/>

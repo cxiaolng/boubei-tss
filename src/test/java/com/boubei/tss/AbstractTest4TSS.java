@@ -42,7 +42,7 @@ import com.boubei.tss.util.XMLDocUtil;
         } 
         , inheritLocations = false // 是否要继承父测试用例类中的 Spring 配置文件，默认为 true
       )
-@TransactionConfiguration(defaultRollback = true) // 不自动回滚，否则后续的test中没有初始化的数据
+@TransactionConfiguration(defaultRollback = true) // 自动回滚，每个用力测试完成后自动清空产生的数据
 public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4SpringContextTests { 
  
     protected Logger log = Logger.getLogger(this.getClass());    
@@ -80,19 +80,22 @@ public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4Spring
     
     @After
     public void tearDown() throws Exception {
-    	if(dbserver != null) {
-    		dbserver.stopServer();
-            dbserver = null;
-    	}
+//    	if(dbserver != null) {
+//    		dbserver.stopServer();
+//          dbserver = null;
+//    	}
     }
  
     /**
      * 初始化CMS的动态属性相关模板
      */
     protected void init() {
-    	// 初始化数据库脚本
+    	/* 
+    	 * 初始化数据库脚本。
+    	 * 此处直接通过jdbc（ stmt.execute(sql) ）向H2插入了初始数据，没法在spring-test框架里自动回滚。
+    	 * 通过hibernate生成的数据能回滚，因其事务由spring-test控制。
+    	 */
     	if(paramService.getParam(0L) == null) {
-    		
 			String sqlpath = _TestUtil.getInitSQLDir();
 	    	log.info( " sql path : " + sqlpath);
 	        _TestUtil.excuteSQL(sqlpath + "/framework");

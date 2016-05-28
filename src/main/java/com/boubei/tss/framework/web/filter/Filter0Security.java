@@ -45,7 +45,8 @@ public class Filter0Security implements Filter {
             FilterChain chain) throws IOException, ServletException {
     	
     	HttpServletRequest req = (HttpServletRequest) request;
-        
+    	HttpServletResponse rep = (HttpServletResponse) response;
+    	
         /* 防止盗链 */
         String referer    = req.getHeader("referer");
         String serverName = req.getServerName(); // 网站的域名
@@ -67,7 +68,7 @@ public class Filter0Security implements Filter {
         	}
         	
         	if( !flag ){
-        		((HttpServletResponse)response).sendRedirect(THE_404_URL);
+        		rep.sendRedirect(THE_404_URL);
             	return;
         	}
         }      
@@ -92,7 +93,7 @@ public class Filter0Security implements Filter {
         log.debug("权限检测开始：" + servletPath);
         if ( !checkPermission(userRights, servletPath) ) {
             log.debug("权限检测失败");
-            ((HttpServletResponse)response).sendRedirect(THE_404_URL);
+            rep.sendRedirect(THE_404_URL);
             return;
         }
         
@@ -134,7 +135,8 @@ public class Filter0Security implements Filter {
         		String requestType = request.getHeader(RequestContext.REQUEST_TYPE);
 				if(servletPath.indexOf("/data/json/") >= 0 
         				&& RequestContext.XMLHTTP_REQUEST.equals(requestType ) ) {
-        			return false; // ajax json跨域请求（多为本地调试用），放行。（注：jQuery发ajax请求需要在header里加上此参数）
+					/* ajax json跨域请求（多为本地调试用），放行。（注：jQuery发ajax请求需要在header里加上此参数）*/
+        			return false; 
         		}
         		
         		return true;

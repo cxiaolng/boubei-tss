@@ -68,11 +68,11 @@ public class _ReporterTest extends AbstractTest4DM {
         
         Long reportId = report1.getId();
         _reporter.showAsGrid(request, response, reportId, 1, 10);
-        _reporter.showAsJson(request, reportId.toString());
+        _reporter.showAsJson(request, response, reportId.toString());
         
         request.addParameter("page", "1");
         request.addParameter("rows", "3");
-        _reporter.showAsJson(request, report1.getName());
+        _reporter.showAsJson(request, response, report1.getName());
         
         _reporter.exportAsCSV(request, response, reportId, 1, 0); // 测试导出
         
@@ -81,11 +81,11 @@ public class _ReporterTest extends AbstractTest4DM {
         request.addParameter("param3", "today - 100");
         request.addParameter("param4", "today + 10");
         request.addParameter("param5", "report-1,report-1");
-        _reporter.showAsJson(request, report1.getName());
+        _reporter.showAsJson(request, response, report1.getName());
         
         // test nocache
         request.addParameter("noCache", "noCache");
-        _reporter.showAsJson(request, report1.getName());
+        _reporter.showAsJson(request, response, report1.getName());
         request.removeParameter("noCache");
         
         // test get param define
@@ -120,7 +120,7 @@ public class _ReporterTest extends AbstractTest4DM {
 		
         // test Customize report tree
 		for(int i = 0; i < 30; i++) {
-			_reporter.showAsJson(request, report1.getName());
+			_reporter.showAsJson(request, response, report1.getName());
 		}
         action.getMyReports(response, null);
         action.getMyReports(response, reportGruop.getId());
@@ -167,7 +167,7 @@ public class _ReporterTest extends AbstractTest4DM {
         Long reportId = report1.getId();
         
 		try {
-			_reporter.showAsJson(request, reportId.toString());
+			_reporter.showAsJson(request, response, reportId.toString());
 			Assert.fail("should throw exception but didn't.");
 		} catch (Exception e) {
 			Assert.assertEquals("参数【起始时间】不能为空。", e.getMessage());
@@ -180,7 +180,7 @@ public class _ReporterTest extends AbstractTest4DM {
         request.addParameter("param4", "2013/10/01 11:11:11");
         
         try {
-			_reporter.showAsJson(request, reportId.toString());
+			_reporter.showAsJson(request, response, reportId.toString());
 			Assert.fail("should throw exception but didn't.");
 		} catch (Exception e) {
 			Assert.assertEquals("参数【组织列表】不能为空。", e.getMessage());
