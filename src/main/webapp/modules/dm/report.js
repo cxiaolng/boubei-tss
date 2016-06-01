@@ -645,5 +645,5 @@ function selectTL() {
 }
 
 function uploadTL() {
-	fileManage("type=reportTL", "管理报表模板文件");
+	fileManage("type=reportTL&useOrignName=true", "管理报表模板文件");
 }

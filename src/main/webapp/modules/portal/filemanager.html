@@ -50,7 +50,8 @@
     }
 
     var code = $.Query.get("code"), 
-        type = $.Query.get("type");
+        type = $.Query.get("type"),
+        useOrignName = $.Query.get("useOrignName");
 
     function init() {
         loadFileTree();
@@ -256,6 +257,9 @@
         var contextPath = $1("contextPath").value;
         var url = URL_UPLOAD_FILE + "?contextPath=" + contextPath; 
         url += "&afterUploadClass=com.boubei.tss.portal.helper.MovePortalFile";
+        if(useOrignName) {
+            url += "&useOrignName=" + useOrignName;
+        }
 
         var importDiv = createImportDiv("点击图标选择要上传的文件", null, url);
         $(importDiv).show();

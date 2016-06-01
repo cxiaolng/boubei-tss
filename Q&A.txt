@@ -88,6 +88,7 @@ jinhe-tss切换至boubei-tss步骤：
 3、资源视图、权限的class路径
 4、um_user表UMPasswordIdntifier的路径
 5、timer job的路径 （param里）
+6、application.properties里的class路径修改
 
 
 SET SQL_SAFE_UPDATES = 0;

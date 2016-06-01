@@ -15,7 +15,7 @@ set -m
 
 rm -rf $TOMCAT_HOME/webapps/tss
 
-cp webapp/target/tss.war $TOMCAT_HOME/webapps
+cp target/tss.war $TOMCAT_HOME/webapps
 
 cd $TOMCAT_HOME/bin
 

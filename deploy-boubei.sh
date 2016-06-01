@@ -1,5 +1,5 @@
 mvn clean install -Pboubei -Dmaven.test.skip=true
-cp webapp/target/tss.war /Users/jinpujun/Desktop/workspace/release/boubei
+cp target/tss.war /Users/jinpujun/Desktop/workspace/release/boubei
 
 
 #boubei.com demoBI发布步骤
