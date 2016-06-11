@@ -245,12 +245,13 @@ public class UserAction extends BaseActionSupport {
 		
 		Long userId = Environment.getUserId();
 		
-		Object[] userHas = new Object[5];
+		Object[] userHas = new Object[6];
 		userHas[0] = loginService.getGroupsByUserId(userId);  //List<[groupId, groupName]>
 		userHas[1] = loginService.getRoleIdsByUserId(userId); //List<roleId>
 		userHas[2] = userId;
 		userHas[3] = Environment.getUserCode();
 		userHas[4] = Environment.getUserName();
+		userHas[5] = loginService.getAssistGroupIdsByUserId(userId);
 		
 		return userHas;
 	}

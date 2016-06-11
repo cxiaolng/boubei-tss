@@ -54,7 +54,12 @@ URL_GET_USER_HAS  = AUTH_PATH + "user/has";
 var recordId = 1, recordName = "数据录入", recordDefine, customizeJS, customizeGrid, needFile;
 
 // 用户权限信息
-var _operation = ['1','2','3','4','5'], userCode, userName, userGroups = [], userRoles = [];
+var _operation = ['1','2','3','4','5'], 
+    userCode, 
+    userName, 
+    userGroups = [], 
+    userRoles = [], 
+    userAssistGroups = [];
 
 // 监听器
 var preListener, // 在表单保存前触发，如不通过，则终止保存
@@ -102,6 +107,7 @@ function init() {
             userRoles = result[1];
             userCode = result[3];
             userName = result[4];
+            userAssistGroups = result[5];
 
             // 获取表单定义信息
             $.ajax({

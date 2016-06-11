@@ -1,3 +1,9 @@
+grep 'xxx'  filename
+find / -name xx.jpg 
+visudo    添加用户到sudoers
+uptime    查看系统启动时间
+free -m   查看内存使用   
+df -m 查看硬盘
 -------------------------------------------- Apache ------------------------------------------------------
 sudo service httpd restart
 /bin/vi /etc/httpd/conf/httpd.conf
@@ -64,3 +70,4 @@ service crond start
 [root@CentOS ~]# yum install crontabs
 
 查看linux发行版本：cat /etc/issue
+查看系统与内核相关：uname -a

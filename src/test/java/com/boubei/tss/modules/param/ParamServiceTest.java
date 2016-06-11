@@ -64,7 +64,7 @@ public class ParamServiceTest extends AbstractTest4F {
         
 		ParamManager.addParamItem(comboParam.getId(), "Thinking in JAVA", "Thinking in JAVA", ParamConstants.COMBO_PARAM_MODE);
 		ParamManager.addParamItem(comboParam.getId(), "Effictive JAVA", "Effictive JAVA", ParamConstants.COMBO_PARAM_MODE);
-		ParamManager.addParamItem(comboParam.getId(), "Design Pattern", "Design Pattern", ParamConstants.COMBO_PARAM_MODE);
+		ParamManager.addParamItem(comboParam.getId(), "Design Pattern", "设计模式", ParamConstants.COMBO_PARAM_MODE);
         
         Param paramGroup2 = ParamManager.addParamGroup(ParamConstants.DEFAULT_PARENT_ID, "测试参数组2");
         String treeParamCode = "group";
@@ -86,6 +86,10 @@ public class ParamServiceTest extends AbstractTest4F {
         // test Param Manager
         List<Param> list = ParamManager.getComboParam(comboParamCode);
         Assert.assertEquals(3, list.size());
+        
+        Assert.assertNotNull( ParamManager.getComboParamItem(comboParamCode, "Design Pattern") );
+        Assert.assertNotNull( ParamManager.getComboParamItem(comboParamCode, "设计模式") );
+        Assert.assertNull( ParamManager.getComboParamItem(comboParamCode, "not exsits") );
         
         list = ParamManager.getTreeParam(treeParamCode);
         Assert.assertEquals(3, list.size());

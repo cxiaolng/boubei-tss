@@ -67,7 +67,7 @@ public class UMPasswordIdentifier extends BaseUserIdentifier {
 			throw new BusinessException("密码错误，" + notice, false);
         }
 		else {
-			loginSuccess("Logon by UM password");
+			loginSuccess("Logon by UM ");
 			return operator;
 		}
     }
@@ -79,7 +79,7 @@ public class UMPasswordIdentifier extends BaseUserIdentifier {
     protected boolean customizeValidate(IPWDOperator operator, String passwd) {
         IdentityGetter ig = IdentityGetterFactory.getInstance();
         boolean result = ig.indentify(operator, passwd);
-        if(result) { // 如果密码是在地方系统里验证通过，则设置到UM中
+        if(result) { // 如果密码是在第三方系统里验证通过，则设置到UM中
         	try {
         		Object token = loginservice.resetPassword(operator.getId(), passwd); 
         		loginSuccess( InfoEncoder.simpleEncode( (String)token, 12) );

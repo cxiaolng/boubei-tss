@@ -84,6 +84,9 @@ public interface ILoginService {
     @Cached(cyclelife = CacheLife.SHORTER)
     List<Long> getRoleIdsByUserId(Long userId);
     
+    @Cached(cyclelife = CacheLife.SHORTER)
+    List<?> getAssistGroupIdsByUserId(Long userId);
+    
 	/**
 	 * <p>
 	 * 根据主用户找到所在组的最外层节点

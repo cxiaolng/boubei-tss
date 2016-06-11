@@ -67,7 +67,7 @@ public class DataSourceManager {
 			// 清空连接池里的已有连接
 			Pool pool = JCache.getInstance().getPool(code);
 			pool.init();
-			pool.release(true);
+			pool.flush();
 			
 			return "数据源配置修改成功";
 		}

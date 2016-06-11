@@ -57,6 +57,16 @@ public class ParamManager {
 		}
     }
     
+	public static Param getComboParamItem(String code, String x) {
+		List<Param> list = getComboParam(code);
+		for(Param p : list) {
+			if( x != null && (x.equals(p.getText()) || x.equals(p.getValue())) ) {
+				return p;
+			}
+		}
+		return null;
+    }
+	
     /**
      * 获取树型类型参数列表
      * @param code

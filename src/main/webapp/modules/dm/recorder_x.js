@@ -132,25 +132,25 @@ function checkGroup(groups) {
  * forbid( "score", "r1,r2", "g1, g2");
  */
 function forbid(field, roles, groups) {
-    var xform = $.F("page1Form");
     var editable = false;
     if( (roles && checkRole(roles)) || (groups && checkGroup(groups)) ) {
         editable = true;
     } 
 
-    if(!editable) {
-        var fields = (field || '').split(",");
-        fields.each(function(i, _field) {
-            xform.setFieldEditable(_field, "false"); 
-        });
-    }
+    !editable && permit(field, "false");
 }
 
-function permit(field) {
+// check("f1,f2", "User1,User2")
+function check(field, users) {
+    users = (users || '').split(',');
+    !users.contains(userCode) && permit(field, "false");
+}
+
+function permit(field, tag) {
     var xform = $.F("page1Form");
     var fields = (field || '').split(",");
     fields.each(function(i, _field) {
-        xform.setFieldEditable(_field, "false"); 
+        xform.setFieldEditable(_field, tag || "false"); 
     });
 }
 

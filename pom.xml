@@ -423,6 +423,22 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
+				<configuration>
+                    <archiveClasses>true</archiveClasses> <!--将类文件打成jar包-->
+                    <webResources>
+			            <resource>
+			                <directory>target/classes</directory>
+			                <includes>
+	                            <include>application.properties</include>
+	                            <include>log4j.properties</include>
+	                            <include>script/**/*.*</include>
+	                            <include>freemarker/**/*.*</include>
+	                        </includes>
+			                <targetPath>WEB-INF/classes</targetPath>
+			                <filtering>true</filtering>
+			            </resource>
+			        </webResources>
+                </configuration>
 			</plugin>
 
 			<plugin>
@@ -555,7 +571,7 @@
 				<job.enable>true</job.enable>
 				<db.username>root</db.username>
 				<db.password>800best@com</db.password>
-				<db.url>127.0.0.1:3306/demo_bi</db.url>
+				<db.url>127.0.0.1:3306/demo_bi</db.url> <!-- boubei.com:3306/demo_bi -->
 				<tomcat.url>localhost:8088</tomcat.url>
 				<upload.path>/Users/jinpujun/Desktop/workspace/temp/upload</upload.path>
 			</properties>

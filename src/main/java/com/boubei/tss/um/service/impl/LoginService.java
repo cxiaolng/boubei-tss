@@ -168,6 +168,12 @@ public class LoginService implements ILoginService {
         }
         return roleIds;
     }
+    
+	public List<?> getAssistGroupIdsByUserId(Long userId) {
+        String hql = "select distinct g.id from Group g, GroupUser gu " +
+        		" where g.id = gu.groupId and gu.userId = ? and g.groupType = ?";
+        return userDao.getEntities(hql, userId, Group.ASSISTANT_GROUP_TYPE);
+	}
 
 	public Object[] getRootGroupByUserId(Long userId) {
 		List<?> list = groupDao.getFatherGroupsByUserId(userId);
