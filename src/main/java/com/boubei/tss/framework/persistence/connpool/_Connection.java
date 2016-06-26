@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.cfg.Environment;
 import org.hibernate.util.NamingHelper;
 
+import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.util.ConfigurableContants;
 
 /**
@@ -76,7 +77,7 @@ public class _Connection extends ConfigurableContants {
 				conn.close();
 			} catch (SQLException e) {
 				log.fatal("销毁数据库连接时候出错", e);
-				throw new RuntimeException("销毁数据库连接时候出错", e);
+				throw new BusinessException("销毁数据库连接时候出错", e);
 			}
 		}
 	}
@@ -110,13 +111,14 @@ public class _Connection extends ConfigurableContants {
 				String jndiName = p.getProperty(Environment.DATASOURCE);
 				DataSource ds = (DataSource) NamingHelper.getInitialContext(p).lookup(jndiName);
 				if (ds == null) {
-					throw new RuntimeException("Could not find datasource: " + jndiName);
+					throw new BusinessException("Could not find datasource: " + jndiName);
 				}
 
+				ds.setLoginTimeout(30);
 				return ds.getConnection(user, pass);
 				
 			} catch (Exception e) {
-				throw new RuntimeException("从数据源获取连接时出错", e);
+				throw new BusinessException("从数据源获取连接时出错", e);
 			}
 		}
 	}
@@ -144,10 +146,11 @@ public class _Connection extends ConfigurableContants {
 			Connection conn = null;
 	        try {
 	            Class.forName(driver);
+	            DriverManager.setLoginTimeout(30);
 				conn = DriverManager.getConnection(url, user, pwd);
 	        } catch (Exception e) {
-	        	log.error("创建数据库连接时候出错，url：" + url + ", user:" + user);
-	            throw new RuntimeException("创建数据库连接时候出错，" + driver + "，" + user, e);
+	        	log.error("创建数据库连接时候出错，url：" + url + ", user:" + user + "," + e.getCause());
+	            throw new BusinessException("创建数据库连接时候出错，" + driver + "，" + user, e);
 	        } 
 	        return conn;
 		}

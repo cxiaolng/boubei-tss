@@ -101,14 +101,10 @@ public class DMUtil {
   	}
   	
   	public static Map<String, Object> getFreemarkerDataMap() {
-  		return getFreemarkerDataMap(Environment.getUserId());
-  	}
-  	
-    public static Map<String, Object> getFreemarkerDataMap( Object loginUserId ) {
     	Map<String, Object> fmDataMap = new HashMap<String, Object>();
         
       	// 加入登陆用户的信息
-      	fmDataMap.put(DMConstants.USER_ID, loginUserId);
+      	fmDataMap.put(DMConstants.USER_ID, Environment.getUserId());
       	fmDataMap.put(DMConstants.USER_CODE, Environment.getUserCode());
 		Object fromUserId = Environment.getUserInfo("fromUserId");
 		if (fromUserId != null) {

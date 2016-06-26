@@ -149,7 +149,9 @@ public class ReportServiceImpl implements ReportService {
     }
     
     @SuppressWarnings("unchecked")
-  	public SQLExcutor queryReport(Long reportId, Map<String, String> requestMap, int page, int pagesize, Object loginUserId) {
+  	public SQLExcutor queryReport(Long reportId, Map<String, String> requestMap, 
+  			int page, int pagesize, Object loginUserId) {
+    	
     	Report report = this.getReport(reportId);
     	
     	String reportName = report.getName();
@@ -161,7 +163,7 @@ public class ReportServiceImpl implements ReportService {
 		}
           
 		// 宏代码池
-      	Map<String, Object> fmDataMap = DMUtil.getFreemarkerDataMap(loginUserId);
+      	Map<String, Object> fmDataMap = DMUtil.getFreemarkerDataMap();
       	
 		/* 先预解析，以判断request参数是否用做了宏代码。后续还将有一次解析，以支持宏嵌套。 
 		 * eg： ${GetWHListByLogonUser} --> param里的script宏（... user_id = ${fromUserId}) ... ）

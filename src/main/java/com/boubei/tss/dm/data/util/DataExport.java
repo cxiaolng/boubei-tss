@@ -243,7 +243,7 @@ public class DataExport {
                     outStream.close();
                 }
             } catch (IOException e) {
-                throw new RuntimeException("导出完成后关闭流时发生IO异常", e);
+                throw new BusinessException("导出完成后关闭流时发生IO异常", e);
             }           
         }
     }

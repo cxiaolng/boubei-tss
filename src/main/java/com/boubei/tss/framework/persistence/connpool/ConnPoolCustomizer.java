@@ -12,9 +12,11 @@ package com.boubei.tss.framework.persistence.connpool;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.boubei.tss.cache.CacheStrategy;
 import com.boubei.tss.cache.DefaultCacheCustomizer;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.TimeWrapper;
+import com.boubei.tss.framework.exception.BusinessException;
 
 /**
  * <pre>
@@ -26,6 +28,10 @@ import com.boubei.tss.cache.TimeWrapper;
 public class ConnPoolCustomizer extends DefaultCacheCustomizer {
     
 	public Cacheable create() {
+		if( CacheStrategy.TRUE.equals(strategy.disabled) ) {
+			throw new BusinessException("数据库存在异常，【" + strategy.name + "】已被停用，请稍后再访问");
+		}
+		
 		Connection conn = _Connection.getInstanse(strategy.paramFile).getConnection();
 		String cacheKey = TimeWrapper.createSequenceKey("Connection");
 		

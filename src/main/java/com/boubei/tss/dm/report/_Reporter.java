@@ -38,11 +38,14 @@ import com.boubei.tss.um.service.ILoginService;
 import com.boubei.tss.util.EasyUtils;
 
 /**
- * http://localhost:9000/dm/display/12/1/100
+ * http://localhost:9000/dm/data/123/1/100
  * 
  * 默认情况下，相同登陆用户，执行相同查询条件的查询结果会被缓存3分钟。
- * 如要避开缓存，方式有两种， url?noCache=true 或者
+ * 如要避开缓存，方式有两种: /tss/data/json/123?noCache=true 或者
  * {'label':'是否缓存','type':'hidden','name':'noCache','defaultValue':'true'}
+ * 
+ * 按用户缓存: /tss/data/json/123?uCache=true 或者 
+ * {'label':'按用户缓存','type':'hidden','name':'uCache','defaultValue':'true'}
  * 
  */
 @Controller
@@ -60,6 +63,20 @@ public class _Reporter extends BaseActionSupport {
 		boolean hasScript = !EasyUtils.isNullOrEmpty(report.getScript());
 		String displayUri = report.getDisplayUri();
 		return new Object[] {report.getName(), report.getParam(), displayUri, hasScript};
+    }
+	
+    /**
+     * 根据每个报表的具体配置来确定使用具体的缓存策略。可分为：不缓存、按用户缓存、默认缓存。
+     */
+    private Object getLoginUserId(Map<String, String> requestMap) {
+    	// 如果传入的参数要求不取缓存的数据，则返回当前时间戳作为userID，以触发缓存更新。
+    	if( "true".equals(requestMap.get("noCache")) ) {
+    		return System.currentTimeMillis(); 
+    	}
+    	if( "true".equals(requestMap.get("uCache")) ) {
+    		return Environment.getUserId();  // 按用户缓存
+    	}
+    	return -1L; // 默认使用缓存
     }
     
 	// 注：通过tssJS.ajax能自动过滤params里的空值，jQuery发送的ajax请求则不能
@@ -86,17 +103,6 @@ public class _Reporter extends BaseActionSupport {
     	}
     	
     	return requestMap;
-    }
-    
-    /**
-     * 避开缓存的方式有两种， url?noCache=true 或者
-     * {'label':'是否缓存','type':'hidden','name':'noCache','defaultValue':'true'}
-     */
-    private Object getLoginUserId(Map<String, String> requestMap) {
-    	if(requestMap.containsKey("noCache") || requestMap.containsValue("noCache")) {
-    		return System.currentTimeMillis(); // 如果传入的参数要求不取缓存的数据，则返回当前时间戳作为userID，以触发缓存更新。
-    	}
-        return Environment.getUserId();
     }
  
     @RequestMapping("/{reportId}/{page}/{pagesize}")

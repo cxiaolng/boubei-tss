@@ -68,5 +68,6 @@ public interface ReportService {
      */
     @QueryCached
     @Cached(cyclelife = CacheLife.SHORTER)
-    SQLExcutor queryReport(Long reportId, Map<String, String> requestMap, int page, int pagesize, Object loginUserId);
+    SQLExcutor queryReport(Long reportId, Map<String, String> requestMap, 
+    		int page, int pagesize, Object loginUserId);
 }

@@ -224,7 +224,7 @@ public class ComponentHelper {
                 outStream.flush();
             }           
         } catch (IOException e) {
-            throw new RuntimeException("导出时发生IOException!!", e);
+            throw new BusinessException("导出异常", e);
         } finally {
             try {
             	if(inStream != null){
