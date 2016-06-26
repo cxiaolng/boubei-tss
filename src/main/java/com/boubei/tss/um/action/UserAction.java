@@ -165,7 +165,8 @@ public class UserAction extends BaseActionSupport {
 	}
 	
 	/**
-	 * 用户自注册
+	 * 管理员注册用户 (这里需要登录才能调用)
+	 * 用户自注册使用 servlet：Register。
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void registerUser(HttpServletResponse response, User user) {

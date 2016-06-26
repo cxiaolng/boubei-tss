@@ -112,7 +112,7 @@ public class LoginService implements ILoginService {
             throw new BusinessException("此帐号不存在." + loginName);
         } 
         else if (ParamConstants.TRUE.equals(user.getDisabled())) {
-            throw new BusinessException("此帐号(" + loginName + ")已被停用");
+            throw new BusinessException("此帐号(" + loginName + ")处于停用状态");
         } 
         else if (user.getAccountLife() !=  null) {
             if ( new Date().after(user.getAccountLife()) ) {

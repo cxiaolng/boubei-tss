@@ -104,9 +104,9 @@ public class UserService implements IUserService{
         user.setPassword(user.encodePassword(user.getPassword()));
         user.setAuthMethod(UMPasswordIdentifier.class.getName());
 
-        // 默认有效期三年
+        // 默认有效期5年
         Calendar cl = new GregorianCalendar();
-        cl.add(Calendar.YEAR, 3);
+        cl.add(Calendar.YEAR, 5);
         user.setAccountLife(cl.getTime());
         
         userDao.create(user);
