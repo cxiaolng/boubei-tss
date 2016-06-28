@@ -27,10 +27,11 @@ import com.thoughtworks.xstream.core.util.Base64Encoder;
  */
 public class InfoEncoder {
 
-    private static String ALGORITHM = "Blowfish";
+    private static final String KEY_WORD  = "boubei-tss";
+	private static final String ALGORITHM = "Blowfish";
 
     private Cipher getCipher(int Cipher_MODE) {
-        SecretKey deskey = new SecretKeySpec("boubei-tss".getBytes(), ALGORITHM);
+        SecretKey deskey = new SecretKeySpec(KEY_WORD.getBytes(), ALGORITHM);
         try {
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher_MODE, deskey);

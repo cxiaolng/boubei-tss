@@ -7,7 +7,7 @@ date_format(日期字段,’%Y-%m-%d’)
 // oracle
 {
     "customizerClass": "com.boubei.tss.framework.persistence.connpool.ConnPoolCustomizer",
-    "poolClass": "com.boubei.tss.cache.extension.ReusablePool",
+    "poolClass": "com.boubei.tss.cache.ReusablePool",
     "code": "connpool-wms",
     "name": "DB连接池-WMS",
     "cyclelife": "1800000",

@@ -28,4 +28,10 @@ public class InfoEncoderTest {
         
     }
 
+	public static void main(String[] args) {
+		InfoEncoder ie = new InfoEncoder();
+		System.out.println( ie.createEncryptor("1212") );
+		System.out.println( ie.createDecryptor("Xsz/s+VvOgY=") );
+		System.out.println( ie.createDecryptor( "3u1dt5T33PNCgByaGoyMFOMw7N973TrsYbIN9AjcpUILtQjEGWFju4mdid01QmHK9o5ipEzBVO3xfREypahK5w==" ) );
+	}
 }

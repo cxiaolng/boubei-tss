@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.exception.BusinessServletException;
+import com.boubei.tss.framework.exception.IBusinessException;
 import com.boubei.tss.framework.exception.UserIdentificationException;
 import com.boubei.tss.framework.sso.ILoginCustomizer;
 import com.boubei.tss.framework.sso.IUserIdentifier;
@@ -182,14 +183,18 @@ public class Filter4AutoLogin implements Filter {
 	 * <p>
 	 * 执行用户登录自定义类，只有用户登录时才执行
 	 * </p>
+	 * @throws Throwable 
 	 */
-	private void customizerExcuteAfterLogin() {
+	private void customizerExcuteAfterLogin() throws Exception {
         ILoginCustomizer customizer = LoginCustomizerFactory.instance().getCustomizer();
 		try {
             customizer.execute();
-		} catch (Throwable e) {
-            String msg = "自定义登录操作（" + customizer.getClass().getName() + "）执行失败。";
-            log.error(msg, e);
+		} catch (Exception e) {
+			String msg = "自定义登录操作（" + customizer.getClass().getName() + "）执行失败。";
+            log.error(msg);
+			if( e instanceof IBusinessException ) {
+				throw e;
+			}
             throw new BusinessException(msg, e);
 		}
 	}

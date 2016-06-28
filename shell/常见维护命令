@@ -27,6 +27,10 @@ service mysql stop / start
 
 SET SQL_SAFE_UPDATES = 0;
 
+MySQL自动宕机问题：
+SHOW  GLOBAL VARIABLES LIKE '%log%';   // 找log_error的目录，再打开查看报错信息
+innodb_buffer_pool_size = 10G   // 太大了，改成2G
+
 -------------------------------------------- Oracle ------------------------------------------------------
 1. su -oracle 
 2. sqlplus "/ as sysdba"

@@ -20,7 +20,7 @@
     
     <bean id="TSSObjectMapper" class="com.boubei.tss.framework.web.json.TSSObjectMapper"></bean> 
 
-	<!-- 在springMVC配置文件中将Service注解给去掉，以免注入的service没有事务功能 -->
+	<!-- 在springMVC配置文件中将Service注解给去掉，以免注入的service没有事务功能.注：过滤包目录需要spring-framework.xml里一致 -->
 	<context:component-scan base-package="com.boubei"> 
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" /> 

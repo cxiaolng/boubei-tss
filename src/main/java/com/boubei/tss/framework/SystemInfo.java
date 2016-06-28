@@ -32,6 +32,6 @@ public class SystemInfo {
 	}
 	
     public static boolean validateTSS() {
-    	return LicenseManager.getInstance().validateLicense("tss", "3.3");
+    	return LicenseManager.getInstance().validateLicense("tss", "4.1");
     }
 }

@@ -65,6 +65,7 @@ public interface ReportService {
 
     /**
      * 传入 loginUserId 目的是防止不同用户使用同一份缓存数据，因用户权限不同，各自看到的数据多少也不同，所以需要分开来缓存。
+     * script里含 ${userId}、${userCode}、${fromUserId} 时，需要严格按登录用户来区别缓存。
      */
     @QueryCached
     @Cached(cyclelife = CacheLife.SHORTER)

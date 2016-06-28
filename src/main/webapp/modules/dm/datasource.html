@@ -245,7 +245,7 @@
         param.initNum = xform.getData("initNum");
         param.poolSize = xform.getData("poolSize");
         param.customizerClass = "com.boubei.tss.framework.persistence.connpool.ConnPoolCustomizer";
-        param.poolClass = "com.boubei.tss.cache.extension.ReusablePool";
+        param.poolClass = "com.boubei.tss.cache.ReusablePool";
 
         request.params.value = JSON.stringify(param);
         request.params.code = param.code;
