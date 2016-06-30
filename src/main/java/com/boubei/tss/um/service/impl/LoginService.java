@@ -109,7 +109,7 @@ public class LoginService implements ILoginService {
 	private User getUserByLoginName(String loginName) {
         User user = userDao.getUserByLoginName(loginName);
         if (user == null) {
-            throw new BusinessException("此帐号不存在." + loginName);
+            throw new BusinessException("账户或密码错误" + loginName);
         } 
         else if (ParamConstants.TRUE.equals(user.getDisabled())) {
             throw new BusinessException("此帐号(" + loginName + ")处于停用状态");

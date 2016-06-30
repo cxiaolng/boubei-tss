@@ -26,7 +26,11 @@ import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.util.EasyUtils;
 
 /**
- * 安全过滤器，防止无权限(匿名访问 或 自注册用户)直接访问后台服务地址
+ * 安全过滤器，防止无权限(匿名访问 或 自注册用户)直接访问后台服务地址。
+ * 
+ * 1、检查refer，防止跨域盗链，IP白名单配置的则不受此限制；
+ * 2、依据安全级别：<3一律放行；>=3 检查URL白名单
+ * 3、上面两步检测不通过的，则要求登录才能访问
  */
 @WebFilter(filterName = "SecurityFilter", urlPatterns = {"/*"})
 public class Filter0Security implements Filter {
@@ -73,19 +77,19 @@ public class Filter0Security implements Filter {
         	}
         }      
         
-        // 检查是否忽略权限
+        // 检查是否忽略权限检查（依据URL白名单来判定）
         String servletPath = req.getServletPath();
         if( !isNeedPermission(servletPath, req) ) {
         	chain.doFilter(request, response);
             return;
         }
          
-        // 检测权限
+        // 检测权限（判断用户是否登录）
         List<Object> userRights = new ArrayList<Object>();
         try {
         	HttpSession session = req.getSession(false);
             if(session != null) {
-                List<?> list = (List<?>) session.getAttribute(SSOConstants.USER_RIGHTS_IN_SESSION);
+                List<?> list = (List<?>) session.getAttribute(SSOConstants.USER_RIGHTS_IN_SESSION); // 用户拥有的角色列表
 				userRights.addAll( list );
             }
         } catch(Exception e) {  }
@@ -101,6 +105,9 @@ public class Filter0Security implements Filter {
         chain.doFilter(request, response);
     }
  
+    /**
+     * 登陆即可访问
+     */
     private boolean checkPermission(List<?> userRights, String servletPath) {
     	if( userRights.size() > 1 ) {
     		return true; // 匿名角色共有，所以登录用户必须要有2个角色或以上
@@ -109,38 +116,40 @@ public class Filter0Security implements Filter {
 	}
     
     private boolean isNeedPermission(String servletPath, HttpServletRequest request) {
-    	if( EasyUtils.isNullOrEmpty(servletPath) ) return false;
+    	// 1、安全级别 < 3, 全部放行
+    	if( SecurityUtil.getSecurityLevel() < 3 || EasyUtils.isNullOrEmpty(servletPath) ) {
+    		return false;
+    	}
     	
+    	// 2、检查URL白名单，白名单内的，放行
     	String whiteListConfig = ParamConfig.getAttribute(URL_WHITE_LIST);
     	List<String> whiteList = new ArrayList<String>();
     	if( !EasyUtils.isNullOrEmpty(whiteListConfig) ) {
     		whiteList.addAll( Arrays.asList( whiteListConfig.split(",") ) );
     	}
-    	
     	for(String whiteItem : whiteList) {
     		if(servletPath.indexOf( whiteItem.trim() ) >= 0) {
     			return false;
     		}
     	}
     	
-    	if( SecurityUtil.getSecurityLevel() >= 3 ) {
-    		if( servletPath.indexOf(".htm") >= 0 ) {
-        		return true;
-        	}
-        	if( servletPath.indexOf(".") < 0 ) { // 无后缀，一般restful地址 或 /download
-        		if(servletPath.indexOf("/data/export/") >= 0) { 
-        			return false; // 跨机器数据导出请求，放行
-        		}
-        		
-        		String requestType = request.getHeader(RequestContext.REQUEST_TYPE);
-				if(servletPath.indexOf("/data/json/") >= 0 
-        				&& RequestContext.XMLHTTP_REQUEST.equals(requestType ) ) {
-					/* ajax json跨域请求（多为本地调试用），放行。（注：jQuery发ajax请求需要在header里加上此参数）*/
-        			return false; 
-        		}
-        		
-        		return true;
-        	}
+    	// 3、安全级别 >= 3, 限制对所有 htm、html、restful（部分除外）的访问
+		if( servletPath.indexOf(".htm") >= 0 ) {
+    		return true;
+    	}
+		else if( servletPath.indexOf(".") < 0 ) { // 无后缀，一般restful地址 或 /download
+    		if(servletPath.indexOf("/data/export/") >= 0) { 
+    			return false; // 跨机器数据导出请求，放行
+    		}
+    		
+    		String requestType = request.getHeader(RequestContext.REQUEST_TYPE);
+			if( servletPath.indexOf("/data/json/") >= 0 
+					&& RequestContext.XMLHTTP_REQUEST.equals(requestType) ) {
+				
+    			return false; /* ajax json请求（匿名访问、网页本地打开调试访问），放行。（注：jQuery发ajax请求需要在header里加上此参数）*/
+    		}
+    		
+    		return true;
     	}
     	
     	return false;

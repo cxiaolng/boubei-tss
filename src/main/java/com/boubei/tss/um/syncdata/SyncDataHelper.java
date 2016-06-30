@@ -13,7 +13,6 @@ import com.boubei.tss.util.EasyUtils;
 public class SyncDataHelper {
     
 	public final static String DRIVER = "driver";
-	public final static String DEFAULT_PWD = "111111";
     public final static String URL = "url";
     public final static String USERNAME = "user";
     public final static String PASSWORD = "password";
@@ -30,7 +29,8 @@ public class SyncDataHelper {
      * @param userDTO
      */
     public static void setUserByDTO(User user, UserDTO userDTO) {
-    	user.setLoginName(userDTO.getLoginName());
+    	String loginName = userDTO.getLoginName();
+		user.setLoginName(loginName);
     	user.setUserName(userDTO.getUserName());
         user.setDisabled(userDTO.getDisabled());
         user.setAccountLife(userDTO.getAccountLife());
@@ -47,7 +47,7 @@ public class SyncDataHelper {
         
         String userPassword = userDTO.getPassword();
         if(userPassword == null) {
-        	userPassword = DEFAULT_PWD;
+        	userPassword = loginName; // 默认：密码 = 登陆账号
         }
         if(userPassword.length() < 32) { // 如果是32位，则同步的是已经加密好的密码
         	userPassword = user.encodePassword(userPassword);

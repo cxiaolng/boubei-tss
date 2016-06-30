@@ -26,7 +26,7 @@ public class ReportDaoImpl extends TreeSupportDao<Report> implements ReportDao {
 		return getChildrenById(id);
 	}
 
-	public Report getReportById(Long id) {
+	public Report getVisibleReport(Long id) {
 		return getEntity(id);
 	}
 }

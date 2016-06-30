@@ -31,7 +31,7 @@ public class ReportServiceImpl implements ReportService {
     @Autowired ReportDao reportDao;
     
     public Report getReport(Long id, boolean auth) {
-        Report report = auth ? reportDao.getReportById(id) : reportDao.getEntity(id);
+        Report report = auth ? reportDao.getVisibleReport(id) : reportDao.getEntity(id);
         
         if(report == null) {
         	throw new BusinessException("数据服务【" + id + "】当前无法访问，可能已被删除或停用。");

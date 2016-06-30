@@ -199,6 +199,11 @@ public class SyncService implements ISyncService, Progressable {
                 
             updateProgressInfo(progress, otherUsers.size(), i);
         }
+        
+        // 如果循环结束了进度还没有完成，则取消进度（不取消会导致页面一直在请求进度信息）
+        if( !progress.isCompleted() ) {
+            progress.add(8888888); // 通过设置一个大数（远大于总数）来使进度完成
+        }
     }
     
     /** 更新进度信息 */

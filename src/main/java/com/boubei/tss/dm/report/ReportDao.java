@@ -20,6 +20,6 @@ public interface ReportDao extends ITreeSupportDao<Report> {
             operation = Report.OPERATION_VIEW, 
             resourceType = Report.RESOURCE_TYPE,
             filter = PermissionFilter4Check.class)
-    Report getReportById(Long id);
+    Report getVisibleReport(Long id);
  
 }
