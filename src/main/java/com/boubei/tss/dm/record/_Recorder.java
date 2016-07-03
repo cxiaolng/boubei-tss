@@ -143,7 +143,7 @@ public class _Recorder extends BaseActionSupport {
     	catch(Exception e) {
     		Throwable firstCause = ExceptionEncoder.getFirstCause(e);
 			String errorMsg = "在" + _db + "里新增数据时出错了：" + (firstCause == null ? e : firstCause).getMessage();
-			log.error(errorMsg);
+			log.debug( errorMsg );
     		throw new BusinessException(errorMsg);
     	}
     }

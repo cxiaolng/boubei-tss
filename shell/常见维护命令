@@ -13,6 +13,8 @@ sudo service httpd restart
 
 netstat -anlt | grep 8080 | grep ESTABLISHED
 
+service nginx start
+
 -------------------------------------------- MySQL ------------------------------------------------------
 mysql -u root -p btrbi   < /home/btrbi/temp/bi.sql
 mysqldump -uroot -p btrbi > /home/btrbi/temp/btrbi_`date '+%m-%d-%Y'`.sql
@@ -24,6 +26,7 @@ mysql -u root -p btrbi  <  /home/btrbi/temp/_report.sql
 
 service mysql stop / start
 /etc/rc.d/init.d/mysql status
+/etc/rc.d/init.d/mysqld start / stop / restart
 
 SET SQL_SAFE_UPDATES = 0;
 

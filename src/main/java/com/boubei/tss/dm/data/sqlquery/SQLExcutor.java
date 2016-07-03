@@ -430,7 +430,7 @@ public class SQLExcutor {
         	try { conn.rollback(); } 
         	catch (Exception e2) { log.error(e2.getMessage(), e2); }
         	
-        	log.error(Environment.getUserCode() + ", " + Arrays.asList(paramsList.get(0)));
+        	log.debug(Environment.getUserCode() + ", " + Arrays.asList( paramsList.get(0)) );
             throw new BusinessException("出错了! sql : " + sql, e);
             
         } finally {

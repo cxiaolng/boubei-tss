@@ -49,6 +49,15 @@ service nginx start
   4、登录验证超过10次出错，锁定账号10分钟
   注：安全级别 security.level 需要配置在application.properties里，
   	打包时指定好具体的安全级别，以便允许多个不同部署可以有不同的安全控制；如在系统参数里配置将无效。
+  	
+15、数据服务的缓存类型有哪些？
+   1、默认情况下，执行相同查询条件的查询结果会被缓存3分钟。
+   2、按用户缓存（查询条件一样，用户也要一样，用于sql里含数据行权限过滤的数据查询服务）: 
+   	/tss/data/json/123?uCache=true 或者 
+   	{'label':'按用户缓存','type':'hidden','name':'uCache','defaultValue':'true'}
+   3、始终不缓存: /tss/data/json/123?noCache=true 或者
+   	{'label':'是否缓存','type':'hidden','name':'noCache','defaultValue':'true'}  	
+
 
 数据录入表创建常见错误：
 1、字段重名：Duplicate column name ‘position’   — MySQL

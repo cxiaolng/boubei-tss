@@ -19,7 +19,7 @@ import com.boubei.tss.framework.web.dispaly.xmlhttp.XmlHttpEncoder;
  */
 public abstract class BaseActionSupport {
     
-    public static Logger log = Logger.getLogger(BaseActionSupport.class);
+    protected Logger log = Logger.getLogger(this.getClass());
     
     /**
      * 约定新增对象时前台传过来ID统一为 -10；

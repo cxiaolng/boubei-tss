@@ -191,11 +191,12 @@ public class Filter4AutoLogin implements Filter {
             customizer.execute();
 		} catch (Exception e) {
 			String msg = "自定义登录操作（" + customizer.getClass().getName() + "）执行失败。";
-            log.error(msg);
 			if( e instanceof IBusinessException ) {
 				throw e;
+			} else {
+				log.error(msg, e);
+				throw new BusinessException(msg, e);
 			}
-            throw new BusinessException(msg, e);
 		}
 	}
 

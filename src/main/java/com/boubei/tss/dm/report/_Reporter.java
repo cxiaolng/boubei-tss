@@ -102,6 +102,7 @@ public class _Reporter extends BaseActionSupport {
     		}
     	}
     	
+    	requestMap.remove("_time"); // 剔除jsonp为防止url被浏览器缓存而加的时间戳参数
     	return requestMap;
     }
  

@@ -10,6 +10,7 @@ import com.boubei.tss.cache.CacheStrategy;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
 import com.boubei.tss.modules.param.Param;
+import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.modules.param.ParamListener;
 import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.modules.param.ParamService;
@@ -30,7 +31,9 @@ public class PCache implements ParamListener {
 			List<Param> list = paramService.getParamsByParentCode(CacheHelper.CACHE_PARAM);
 			if(list != null) {
 				for(Param item : list) {
-		    		rebuildCache(item.getCode(), item.getValue());
+					if( ParamConstants.FALSE.equals(item.getDisabled()) ){
+						rebuildCache(item.getCode(), item.getValue());
+					}
 		    	}
 			}
 	    	return;

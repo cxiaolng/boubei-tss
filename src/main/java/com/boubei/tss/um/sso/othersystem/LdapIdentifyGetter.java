@@ -47,7 +47,7 @@ public class LdapIdentifyGetter extends UMIdentityGetter implements IdentityGett
             return true; // 如果连接成功则返回True
         } 
         catch (Exception e) {
-            log.info("【" + user + "】在LDAP中验证【不】通过。");
+            log.debug("【" + user + "】在LDAP中验证【不】通过。");
             log.debug(e.getMessage());
             return false;
         } 
