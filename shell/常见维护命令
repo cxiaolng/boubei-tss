@@ -1,9 +1,9 @@
 grep 'xxx'  filename
 find / -name xx.jpg 
-visudo    添加用户到sudoers
 uptime    查看系统启动时间
 free -m   查看内存使用   
 df -m 查看硬盘
+man find 查看find命令的详细说明
 -------------------------------------------- Apache ------------------------------------------------------
 sudo service httpd restart
 /bin/vi /etc/httpd/conf/httpd.conf
@@ -58,9 +58,36 @@ zip -r btrbi0919.zip  /home/btrbi/temp/btrbi_0919.sql
 scp /home/btrbi/temp.tar.gz root@10.45.11.74:/home/btrbi/
 scp -r /home/btrbi/temp root@10.45.10.216:/data/bk/74/
 
--------------------------------------------- 目录权限 ------------------------------------------------------
+-------------------------------------------- 用户、目录、权限 ------------------------------------------------------
+/etc/passwd 用户文件,  /etc/shadow 密码文件, /etc/group 组
 
-sudo chmod -R 777 appadmin  把appadmin目录及所有子目录和文件授给当前用户自己
+新建账号：
+1、useradd -d /home/appadmin appadmin
+2、passwd appadmin
+
+chown -R appadmin:appadmin /home/appadmin  -- 修改目录的所有者和组  
+sudo chmod -R 777 appadmin   -- 把appadmin目录及所有子目录和文件授给当前用户自己
+sudo passwd root             -- appadmin可以修改root的密码
+
+添加sudoers方法一:
+	chmod u+w /etc/sudoers  -- 进入超级用户，因为没有写权限，要先把写权限加上
+	vim  /etc/sudoers       -- 找到："root ALL=(ALL) ALL” 在下面加"appadmin ALL=(ALL) ALL"
+	chmod u-w /etc/sudoers  -- 撤销文件的写权限
+添加sudoers方法二:
+	visudo    -- 添加用户到sudoers
+
+-------------------------------------------- 系统安全 ------------------------------------------------------
+
+vim /var/log/secure   -- 查看系统安全日志
+history 50    -- 查看最近执行的50条命令  vim ~/.bash_history
+
+设置history保留数量：
+[root@bi68 ~]# vi ~/.bash_profile
+    最下面加上：
+    			HISTSIZE=450
+				HISTFLESIZE=450
+[root@bi68 ~]# source ~/.bash_profile
+[root@bi68 ~]# echo $HISTSIZE
 
 -------------------------------------------- 定时配置 ------------------------------------------------------
 查看异常信息： tail -f /var/mail/jinpujun
@@ -76,5 +103,18 @@ service crond start
 [root@CentOS ~]# yum install vixie-cron
 [root@CentOS ~]# yum install crontabs
 
+
+------------------------------------------- 查看硬件配置、linux版本 ---------------------------------------------
 查看linux发行版本：cat /etc/issue
 查看系统与内核相关：uname -a
+
+1. 查看物理CPU的个数： cat /proc/cpuinfo |grep "physical id"|sort |uniq|wc -l
+2. 查看逻辑CPU的个数： cat /proc/cpuinfo |grep "processor"|wc -l
+3. 查看CPU是几核：cat /proc/cpuinfo |grep "cores"|uniq
+4. 查看CPU的主频：cat /proc/cpuinfo |grep MHz|uniq
+
+# uname -a  (查看当前操作系统内核信息)
+Linux euis1 2.6.9-55.ELsmp #1 SMP Fri Apr 20 17:03:35 EDT 2007 i686 i686 i386 GNU/Linux
+
+# cat /etc/issue | grep Linux   (查看当前操作系统发行版信息)
+Red Hat Enterprise Linux AS release 4 (Nahant Update 5)

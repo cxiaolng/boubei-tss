@@ -42,10 +42,10 @@ public class FileAction extends BaseActionSupport {
         
         // 如果访问的是子目录，则提供目录上翻的按钮
         if( contextPath != null) {
-        	int indexOfModel = contextPath.indexOf("model");
+        	int indexOfModel = contextPath.indexOf("model"); // portal/model
         	String tlDir = ParamConfig.getAttribute(DMConstants.REPORT_TL_DIR);
 			if( (indexOfModel > 0 && indexOfModel < contextPath.length() - 6) 
-					|| contextPath.indexOf(tlDir) > 0 ) {
+					|| contextPath.indexOf(tlDir) >= 0 ) {
         		sb.append("<treeNode id=\"-1\" name=\"..\" />"); 
         	}
         } 

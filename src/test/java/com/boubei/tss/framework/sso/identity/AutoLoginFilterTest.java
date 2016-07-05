@@ -8,23 +8,29 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.mock.web.MockFilterConfig;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockHttpSession;
 
+import com.boubei.tss.framework.Config;
 import com.boubei.tss.framework.sso.AnonymousOperator;
 import com.boubei.tss.framework.sso.DemoOperator;
 import com.boubei.tss.framework.sso.DemoUserIdentifier;
+import com.boubei.tss.framework.sso.DoErrorLoginCustomizer;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.sso.IOperator;
 import com.boubei.tss.framework.sso.IdentityCard;
+import com.boubei.tss.framework.sso.LoginCustomizerFactory;
 import com.boubei.tss.framework.sso.PWDOperator;
+import com.boubei.tss.framework.sso.SSOConstants;
 import com.boubei.tss.framework.sso.TokenUtil;
 import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.sso.context.RequestContext;
@@ -56,6 +62,9 @@ public class AutoLoginFilterTest {
         Context.initApplicationContext(MockApplicationContext.getDefaultApplicationContext());
        
         filter = new Filter4AutoLogin();
+        FilterConfig filterConfig = new MockFilterConfig();
+		filter.init(filterConfig );
+        
         chain = new MockFilterChain();
     }
  
@@ -186,5 +195,33 @@ public class AutoLoginFilterTest {
         assertNotNull(Context.getRequestContext().getIdentityCard());
         assertEquals(AnonymousOperator.anonymous.getLoginName(), Environment.getUserCode());
         assertEquals(MockFilterChain.RESPONSE_BODY_STRING, response.getContentAsString());
+    }
+    
+    @Test
+    public void testDoFilter4LoginCustomizeError() throws IOException, ServletException {
+    	LoginCustomizerFactory.destroy();
+    	
+    	String x = Config.getAttribute(SSOConstants.LOGIN_COSTOMIZER);
+    	Config.setProperty(SSOConstants.LOGIN_COSTOMIZER, DoErrorLoginCustomizer.class.getName());
+        request.addHeader("identifier", DemoUserIdentifier.class.getName());
+        request.setServletPath("/tss/index.portal");
+        
+        Context.initRequestContext(request);
+        
+        try {
+            filter.doFilter(request, response, chain);
+            fail("应该发生异常而没有发生");
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+        
+        try {
+            filter.doFilter(request, response, chain);
+            fail("应该发生异常而没有发生");
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+        
+        Config.setProperty(SSOConstants.LOGIN_COSTOMIZER, x);
     }
 }

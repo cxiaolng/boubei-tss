@@ -1,5 +1,6 @@
 package com.boubei.tss.framework.sso;
 
+import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.util.InfoEncoder;
 
 /**
@@ -33,12 +34,15 @@ public class TokenUtil {
 	 * @return
 	 */
 	public static Long getUserIdFromToken(String token) {
-		if (token != null) {
-			String originalToken = infoEncoder.createDecryptor(token);
-			int beginIndex = originalToken.lastIndexOf(",");
-			String userId = originalToken.substring(beginIndex + 1);
-			return new Long(userId);
+		String originalToken;
+		try {
+			originalToken = infoEncoder.createDecryptor(token);
+		} catch(Exception e) {
+			throw new BusinessException("登陆令牌已失效，请注销或刷新页面后重新登录。" + e.getMessage());
 		}
-		return null;
+		
+		int beginIndex = originalToken.lastIndexOf(",");
+		String userId = originalToken.substring(beginIndex + 1);
+		return new Long(userId);
 	}
 }

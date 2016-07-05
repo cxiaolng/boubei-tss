@@ -213,7 +213,7 @@ public class _Reporter extends BaseActionSupport {
     public Object showAsJson(HttpServletRequest request, HttpServletResponse response, 
     		@PathVariable("report") String report) {
     	
-    	response.setHeader("Access-Control-Allow-Origin", "*"); // 允许跨域访问
+    	response.addHeader("Access-Control-Allow-Origin", "*"); // 允许跨域访问
     	
     	Long reportId;
     	try {

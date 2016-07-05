@@ -52,8 +52,31 @@ public class GroupService implements IGroupService {
     	Long operatorId = Environment.getUserId();
         List<?> mainAndAssistantGroups = groupDao.getMainAndAssistantGroups(operatorId);
         
-        return mainAndAssistantGroups;
+        /* 按操作用户对结果集进行过滤，只留下自己所在主组及其子组。
+         * eg:浙江分公司的用户只能看到浙分下面的组织，哪怕给他授权了其它分公司
+         */
+        Group mainGroup = getMainGroup(operatorId);
+        List<Group> result = new ArrayList<Group>();
+        for(Object temp : mainAndAssistantGroups) {
+			Group group = (Group) temp;
+        	Integer groupType = group.getGroupType();
+			if( Group.MAIN_GROUP_TYPE.equals(groupType) 
+					&& !group.getDecode().startsWith(mainGroup.getDecode()) ) {
+        		continue;
+        	}
+			result.add(group);
+        }
+        
+        return result;
     }
+    
+	private Group getMainGroup(Long userId) {
+        String hql = "select distinct g from Group g, GroupUser gu " +
+        		" where g.id = gu.groupId and gu.userId = ? and g.groupType = ?";
+        List<?> list = groupDao.getEntities(hql, userId, Group.MAIN_GROUP_TYPE);
+        
+        return (Group) list.get(0);
+	}
     
     public Object[] getAssistGroupsByOperationId(String operationId) {
         return getGroupsByGroupTypeAndOperationId(Group.ASSISTANT_GROUP_TYPE, operationId);
@@ -73,7 +96,7 @@ public class GroupService implements IGroupService {
             groupIds.add(group.getId());
         }
         List<?> parentGroups = groupDao.getParentGroupByGroupIds(groupIds, operatorId, UMConstants.GROUP_VIEW_OPERRATION);
-        return new Object[]{groupIds, parentGroups};
+        return new Object[] { groupIds, parentGroups };
     }
  
     

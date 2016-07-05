@@ -56,6 +56,11 @@ public class LoginCustomizerFactory {
         }
         return factory;
     }
+    
+    public static void destroy() {
+    	factory = null;
+    	customizer = null;
+    }
 }
 
 /** 

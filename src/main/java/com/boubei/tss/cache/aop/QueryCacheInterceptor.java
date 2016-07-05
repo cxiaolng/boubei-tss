@@ -7,10 +7,9 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
-import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
 import com.boubei.tss.cache.TimeWrapper;
-import com.boubei.tss.cache.extension.CacheLife;
+import com.boubei.tss.cache.extension.CacheHelper;
 import com.boubei.tss.framework.exception.BusinessException;
  
 /**
@@ -35,7 +34,7 @@ public class QueryCacheInterceptor implements MethodInterceptor {
         	return invocation.proceed(); /* 如果没有配置缓存，则直接执行方法并返回结果 */
         }
  
-		Pool cache = JCache.getInstance().getPool(CacheLife.SHORT.toString());
+		Pool cache = CacheHelper.getShortCache();
 		
 		Class<?> declaringClass = targetMethod.getDeclaringClass();
 		String key = "QC_" + declaringClass.getName() + "." + targetMethod.getName();

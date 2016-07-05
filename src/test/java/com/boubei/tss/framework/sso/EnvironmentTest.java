@@ -21,8 +21,6 @@ public class EnvironmentTest {
 		
 		Assert.assertNull(Environment.getUserInfo("fromUserId"));
 		
-		Assert.assertNull(TokenUtil.getUserIdFromToken(null));
-		
 		Assert.assertNull(Context.getIdentityCard());
 	}
 

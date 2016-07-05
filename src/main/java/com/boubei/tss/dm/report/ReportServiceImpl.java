@@ -154,10 +154,8 @@ public class ReportServiceImpl implements ReportService {
     	
     	Report report = this.getReport(reportId);
     	
-    	String reportName = report.getName();
 		String paramsConfig = report.getParam();
 		String reportScript = report.getScript();
-		
 		if( EasyUtils.isNullOrEmpty(reportScript) ) {
 			return new SQLExcutor();
 		}
@@ -258,8 +256,7 @@ public class ReportServiceImpl implements ReportService {
       	}
       	
         // 结合 requestMap 进行 freemarker解析 sql，允许指定sql预处理类。
-      	fmDataMap.put("report.id", reportId);
-      	fmDataMap.put("report.name", reportName); // 用于解析出错时定位report
+      	fmDataMap.put("report.info", report.toString()); // 用于解析出错时定位report
       	reportScript = DMUtil.customizeParse(reportScript, fmDataMap);
           
 		SQLExcutor excutor = new SQLExcutor(false);
@@ -268,7 +265,7 @@ public class ReportServiceImpl implements ReportService {
 			excutor.excuteQuery(reportScript, paramsMap, page, pagesize, datasource);
 		} catch (Exception e) {
 			String exMsg = e.getMessage();
-			log.error( report + "查询出错：" + exMsg);
+			log.error( report + " error：" + exMsg);
 			throw new BusinessException(exMsg);
 		}
 

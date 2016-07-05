@@ -7,6 +7,9 @@ public class GlobalTest {
 	
 	@Test
 	public void test() {
+		
+		Global.destroyContext();
+		
 		Assert.assertNotNull(Global.getContext());
 		
 		try {

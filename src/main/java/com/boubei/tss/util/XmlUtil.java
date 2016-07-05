@@ -26,7 +26,7 @@ public class XmlUtil {
      * @return
      */
     public static String stripNonValidXMLCharacters(String in) {
-        if ( EasyUtils.isNullOrEmpty(in) ) return ""; // vacancy test.
+        if ( EasyUtils.isNullOrEmpty(in) ) return ""; 
         
         StringBuffer out = new StringBuffer(); // Used to hold the output.
         char current; // Used to reference the current character.

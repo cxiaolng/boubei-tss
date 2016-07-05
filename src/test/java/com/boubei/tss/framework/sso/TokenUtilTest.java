@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -28,6 +29,14 @@ public class TokenUtilTest {
         String token = TokenUtil.createToken(sessionId, userId);
         Long newUserId = TokenUtil.getUserIdFromToken(token);
         assertEquals(userId, newUserId);
+        
+        try {
+        	token = "3u1dt5T33PNCgByaGoyMFOMw7N973TrsYbIN9AjcpUILtQjEGWFju4mdid01QmHK9o5ipEzBVO3xfREypahK5w==";
+        	TokenUtil.getUserIdFromToken(token);
+        	Assert.fail("should throw exception, but didn't");
+        } catch(Exception e) {
+        	Assert.assertTrue("登陆令牌已失效，请注销或刷新页面后重新登录。", true);
+        }
     }
 
 }

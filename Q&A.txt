@@ -58,6 +58,18 @@ service nginx start
    3、始终不缓存: /tss/data/json/123?noCache=true 或者
    	{'label':'是否缓存','type':'hidden','name':'noCache','defaultValue':'true'}  	
 
+16、跨域ajax调用
+   首先client要加入server的ip白名单中，
+   jQuery.ajax({
+        url: "http://172.18.24.145:9000/tss/data/json/388",
+        type: "POST",
+        crossDomain: true,
+        dataType: "json",
+        success: function (data) {
+            alert(data);
+        }
+    });
+    
 
 数据录入表创建常见错误：
 1、字段重名：Duplicate column name ‘position’   — MySQL

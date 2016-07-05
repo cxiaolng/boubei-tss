@@ -58,9 +58,11 @@ public class Filter4AutoLogin implements Filter {
  
 	public void init(FilterConfig filterConfig) throws ServletException {
 		String paths = filterConfig.getInitParameter("ignorePaths");
-		if (paths != null) {
-			ignorePaths.addAll(Arrays.asList(paths.split(",")));
+		if (paths == null) {
+			paths = "login.in,logout.in";
 		}
+		ignorePaths.addAll(Arrays.asList(paths.split(",")));
+		
 		log.info("AutoLoginFilter init! appCode=" + Context.getApplicationContext().getCurrentAppCode());
 	}
  

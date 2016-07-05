@@ -263,7 +263,7 @@ public class RoleModuleTest extends AbstractTest4UM {
         action.getPermissionMatrix(response, request, "2", 1, role1Id);
         _TestUtil.printEntity(super.permissionHelper, "RoleUserMapping");
         
-        printVisibleMainGroups(3); // 主用户组（Main-Group）、 财务部 、财务一部
+        printVisibleMainGroups(2); // 主用户组（Main-Group）、 财务部（“财务一部”移到了根目录下，对“财务部”下用户不可见）
         
         // 清除授权
         action.clearPermission(response, request, "2", 0, resourceId);
