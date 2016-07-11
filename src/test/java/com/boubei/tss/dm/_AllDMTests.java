@@ -23,7 +23,7 @@ import com.boubei.tss.dm.record._RecorderTest;
 import com.boubei.tss.dm.report.DataServiceListTest;
 import com.boubei.tss.dm.report.ReportActionTest;
 import com.boubei.tss.dm.report.ScriptParseTest;
-import com.boubei.tss.dm.report.QueryCacheInterceptorTest;
+import com.boubei.tss.dm.report.QueryCacheReportTest;
 import com.boubei.tss.dm.report._ReporterTest;
 import com.boubei.tss.dm.report.timer.ReportJobTest;
 
@@ -37,7 +37,7 @@ import com.boubei.tss.dm.report.timer.ReportJobTest;
 	DataServiceListTest.class,
 	ReportActionTest.class,
 	ScriptParseTest.class,
-	QueryCacheInterceptorTest.class,
+	QueryCacheReportTest.class,
 	ReportJobTest.class,
 	_DatabaseTest.class,
 	_RecorderTest.class,

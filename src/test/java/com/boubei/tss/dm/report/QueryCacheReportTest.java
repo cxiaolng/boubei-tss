@@ -17,7 +17,7 @@ import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.data.sqlquery.SqlConfig;
 import com.boubei.tss.framework.sso.context.Context;
 
-public class QueryCacheInterceptorTest extends AbstractTest4DM {
+public class QueryCacheReportTest extends AbstractTest4DM {
     
     @Autowired private ReportAction action;
     @Autowired private _Reporter display;
