@@ -430,6 +430,9 @@ public abstract class _Database {
 		if(result != null) return result;
 		
 		Pool connpool = JCache.getInstance().getPool(datasource);
+		if(connpool == null) {
+			throw new BusinessException("数据源【" + datasource + "】不存在");
+		}
         Cacheable connItem = connpool.checkOut(0);
         Connection conn = (Connection) connItem.getValue();
         
@@ -449,7 +452,7 @@ public abstract class _Database {
             connpool.checkIn(connItem); // 返回连接到连接池
         }
         
-        return null;
+		throw new BusinessException("数据源【" + datasource + "】没有找到匹配的数据库类型");
 	}
 	
 	public static String[] DB_TYPE = new String[] {"MySQL", "Oracle", "H2"};
