@@ -270,7 +270,7 @@ public abstract class BaseDao<T extends IEntity> implements IDao<T>{
         em.clear();        
     }
     
-    public void insertIds2TempTable(List<?> list) {
+    public void insertIds2TempTable(Collection<?> list) {
         if( !EasyUtils.isNullOrEmpty(list) ) {
         	Collection<Temp> c = new HashSet<Temp>();
             for(Object id : list){
@@ -281,7 +281,7 @@ public abstract class BaseDao<T extends IEntity> implements IDao<T>{
         }
     }
     
-    public void insertIds2TempTable(List<? extends Object[]> list, int idIndex) {
+    public void insertIds2TempTable(Collection<? extends Object[]> list, int idIndex) {
         if( !EasyUtils.isNullOrEmpty(list) ) {
         	Collection<Temp> c = new HashSet<Temp>();
             for(Object[] objs : list){
@@ -292,7 +292,7 @@ public abstract class BaseDao<T extends IEntity> implements IDao<T>{
         }
     }
  
-    public void insertEntityIds2TempTable(List<? extends IEntity> list) {
+    public void insertEntityIds2TempTable(Collection<? extends IEntity> list) {
         if( !EasyUtils.isNullOrEmpty(list) ) {
         	Collection<Temp> c = new HashSet<Temp>();
             for(IEntity entity : list){

@@ -10,6 +10,7 @@
 
 package com.boubei.tss.cache;
 
+
 /**
  * <pre>
  * 可缓存对象对象接口。
@@ -39,6 +40,10 @@ public interface Cacheable {
 	 * @return
 	 */
 	boolean isExpired();
+	
+	String getBirthday();
+	
+	String getDeath();
 
 	/**
 	 * 获取缓存项最后一次被访问的时间
@@ -48,7 +53,7 @@ public interface Cacheable {
 	long getAccessed();
 
 	/**
-	 * 更新缓存项最后一次被访问的时间,同时更新对象的死亡时间
+	 * 更新缓存项最后一次被访问的时间（注：不会同时更新对象的死亡时间，死亡时间不变）
 	 */
 	void updateAccessed();
 

@@ -28,7 +28,7 @@ public class ParamManager {
     }
     
     public static ParamService getService() {
-        return (ParamService) Global.getBean("ParamService");
+        return Global.getParamService();
     }
     
     /**

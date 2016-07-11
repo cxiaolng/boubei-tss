@@ -108,9 +108,9 @@ public interface IDao<T extends IEntity> {
     /**
      * 将ID列表插入临时表，以用于查询时候关联使用。用于替代 IN 查询。
      */
-    void insertIds2TempTable(List<?> list);
-    void insertIds2TempTable(List<? extends Object[]> list, int idIndex);
-    void insertEntityIds2TempTable(List<? extends IEntity> list);
+    void insertIds2TempTable(Collection<?> list);
+    void insertIds2TempTable(Collection<? extends Object[]> list, int idIndex);
+    void insertEntityIds2TempTable(Collection<? extends IEntity> list);
     void insert2TempTable(Collection<Temp> list);
     void clearTempTable();
 

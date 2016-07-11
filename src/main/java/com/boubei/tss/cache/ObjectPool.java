@@ -56,7 +56,8 @@ public class ObjectPool extends AbstractPool implements Cleaner {
 			using = using != null ? using : factory.create(containerClass, usingPoolName);
 			
 			// 为缓存池添加一个监听器
-			addObjectPoolListener( new PoolListener() ); 
+			listeners.clear();
+			addPoolListener( new PoolListener() ); 
 
 			startInitThread( strategy.initNum );
 			initCleaner();
@@ -185,7 +186,6 @@ public class ObjectPool extends AbstractPool implements Cleaner {
 			log.info(s);
 
 			firePoolEvent(PoolEvent.POOL_RELEASED);
-			listeners.clear();
 		}
 	}
 
@@ -196,13 +196,13 @@ public class ObjectPool extends AbstractPool implements Cleaner {
 	 */
 	private final class Cleaner extends Thread {
 		
-		private ObjectPool pool;
+		ObjectPool pool;
 		
 		/** 定期清除缓存池时间间隔 */
-		private long interval;  
+		long interval;  
 		
 		/** 缓存Cleaner是否已经被挂起 */
-		private boolean stopped; 
+		boolean stopped; 
 
 		Cleaner(ObjectPool pool, long interval) {
 			this.setName("CleanerThread_" + (cleanerCount ++)); // 设置线程名称
@@ -238,14 +238,13 @@ public class ObjectPool extends AbstractPool implements Cleaner {
 		public void run() {
 			while ( !stopped ) {
 				try {
-					if (!stopped) {
-						sleep(interval);
-					}
+					sleep(interval);
+						
 					synchronized (pool) {
 						/* 如果池本次没有被清理掉，则说明当前无过期缓存项可清除，再接着轮询也会效果不大，
 						 * 不如先使本cleaner线程进入等待休眠状态，当pool池的checkIn或者putIn事件被触发时，再唤醒本cleaner */
-						if ( !pool.purge() ) {
-							pool.wait(); 
+						if ( pool.purge() ) {
+							pool.wait();  // 等待PoolListener里CHECKIN、PUT_IN时，pool.notifyAll()来唤醒当前线程
 						}
 					}
 				} catch (Exception e) {

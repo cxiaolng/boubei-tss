@@ -10,6 +10,10 @@ public class IdentityGetterFactoryTest {
 	public void test() {
 		IdentityGetter instance = IdentityGetterFactory.getInstance();
 		Assert.assertNotNull(instance);
+		
+		IdentityGetterFactory.getter = null;
+		instance = IdentityGetterFactory.getInstance();
+		Assert.assertNotNull(instance);
 	}
 
 }

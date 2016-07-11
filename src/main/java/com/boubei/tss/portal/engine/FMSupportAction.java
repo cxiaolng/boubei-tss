@@ -21,8 +21,6 @@ import com.boubei.tss.portal.PortalConstants;
 import com.boubei.tss.util.FileHelper;
 import com.boubei.tss.util.URLUtil;
 
-import freemarker.template.TemplateException;
-
 /** 
  * 支持freemarker引擎解析的Action基类。
  * 
@@ -51,44 +49,42 @@ public abstract class FMSupportAction extends BaseActionSupport {
     }
     
     protected void printHTML(Long portalId, String template, boolean parseTwice){
-        if( Config.TRUE.equals(ParamConfig.getAttribute(USE_FREEMARKER)) ){
-	        try {
-	            FreemarkerParser parser = getFreemarkerParser(portalId);
-	            if(parser.isFtlTemplateReady){
-	                HttpServletResponse response = Context.getResponse();
-	                response.setContentType("text/html;charset=UTF-8");
-	                if(parseTwice) { // 是否需要解析两次
-	                    parser.parseTemplateTwice(template, response.getWriter());
-	                } else {
-	                    parser.parseTemplate(template, response.getWriter());
-	                }
-	                return;
-	            }
-	        } catch (Exception e) {
-	            String errorInfo = "执行Freemarker引擎解析时候出错,请联系管理员！<br/>错误信息:(" + e.getMessage() + ")<br/>";
-	            if(e instanceof TemplateException){
-	                print(errorInfo + ((TemplateException)e).getFTLInstructionStack() + template);
-	            } else {
-	                print(errorInfo + e);
-	            }
-	            return;
-	        } 
+        if( !Config.TRUE.equals(ParamConfig.getAttribute(USE_FREEMARKER)) ){
+        	print(template);
         }
         
-        print(template);
+        try {
+            FreemarkerParser parser = getFreemarkerParser(portalId);
+            if(parser.isFtlTemplateReady){
+                HttpServletResponse response = Context.getResponse();
+                response.setContentType("text/html;charset=UTF-8");
+                if(parseTwice) { // 是否需要解析两次
+                    parser.parseTemplateTwice(template, response.getWriter());
+                } else {
+                    parser.parseTemplate(template, response.getWriter());
+                }
+                return;
+            }
+        } catch (Exception e) {
+            String errorInfo = "出错了,请联系管理员！<br/>错误信息: " + e.getMessage() + "<br/>";
+            print(errorInfo);
+            return;
+        } 
     }
     
 	protected FreemarkerParser getFreemarkerParser(Long portalId) {
         HttpServletRequest  request = Context.getRequestContext().getRequest();
         
         // 设置门户资源路进为Freemarker模板路径
-        FreemarkerParser parser = new FreemarkerParser(getPortalResourcesPath(portalId));
-        if(parser.isFtlTemplateReady){
-        	
-            // 将本次http请求中带的参数放入到freemarker数据模型中，
-        	// 以方便调用，因为是每次请求都新建一个FreemarkerParser，所以不会存在多线程问题。
+        File ftl = getPortalResourcesPath(portalId);
+		FreemarkerParser parser = new FreemarkerParser(ftl);
+		
+        if( parser.isFtlTemplateReady ) {
+            /* 
+             * 将本次http请求中带的参数放入到freemarker数据模型中，以方便调用，
+             * 因为是每次请求都新建一个FreemarkerParser，所以不会存在多线程问题。
+             */
             parser.putParameters(request.getParameterMap()); 
-            
             parser.putParameters(getUserDefineParams()); 
         }
         return parser;

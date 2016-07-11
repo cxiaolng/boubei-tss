@@ -89,7 +89,7 @@ public class Report extends OperateInfo implements IXForm, IDecodable, IResource
 	}
 
 	public String toString() {
-        return "报表【" + this.id + ", " + this.name + ", " + this.creatorName + ", " + this.updatorName + "】";
+        return "【" + this.id + ", " + this.name + ", " + this.creatorName + ", " + this.updatorName + "】";
     }
     
     public Long getId() {

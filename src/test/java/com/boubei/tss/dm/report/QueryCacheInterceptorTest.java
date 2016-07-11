@@ -68,7 +68,7 @@ public class QueryCacheInterceptorTest extends AbstractTest4DM {
     			}
         	}.start();
         	
-        	try { Thread.sleep(5); } catch (InterruptedException e) { }
+//        	try { Thread.sleep(5); } catch (InterruptedException e) { }
         }
         
         try { Thread.sleep(5*1000); } catch (InterruptedException e) { }

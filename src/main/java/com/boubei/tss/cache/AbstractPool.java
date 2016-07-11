@@ -240,6 +240,7 @@ public abstract class AbstractPool implements Pool {
 		Cacheable temp = getUsing().remove(key);
 		if( !item.equals(temp) ) {
             logError("试图返回不是using池中的对象到free池中，返回失败！ " + getName() + "【" + item + " --> " + temp + "】");
+            return;
         }
 		
         Object value = item.getValue();
@@ -254,7 +255,7 @@ public abstract class AbstractPool implements Pool {
         } 
         else {
             try{ 
-                // 如果对象实现了Reusable接口，则执行重置操作
+                // 如果对象实现了Reusable接口，则执行回收操作
                 if(value instanceof Reusable) {
                     ((Reusable)value).recycle(); 
                 }
@@ -316,7 +317,7 @@ public abstract class AbstractPool implements Pool {
         }
         log.debug("清除结束");
         
-        return getFree().size() > 0  ||  count > 0;
+        return (getFree().size() == 0  && count == 0);
     }
     
     public long getRequests() {
@@ -406,7 +407,7 @@ public abstract class AbstractPool implements Pool {
         }
     }
     
-    public final void addObjectPoolListener(Listener x){
+    public final void addPoolListener(Listener x){
         listeners.add(x);
     }
 }

@@ -27,8 +27,7 @@ public class DMUtilTest {
 		// test freemarker error print
 		// Expression param1 is undefined on line 1, column 22 in t.ftl
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("report.id", "120");
-		map.put("report.name", "报表120");
+		map.put("report.info", "报表【120, 报表120, 创建人, 修改人】");
 		
 		DMUtil.freemarkerParse("<#if p1??> <#else> ${param1} </#if>", map);
 	}

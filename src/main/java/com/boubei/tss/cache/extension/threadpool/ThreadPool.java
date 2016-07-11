@@ -95,8 +95,9 @@ public class ThreadPool extends ReusablePool implements IThreadPool{
                         log.debug( this + "开始执行任务: 【" + task + "】");
                         task.excute(); // 执行任务
                         
-                        if(taskpool != null) {
-                            taskpool.checkIn(taskWrapper);
+                        Object key = taskWrapper.getKey();
+						if(taskpool != null && taskpool.listKeys().contains(key)) {
+                            taskpool.checkIn(taskWrapper);  // 只有LogTask能回收成功，其它类型Task都是直接new出来的
                         }
                         
                         // 设置线程池、缓存项的命中率

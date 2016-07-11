@@ -12,8 +12,11 @@ package com.boubei.tss.cache;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import com.boubei.tss.util.DateUtil;
 
 /**
  * 对缓冲对象及其Key一起进行包装，使其具有生命周期，同时记录点击量等信息。
@@ -26,6 +29,7 @@ public class TimeWrapper implements Cacheable, Serializable {
 	private Object key, value;
 	private long death = 0; // 如果death = 0，则元素永不过期
 	private long accessed; // 记录元素最后一次被访问的时间
+	private long birthday;
 	private int hit = 0;  // 对象的点击次数
 
 	/**
@@ -43,7 +47,7 @@ public class TimeWrapper implements Cacheable, Serializable {
 		this.key = key;
 		this.value = value;
 		
-		this.accessed = System.currentTimeMillis();
+		this.birthday = this.accessed = System.currentTimeMillis();
 		setCyclelife(cycleLife);
 	}
 
@@ -62,7 +66,7 @@ public class TimeWrapper implements Cacheable, Serializable {
 	 */
 	synchronized void setCyclelife(long cycleLife) {
 		if (cycleLife > 0) {
-			this.death = System.currentTimeMillis() + cycleLife;
+			this.death = this.birthday + cycleLife;
 		}
 		else {
 			this.death = 0;  // cycleLife <= 0  ==> 永不过期
@@ -82,6 +86,17 @@ public class TimeWrapper implements Cacheable, Serializable {
 
 	public long getAccessed() {
 		return this.accessed;
+	}
+	
+	public String getDeath() {
+		if(this.death == 0) {
+			return " Forever ";
+		}
+		return DateUtil.formatCare2Second(new Date(death));
+	}
+	
+	public String getBirthday() {
+		return DateUtil.formatCare2Second(new Date(birthday));
 	}
 
 	public int getHit() {

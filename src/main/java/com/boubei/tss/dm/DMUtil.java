@@ -154,7 +154,8 @@ public class DMUtil {
 	    			paramsMap.put(key, dataMap.get(key));
 	    		}
 	    	}
-	    	log.info("FM引擎解析脚本出错了: \n------------ params-----------: " + paramsMap + "\n" );
+	    	log.info("FM解析出错: " + e.getMessage() +
+	    			"\n------------ params-----------: " + paramsMap + "\n" );
 	    	log.debug(script);
 	    	
 	    	// 抛异常则脚本里含有注释掉的宏代码（如：-- ${param1} or /* ${param1} */），将会报错

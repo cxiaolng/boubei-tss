@@ -32,19 +32,13 @@ public class FreemarkerParser {
     
     protected Logger log = Logger.getLogger(this.getClass());
     
-    /**
-     * 配置用于加载Freemarker的模板文件。
-     */
+    /** 配置用于加载Freemarker的模板文件。*/
     private Configuration cfg = new Configuration();
     
-    /**
-     * DataModel，存放参数、静态类（statics）等
-     */
+    /** DataModel，存放参数、静态类（statics）等 */
     private Map<String, Object> root = new HashMap<String, Object>();
     
-    /**
-     * 如果找不到freemarker模板文件，则不启用解析功能
-     */
+    /** 如果找不到freemarker模板文件，则不启用解析功能 */
     public boolean isFtlTemplateReady = false; 
     
     public FreemarkerParser(){
@@ -90,35 +84,35 @@ public class FreemarkerParser {
      * 解析模板，返回解析结果
      * @param template
      * @return
-     * @throws IOException
-     * @throws TemplateException
      */
-    public String parseTemplate(String template) throws IOException, TemplateException{
-        Template t = new Template("temp.ftl", new StringReader(template), cfg);
-        t.setEncoding("UTF-8");
-        
-        Writer out2 = new StringWriter();
-        t.process(root, out2);
-        return out2.toString();
+    public String parseTemplate(String template) {
+    	Writer out2 = new StringWriter();
+    	parseTemplate(template, out2);
+    	return out2.toString();
     }
     
     /**
      * 解析模板，将解析结果直接输出到Writer对象（一般为直接像前台打出结果）
      * @param template
      * @param out
-     * @throws IOException
-     * @throws TemplateException
      */
-    public void parseTemplate(String template, Writer out) throws IOException, TemplateException {
+    public void parseTemplate(String template, Writer out) {
         // 便于使用单元测试时打印出结果
         if(out.getClass().getName().equals("org.springframework.mock.web.MockHttpServletResponse$ResponsePrintWriter")) {
             out = new OutputStreamWriter(System.out);
         }
         
-        Template t = new Template("temp.ftl", new StringReader(template), cfg);
-        t.setEncoding("UTF-8");
-        t.process(root, out);
-        out.flush();
+        try {
+	        Template t = new Template("temp.ftl", new StringReader(template), cfg);
+	        t.setEncoding("UTF-8");
+	        t.process(root, out);
+	        out.flush();
+	    } 
+	    catch (Exception e) {
+	    	String errorMsg = "FM解析异常: " + e.getMessage();
+	    	log.error(errorMsg + "\n" + template + "\n" + root);
+			throw new BusinessException(errorMsg);
+	    }
     }
     
     /**
@@ -130,7 +124,7 @@ public class FreemarkerParser {
      * @throws IOException
      * @throws TemplateException
      */
-    public void parseTemplateTwice(String template, Writer out) throws IOException, TemplateException{
+    public void parseTemplateTwice(String template, Writer out) {
         // 第一步，对portlet中的freemarker标签进行解析
         template = parseTemplate(template);
         

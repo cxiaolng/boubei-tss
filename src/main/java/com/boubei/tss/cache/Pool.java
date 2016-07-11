@@ -126,7 +126,7 @@ public interface Pool {
 	 * 应用需要特殊实现purge()方法来实现缓存池的清理工作，从而替代默认的清除方式。 
 	 * </pre>
 	 * @return 
-	 * 		如果清除后池为空或者没有清除掉任何缓存项，则返回false，否则true
+	 * 		本次清除后池为空 且 本次没有清除掉任何缓存项，则返回true(表示没东西可再清除了，清除结束)，否则false
 	 */
 	boolean purge();
 
@@ -206,7 +206,7 @@ public interface Pool {
 	 * 
 	 * @param x
 	 */
-	void addObjectPoolListener(Listener x);
+	void addPoolListener(Listener x);
 
 	/**
 	 * 根据事件类型触发事件

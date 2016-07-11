@@ -42,7 +42,7 @@
     <cyclelife>1800000</cyclelife>  
     <accessMethod>5</accessMethod>  
   </strategy>
-  <strategy code="LONG" name="数据缓存（一天）"> 
+  <strategy code="LONG" name="数据缓存（12小时）"> 
     <poolClass>com.boubei.tss.cache.ObjectPool</poolClass>  
     <poolSize>300</poolSize>  
     <cyclelife>43200000</cyclelife>  

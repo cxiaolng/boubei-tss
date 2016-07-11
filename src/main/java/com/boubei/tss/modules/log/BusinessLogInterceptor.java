@@ -66,7 +66,7 @@ public class BusinessLogInterceptor implements MethodInterceptor {
      * @throws IOException
      * @throws TemplateException
      */
-    public String parseMacro(String logInfo, Object[] args, Object returnVal) throws IOException, TemplateException {
+    public String parseMacro(String logInfo, Object[] args, Object returnVal) {
         Map<String, Object> root = new HashMap<String, Object>();
         if(args != null && args.length > 0) {
     		Object[] tempArgs = new Object[args.length];
@@ -77,11 +77,18 @@ public class BusinessLogInterceptor implements MethodInterceptor {
     	}
         root.put("returnVal", returnVal == null ? "" : returnVal);
 
-        Template temp = new Template("t.ftl", new StringReader(logInfo), new Configuration());
-        Writer out = new StringWriter();
-        temp.process(root, out);
-        logInfo = out.toString();
-        out.flush();
+        try {
+	        Template temp = new Template("t.ftl", new StringReader(logInfo), new Configuration());
+	        Writer out = new StringWriter();
+	        temp.process(root, out);
+	        logInfo = out.toString();
+	        out.flush();
+        } 
+        catch (Exception e) {
+	    	log.error("FM解析出错: " + e.getMessage());
+	    	log.debug(logInfo);
+	    	log.debug(root);
+	    }
 
         return logInfo;
     }

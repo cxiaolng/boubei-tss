@@ -1,6 +1,7 @@
 package com.boubei.tss.cache.extension;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,7 @@ import com.boubei.tss.modules.param.Param;
 import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.modules.param.ParamService;
 import com.boubei.tss.util.BeanUtil;
+import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.XMLDocUtil;
 
 @Controller
@@ -124,7 +126,7 @@ public class CacheAction extends BaseActionSupport {
             attrs.put("name", pool.getName());
             attrs.put("accessMethod", strategy.getAccessMethod());
             attrs.put("disabled", strategy.getDisabled());
-            attrs.put("cyclelife", strategy.getCyclelife());
+            attrs.put("cyclelife", strategy.getCyclelife() / 1000);
             attrs.put("interruptTime", strategy.getInterruptTime());
             attrs.put("poolSize", strategy.getPoolSize());
             attrs.put("initNum", strategy.getInitNum());
@@ -166,8 +168,11 @@ public class CacheAction extends BaseActionSupport {
             
             DefaultGridNode gridNode = new DefaultGridNode();
             gridNode.getAttrs().put("id", thisKey);
-            gridNode.getAttrs().put("key", thisKey);
+            gridNode.getAttrs().put("key", thisKey.toString().replaceAll("com.boubei.tss.", ""));
             gridNode.getAttrs().put("code", code);
+            gridNode.getAttrs().put("death", item.getDeath());
+            gridNode.getAttrs().put("birthday", item.getBirthday());
+            gridNode.getAttrs().put("accessed", DateUtil.formatCare2Second(new Date(item.getAccessed())) );
             gridNode.getAttrs().put("hit", new Integer(hit));
 			gridNode.getAttrs().put("hitRate", hitrate + "%");
             gridNode.getAttrs().put("remark", item.getValue());
@@ -184,11 +189,14 @@ public class CacheAction extends BaseActionSupport {
         template.append("<grid><declare sequence=\"true\">");
         template.append("<column name=\"id\" mode=\"string\" display=\"none\"/>");
         template.append("<column name=\"code\" mode=\"string\" display=\"none\"/>");
-        template.append("<column name=\"key\" caption=\"键值\" mode=\"string\" width=\"200px\" />");
+        template.append("<column name=\"key\" caption=\"键值\" mode=\"string\" width=\"250px\" />");
+        template.append("<column name=\"birthday\" caption=\"出生时间\" mode=\"string\" width=\"100px\"/>");
+        template.append("<column name=\"death\" caption=\"死亡时间\" mode=\"string\" width=\"100px\" />");
+        template.append("<column name=\"accessed\" caption=\"最后访问\" mode=\"string\" width=\"100px\" />");
         template.append("<column name=\"hit\" caption=\"命中次数\" mode=\"string\" width=\"60px\" />");
         template.append("<column name=\"hitRate\" caption=\"命中率\" mode=\"string\" width=\"50px\" />");
         template.append("<column name=\"state\" caption=\"状态 \" mode=\"string\" width=\"50px\" values=\"0|1\" texts=\"空闲|忙碌\"/>");
-        template.append("<column name=\"remark\" caption=\"说明\" mode=\"string\" width=\"100px\"/>");
+        template.append("<column name=\"remark\" caption=\"说明\" mode=\"string\" width=\"130px\"/>");
         template.append("</declare><data></data></grid>");
         
         GridDataEncoder gEncoder = new GridDataEncoder(dataList, XMLDocUtil.dataXml2Doc(template.toString()));
