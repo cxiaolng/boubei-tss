@@ -99,7 +99,7 @@ public class JCache {
 				pools.put(poolCode, strategy.getPoolInstance());
 			}
 		} catch (Exception e) {
-			log.info("根据缓存策略配置文件初始化缓存池失败: " + e);
+			log.error("根据缓存策略配置文件初始化缓存池失败: " + e);
 		}
 	}
 

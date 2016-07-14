@@ -85,17 +85,22 @@ public class FileHelper {
     
     /**
      * 写入文件
-     * @param file
-     * @param htmlContent
+     * @param filePath
+     * @param content
+     * @param append
      */
-    public static void writeFile(File file, String content) {
+    public static void writeFile(String filePath, String content, boolean append) {
+    	writeFile(new File(filePath), content, append);
+    }
+    
+    public static void writeFile(File file, String content, boolean append) {
     	File parentFile = file.getParentFile();
     	if( !parentFile.exists() ) {
 			parentFile.mkdirs();
     	}
     	
         try {
-            FileWriter fw = new FileWriter(file);
+            FileWriter fw = new FileWriter(file, append);
             fw.write(content, 0, content.length());
             fw.close();
         } catch (IOException e) {
@@ -103,8 +108,8 @@ public class FileHelper {
         }
     }
     
-    public static void writeFile(String filePath, String content) {
-    	writeFile(new File(filePath), content);
+    public static void writeFile(File file, String content) {
+    	writeFile(file, content, false);
     }
     
 	/**
@@ -133,7 +138,6 @@ public class FileHelper {
 			        writer.close();
 			    }
 			} catch (IOException e) {
-//				log.debug("文件流关闭失败", e);
 			}
 		}
 	}

@@ -8,6 +8,8 @@ man find 查看find命令的详细说明
 sudo service httpd restart
 /bin/vi /etc/httpd/conf/httpd.conf
 
+Timeout 600   (在httpd.conf里配置，默认60，防止连接超时报503)
+
 实时查看tomcat并发连接数：netstat -na | grep ESTAB | grep 8080 | wc -l    (apache里配置的是ajp连接的则用8009)
 实时查看apache并发连接数：netstat -na | grep ESTAB | grep 80 | wc -l
 

@@ -34,7 +34,7 @@ public class FileHelperTest {
          Assert.assertFalse( FileHelper.isFolder(tempDir1, "1.txt") );
          
          FileHelper.writeFile(tempFile1, "111111111111");
-         FileHelper.writeFile(tempFile2.getPath(), "222222222222");
+         FileHelper.writeFile(tempFile2.getPath(), "222222222222", false);
          
          FileHelper.copyFile(tempDir2, tempFile1);
          

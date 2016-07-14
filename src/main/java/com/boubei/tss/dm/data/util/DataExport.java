@@ -62,7 +62,7 @@ public class DataExport {
         String exportFileName = System.currentTimeMillis() + ".csv";
 		String exportPath = basePath + "/" + exportFileName;
 		
-		DataExport.exportCSV(exportPath, convertList2Array(data), cnFields );
+		DataExport._exportCSV(exportPath, convertList2Array(data), cnFields );
 		return exportFileName;
     }
     
@@ -77,7 +77,7 @@ public class DataExport {
         }
         
         Object[][] data = convertList2Array(AbstractVO.voList2Objects(voList));
-		exportCSV(exportPath, data, cnFields );
+		_exportCSV(exportPath, data, cnFields );
 		
 		return exportFileName;
     }
@@ -105,11 +105,11 @@ public class DataExport {
     	String basePath = getExportPath();
 		String exportPath = basePath + "/" + fileName;
 		
-		exportCSV(exportPath, data, cnFields );
+		_exportCSV(exportPath, data, cnFields );
 		return fileName;
     }
 
-    public static void exportCSV(String path, Object[][] data, List<String> fields) {
+    private static void _exportCSV(String path, Object[][] data, List<String> fields) {
     	List<Object[]> list = new ArrayList<Object[]>();
     	for(Object[] temp : data) {
     		list.add(temp);
@@ -131,16 +131,20 @@ public class DataExport {
     }
     
     public static void exportCSV(String path, Collection<Object[]> data, List<String> fields) {
+    	exportCSV(path, data, fields, CSV_CHAR_SET);
+    }
+    
+    public static void exportCSV(String path, Collection<Object[]> data, List<String> fields, String charSet) {
         try {
         	File file = getFile(path);
-            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file), CSV_CHAR_SET );
+        	boolean append = fields == null;
+            OutputStreamWriter write = new OutputStreamWriter(new FileOutputStream(file, append), charSet );
             BufferedWriter fw = new BufferedWriter(write);   
             
-            if(fields != null) {
+            if( !append ) {
             	fw.write(EasyUtils.list2Str(fields)); // 表头
+            	fw.write("\r\n");
             }
-            
-            fw.write("\r\n");
 
             int index = 0;
             for (Object[] row : data) {
@@ -184,6 +188,7 @@ public class DataExport {
         return file;
     }
     
+    // 共Web页面上的表格数据直接导出成csv调用
     public static void exportCSV(String path, String data) {
         try {
         	File file = getFile(path);

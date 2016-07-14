@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.boubei.tss.dm.AbstractTest4DM;
 import com.boubei.tss.dm.data.sqlquery.AbstractExportSO;
 import com.boubei.tss.dm.data.sqlquery.InvSnapshotVO;
+import com.boubei.tss.util.FileHelper;
 
 public class DataExportTest extends AbstractTest4DM {
 	
@@ -51,8 +52,14 @@ public class DataExportTest extends AbstractTest4DM {
 		DataExport.exportCSV(voList, so);
 		
 		List<String> cnFields = Arrays.asList("h1", "h2");
-		Object[][] data = new Object[2][2];
-		DataExport.exportCSVII("123.csv", data , cnFields);
+		Object[][] data = new Object[1][2];
+		data[0] = new Object[] {1, 1};
+		DataExport.exportCSVII("123.csv", data, cnFields);
+		System.out.println(FileHelper.readFile(DataExport.getExportPath() + "/123.csv"));
+		
+		data[0] = new Object[] {2, 2};
+		DataExport.exportCSVII("123.csv", data, null);
+		System.out.println(FileHelper.readFile(DataExport.getExportPath() + "/123.csv"));
 		
 		String tmpDir = System.getProperty("java.io.tmpdir") + "temp";
 		DataExport.exportCSV(tmpDir + "/456.csv", "h1,h2\n1,2");
