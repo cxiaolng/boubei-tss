@@ -308,12 +308,13 @@ public class _Reporter extends BaseActionSupport {
 		// 方法的访问日志记录成败不影响方法的正常访问，所以对记录日志过程中各种可能异常进行try catch
         try {
             AccessLog log = new AccessLog();
-            log.setClassName(_Reporter.class.getSimpleName());
+            log.setClassName("Report-" + reportId);
     		log.setMethodName(methodName);
     		log.setMethodCnName(methodCnName);
             log.setAccessTime(new Date(start));
             log.setRunningTime(runningTime);
             log.setParams(params);
+            log.setIp(Environment.getClientIp());
             
             Long userId = Environment.getUserId();
             if(userId == null && iUser != null) {

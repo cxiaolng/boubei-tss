@@ -149,8 +149,8 @@ public class _Connection extends ConfigurableContants {
 	            DriverManager.setLoginTimeout(30);
 				conn = DriverManager.getConnection(url, user, pwd);
 	        } catch (Exception e) {
-	        	log.error("创建数据库连接出错了，url：" + url + ", user:" + user + "," + e.getCause());
-	            throw new BusinessException("创建数据库连接出错了，" + driver + "，" + user + "," + e.getCause());
+	        	log.error("创建数据库连接出错了，url：" + url + ", user:" + user + "," + e.getMessage());
+	            throw new BusinessException("创建数据库连接出错了，" + driver + "，" + user + "," + e.getMessage());
 	        } 
 	        return conn;
 		}
