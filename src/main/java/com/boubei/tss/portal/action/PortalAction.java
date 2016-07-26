@@ -349,7 +349,7 @@ public class PortalAction extends FMSupportAction {
     		@PathVariable("themeId") Long themeId) {
     	
         Pool pool = CacheHelper.getLongCache();        
-        pool.removeObject(PortalConstants.PORTAL_CACHE + "-" + portalId + "-" + themeId);
+        pool.destroyByKey(PortalConstants.PORTAL_CACHE + "-" + portalId + "-" + themeId);
         printSuccessMessage();
     }
     

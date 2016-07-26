@@ -37,7 +37,7 @@ public class SchedulerBeanTest extends AbstractTest4F {
 		
 		// 清除service method cache
 		Pool shortCache = CacheHelper.getShortCache();
-		shortCache.removeObject("com.boubei.tss.modules.param.ParamService.getComboParam(TIMER_PARAM_CODE)");
+		shortCache.destroyByKey("com.boubei.tss.modules.param.ParamService.getComboParam(TIMER_PARAM_CODE)");
 		
 		// DemoJob配了每分钟里10,20,30,40,55执行
 		try { Thread.sleep(1000 * 16); } catch (InterruptedException e) { }

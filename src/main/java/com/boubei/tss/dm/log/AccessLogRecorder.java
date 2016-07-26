@@ -34,13 +34,13 @@ public class AccessLogRecorder extends OutputRecordsManager {
     }
 
     protected void excuteTask(List<Object> logs) {
-        AbstractTask task = new AnalyseLogOutputTask();
+        AbstractTask task = new AccessLogOutputTask();
         task.fill(logs);
 
         tpool.excute(task);
     }
 
-    private final class AnalyseLogOutputTask extends AbstractTask {
+    private final class AccessLogOutputTask extends AbstractTask {
         public void excute() {
             List<Map<Integer, Object>> paramsMapList = new ArrayList<Map<Integer, Object>>();
             for (Object temp : records) {

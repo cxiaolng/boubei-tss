@@ -72,15 +72,7 @@ public interface Pool {
 	 * @return
 	 */
 	Cacheable putObject(Object key, Object value);
-	
-	/**
-	 * 从缓存池中移除一个对象。
-	 * 
-	 * @param key
-	 * @return
-	 */
-	Cacheable removeObject(Object key);
-	
+
 	/**
 	 * <pre>
 	 * 将元素从free池中取出，放入using池中，并返回该元素。  
@@ -151,6 +143,13 @@ public interface Pool {
 	 * @param o
 	 */
 	void destroyObject(Cacheable o);
+	
+	/**
+	 * 依据key先将缓存项从池中移除，然后销毁。
+	 * 
+	 * @param key
+	 */
+	boolean destroyByKey(Object key);
 
 	/**
 	 * 释放所有池中的连接，并且关闭池。

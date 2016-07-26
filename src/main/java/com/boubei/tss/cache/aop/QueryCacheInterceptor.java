@@ -34,7 +34,7 @@ public class QueryCacheInterceptor implements MethodInterceptor {
         	return invocation.proceed(); /* 如果没有配置缓存，则直接执行方法并返回结果 */
         }
  
-		Pool cache = CacheHelper.getShortCache();
+		Pool cache = CacheHelper.getShortCache(); /* 使用10分钟Cache */
 		
 		Class<?> declaringClass = targetMethod.getDeclaringClass();
 		String key = "QC_" + declaringClass.getName() + "." + targetMethod.getName();
@@ -83,7 +83,7 @@ public class QueryCacheInterceptor implements MethodInterceptor {
 			} catch(Exception e) {
 				throw e;
 			} finally {
-				cache.removeObject(key); // 移除缓存的执行信息（出现异常时也要移除）
+				cache.destroyByKey(key); // 移除销毁缓存的执行信息（出现异常时也要移除）
 			}
 		}
  

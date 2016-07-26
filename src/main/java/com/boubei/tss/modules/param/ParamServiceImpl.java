@@ -55,7 +55,7 @@ public class ParamServiceImpl implements ParamService, ParamListener {
             for(Object key : keys) {
             	String _key = key.toString();
             	if(_key.indexOf(".ParamService.") > 0 && _key.indexOf(paramCode) > 0) {
-            		dataCache.removeObject(key);
+            		dataCache.destroyByKey(key);
             	}
             }
         }

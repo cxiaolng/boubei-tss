@@ -144,6 +144,6 @@ public class TimeWrapper implements Cacheable, Serializable {
 	}
 	
 	public String toString() {
-		return this.getKey().toString();
+		return "(" + this.getKey().toString() + " = " + this.value + ")";
 	}
 }

@@ -35,13 +35,14 @@ public class ReusablePool extends ObjectPool {
 	 * @exception PoolException
 	 *      创建对象时出错则抛异常
 	 */
-	@Override
 	protected Cacheable checkOut() {
 		Cacheable item = null;
 		
 		// 循环取，直到取出一个正确的或者free List为空为止
 		while(getFree().size() > 0) {
+			
 			item = remove();
+			
 			if ( customizer.isValid(item) ) {
 				break;
 			} 
@@ -59,16 +60,17 @@ public class ReusablePool extends ObjectPool {
 		if ( !isHited ) {
 			int maxSize = strategy.poolSize;
 			if (size() < maxSize || maxSize == 0) {
-				logDebug( (getFree().size() + getUsing().size()) + " +++++++++++++ " + size() + " " + maxSize);
 				item = customizer.create();
 		        	
 				if ( !customizer.isValid(item) ) {
-					String errorMsg = getName() + "池【" + getName() + "】没能创建一个新的有效的缓存项。";
+					String errorMsg = "【" + getName() + "】没能创建一个新的有效的缓存项。";
 					log.debug(errorMsg);
 					throw new RuntimeException(errorMsg);
 				} 
 				else {
-					size ++;
+					synchronized (size) {
+						size ++;
+					} 
 				}
 			}
 		}

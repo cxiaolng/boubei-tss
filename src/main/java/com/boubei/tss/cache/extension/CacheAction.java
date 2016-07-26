@@ -238,14 +238,8 @@ public class CacheAction extends BaseActionSupport {
     		@RequestParam("key") String key) {
     	
         Pool pool = cache.getPool(code);
-		Cacheable item = pool.removeObject(key);
-        if(item == null) {
-        	printSuccessMessage("该缓存项已经不存在，已经被清空或是已经被刷新！");
-        } 
-        else {
-        	pool.destroyObject(item);
-        	printSuccessMessage("成功清除。");
-        }
+		boolean rt = pool.destroyByKey(key);
+        printSuccessMessage(rt ? "成功清除。" : "该缓存项已经不存在，已经被清空或是已经被刷新！");
     }
     
     /**

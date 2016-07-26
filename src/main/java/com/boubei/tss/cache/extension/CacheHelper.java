@@ -36,7 +36,7 @@ public class CacheHelper {
 		Set<Object> keys = pool.listKeys();
 		for(Object _key : keys) {
 			if(_key.toString().indexOf(likeKey) >= 0) {
-				pool.removeObject(_key);
+				pool.destroyByKey(_key);
 			}
 		}
 	}

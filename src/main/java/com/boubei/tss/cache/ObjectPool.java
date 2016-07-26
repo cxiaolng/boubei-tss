@@ -9,6 +9,9 @@
  */
 package com.boubei.tss.cache;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.boubei.tss.util.BeanUtil;
 
 /**
@@ -144,16 +147,18 @@ public class ObjectPool extends AbstractPool implements Cleaner {
 			int rel = 0, failed = 0;
 			// 销毁所有的缓存项（包括尚在使用中的）
 			if (forced) {
-				for (Object key : using.keySet()) {
+				List<Object> usingKeys = new ArrayList<Object>(using.keySet());
+				for (Object key : usingKeys) {
 					try {
-						destroyObject(using.get(key));
+						Cacheable usingItem = using.remove(key);
+						destroyObject(usingItem);
 						rel ++;
 					} catch (Exception e) {
 						failed ++;
 						log.error("无法释放using池中的缓存项目：" + key, e);
 					}
 				}
-				using.clear();
+				
 			} else {
 				if (using.size() > 0) {
 					log.info("等待【使用中的缓存项】被 check in pool...");
@@ -168,16 +173,16 @@ public class ObjectPool extends AbstractPool implements Cleaner {
 			}
 			
 			// 销毁当前所有空闲状态的缓存项
-			for (Object key : free.keySet()) {
+			List<Object> freeKeys = new ArrayList<Object>(free.keySet());
+			for (Object key : freeKeys) {
 				try {
-					destroyObject(free.get(key));
+					destroyByKey(key);
 					rel ++;
 				} catch (Exception e) {
 					failed ++;
 					log.error("无法释放free池中的缓存项目：" + key, e);
 				}
 			}
-			free.clear();
 
 			String s = "成功释放【" + rel + "】个缓存项";
 			if (failed > 0) {

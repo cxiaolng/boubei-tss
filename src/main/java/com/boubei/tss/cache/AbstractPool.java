@@ -24,17 +24,17 @@ public abstract class AbstractPool implements Pool {
     
     protected void logDebug(String msg) {
     	String currentThread = Thread.currentThread().getName();
-    	log.debug(":" + currentThread + ":" + msg);
+    	log.debug(msg + "，" + currentThread);
     }
  
     protected void logError(String msg) {
     	String currentThread = Thread.currentThread().getName();
-    	log.error(":" + currentThread + ":" + msg);
+    	log.error(currentThread + "，" + msg);
     }
 
     // 对象池属性
     
-    /** 命中数 */
+    /** 池中对象个数 */
     protected Integer size = 0;
     
     /** 请求数 */
@@ -70,7 +70,7 @@ public abstract class AbstractPool implements Pool {
 	public abstract Container getUsing();
 	
 	public String toString() {
-		String display = "\n缓存池【" + this.getName() + "】的当前快照：";
+		String display = "\n缓存池【" +this.getName()+ "，" +this.getHitRate()+ "】的当前快照：";
 		if( getFree() != null ) {
             display += getFree();
         }
@@ -131,11 +131,14 @@ public abstract class AbstractPool implements Pool {
 		if (oldItem != null) {
 			oldItem.update(value);
 			return oldItem;
-		} else {
+		} 
+		else {
 			// 缓存项放入缓存池的同时也设置了其生命周期
 			Cacheable newItem = new TimeWrapper(key, value, strategy.cyclelife);
 			newItem = getFree().put(key, newItem);
-			size ++;
+        	synchronized(size) { 
+        		size ++; 
+        	}
 			
 			// 事件监听器将唤醒所有等待中的线程，包括cleaner线程，checkout，remove等方法的等待线程
 			firePoolEvent(PoolEvent.PUT_IN);
@@ -144,7 +147,8 @@ public abstract class AbstractPool implements Pool {
 		}
 	}
 
-    public Cacheable removeObject(Object key) {
+    // 从缓存池中移除一个对象。
+    private Cacheable removeObject(Object key) {
         Cacheable item = getFree().remove(key);
         
         firePoolEvent(PoolEvent.REMOVE);
@@ -160,10 +164,10 @@ public abstract class AbstractPool implements Pool {
     public Cacheable reload(final Cacheable obj) throws RuntimeException {
         Cacheable newObj = customizer.reloadCacheObject(obj);
         
-        // 如果重新加载的缓存项为空，则将原先的缓存项从缓存池中移除，否则则覆盖原有的缓存项。
+        // 如果重新加载的缓存项为空，则将原先的缓存项从池中移除并销毁，否则则覆盖原有的缓存项。
         Object key = obj.getKey();
         if(newObj == null) {
-			removeObject(key);
+			destroyByKey(key);
         } else {
             newObj = putObject(key, newObj.getValue());
         }
@@ -176,11 +180,28 @@ public abstract class AbstractPool implements Pool {
     public synchronized void destroyObject(final Cacheable o) {
         if (o != null) {
     		customizer.destroy(o);
-        	logDebug("对象" + o + "被成功销毁");
+        	logDebug(" 对象" + o + "被成功销毁");
         	
-    		size --;
-    		logDebug( (getFree().size() + getUsing().size()) + " --------(1)------ " + size());
+        	synchronized(size) { 
+        		size --; 
+        		checkSize();
+        	}
         }
+    }
+    
+    private void checkSize() {
+    	int realSize = getFree().size() + getUsing().size();
+    	if( realSize != size ) {
+    		log.debug(this);
+    		log.error( "【" +this.getName()+ "】的实际缓存项个数和计录的个数不一致, realSize = " +realSize+ ", size = " +size());
+    		size = realSize; // 以实际个数为准
+    	}
+    }
+    
+    public synchronized boolean destroyByKey(Object key) {
+    	Cacheable item = removeObject(key);
+        destroyObject(item);
+        return item == null;
     }
     
     public final void releaseAsync(final boolean forced) {
@@ -228,7 +249,7 @@ public abstract class AbstractPool implements Pool {
         }
         return item;
     }
-
+    
     public synchronized void checkIn(Cacheable item) {
         if (item == null) {
         	logError("试图返回空的缓存项。");
@@ -248,10 +269,9 @@ public abstract class AbstractPool implements Pool {
         //如果池已满，则销毁对象，否则则放回池中
         int maxSize = strategy.poolSize;
         if (maxSize > 0 && size() > maxSize) {
-        	logDebug(getName() + "【" + item + "】 checkIn时池已满了，正将被销毁。");
-        	
-        	logDebug( (getFree().size() + getUsing().size()) + " --------(0)------- " + size());
-            destroyObject(item);
+        	logDebug(getName() + "【" + item + "】 checkIn时池已满了，即将被销毁。");
+
+        	destroyObject(item);
         } 
         else {
             try{ 

@@ -70,7 +70,7 @@ public class MailUtil {
 			getMailSender().send(mail);
 		} 
 		catch (Exception e) {
-			log.error("发送文本邮件时出错了, " + receiver + "：" + e.getMessage());
+			log.error("发送文本邮件(" +subject+ ")出错了, " + receiver + "：" + e.getMessage());
 		}
 	}
 	
@@ -100,7 +100,7 @@ public class MailUtil {
 			sender.send(mailMessage);
 		} 
 		catch (Exception e) {
-			log.error("发送报表邮件时出错了：" + e.getMessage());
+			log.error("发送报表邮件(" +subject+ ")出错了, " + receiver + ", " + e.getMessage());
 		}
 	}
 }

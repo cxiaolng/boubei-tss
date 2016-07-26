@@ -50,6 +50,7 @@ public class JCachePoolTest {
 		assertNotNull(threadItem);
 		
 		tpool.reload(threadItem);
+		tpool.destroyByKey(threadItem.getKey());
 		tpool.destroyObject(threadItem);
 	}
 	
@@ -97,8 +98,8 @@ public class JCachePoolTest {
 		taskpool.checkIn(taskItem);
 		
 		taskItem = taskpool.getObject(key);
-		taskItem = taskpool.removeObject(key);
-		taskItem = taskpool.getObject(key);
+		taskpool.destroyByKey(key);
+		taskItem = taskpool.getObject(key); // 触发reload
 		taskpool.putObject(key, taskItem.getValue());
 		
 		assertTrue(taskpool.getHitRate() > 0);

@@ -107,7 +107,7 @@ public class RecordAction extends BaseActionSupport {
         recordService.saveRecord(record);
         
 		String cacheKey = "_db_record_" + record.getId();
-		CacheHelper.getLongCache().removeObject(cacheKey);
+		CacheHelper.getLongCache().destroyByKey(cacheKey);
 		
         doAfterSave(isnew, record, "SourceTree");
     }
