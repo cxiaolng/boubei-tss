@@ -14,7 +14,8 @@
 			 <outputDirectory>/</outputDirectory>
 			 <includes>
 			 	<include>META-INF/*.xml</include> 
-                <include>template/**/*.xml</include>  
+                <include>template/**/*.xml</include>
+                <include>tss/rights.xml</include>  
                 <include>com/boubei/tss/**/*.class</include> 
 			 </includes>
          </fileSet> 

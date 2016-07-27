@@ -55,6 +55,7 @@ find / -name “my.cnf"
 
 .zip
 zip -r btrbi0919.zip  /home/btrbi/temp/btrbi_0919.sql
+unzip xx.zip
 
 跨机器复制文件（夹）
 scp /home/btrbi/temp.tar.gz root@10.45.11.74:/home/btrbi/
