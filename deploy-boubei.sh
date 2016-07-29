@@ -18,3 +18,8 @@ cp target/tss.war /Users/jinpujun/Desktop/workspace/release/boubei
 #  2、上传并导入，mysql -u root -p demo_bi   < /home/tssbi/temp/demo_bi.sql
 #  3、启动后修改 栏目站点的文件目录地址， 并重新发布所有文章、重建索引
 #  4、修改系统参数，默认导出目录：/home/tssbi/temp ；导出数据分流机器：http://www.boubei.com:8080
+
+#阿里云boubei.com重启步骤：
+#  service nginx start
+#  /etc/rc.d/init.d/mysqld start
+#  ./home/tss/release/restart.sh

@@ -42,14 +42,14 @@ public abstract class AbstractJob implements Job {
         	resultMsg = "定时任务：（" + jobName + "）执行完成。";
         	log.info(resultMsg);
         	
-        	excuteLog = new Log(jobName + "-成功", resultMsg);
+        	excuteLog = new Log(jobName + " - 成功", resultMsg);
         	excuteLog.setMethodExcuteTime(methodExcuteTime);
         } 
         catch(Exception e) {
         	resultMsg = "定时任务：（" + jobName + "）执行出错了: " + e.getMessage();
         	log.error(resultMsg, e);
         	
-        	excuteLog = new Log(jobName + "-失败", resultMsg);
+        	excuteLog = new Log(jobName + " -【失败!!!】", resultMsg);
         } 
         finally {
         	if(excuteLog != null && businessLogger != null) {

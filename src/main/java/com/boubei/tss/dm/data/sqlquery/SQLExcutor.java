@@ -378,7 +378,7 @@ public class SQLExcutor {
         	
         } catch (Exception e) {
         	hasException = true;
-        	throw new BusinessException("执行SQL时出错了。sql : " + sql, e);
+        	throw new BusinessException(e.getMessage());
         } finally {
         	connpool.checkIn(connItem);
         	
@@ -431,7 +431,7 @@ public class SQLExcutor {
         	catch (Exception e2) { log.error(e2.getMessage(), e2); }
         	
         	log.debug(Environment.getUserCode() + ", " + Arrays.asList( paramsList.get(0)) );
-            throw new BusinessException("出错了! sql : " + sql + ", " + e.getMessage());
+            throw new BusinessException("出错了! sql : " + sql + ", \n" + e.getMessage());
             
         } finally {
         	try { conn.setAutoCommit(autoCommit); } 
