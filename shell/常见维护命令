@@ -4,6 +4,7 @@ uptime    查看系统启动时间
 free -m   查看内存使用   
 df -m 查看硬盘
 man find 查看find命令的详细说明
+# date 10301443  修改时间为10月30日14:43
 -------------------------------------------- Apache ------------------------------------------------------
 sudo service httpd restart
 /bin/vi /etc/httpd/conf/httpd.conf
@@ -14,8 +15,6 @@ Timeout 600   (在httpd.conf里配置，默认60，防止连接超时报503)
 实时查看apache并发连接数：netstat -na | grep ESTAB | grep 80 | wc -l
 
 netstat -anlt | grep 8080 | grep ESTABLISHED
-
-service nginx start
 
 -------------------------------------------- MySQL ------------------------------------------------------
 mysql -u root -p btrbi   < /home/btrbi/temp/bi.sql
@@ -36,14 +35,14 @@ MySQL自动宕机问题：
 SHOW  GLOBAL VARIABLES LIKE '%log%';   // 找log_error的目录，再打开查看报错信息
 innodb_buffer_pool_size = 10G   // 太大了，改成2G
 
--------------------------------------------- Oracle ------------------------------------------------------
-1. su -oracle 
-2. sqlplus "/ as sysdba"
-3. startup / shutdown
-4. lsnrctl start (启动监听)  /  lsnrctl stop  /  lsnrctl status
+
+mysql>change master to master_host='10.9.45.66',master_user='root',master_password='800best@com', master_log_file='mysql-bin.000006',master_log_pos=120;
+mysql>start slave;
+mysql>show slave status\G;
 
 -------------------------------------------- 文件操作 ------------------------------------------------------
 find / -name “my.cnf"
+du -h --max-depth=1 /home/btrbi/temp  -- 查看文件夹大小
 
 .gz
 解压：gzip -d FileName.gz
@@ -58,7 +57,7 @@ zip -r btrbi0919.zip  /home/btrbi/temp/btrbi_0919.sql
 unzip xx.zip
 
 跨机器复制文件（夹）
-scp /home/btrbi/temp.tar.gz root@10.45.11.74:/home/btrbi/
+scp /home/btrbi/release/tss-07-27.zip btrbi@10.9.45.66:/home/btrbi/release
 scp -r /home/btrbi/temp root@10.45.10.216:/data/bk/74/
 
 -------------------------------------------- 用户、目录、权限 ------------------------------------------------------
@@ -84,13 +83,16 @@ sudo passwd root             -- appadmin可以修改root的密码
 vim /var/log/secure   -- 查看系统安全日志
 history 50    -- 查看最近执行的50条命令  vim ~/.bash_history
 
-设置history保留数量：
+设置history保留数量 和 ssh连接超时时间：
 [root@bi68 ~]# vi ~/.bash_profile
     最下面加上：
     			HISTSIZE=450
 				HISTFLESIZE=450
+				TMOUT=3600   -- ssh 超时（秒）
 [root@bi68 ~]# source ~/.bash_profile
 [root@bi68 ~]# echo $HISTSIZE
+
+这几个配置在 /etc/profile 下也有，修改后， source /etc/profile 使生效
 
 -------------------------------------------- 定时配置 ------------------------------------------------------
 查看异常信息： tail -f /var/mail/jinpujun
@@ -105,19 +107,3 @@ service crond start
 安装crontab:
 [root@CentOS ~]# yum install vixie-cron
 [root@CentOS ~]# yum install crontabs
-
-
-------------------------------------------- 查看硬件配置、linux版本 ---------------------------------------------
-查看linux发行版本：cat /etc/issue
-查看系统与内核相关：uname -a
-
-1. 查看物理CPU的个数： cat /proc/cpuinfo |grep "physical id"|sort |uniq|wc -l
-2. 查看逻辑CPU的个数： cat /proc/cpuinfo |grep "processor"|wc -l
-3. 查看CPU是几核：cat /proc/cpuinfo |grep "cores"|uniq
-4. 查看CPU的主频：cat /proc/cpuinfo |grep MHz|uniq
-
-# uname -a  (查看当前操作系统内核信息)
-Linux euis1 2.6.9-55.ELsmp #1 SMP Fri Apr 20 17:03:35 EDT 2007 i686 i686 i386 GNU/Linux
-
-# cat /etc/issue | grep Linux   (查看当前操作系统发行版信息)
-Red Hat Enterprise Linux AS release 4 (Nahant Update 5)

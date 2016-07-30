@@ -34,6 +34,7 @@ import com.boubei.tss.framework.web.dispaly.grid.GridDataEncoder;
 import com.boubei.tss.framework.web.dispaly.grid.IGridNode;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
 import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.service.ILoginService;
 import com.boubei.tss.util.EasyUtils;
 
@@ -286,8 +287,7 @@ public class _Reporter extends BaseActionSupport {
 	 */
 	private void outputAccessLog(Long reportId, String methodName, Map<String, String> requestMap, long start) {
 		Report report = reportService.getReport(reportId);
-		String methodCnName = report.getName();
-		String iUser = requestMap.remove("iUser");
+		String reportName = report.getName();
 		
 		// 过滤掉定时刷新类型的报表
 		String remark = report.getRemark();
@@ -303,33 +303,33 @@ public class _Reporter extends BaseActionSupport {
         if (params != null && params.length() > 500) {
             params = params.substring(0, 500);
         }
-        
-		long runningTime = System.currentTimeMillis() - start;
 		
 		// 方法的访问日志记录成败不影响方法的正常访问，所以对记录日志过程中各种可能异常进行try catch
         try {
             AccessLog log = new AccessLog();
             log.setClassName("Report-" + reportId);
-    		log.setMethodName(methodName);
-    		log.setMethodCnName(methodCnName);
-            log.setAccessTime(new Date(start));
-            log.setRunningTime(runningTime);
+    		log.setMethodName( methodName );
+    		log.setMethodCnName( reportName );
+            log.setAccessTime( new Date(start) );
+            log.setRunningTime( System.currentTimeMillis() - start );
             log.setParams(params);
-            log.setIp(Environment.getClientIp());
             
+            // 记录访问人，如果是匿名（跨域）访问，先看看有没有指定访问人，没有则记为匿名访问
             Long userId = Environment.getUserId();
+            String iUser = requestMap.remove("iUser");
             if(userId == null && iUser != null) {
             	IOperator operator = loginService.getOperatorDTOByLoginName(iUser);
             	if(operator != null) {
             		userId = operator.getId();
             	}
             }
-			log.setUserId(userId);
+			log.setUserId(userId == null ? UMConstants.ANONYMOUS_USER_ID : userId);
+			log.setIp( Environment.getClientIp() );
 
             AccessLogRecorder.getInstanse().output(log);
         } 
         catch(Exception e) {
-        	log.error("记录方法【" + methodCnName + "." + methodName + "】的访问日志时出错了。错误信息：" + e.getMessage());
+        	log.error("记录报表【" + reportName + "." + methodName + "】访问日志时出错：" + e.getMessage());
         }
 	}
 
