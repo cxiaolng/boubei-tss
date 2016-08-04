@@ -23,7 +23,7 @@ public class UMQueryCondition extends MacrocodeQueryCondition {
 	
     public Map<String, Object> getConditionMacrocodes() {
         Map<String, Object> map = new HashMap<String, Object>() ;
-        map.put("${loginName}",  " and u.loginName = :loginName");
+        map.put("${loginName}",  " and u.loginName  like :loginName");
         map.put("${userName}",   " and u.userName   like :userName");
         map.put("${employeeNo}", " and u.employeeNo like :employeeNo");
         map.put("${birthday}",   " and u.birthday >= :birthday");
@@ -70,6 +70,9 @@ public class UMQueryCondition extends MacrocodeQueryCondition {
 	}
  
 	public String getLoginName() {
+		if(loginName != null){
+			loginName = "%" + loginName.trim() + "%";           
+        }
 		return loginName;
 	}
  
