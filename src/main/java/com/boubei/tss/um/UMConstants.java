@@ -46,11 +46,12 @@ public final class UMConstants {
 	public static final Long ADMIN_USER_ID     = new Long(-1);     //系统管理员的ID(初始化数据库时写死的)
 	public static final Long ANONYMOUS_USER_ID = new Long(-10000); //匿名用户的ID(初始化数据库时写死的)
     
-	public static final Long DEFAULT_ROOT_ID                   = new Long(0); /** 默认根结点ID */
-	public static final Long MAIN_GROUP_ID                     = new Long(-2); //主用户组的ID (初始化数据库时写死的)
-	public static final Long ASSISTANT_GROUP_ID                = new Long(-3); //辅助用户组的ID(初始化数据库时写死的)
-	public static final Long ROLE_ROOT_ID                      = new Long(-6); //角色的ID(视图生成)
-	public static final Long SELF_REGISTER_GROUP_ID            = new Long(-7); //自注册用户组的ID(初始化数据库时写死的)
+	public static final Long DEFAULT_ROOT_ID          = 0L;  /** 默认根结点ID */
+	public static final Long MAIN_GROUP_ID            = -2L; //主用户组的ID (初始化数据库时写死的)
+	public static final Long ASSISTANT_GROUP_ID       = -3L; //辅助用户组的ID(初始化数据库时写死的)
+	public static final Long SELF_REGISTER_GROUP_ID   = -7L; //自注册用户组的ID(初始化数据库时写死的)
+	
+	public static final Long ROLE_ROOT_ID             = -6L; //角色的ID(视图生成)
 	
 	// ===========================================================================
     // 资源权限相关

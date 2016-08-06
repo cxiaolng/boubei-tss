@@ -52,7 +52,7 @@ public class GroupService implements IGroupService {
     	Long operatorId = Environment.getUserId();
         List<?> mainAndAssistantGroups = groupDao.getMainAndAssistantGroups(operatorId);
         
-        /* 按操作用户对结果集进行过滤，只留下自己所在主组及其子组。
+        /* 按操作用户对结果集进行过滤，只留下自己所在主组及其子组。 注：#自注册用户组#放开
          * eg:浙江分公司的用户只能看到浙分下面的组织，哪怕给他授权了其它分公司
          */
         Group mainGroup = getMainGroup(operatorId);
@@ -61,7 +61,8 @@ public class GroupService implements IGroupService {
 			Group group = (Group) temp;
         	Integer groupType = group.getGroupType();
 			if( Group.MAIN_GROUP_TYPE.equals(groupType) 
-					&& !group.getDecode().startsWith(mainGroup.getDecode()) ) {
+					&& !group.getDecode().startsWith(mainGroup.getDecode())
+					&& !UMConstants.SELF_REGISTER_GROUP_ID.equals(group.getId())) {
         		continue;
         	}
 			result.add(group);
