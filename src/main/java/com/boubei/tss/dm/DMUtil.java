@@ -157,9 +157,6 @@ public class DMUtil {
 	    	log.info("FM解析出错: " + e.getMessage() +
 	    			"\n------------ params-----------: " + paramsMap + "\n" );
 	    	log.debug(script);
-	    	
-	    	// 抛异常则脚本里含有注释掉的宏代码（如：-- ${param1} or /* ${param1} */），将会报错
-//	    	throw new BusinessException("脚本解析出错了，请检查参数是否正确，或把错误反馈给管理员。");
 	    }
 	    return script;
 	}

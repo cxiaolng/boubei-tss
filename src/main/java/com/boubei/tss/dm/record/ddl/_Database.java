@@ -14,21 +14,21 @@ import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.dom4j.Document;
 
-import com.boubei.tss.dm.DMConstants;
+import com.boubei.tss.cache.Cacheable;
+import com.boubei.tss.cache.JCache;
+import com.boubei.tss.cache.Pool;
 import com.boubei.tss.dm.DMUtil;
 import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.record.Record;
 import com.boubei.tss.dm.record.permission.RecordPermission;
 import com.boubei.tss.dm.record.permission.RecordResource;
-import com.boubei.tss.cache.Cacheable;
-import com.boubei.tss.cache.JCache;
-import com.boubei.tss.cache.Pool;
 import com.boubei.tss.framework.Global;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.modules.log.IBusinessLogger;
 import com.boubei.tss.modules.log.Log;
 import com.boubei.tss.modules.param.ParamConstants;
+import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.um.permission.PermissionHelper;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.XMLDocUtil;
@@ -301,7 +301,7 @@ public abstract class _Database {
 		}
 		
 		// 增加权限控制，针对有編輯权限的允許查看他人录入数据, '000' <> ? <==> 忽略创建人这个查询条件
-		boolean visible = DMConstants.isAdmin();
+		boolean visible = UMConstants.isAdmin();
 		try {
 			List<String> permissions = PermissionHelper.getInstance().getOperationsByResource(recordId,
 	                RecordPermission.class.getName(), RecordResource.class);

@@ -1,11 +1,7 @@
 package com.boubei.tss.dm;
 
-import java.util.regex.Pattern;
-
-import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.modules.param.ParamManager;
-import com.boubei.tss.um.UMConstants;
 import com.boubei.tss.util.EasyUtils;
 
 public final class DMConstants {
@@ -47,10 +43,6 @@ public final class DMConstants {
 		}
 		return tlDir;
 	}
-    
-	public static boolean isAdmin() {
-		return UMConstants.ADMIN_USER_NAME.equals(Environment.getUserCode());
-	}
 	
 	public static String getDS(String ds) {
 		if( ds == null ) {
@@ -68,9 +60,4 @@ public final class DMConstants {
         String datasource = ParamManager.getValueNoSpring(DEFAULT_CONN_POOL).trim();
         return datasource;
     }
-	
-	static Pattern cnPattern = Pattern.compile("[\u4e00-\u9fa5]");
-	public static boolean hasCNChar(String str) {
-		return cnPattern.matcher(str).find();
-	}
 }

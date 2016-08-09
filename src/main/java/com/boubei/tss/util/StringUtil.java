@@ -10,6 +10,7 @@
 package com.boubei.tss.util;
 
 import java.io.UnsupportedEncodingException;
+import java.util.regex.Pattern;
 
 /**
  * 字符串工具类：
@@ -55,5 +56,10 @@ public class StringUtil {
     public static String UTF8ToGBK(String str) {
         return convertCoding(str, "UTF-8", "GBK");
     }
+    
+	static Pattern cnPattern = Pattern.compile("[\u4e00-\u9fa5]");
+	public static boolean hasCNChar(String str) {
+		return cnPattern.matcher(str).find();
+	}
 
 }

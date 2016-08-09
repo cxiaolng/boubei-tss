@@ -2,6 +2,7 @@ package com.boubei.tss.um;
 
 import java.util.Calendar;
 
+import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
 
 /**
@@ -52,6 +53,11 @@ public final class UMConstants {
 	public static final Long SELF_REGISTER_GROUP_ID   = -7L; //自注册用户组的ID(初始化数据库时写死的)
 	
 	public static final Long ROLE_ROOT_ID             = -6L; //角色的ID(视图生成)
+	
+	public static boolean isAdmin() {
+		String userCode = Environment.getUserCode();
+		return UMConstants.ADMIN_USER_NAME.equals(userCode);
+	}
 	
 	// ===========================================================================
     // 资源权限相关

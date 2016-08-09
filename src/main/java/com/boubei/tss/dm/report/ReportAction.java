@@ -48,6 +48,7 @@ import com.boubei.tss.util.BeanUtil;
 import com.boubei.tss.util.DateUtil;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.FileHelper;
+import com.boubei.tss.util.StringUtil;
 import com.boubei.tss.util.URLUtil;
 
 @Controller
@@ -142,7 +143,7 @@ public class ReportAction extends BaseActionSupport {
  
     		if( !report.isGroup() 
     				&& report.getCreateTime().after(DateUtil.subDays(DateUtil.today(), 10))
-    				&& DMConstants.hasCNChar(report.getName())) {
+    				&& StringUtil.hasCNChar(report.getName())) {
     			
     			latest.add(cloneReport(newGroupId, report));
     		}
@@ -163,10 +164,10 @@ public class ReportAction extends BaseActionSupport {
     
     private List<Report> cloneTops(Long topGroupId, List<String> topX, List<Report> list) {
     	List<Report> result = new ArrayList<Report>();
-    	for(String temp : topX) {
-    		for(Report report : list) {
-	    		if(temp.equals(report.getName()) && report.isActive() && !report.isGroup()) {
-	        		result.add( cloneReport(topGroupId, report) );
+    	for(String cn : topX) {
+    		for(Report rp : list) {
+	    		if(cn.endsWith("-" + rp.getId()) && rp.isActive() && !rp.isGroup()) {
+	        		result.add( cloneReport(topGroupId, rp) );
 	        		break;
 	    		}
 	    	}
@@ -183,14 +184,14 @@ public class ReportAction extends BaseActionSupport {
 	}
  
     private List<String> getTops(boolean onlySelf) {
-    	String sql = "select methodCnName name, count(*) value, max(l.accessTime) lastTime " +
+    	String sql = "select className name, count(*) value, max(l.accessTime) lastTime, max(methodCnName) cn " +
 	    		" from dm_access_log l " +
 	    		" where l.accessTime >= ? " + (onlySelf ? " and l.userId = ?" : "") +
-	    		" group by methodCnName " +
+	    		" group by className " +
 	    		" order by " + (onlySelf ? "lastTime" : "value")  + " desc";
 	    SQLExcutor ex = new SQLExcutor(false);
 	    Map<Integer, Object> params = new HashMap<Integer, Object>();
-	    params.put(1, DateUtil.subDays(DateUtil.today(), 30));
+	    params.put(1, DateUtil.subDays(DateUtil.today(), 7));
 	    if(onlySelf) {
 	    	params.put(2, Environment.getUserId());
 	    }
@@ -201,7 +202,8 @@ public class ReportAction extends BaseActionSupport {
 	    for( Map<String, Object> row : ex.result){
 	    	if(tops.size() < max) {
 	    		String reportName = (String) row.get("name");
-	    	    if(DMConstants.hasCNChar(reportName)) {
+	    		String reportCnName = (String) row.get("cn");
+	    	    if(StringUtil.hasCNChar(reportCnName)) {
 	    	    	tops.add(reportName);
 	    	    }
 	    	}

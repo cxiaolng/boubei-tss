@@ -1,6 +1,7 @@
 Alter table `dm_access_log` add index `accessTime_IDX` (`accessTime`);
 Alter table `dm_access_log` add index `userId_IDX` (`userId`);
-Alter table `dm_access_log` ADD INDEX `methodCnName_IDX` (`methodCnName`)
+Alter table `dm_access_log` ADD INDEX `methodCnName_IDX` (`methodCnName`);
+Alter table `dm_access_log` ADD INDEX `className_IDX` (`className`);
 
 CHECK TABLE dm_access_log;
 REPAIR TABLE dm_access_log;

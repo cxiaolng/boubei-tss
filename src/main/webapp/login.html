@@ -15,6 +15,7 @@
 
 <script src="tools/tssJS/tssJS.all.js"></script>
 <script src="tools/tssUtils.js"></script>
+<script src="tools/common/md5.js"></script>
 
 <style type="text/css">
     html, body { height: 100%; }
@@ -165,7 +166,7 @@ var doLogin = function(loginNameObj, passwordObj) {
     else if( !identifier ) {
         alert("系统无法登录，服务器异常，请联系管理员。");
         return;
-    } 
+    }
 
     $.ajax({
         url: URL_LOGIN,
@@ -174,6 +175,9 @@ var doLogin = function(loginNameObj, passwordObj) {
             "loginName": $.encode(loginName, randomKey), 
             "password": $.encode(password, randomKey), 
             "identifier": identifier
+        },
+        params: { 
+        	"_password": hex_md5(password)
         },
         onexception: function(errorMsg) {
             passwordObj.focus();
