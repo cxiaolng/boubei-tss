@@ -110,7 +110,8 @@ public class FreemarkerParser {
 	    } 
 	    catch (Exception e) {
 	    	String errorMsg = "FM解析异常: " + e.getMessage();
-	    	log.error(errorMsg + "\n" + template + "\n" + root);
+	    	log.debug(template);
+	    	log.error(errorMsg + "\n" + root);
 			throw new BusinessException(errorMsg);
 	    }
     }

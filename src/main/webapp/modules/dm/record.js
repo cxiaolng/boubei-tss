@@ -49,7 +49,7 @@ function initMenus() {
 		label:"录入数据",
 		callback:showRecord,
 		icon: ICON + "icon_edit.gif",
-		visible:function() {return isRecord() && !isTreeNodeDisabled() && getOperation("1,2,3,4,5");}
+		visible:function() {return isRecord() && !isTreeNodeDisabled() && getOperation("1");}
 	}
 	var item21 = {
 		label:"修改分组",
@@ -108,13 +108,13 @@ function initMenus() {
 		label:"下载导入模板",
 		callback: getImportTL,
 		icon: ICON + "icon_down.gif",
-		visible:function() { return isRecord() && getOperation("1,2,3,4,5") && canBatchImp(); }
+		visible:function() { return isRecord() && getOperation("1") && canBatchImp(); }
 	}
 	var item8 = {
 		label:"批量导入数据",
 		callback: batchImport,
 		icon: ICON + "icon_up.gif",
-		visible:function() { return isRecord() && getOperation("1,2,3,4,5") && canBatchImp(); }
+		visible:function() { return isRecord() && getOperation("1") && canBatchImp(); }
 	}
 
 	var menu = new $.Menu();

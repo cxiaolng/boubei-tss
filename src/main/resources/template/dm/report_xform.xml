@@ -7,7 +7,7 @@
 		<column name="param"  caption="报表参数" mode="string" maxLength="2000"/>
 		<column name="datasource"  caption="数据源"  mode="combo"/>
 		<column name="displayUri"  caption="展示页面" mode="string" maxLength="200"/>
-		<column name="remark" caption="报表简介" mode="string" maxLength="200"/>
+		<column name="remark" caption="报表简介" mode="string" maxLength="2000"/>
 		<column name="needLog" caption="记录访问日志" mode="combo" values="1|0" texts="是|否"/>
 	</declare>
 	<layout>

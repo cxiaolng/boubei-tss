@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.record.file.RecordAttach;
+import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.util.EasyUtils;
 
@@ -21,6 +22,9 @@ public class RecordServiceImpl implements RecordService {
 
 	public Record getRecord(Long id) {
 		Record record = recordDao.getEntity(id);
+		if(record == null) {
+			throw new BusinessException("ID=" + id + "的录入表不存在。");
+		}
         recordDao.evict(record);
         return record;
 	}

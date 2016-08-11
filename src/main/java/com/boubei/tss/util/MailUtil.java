@@ -1,5 +1,7 @@
 package com.boubei.tss.util;
 
+import java.util.Arrays;
+
 import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
@@ -100,7 +102,7 @@ public class MailUtil {
 			sender.send(mailMessage);
 		} 
 		catch (Exception e) {
-			log.error("发送报表邮件(" +subject+ ")出错了, " + receiver + ", " + e.getMessage());
+			log.error("发送报表邮件(" +subject+ ")出错了, " + Arrays.asList(receiver) + ", " + e.getMessage());
 		}
 	}
 }

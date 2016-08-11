@@ -86,7 +86,7 @@ public abstract class BaseDao<T extends IEntity> implements IDao<T>{
     }
     
 	public Object refreshEntity(Object entity) {
-    	this.update(entity);
+		em.merge(entity);
         return entity;
     }
 

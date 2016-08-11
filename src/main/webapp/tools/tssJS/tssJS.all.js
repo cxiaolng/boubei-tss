@@ -1249,7 +1249,6 @@
     $.getJson = $.getJSON = function(url, params, callback) {
         $.ajax({
             url : url,
-            method : "GET",
             type : "json",
             params  : params, 
             ondata : function() { 
@@ -1262,7 +1261,6 @@
     $.getXml = $.getXML = function(url, params, callback) {
         $.ajax({
             url : url,
-            method : "GET",
             type : "xml",
             params  : params, 
             ondata : function() { 
