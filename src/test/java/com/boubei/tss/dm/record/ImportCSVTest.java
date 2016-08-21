@@ -60,8 +60,8 @@ public class ImportCSVTest extends AbstractTest4DM {
 		// 下载导入模板
 		recorder.getImportTL(response, recordId);
 		
-		reporter.trojan(0, DMConstants.LOCAL_CONN_POOL, "delete from x_tbl_icsv_1");
-		List<?> list = (List<?>) reporter.trojan(1, DMConstants.LOCAL_CONN_POOL, "select f1 from x_tbl_icsv_1");;
+		reporter.dataExport(0, DMConstants.LOCAL_CONN_POOL, "delete from x_tbl_icsv_1");
+		List<?> list = (List<?>) reporter.dataExport(1, DMConstants.LOCAL_CONN_POOL, "select f1 from x_tbl_icsv_1");
 		Assert.assertEquals(0, list.size());
 	}
 	

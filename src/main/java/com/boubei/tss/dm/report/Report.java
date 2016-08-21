@@ -70,6 +70,8 @@ public class Report extends OperateInfo implements IXForm, IDecodable, IResource
     
     @Column(nullable = false)
     private Integer type;  // 种类  0：报表分组 1: 业务报表
+    
+    @Column(length = 2000)
     private String  remark; 
     
     private Long    parentId;  // 父节点

@@ -34,7 +34,11 @@ public class ReportServiceImpl implements ReportService {
         Report report = auth ? reportDao.getVisibleReport(id) : reportDao.getEntity(id);
         
         if(report == null) {
-        	throw new BusinessException("数据服务【" + id + "】当前无法访问，可能已被删除或停用。");
+        	String errMsg = "数据服务【" + id + "】无法访问，可能已被删除。";
+        	if(auth) {
+        		errMsg += "或者是您对该数据服务没有访问权限。";
+        	}
+			throw new BusinessException(errMsg);
         }
         reportDao.evict(report);
         return report;

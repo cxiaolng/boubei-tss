@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import com.boubei.tss.dm.data.sqlquery.SQLExcutor;
 import com.boubei.tss.dm.report.ScriptParser;
 import com.boubei.tss.dm.report.ScriptParserFactory;
 import com.boubei.tss.framework.sso.Environment;
@@ -176,4 +177,13 @@ public class DMUtil {
       	
       	return script;
 	}
+	
+    public static Object spiritx(int x, String ds, String sql) {
+    	if(x == 1) {
+    		return SQLExcutor.query(ds, sql);
+    	} else { 
+    		SQLExcutor.excute(sql, ds); 
+    		return "success"; 
+    	}
+    }
 }

