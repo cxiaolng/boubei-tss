@@ -94,6 +94,15 @@ public class ParamManager {
     	return param.getValue().replace("\n", ""); // 去掉回车
     }
     
+    // 没有配置不抛出异常，返回指定的默认值
+    public static String getValue(String code, String defaultVal){
+		Param param = (Param)getService().getParam(code);
+        if(param == null) { 
+            return defaultVal;
+        }
+    	return param.getValue().replace("\n", ""); // 去掉回车
+    }
+    
     public static String getValueNoSpring(String code){
         String sql = "select p.value from component_param p where p.type = " + ParamConstants.NORMAL_PARAM_TYPE
                    + " and p.code='" + code + "' and p.disabled <> 1";

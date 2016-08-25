@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boubei.tss.framework.exception.BusinessException;
+import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.web.dispaly.tree.ITreeTranslator;
 import com.boubei.tss.framework.web.dispaly.tree.LevelTreeParser;
 import com.boubei.tss.framework.web.dispaly.tree.TreeEncoder;
 import com.boubei.tss.framework.web.dispaly.xform.XFormEncoder;
 import com.boubei.tss.framework.web.mvc.ProgressActionSupport;
+import com.boubei.tss.modules.param.ParamManager;
 import com.boubei.tss.modules.progress.ProgressManager;
 import com.boubei.tss.modules.progress.Progressable;
 import com.boubei.tss.um.UMConstants;
@@ -26,6 +28,7 @@ import com.boubei.tss.um.entity.Group;
 import com.boubei.tss.um.helper.GroupTreeParser;
 import com.boubei.tss.um.permission.PermissionHelper;
 import com.boubei.tss.um.service.IGroupService;
+import com.boubei.tss.um.service.ILoginService;
 import com.boubei.tss.um.syncdata.ISyncService;
 import com.boubei.tss.util.EasyUtils;
  
@@ -35,10 +38,16 @@ public class GroupAction extends ProgressActionSupport {
 
 	@Autowired private IGroupService service;
 	@Autowired private ISyncService  syncService;
+	@Autowired private ILoginService loginService;
 
 	@RequestMapping("/list")
 	public void getAllGroup2Tree(HttpServletResponse response) {
-		List<?> groups = service.findGroups();
+		Long userId = Environment.getUserId();
+		List<Long> roleIds = loginService.getRoleIdsByUserId(userId); //List<roleId>
+		Long adminRoleId = EasyUtils.obj2Long( ParamManager.getValue("ADMIN_ROLE_ID", "-1") );
+		boolean isAdmin = roleIds.contains(adminRoleId);
+		
+		List<?> groups = service.findGroups(isAdmin);
 		TreeEncoder treeEncoder = new TreeEncoder(groups, new GroupTreeParser());
         treeEncoder.setNeedRootNode(false);
 		

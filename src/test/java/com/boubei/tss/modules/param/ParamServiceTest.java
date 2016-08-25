@@ -32,6 +32,10 @@ public class ParamServiceTest extends AbstractTest4F {
 		Assert.assertEquals("TSS", ParamManager.getSimpleParam(testCode).getValue());
         Assert.assertEquals("TSS", ParamManager.getValue(testCode));
         Assert.assertEquals("TSS", ParamManager.getValueNoSpring(testCode));
+        
+        Assert.assertEquals("TSS", ParamManager.getValue(testCode, "WMS"));
+        Assert.assertEquals("WMS", ParamManager.getValue("no-exsits-param", "WMS"));
+        
         try {
         	ParamManager.getValueNoSpring("not-exsits");
         	Assert.fail("should throw exception but didn't.");

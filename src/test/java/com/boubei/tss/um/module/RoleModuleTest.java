@@ -324,7 +324,7 @@ public class RoleModuleTest extends AbstractTest4UM {
     }
 
 	private void printVisibleMainGroups(int size) {
-        List<?> groups = groupService.findGroups();
+        List<?> groups = groupService.findGroups(false);
         for(Object temp : groups) {
             log.debug(temp);
         }

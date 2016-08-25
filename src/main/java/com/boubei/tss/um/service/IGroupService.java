@@ -107,7 +107,7 @@ public interface IGroupService {
 	/**
 	 * 获取用户组
 	 */
-    List<?> findGroups();
+    List<?> findGroups(boolean isAdmin);
 
 	/**
 	 * 删除用户组

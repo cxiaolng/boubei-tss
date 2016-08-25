@@ -48,9 +48,13 @@ public class GroupService implements IGroupService {
         return roleDao.getEditableRoles();
     }
 
-    public List<?> findGroups() {
+    public List<?> findGroups(boolean isAdmin) {
     	Long operatorId = Environment.getUserId();
         List<?> mainAndAssistantGroups = groupDao.getMainAndAssistantGroups(operatorId);
+        
+        if( isAdmin ) {
+        	return mainAndAssistantGroups; // 设置为系统级管理员的，需要能看到全部被授权的用户组织
+        }
         
         /* 按操作用户对结果集进行过滤，只留下自己所在主组及其子组。 注：#自注册用户组#放开
          * eg:浙江分公司的用户只能看到浙分下面的组织，哪怕给他授权了其它分公司

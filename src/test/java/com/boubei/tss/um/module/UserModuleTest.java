@@ -45,7 +45,13 @@ public class UserModuleTest extends AbstractTest4UM {
     	super.init();
         
     	// 检查初始化的组是否存在
-    	List<?> groups = groupService.findGroups();
+    	List<?> groups = groupService.findGroups(true);
+    	for(Object temp : groups) {
+            log.debug(temp);
+        }
+        log.debug("\n");
+        
+        groups = groupService.findGroups(false);
     	for(Object temp : groups) {
             log.debug(temp);
         }

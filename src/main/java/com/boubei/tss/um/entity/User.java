@@ -61,7 +61,7 @@ public class User extends OperateInfo implements ITreeNode, IGridNode, IXForm {
     private String  passwordAnswer;   // 密码提示答案 
     private Integer passwordStrength; // 密码强度
     
-    private String authMethod = UMPasswordIdentifier.class.getName();// 认证方式,一个实现对应的认证方式的类路径
+    private String authMethod = UMPasswordIdentifier.class.getName(); // 认证方式,一个实现对应的认证方式的类路径
     
     private String fromUserId;  // 外部应用系统用户的ID (用于【平台用户】对应【其他系统用户】，其值可以是LDAP里的DN字符串)
     
