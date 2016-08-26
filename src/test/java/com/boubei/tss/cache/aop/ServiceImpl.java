@@ -9,7 +9,7 @@ public class ServiceImpl implements IService {
 	
 	public Object f1() {
 		
-		try { Thread.sleep(10); } catch (InterruptedException e) { }
+		try { Thread.sleep(200); } catch (InterruptedException e) { }
 		
 		return Thread.currentThread().getId();
 	}

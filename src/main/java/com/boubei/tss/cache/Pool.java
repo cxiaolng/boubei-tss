@@ -63,6 +63,13 @@ public interface Pool {
 	 * @return
 	 */
 	Cacheable getObject(Object key);
+	
+	/**
+	 * 判断缓存池是否包含某对象，不增加点击率
+	 * @param key
+	 * @return
+	 */
+	boolean contains(Object key);
 
 	/**
 	 * 将对象放入到缓存池中

@@ -20,12 +20,12 @@ public class ParamConfig {
      * @param code
      * @return
      */
-    public static String getAttribute(String code){
+    public static String getAttribute(String code) {
         String value = null;
-        try{
+        try {
             value = ParamManager.getValue(code);
-        } catch(Exception e) {
-        }
+        } 
+        catch(Exception e) { }
         
         if(value == null) {
             value = Config.getAttribute(code);
@@ -36,6 +36,19 @@ public class ParamConfig {
         }
         
         return value;
+    }
+    
+    public static String getAttribute(String code, String defaultVal) {
+    	String value = null;
+        try {
+            value = ParamManager.getValue(code);
+        } catch(Exception e) { }
+        
+        if(value == null) {
+            value = Config.getAttribute(code);
+        }
+ 
+        return value == null ? defaultVal : value;
     }
 }
 

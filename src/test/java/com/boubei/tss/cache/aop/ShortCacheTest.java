@@ -8,8 +8,17 @@ import com.boubei.tss.cache.Pool;
 import com.boubei.tss.cache.extension.CacheHelper;
 
 /**
- * 测试10分钟Cache，bi正式环境有点异常
+ * 测试10分钟Cache
+ * 
+缓存池【服务数据缓存（短期），77.0】的当前快照：
+----------------【SHORT_free】池中数据项列表，共【2】个 --------------
+  key: com.boubei.tss.cache.aop.IService.f1(), value: 82, hit: 21
+  key: com.boubei.tss.cache.aop.IService.f2(), value: 0, hit: 99
+----------------------------------- END ---------------------------
+----------------【SHORT_using】池中数据项列表，共【0】个 --------------
+----------------------------------- END ---------------------------
  */
+
 public class ShortCacheTest extends AbstractTest4TSS {
 	
 	@Autowired IService service;

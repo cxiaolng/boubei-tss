@@ -10,6 +10,9 @@ public class ParamConfigTest {
 	@Test
 	public void testGetAttribute() {
 		 assertEquals("TSS", ParamConfig.getAttribute("application.code"));
+		 
+		 assertEquals("TSS", ParamConfig.getAttribute("application.code", "WMS"));
+		 assertEquals("WMS", ParamConfig.getAttribute("xxx.code", "WMS"));
 	}
 
 }

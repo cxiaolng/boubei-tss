@@ -102,6 +102,10 @@ public abstract class AbstractPool implements Pool {
         return item;
     }
     
+    public boolean contains(Object key) {
+    	return getObjectOnly(key) != null;
+    }
+    
 	/**
 	 * 根据key值从缓存池中获取一个对象，不会增加点击率、请求数等信息。<br>
 	 * 因为getObject(Object key)方法会增加缓存项的点击率，所以实现本方法以供缓存池内部维护调用。<br>
@@ -114,7 +118,6 @@ public abstract class AbstractPool implements Pool {
         if( item == null ) {
         	item = getUsing().get(key);
         }
-        
         if (item == null && released) {
             log.debug("getObjectOnly 获取不到，原因：【" + getName() + "】已被释放，所有缓存项都已被清空!");
         }

@@ -2,7 +2,6 @@ package com.boubei.tss.dm;
 
 import com.boubei.tss.modules.param.ParamConfig;
 import com.boubei.tss.modules.param.ParamManager;
-import com.boubei.tss.util.EasyUtils;
 
 public final class DMConstants {
 	
@@ -37,11 +36,7 @@ public final class DMConstants {
 	public static final String REPORT_TL_TYPE = "reportTL";
 	
 	public static String getReportTLDir() {
-		String tlDir = ParamConfig.getAttribute(REPORT_TL_DIR);
-		if(EasyUtils.isNullOrEmpty(tlDir)) {
-			tlDir = REPORT_TL_DIR_DEFAULT;
-		}
-		return tlDir;
+		return ParamConfig.getAttribute(REPORT_TL_DIR, REPORT_TL_DIR_DEFAULT);
 	}
 	
 	public static String getDS(String ds) {

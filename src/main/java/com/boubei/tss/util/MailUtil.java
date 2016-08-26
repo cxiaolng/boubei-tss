@@ -50,7 +50,7 @@ public class MailUtil {
 	}
 	
 	public static String[] getEmailTo() {
-		return ParamConfig.getAttribute(SEND_TO).split(",");
+		return ParamConfig.getAttribute(SEND_TO, "").split(",");
 	}
 	
 	public static void send(String subject, String text) {

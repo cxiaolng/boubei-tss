@@ -49,10 +49,11 @@ public class BusinessLogger extends OutputRecordsManager implements IBusinessLog
     static final String LOG_FLUSH_MAX_SIZE = "log_flush_max_size";
     
     protected int getMaxSize() {
-        try{
+        try {
             String configValue = ParamConfig.getAttribute(LOG_FLUSH_MAX_SIZE);
             return Integer.parseInt(configValue);
-        } catch(Exception e) {
+        } 
+        catch(Exception e) {
             return super.getMaxSize(); 
         }
     }
