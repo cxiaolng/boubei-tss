@@ -5,7 +5,7 @@ cp target/tss.war /Users/jinpujun/Desktop/workspace/release/boubei
 #boubei.com tssBi发布步骤【 用：tssbi / J..k*ng**16 来发布 】
 #  a、打包 deploy-boubei.sh，上传至 /home/tssbi/release
 #  d、./deploy.sh
-#  c、【放开tssUtil.js的CNZZ统计的注释】
+#  c、【放开tssUtil.js的CNZZ统计的注释】 vim ../tomcat7/webapps/tss/tools/tssUtils.js
 
 
 #boubei.com 机器被重启后需要手动重启mysql 和 nginx

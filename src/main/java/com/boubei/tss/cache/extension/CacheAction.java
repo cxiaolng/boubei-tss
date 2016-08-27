@@ -57,9 +57,8 @@ public class CacheAction extends BaseActionSupport {
      */
     @RequestMapping(method = RequestMethod.POST)
     public void modifyCacheConfig(HttpServletResponse response, String cacheCode, String jsonData) {
-		PCache.rebuildCache(cacheCode, jsonData);
 		
-		// 将更新信息保存到系统参数模块
+		// 将更新信息保存到系统参数模块(ParamListener-->PCache将会执行 rebuildCache)
 		Param cacheGroup = CacheHelper.getCacheParamGroup(paramService);
 		
 		Param cacheParam = null;
@@ -70,7 +69,7 @@ public class CacheAction extends BaseActionSupport {
 				break;
 			}
 		}
-		if(cacheParam == null) {
+		if(cacheParam == null) { // 新建一个对象池Param配置
 			Long parentId = cacheGroup.getId();
 			String name = cache.getPool(cacheCode).getCacheStrategy().getName();
 			cacheParam = ParamManager.addSimpleParam(parentId, cacheCode, name, jsonData);

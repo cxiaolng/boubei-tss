@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import com.boubei.tss.cache.CacheStrategy;
-import com.boubei.tss.cache.Cleaner;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
 import com.boubei.tss.modules.param.Param;
@@ -70,23 +69,14 @@ public class PCache implements ParamListener {
 			return;
   	    } 
     	
+    	CacheStrategy strategy = new CacheStrategy();
+		BeanUtil.setDataToBean(strategy, attrs);
+		
     	Pool pool = JCache.pools.get(cacheCode);
-		if(pool != null) { // 如pool已存在，则只刷新其策略
-			CacheStrategy strategy = pool.getCacheStrategy();
-			
-			// 如果改变了缓存池生命周期，则需要重新初始化cleaner
-			long oldCyclelife = strategy.getCyclelife();
-			BeanUtil.setDataToBean(strategy, attrs);
-			long cyclelife = strategy.getCyclelife();
-			
-			if( oldCyclelife != cyclelife && pool instanceof Cleaner) {
-				pool.flush();
-				( (Cleaner) pool).initCleaner();
-			}
+		if(pool != null) { 
+			pool.setCacheStrategy(strategy); // 如pool已存在，则只刷新其策略
 		}
 		else {
-			CacheStrategy strategy = new CacheStrategy();
-			BeanUtil.setDataToBean(strategy, attrs);
 			JCache.pools.put(cacheCode, strategy.getPoolInstance()); // 新建
 		}
     }

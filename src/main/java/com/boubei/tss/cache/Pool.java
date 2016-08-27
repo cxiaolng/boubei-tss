@@ -180,7 +180,7 @@ public interface Pool {
 	void releaseAsync(boolean forced);
 	
 	/**
-	 * 刷新缓存，清除池中所有缓存项
+	 * 刷新缓存，清除池中所有缓存项 及 命中率统计
 	 */
 	void flush();
 

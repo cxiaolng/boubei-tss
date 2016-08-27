@@ -13,7 +13,6 @@ import java.util.EventObject;
 
 /**
  * 对象池事件
- * 
  */
 public class PoolEvent extends EventObject {
 
@@ -26,6 +25,8 @@ public class PoolEvent extends EventObject {
 	public static final int POOL_RELEASED = 5;
 	public static final int PUT_IN = 6;
 	public static final int REMOVE = 7;
+	public static final int POOL_DISABLED = 11;
+	public static final int POOL_ENABLED = 12;
 
 	public static final int STRATEGY_CHANGED_CYCLELIFE = 8;
 	public static final int STRATEGY_CHANGED_SIZE_REDUCE = 9;

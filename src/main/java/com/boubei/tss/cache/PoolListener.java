@@ -46,6 +46,14 @@ public class PoolListener implements Listener {
 			case PoolEvent.POOL_RELEASED:
 				/* 缓存池被释放后的事件处理 */
 				break;
+			case PoolEvent.POOL_DISABLED:
+				/* 缓存池被停用后的事件处理 */
+				pool.release(true);
+				break;
+			case PoolEvent.POOL_ENABLED:
+				/* 缓存池被启用后的事件处理 */
+				pool.init();
+				break;
 			case PoolEvent.STRATEGY_CHANGED_CYCLELIFE:
 				cyclelifeChanged(pool);
 				break;
@@ -80,11 +88,13 @@ public class PoolListener implements Listener {
 	 * <pre>
 	 * 缓存策略的一般内容改变，包括对象生命周期值等。
 	 * 
-	 * 不更新池中已存在缓存项的生命周期，后续新进来的缓存对象将使用新的生命周期值。
+	 * 清空池中已存在缓存项，后续新进来的缓存对象将使用新的生命周期值。
 	 * </pre>
 	 * @param pool
 	 */
 	private void cyclelifeChanged(Pool pool) {
+		pool.flush();
+		
 		/* 如果pool扩展实现了Cleaner接口。
 		 * 重新初始化清除器，根据缓存项的生命周期值改变清理间隔时间。*/
 		if (pool instanceof Cleaner) {

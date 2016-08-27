@@ -60,6 +60,27 @@ public class CacheStrategyTest {
 		
 		strategy.fireEventIfChanged(strategy2);
 		
+		strategy2.setDisabled( CacheStrategy.TRUE );
+		strategy.fireEventIfChanged(strategy2);
+		
+		strategy2.setDisabled( CacheStrategy.FALSE );
+		strategy.fireEventIfChanged(strategy2);
+		
+		strategy2.setPoolContainerClass(null);
+		strategy2.setCyclelife(null);
+		strategy2.setInterruptTime(null);
+		strategy2.setName(null);
+		strategy2.setPoolSize(null);
+		strategy2.setInitNum(null);
+		Assert.assertEquals(CacheStrategy.DEFAULT_CONTAINER, strategy2.getPoolContainerClass());
+		Assert.assertEquals(new Long(0), strategy2.getCyclelife());
+		Assert.assertEquals(strategy2.getCode(), strategy2.getName());
+		Assert.assertEquals(new Long(0), strategy2.getInterruptTime());
+		Assert.assertEquals(new Integer(12), strategy2.getPoolSize());
+		Assert.assertEquals(new Integer(0), strategy2.getInitNum());
+		
+		Assert.assertFalse( strategy2.equals(pool) );
+		
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

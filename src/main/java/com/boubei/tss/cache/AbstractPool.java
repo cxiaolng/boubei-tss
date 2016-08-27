@@ -406,11 +406,11 @@ public abstract class AbstractPool implements Pool {
      * @param strategy
      */
     public void setCacheStrategy(CacheStrategy strategy) { 
-        if( this.strategy != null ) {
-        	// 缓存策略改变则触发事件
+        if( this.strategy != null ) { // 缓存策略改变则触发事件
             this.strategy.fireEventIfChanged(strategy); 
+        } else {
+        	this.strategy = strategy; 
         }
-        this.strategy = strategy; 
     }
     
     public CacheCustomizer getCustomizer() { 

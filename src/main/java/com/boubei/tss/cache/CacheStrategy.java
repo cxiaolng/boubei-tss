@@ -109,6 +109,7 @@ public class CacheStrategy {
 		
 		CacheCustomizer customizer = (CacheCustomizer) BeanUtil.newInstanceByName(customizerClass);
 		customizer.setCacheStrategy(this);
+		
 		pool.setCustomizer(customizer);
  
 		// 初始化前需要先设置好customizer，需要用到customizer.create()来新建缓存项。
@@ -131,8 +132,8 @@ public class CacheStrategy {
 	 * @param c
 	 */
 	public void fireEventIfChanged(CacheStrategy c) {
-		// 缓存项生命周期发生了改变时：
-		if ( !this.cyclelife.equals(c.cyclelife) ) {
+
+		if ( !this.cyclelife.equals(c.cyclelife) ) { // 缓存项生命周期发生了改变时：
 			this.cyclelife = c.cyclelife;
 			pool.firePoolEvent(PoolEvent.STRATEGY_CHANGED_CYCLELIFE);
 		}
@@ -143,18 +144,25 @@ public class CacheStrategy {
 		}
 
 		if ( !this.poolClass.equals(c.poolClass)
-				|| !this.poolContainerClass.equals(c.poolContainerClass)) {
-			
+				|| !this.poolContainerClass.equals(c.poolContainerClass)) { // 容器变了
 			setPoolClass(c.poolClass);
 			setPoolContainerClass(c.poolContainerClass);
 			pool.firePoolEvent(PoolEvent.STRATEGY_CHANGED_RESET);
+		}
+		
+		if( FALSE.equals( this.disabled ) && TRUE.equals( c.disabled ) ) { // 停用池
+			this.setDisabled( c.disabled );
+			pool.firePoolEvent(PoolEvent.POOL_DISABLED);
+		}
+		if( TRUE.equals( this.disabled ) && FALSE.equals( c.disabled ) ) { // 启用池
+			this.setDisabled( c.disabled );
+			pool.firePoolEvent(PoolEvent.POOL_ENABLED);
 		}
 
 		setCustomizerClass(c.customizerClass);
 		this.initNum = c.initNum;
 		this.poolSize = c.poolSize;
 		this.accessMethod = c.accessMethod;
-		this.disabled = c.disabled;
 		this.interruptTime = c.interruptTime;
 		this.remark = c.remark;
 	}
