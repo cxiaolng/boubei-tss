@@ -11,6 +11,7 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.boubei.tss.cache.extension.threadpool.ThreadPoolCustomizer;
 import com.boubei.tss.cache.extension.workqueue.AbstractTask;
 import com.boubei.tss.cache.extension.workqueue.OutputRecordsManager;
 
@@ -52,6 +53,10 @@ public class JCachePoolTest {
 		tpool.reload(threadItem);
 		tpool.destroyByKey(threadItem.getKey());
 		tpool.destroyObject(threadItem);
+		
+		ThreadPoolCustomizer tpc =new ThreadPoolCustomizer();
+		Assert.assertFalse(tpc.isValid(null));
+		tpc.destroy(null);
 	}
 	
 	/**

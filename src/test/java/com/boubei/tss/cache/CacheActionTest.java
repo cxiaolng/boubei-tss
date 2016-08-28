@@ -92,7 +92,7 @@ public class CacheActionTest extends AbstractTest4F {
 		action2.listCacheItems(response, "connectionpool2");
 		action.modifyCacheConfig(response, "connectionpool2", "{\"poolSize\":\"10\"}");
 		
-		testPCache();
+		testPCacheListner();
 	}
     
     
@@ -118,7 +118,7 @@ public class CacheActionTest extends AbstractTest4F {
 			"\"poolSize\":\"10\"" +
 			"}";
 	
-	private void testPCache() {
+	private void testPCacheListner() {
 		Param cacheGroup = CacheHelper.getCacheParamGroup(paramService);
 		Long parentId = cacheGroup.getId();
 		

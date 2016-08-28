@@ -134,6 +134,7 @@ public class ParamManager {
     public static Param addParamGroup(Long parentId, String name) {
         Param param = new Param();
         param.setName(name);
+        param.setCode(name);
         param.setParentId(parentId);
         param.setType(ParamConstants.GROUP_PARAM_TYPE);
         

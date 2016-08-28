@@ -9,6 +9,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import com.boubei.tss.cache.CacheStrategy;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
+import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.modules.param.Param;
 import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.modules.param.ParamListener;
@@ -45,15 +46,11 @@ public class PCache implements ParamListener {
 		Long parentId = param.getParentId();
 		if(parentId == null) return;
 		
-		try {
-			Param parent = paramService.getParam(parentId);
-			if( parent != null && CacheHelper.CACHE_PARAM.equals(parent.getCode()) ){
-				String cacheCode   = param.getCode();
-	    		String cacheConfig = param.getValue();
-	    		rebuildCache(cacheCode, cacheConfig);
-			}
-		} catch(Exception e) { 
-			log.error("rebuildCache 出错了，" + param.getCode(), e);
+		Param parent = paramService.getParam(parentId);
+		if( parent != null && CacheHelper.CACHE_PARAM.equals(parent.getCode()) ){
+			String cacheCode   = param.getCode();
+    		String cacheConfig = param.getValue();
+    		rebuildCache(cacheCode, cacheConfig);
 		}
 	}
     
@@ -65,8 +62,7 @@ public class PCache implements ParamListener {
   			attrs = objectMapper.readValue(newConfig, Map.class);
 		} 
     	catch (Exception e) {  
-			log.error("CACHE_PARAM【" + cacheCode + "】的参数配置有误。\n" + newConfig, e);
-			return;
+			throw new BusinessException("CACHE_PARAM【" + cacheCode + "】的参数配置有误。\n" + newConfig, e);
   	    } 
     	
     	CacheStrategy strategy = new CacheStrategy();
