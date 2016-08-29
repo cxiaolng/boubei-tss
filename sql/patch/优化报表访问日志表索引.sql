@@ -24,3 +24,5 @@ delete FROM component_log  WHERE operatetime < DATE_SUB(CURDATE(), INTERVAL 30 D
 DELETE FROM component_log  WHERE `operateTable` = '系统异常';
 
 truncate table component_log;
+
+select count(*) FROM component_log l where l.operateTable='系统异常';

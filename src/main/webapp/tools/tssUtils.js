@@ -258,7 +258,7 @@ function setRole2Permission(resourceType, rootId) {
     globalValiable.isRole2Resource = "0";
     var title = "把【" + treeNode.name + "】作为资源授予角色";
 
-    $.openIframePanel("permissionPanel", title, 844, 516, "../um/setpermission.html");
+    $.openIframePanel("permissionPanel", title, 850, 520, "../um/setpermission.html");
     $("#permissionPanel").find("h2").html(title);
 }
 

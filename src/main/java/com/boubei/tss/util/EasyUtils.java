@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /** 
  * <p> EasyUtils.java </p> 
@@ -66,6 +67,15 @@ public class EasyUtils {
         	return "";
         }
         return value.toString();
+    }
+    
+    public static String obj2Json(Object obj) {
+    	ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			return objectMapper.writeValueAsString(obj);
+		} catch (Exception e) {  
+			return "";
+  	    }  
     }
     
     public static boolean isNullOrEmpty(String str) {

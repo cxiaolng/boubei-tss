@@ -114,6 +114,12 @@ public class SQLExcutor {
     	return null;
     }
     
+    public static List<Map<String, Object>> query(String dataSource, String sql, Object...params) {
+    	SQLExcutor ex = new SQLExcutor(false);
+		ex.excuteQuery(sql, dataSource, params);
+		return ex.result;
+    }
+    
     public void excuteQuery(String sql, String datasource) {
         excuteQuery(sql, new HashMap<Integer, Object>(), datasource);
     }
@@ -139,12 +145,6 @@ public class SQLExcutor {
         	}
         }
         excuteQuery(sql, paramsMap, 0, 0, dataSource);
-    }
- 
-    public static List<Map<String, Object>> query(String dataSource, String sql, Object...params) {
-    	SQLExcutor ex = new SQLExcutor(false);
-		ex.excuteQuery(sql, dataSource, params);
-		return ex.result;
     }
     
     public void excuteQuery(String sqlCollection, int index, Map<Integer, Object> paramsMap) {

@@ -189,12 +189,21 @@ public class ReportAction extends BaseActionSupport {
 	    		" where l.accessTime >= ? " + (onlySelf ? " and l.userId = ?" : "") +
 	    		" group by className " +
 	    		" order by " + (onlySelf ? "lastTime" : "value")  + " desc";
-	    SQLExcutor ex = new SQLExcutor(false);
+    	
 	    Map<Integer, Object> params = new HashMap<Integer, Object>();
-	    params.put(1, DateUtil.subDays(DateUtil.today(), 7));
+	    
+	    // 日志量大的，不宜取太多天; 默认取3天
+	    int historyDays = 3;
+		try {
+			historyDays = EasyUtils.obj2Int( ParamManager.getValue("TOP_REPORT_LOG_DAYS", "3") ); 
+		} catch (Exception e) {}
+	    params.put(1, DateUtil.subDays(DateUtil.today(), historyDays));
+	    
 	    if(onlySelf) {
 	    	params.put(2, Environment.getUserId());
 	    }
+	    
+	    SQLExcutor ex = new SQLExcutor(false);
 		ex.excuteQuery(sql, params , DMConstants.LOCAL_CONN_POOL);
 	    
 	    List<String> tops = new ArrayList<String>();

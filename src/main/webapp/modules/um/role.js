@@ -481,7 +481,7 @@
         globalValiable.isRole2Resource = "1";
         var title = "设置角色【" + treeNode.name + "】对资源的权限";
 
-        $.openIframePanel("permissionPanel", title, 844, 516, "../um/setpermission.html");
+        $.openIframePanel("permissionPanel", title, 850, 520, "../um/setpermission.html");
     	$("#permissionPanel").find("h2").html(title);
     }
 

@@ -2,6 +2,7 @@ package com.boubei.tss.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import junit.framework.Assert;
 
@@ -32,6 +33,9 @@ public class EasyUtilsTest {
 		Assert.assertTrue(0 == EasyUtils.obj2Int(null));
 		Assert.assertTrue(0l == EasyUtils.obj2Long(null));
 		Assert.assertEquals("", EasyUtils.obj2String(null));
+		
+		Assert.assertEquals("null", EasyUtils.obj2Json(null));
+		Assert.assertEquals("{}", EasyUtils.obj2Json( new HashMap<String, String>() ));
 		
 		Assert.assertTrue(EasyUtils.obj2Double("1.01") == 1.01d);
 		Assert.assertTrue(EasyUtils.obj2Int("1") == 1);

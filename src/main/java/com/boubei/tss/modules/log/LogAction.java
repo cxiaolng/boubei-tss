@@ -49,7 +49,7 @@ public class LogAction extends BaseActionSupport {
     
     @RequestMapping("/item/{id}")
     public void getLogInfo(HttpServletResponse response, @PathVariable long id) {
-        Log log = service.getLogById(id);          
+        Log log = service.getLogById(id);
         print("LogInfo", new XFormEncoder(LOG_XFORM_TEMPLET_PATH, log));
     }
 }
