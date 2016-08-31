@@ -1,4 +1,5 @@
-DATE_ADD(now(),  INTERVAL 2 DAY)
+DATE_ADD(now(), INTERVAL 2 DAY)
+DATE_SUB(NOW(), INTERVAL 15 MINUTE)
 date_format(日期字段,’%Y-%m-%d’)
 
 注：在mysql里执行delete、update语句，有时会提示：rror Code: 1175. You are using safe update mode
