@@ -15,7 +15,7 @@ import com.boubei.tss.util.EasyUtils;
 /**
  * 创建文章索引的定时JOB & 带进度信息的实现类（共手动建索引时action调用）
  * 
- * com.boubei.tss.cms.job.IndexJob | 0 07 * * * ? | 4,12
+ * com.boubei.tss.cms.job.IndexJob | 0 07 * * * ? | 12
  */
 public class IndexJob extends AbstractCMSJob implements Progressable {
 

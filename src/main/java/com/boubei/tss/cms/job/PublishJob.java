@@ -8,7 +8,7 @@ import com.boubei.tss.util.EasyUtils;
 
 /**
  * 0 *\/30 * * * ?   每半小时发布一次
- * com.boubei.tss.cms.job.PublishJob | 0 07 * * * ? | 4,12
+ * com.boubei.tss.cms.job.PublishJob | 0 07 * * * ? | 12
  */
 public class PublishJob extends AbstractCMSJob {
 

@@ -252,19 +252,19 @@ public class LoginService implements ILoginService {
 			String temp = receiver[j];
 			
 			// 判断配置的是否已经是email，如不是，作为loginName处理
-			if(temp.endsWith("@tssRole")) {
+			if(temp.endsWith("@tssRole")) { // 角色
 				List<OperatorDTO> list = getUsersByRoleId(parseID(temp));
 				for(OperatorDTO user : list) {
 					addUserEmail2List(user, emails, ids);
 				}
 			} 
-			else if(temp.endsWith("@tssGroup")) {
+			else if(temp.endsWith("@tssGroup")) { // 用户组
 				List<OperatorDTO> list = getUsersByGroupId(parseID(temp));
 				for(OperatorDTO user : list) {
 					addUserEmail2List(user, emails, ids);
 				}
 			} 
-			else if(temp.indexOf("@") < 0) {
+			else if(temp.indexOf("@") < 0) { // LoginName
 				try {
 					OperatorDTO user = getOperatorDTOByLoginName(temp);
 					addUserEmail2List(user, emails, ids);
@@ -272,7 +272,7 @@ public class LoginService implements ILoginService {
 				catch(Exception e) {
 				}
 			}
-			else if(temp.indexOf("@") > 0 && temp.indexOf(".") > 0) {
+			else if(temp.indexOf("@") > 0 && temp.indexOf(".") > 0) { // email地址
 				emails.add(temp);
 			}
 		}

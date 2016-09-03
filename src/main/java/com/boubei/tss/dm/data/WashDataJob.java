@@ -12,12 +12,7 @@ import com.boubei.tss.dm.record.ddl._Database;
 import com.boubei.tss.dm.report.ReportService;
 import com.boubei.tss.framework.Global;
 import com.boubei.tss.framework.exception.ExceptionEncoder;
-import com.boubei.tss.framework.sso.IdentityCard;
-import com.boubei.tss.framework.sso.TokenUtil;
-import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.timer.AbstractJob;
-import com.boubei.tss.um.UMConstants;
-import com.boubei.tss.um.helper.dto.OperatorDTO;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.MailUtil;
 
@@ -42,9 +37,6 @@ public class WashDataJob extends AbstractJob {
 	 * 支持在有一个Job里配置多个清洗任务，每个任务单独一行
 	 */
 	protected void excuteJob(String jobConfig) {
-		String token = TokenUtil.createToken("1234567890", UMConstants.ADMIN_USER_ID);
-		IdentityCard card = new IdentityCard(token, OperatorDTO.ADMIN);
-		Context.initIdentityInfo(card); // 模拟管理员登录
 		
 		String[] jobConfigs = EasyUtils.split(jobConfig, "\n");
 		

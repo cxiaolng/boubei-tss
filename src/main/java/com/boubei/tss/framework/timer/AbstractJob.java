@@ -8,14 +8,26 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import com.boubei.tss.framework.Global;
+import com.boubei.tss.framework.sso.IdentityCard;
+import com.boubei.tss.framework.sso.TokenUtil;
+import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.modules.log.IBusinessLogger;
 import com.boubei.tss.modules.log.Log;
+import com.boubei.tss.um.UMConstants;
+import com.boubei.tss.um.helper.dto.OperatorDTO;
 
 public abstract class AbstractJob implements Job {
 	
 	protected Logger log = Logger.getLogger(this.getClass());
 	
 	IBusinessLogger businessLogger;
+	
+	public AbstractJob() {
+		// 模拟管理员登录，用以初始化Environment
+        String token = TokenUtil.createToken("1234567890", UMConstants.ADMIN_USER_ID);
+		IdentityCard card = new IdentityCard(token, OperatorDTO.ADMIN);
+		Context.initIdentityInfo(card); 
+	}
 	
     public void execute(JobExecutionContext context) throws JobExecutionException {
     	try {
@@ -28,8 +40,8 @@ public abstract class AbstractJob implements Job {
     	JobDataMap dataMap = jobDetail.getJobDataMap();
         
         log.info("定时任务：（" + jobName + "）开始执行。");
-        String resultMsg;
         
+        String resultMsg;
         Log excuteLog = null;
         
         try {

@@ -21,12 +21,11 @@ public class XFormTest {
 		
 		Log entity = new Log();
 		entity.setId(12L);
-		entity.setOperatorBrowser("Chrome 44");
 		
 		XFormEncoder encoder = new XFormEncoder(LogAction.LOG_XFORM_TEMPLET_PATH, entity);
 		
 		entity = (Log) XFormDecoder.decode(encoder.toXml(), Log.class);
-		Assert.assertEquals("Chrome 44", entity.getOperatorBrowser());
+		Assert.assertEquals(new Long(12), entity.getId());
 		
 		try {
 			XmlPrintWriter writer = new XmlPrintWriter(response.getWriter());

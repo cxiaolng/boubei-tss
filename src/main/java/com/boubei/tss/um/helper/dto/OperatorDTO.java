@@ -15,7 +15,8 @@ public class OperatorDTO implements IPWDOperator, Serializable {
  
     private static final long serialVersionUID = 4239235668043689655L;
     
-    public final static OperatorDTO ADMIN = new OperatorDTO(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
+    public final static OperatorDTO ADMIN = 
+    		new OperatorDTO(UMConstants.ADMIN_USER_ID, UMConstants.ADMIN_USER_NAME);
 
     private Long id;          // 用户ID 
     private String loginName; // 用户名: 即用户登陆系统的帐号
