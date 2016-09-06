@@ -24,6 +24,7 @@ import com.boubei.tss.framework.web.dispaly.grid.GridAttributesMap;
 import com.boubei.tss.framework.web.dispaly.grid.IGridNode;
 import com.boubei.tss.framework.web.dispaly.xform.IXForm;
 import com.boubei.tss.util.DateUtil;
+import com.boubei.tss.util.EasyUtils;
 
 /** 
  * 日志表
@@ -156,7 +157,7 @@ public class Log implements IEntity, IXForm, IGridNode {
     public Map<String, Object> getAttributes4XForm() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("id", this.id);
-        map.put("_content", this.getOperatorBrowser() + "\n" + this.content);
+        map.put("_content", EasyUtils.obj2String(this.operatorBrowser) + "\n" + this.content);
         map.put("_operateTime", DateUtil.formatCare2Second(this.operateTime));
         map.put("_operatorName", this.operatorName);
         

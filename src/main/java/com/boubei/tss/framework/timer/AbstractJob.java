@@ -22,15 +22,18 @@ public abstract class AbstractJob implements Job {
 	
 	IBusinessLogger businessLogger;
 	
-	public AbstractJob() {
-		// 模拟管理员登录，用以初始化Environment
-        String token = TokenUtil.createToken("1234567890", UMConstants.ADMIN_USER_ID);
-		IdentityCard card = new IdentityCard(token, OperatorDTO.ADMIN);
+	/**
+	 * 模拟登录，用以初始化Environment
+	 */
+	protected void initEnv() {
+        String token = TokenUtil.createToken("1234567890", UMConstants.ROBOT_USER_ID);
+		IdentityCard card = new IdentityCard(token, new OperatorDTO(UMConstants.ROBOT_USER_ID, "Job.Robot"));
 		Context.initIdentityInfo(card); 
 	}
 	
     public void execute(JobExecutionContext context) throws JobExecutionException {
     	try {
+    		initEnv();
     		businessLogger = (IBusinessLogger) Global.getBean("BusinessLogger"); // 跑Test时可能没有spring IOC
     	} catch (Exception e) { }
     	
