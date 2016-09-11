@@ -145,7 +145,7 @@ function isRecord() {
 }
 
 function canBatchImp() {
-	return "1" == getTreeAttribute("batchImp");
+	return "1" == getTreeAttribute("batchImp") && !isTreeNodeDisabled();
 }
 
 function loadInitData() {

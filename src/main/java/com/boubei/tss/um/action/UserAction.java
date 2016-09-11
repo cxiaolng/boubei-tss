@@ -18,12 +18,14 @@ import com.boubei.tss.framework.persistence.pagequery.PageInfo;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.framework.sso.online.OnlineUserManagerFactory;
 import com.boubei.tss.framework.web.dispaly.grid.GridDataEncoder;
+import com.boubei.tss.framework.web.dispaly.tree.ITreeTranslator;
 import com.boubei.tss.framework.web.dispaly.tree.LevelTreeParser;
 import com.boubei.tss.framework.web.dispaly.tree.TreeEncoder;
 import com.boubei.tss.framework.web.dispaly.xform.XFormEncoder;
 import com.boubei.tss.framework.web.dispaly.xmlhttp.XmlHttpEncoder;
 import com.boubei.tss.framework.web.mvc.BaseActionSupport;
 import com.boubei.tss.um.UMConstants;
+import com.boubei.tss.um.entity.Group;
 import com.boubei.tss.um.entity.User;
 import com.boubei.tss.um.service.ILoginService;
 import com.boubei.tss.um.service.IUserService;
@@ -49,11 +51,13 @@ public class UserAction extends BaseActionSupport {
         Map<String, Object> map = new HashMap<String, Object>(); 
         if ( !UMConstants.DEFAULT_NEW_ID.equals(userId) ) { // 编辑用户
             data =  userService.getInfo4UpdateExsitUser(userId);
+            
             User user = (User) data.get("UserInfo");
             map.putAll(user.getAttributes4XForm()); 
            
             // 用户已经对应的角色
-            existRoleTree = new TreeEncoder(data.get("User2RoleExistTree"));
+            Object userRoles = data.get("User2RoleExistTree");
+			existRoleTree = new TreeEncoder(userRoles);
         }
         else {
             data =  userService.getInfo4CreateNewUser(groupId);
@@ -64,7 +68,16 @@ public class UserAction extends BaseActionSupport {
         roleTree.setNeedRootNode(false);
         
         // 用户对组
-        TreeEncoder groupTree = new TreeEncoder(data.get("User2GroupExistTree"));
+        Object userGroups = data.get("User2GroupExistTree");
+		TreeEncoder groupTree = new TreeEncoder(userGroups);
+		groupTree.setTranslator( new ITreeTranslator() {
+			public Map<String, Object> translate(Map<String, Object> attributes) {
+				if( Group.ASSISTANT_GROUP_TYPE.equals( attributes.get("groupType") ) ) {
+					attributes.put("name", attributes.get("name") + "（辅助用户组）");
+				}
+				return attributes;
+			}
+		} );
  
         XFormEncoder baseinfoXFormEncoder = new XFormEncoder(UMConstants.USER_BASEINFO_XFORM, map);
         

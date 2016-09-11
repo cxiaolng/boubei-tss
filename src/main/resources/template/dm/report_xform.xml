@@ -45,7 +45,7 @@
 		</TR>
 		<TR>
 			<TD valign="top"><label binding="remark"/></TD>
-			<TD colspan="7"><textarea binding="remark" style="width:97%;height:30px"/></TD>
+			<TD colspan="7"><textarea binding="remark" style="width:97%;height:40px"/></TD>
 		</TR>
 	</layout>
 	<data/>
