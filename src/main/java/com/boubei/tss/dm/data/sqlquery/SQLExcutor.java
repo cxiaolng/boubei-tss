@@ -278,7 +278,7 @@ public class SQLExcutor {
             }
         } 
         catch (SQLException e) {
-            String exMsg = "出错了！" + e.getMessage();
+            String exMsg = "出错了【" +e.getMessage()+ "】";
             log.debug(exMsg + "\n   数据源：" + dbUrl + ",\n   参数：" + paramsMap + ",\n   脚本：" + sql);
             throw new BusinessException(exMsg);
         } 
@@ -330,7 +330,7 @@ public class SQLExcutor {
 		} catch (SQLException e) {
 			try { conn.rollback(); } catch (Exception e2) { }
 			
-			String errorMsg = "出错了! SQL : " + sql + ", 错误原因：" + e.getMessage();
+			String errorMsg = "出错了【" +e.getMessage()+ "】\n SQL: " + sql;
 			log.error(errorMsg);
 			throw new BusinessException(errorMsg);
 			
@@ -431,7 +431,7 @@ public class SQLExcutor {
         	catch (Exception e2) { log.error(e2.getMessage(), e2); }
         	
         	log.debug(Environment.getUserCode() + ", " + Arrays.asList( paramsList.get(0)) );
-            throw new BusinessException("出错了! sql : " + sql + ", \n" + e.getMessage());
+            throw new BusinessException("出错了【" +e.getMessage()+ "】\n SQL: " + sql);
             
         } finally {
         	try { conn.setAutoCommit(autoCommit); } 
