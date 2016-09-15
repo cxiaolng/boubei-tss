@@ -8,13 +8,16 @@
 <link href="common.css" rel="stylesheet">
 
 <script src="../../tools/tssJS/tssJS.all.js"></script>
-<script src="common.js"></script>
+<script src="../../tools/tssJS/tssJS.data.js"></script>
+<script src="tssJS.chart.js"></script>
 
 <script src="../../tools/echarts/echarts-all-2.1.10.js"></script>
-<script src="echart.js"></script>
+
 
 <style type="text/css">
+
 	#research { right: 5px; left: inherit; }
+
 </style>
 
 <script type="text/javascript">
@@ -46,55 +49,22 @@ window.onload = function() {
 }
 
 function show() {	
- 	autoAdjustSize("canvasDiv1");
- 	autoAdjustSize("canvasDiv2");
+ 	var parentNode, node = $1("b1");
+    parentNode = node.parentNode ? node.parentNode : document.body;
 
-	showSpace();
-	showDay();
-}
+    var c = {"title": title};
+    c.height1 = c.height2 = Math.max(300, parentNode.offsetHeight / 3) + "px";
 
-function showSpace(day) {
-	var temp = [];
-	data.each(function(i, item){
-		if(!day || item.day === day) {
-			temp.push(item);
-		}
-	});
-
-	var result = groupby(temp, "space1");
-	result.each(function(i, item){
-		item.name = item.space1;
-	});
-	echartColumn2D("canvasDiv2", (day||"") + title + "分布", result, showDay);
-}
-
-function showDay(space1) {
-	var temp = [];
-	data.each(function(i, item){
-		if(!space1 || item.space1 === space1) {
-			temp.push(item);
-		}
-	});
-
-	var result = groupby(temp, "day");
-	result.each(function(i, item){
-		item.name = item.day;
-	});
-	echartLine2D("canvasDiv1", (space1||"") + title + "走势", result, "", showSpace);
+ 	tssJS.TimeSpace1(data, node, c).show();
 }
 
 </script>
 </head>
 
-<body>
+<body id="b1">
 
-	<div style="height:50%">
-		<div id='canvasDiv1'></div>
-	</div>
-
-	<div style="height:50%">
-		<div id='canvasDiv2'></div>
-	</div>
+	<div style="height:50%"><div id='canvasDiv1'></div></div>
+	<div style="height:50%"><div id='canvasDiv2'></div></div>
 
 </body>
 </html>

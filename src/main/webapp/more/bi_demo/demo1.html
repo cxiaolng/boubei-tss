@@ -37,10 +37,10 @@
     // 判断是否为本地打开，是的话使用测试地址
     if(location.protocol === 'file:') {
         method = 'GET';
-        URL_DATA_1 = 'data/demo/data_1.json?';
-        URL_DATA_2 = 'data/demo/data_2.json?';
-        URL_DATA_3 = 'data/demo/data_3.json?';
-        URL_DATA_4 = 'data/demo/data_4.json?';
+        URL_DATA_1 = 'data/data_1.json?';
+        URL_DATA_2 = 'data/data_2.json?';
+        URL_DATA_3 = 'data/data_3.json?';
+        URL_DATA_4 = 'data/data_4.json?';
     }
 
     $(function() {
@@ -85,7 +85,6 @@
         tssJS.ajax({
             url : URL_DATA_3,            
             // params : params,  // 请求三不需要参数
-            params : {"param1": params.param3},
             method : method,
             type : "json",
             waiting : true,
