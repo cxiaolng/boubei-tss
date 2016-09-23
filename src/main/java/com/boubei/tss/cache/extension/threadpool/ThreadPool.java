@@ -32,9 +32,9 @@ import com.boubei.tss.cache.extension.workqueue.Task;
  */
 public class ThreadPool extends ReusablePool implements IThreadPool{  
     
-    private Pool taskpool;
+    private Pool taskpool; // 可回收重复利用任务载体池
 
-    private final List<Cacheable> workQueue ;
+    private final List<Cacheable> workQueue; // 工作队列
 
     public ThreadPool() {
         workQueue = Collections.synchronizedList(new LinkedList<Cacheable>());
@@ -103,9 +103,11 @@ public class ThreadPool extends ReusablePool implements IThreadPool{
                         // 设置线程池、缓存项的命中率
                         ThreadPool.this.addRequests(); // 如此可以引用到外围类的实例
                         ThreadPool.this.addHits();
+                        
                         Cacheable worker = ThreadPool.this.getObjectOnly(getName());
                         if(worker != null) {
                         	worker.addHit();
+                        	worker.updateAccessed();
                         }
                     }
                 } catch (RuntimeException e) {

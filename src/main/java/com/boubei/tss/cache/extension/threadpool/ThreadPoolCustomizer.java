@@ -30,10 +30,11 @@ public class ThreadPoolCustomizer extends DefaultCacheCustomizer {
     	
         IThreadPool tpool = JCache.getInstance().getThreadPool();
         Thread thread = tpool.createWorkThread();
-        thread.start();
-        TimeWrapper newThread = new TimeWrapper(thread.getName(), thread, strategy.cyclelife);
+        thread.start(); // 启动线程
         
+        TimeWrapper newThread = new TimeWrapper(thread.getName(), thread, strategy.cyclelife);
         log.debug(":" + currentThread + ": (" + newThread + ")创建成功！");
+        
 		return newThread;
     }
 
