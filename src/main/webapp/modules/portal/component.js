@@ -159,12 +159,13 @@ function editTreeNode() {
 }
 
 function addNewComponent() {
-    var treeName = "组件";
-    var treeID = DEFAULT_NEW_ID;
-
     var tree = $.T("tree");
     var treeNode = tree.getActiveTreeNode();
 	var parentID = treeNode.id;
+	var type = getComponentType();
+
+	var treeName = type || '组件';
+    var treeID = DEFAULT_NEW_ID;
 
 	var callback = {};
 	callback.onTabChange = function() {
@@ -172,12 +173,15 @@ function addNewComponent() {
 			loadTreeDetailData(treeID, parentID);
 		}, TIMEOUT_TAB_CHANGE);
 	};
+	callback.onTabClose = function() {
+        delete $.cache.XmlDatas[DEFAULT_NEW_ID];
+    };
 
 	var inf = {};
 	inf.defaultPage = "page1";
 	inf.label = OPERATION_ADD.replace(/\$label/i, treeName);
 	inf.callback = callback;
-	inf.SID = CACHE_TREE_NODE + treeID;
+	inf.SID = CACHE_TREE_NODE + type + treeID;
 	ws.open(inf);
 }
 
@@ -204,6 +208,8 @@ function editComponentInfo() {
 
 function loadTreeDetailData(treeID, parentID) {
 	if(treeID == null) return;
+
+	delete $.cache.XmlDatas[DEFAULT_NEW_ID];
     var componentInfo = $.cache.XmlDatas[treeID];
 
     if(componentInfo) {

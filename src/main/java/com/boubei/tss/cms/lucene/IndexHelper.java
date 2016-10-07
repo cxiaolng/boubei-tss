@@ -32,6 +32,9 @@ public class IndexHelper {
  
     /**
      * 获取索引的所有文章地址列表
+     * 
+     * @param channelIds
+     * @param isIncrement
      * @param channelDao
      * @param articleDao
      * @return

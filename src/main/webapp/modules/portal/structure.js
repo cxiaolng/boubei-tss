@@ -216,12 +216,15 @@ function addNewStructure(treeType) {
 			loadStructureDetailData(treeID, parentID, treeType);
 		}, TIMEOUT_TAB_CHANGE);
 	};
+    callback.onTabClose = function() {
+        delete $.cache.XmlDatas[DEFAULT_NEW_ID];
+    };
 
 	var inf = {};
 	inf.defaultPage = "page1";
 	inf.label = OPERATION_ADD.replace(/\$label/i, treeName);
 	inf.callback = callback;
-	inf.SID = CACHE_TREE_NODE_DETAIL + treeID;
+	inf.SID = CACHE_TREE_NODE_DETAIL + treeType + treeID;
 	ws.open(inf);
 }
 
@@ -248,6 +251,7 @@ function editStructure() {
 }
 
 function loadStructureDetailData(treeID, parentID, treeType) {
+    delete $.cache.XmlDatas[DEFAULT_NEW_ID];
     var dataXmlNode = $.cache.XmlDatas[treeID];
     if(dataXmlNode) {
         return initForm();

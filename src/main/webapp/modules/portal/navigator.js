@@ -46,7 +46,7 @@ function initMenus() {
     ICON = "images/";
     var item1 = {
         label:"新建菜单",
-        callback: function() { addNewMenu("1"); },
+        callback: function() { addNewMenu("1", "菜单"); },
         visible: function() {return "1"==getTreeNodeType() && getOperation("2");}
     }
     var item2 = {
@@ -87,12 +87,12 @@ function initMenus() {
 
 	var item12 = {
         label:"新建普通链接",
-		callback: function() { addNewMenu("4"); },
+		callback: function() { addNewMenu("4", "普通链接"); },
         visible: function() {return getOperation("2");}
     }
     var item13 = {
         label:"新建按钮",
-        callback: function() { addNewMenu("2"); },
+        callback: function() { addNewMenu("2", "按钮"); },
         visible: function() {return getOperation("2");}
     }
     var item5 = {
@@ -103,15 +103,15 @@ function initMenus() {
     var submenu = new $.Menu();
 	subItem3 = {
         label:"门户内部链接",
-        callback: function() { addNewMenu("3"); }
+        callback: function() { addNewMenu("3", "内部链接"); }
     }
     subItem6 = {
         label:"定制脚本跳转",
-        callback: function() { addNewMenu("6"); }
+        callback: function() { addNewMenu("6", "脚本跳转"); }
     }
 	subItem7 = {
         label:"CMS栏目链接",
-        callback: function() { addNewMenu("7"); }
+        callback: function() { addNewMenu("7", "栏目链接"); }
     }
 
 	submenu.addItem(subItem3);
@@ -161,8 +161,8 @@ function loadInitData() {
 	});
 }
 
-function addNewMenu(type) {
-    var treeName = "菜单";
+function addNewMenu(type, typeName) {
+    var treeName = typeName || ("菜单" + type);
     var treeID = DEFAULT_NEW_ID;
     
     var tree = $.T("tree");
@@ -176,12 +176,15 @@ function addNewMenu(type) {
 			loadMenuDetailData(treeID, type, parentId, portalId);
 		},TIMEOUT_TAB_CHANGE);
 	};
+    callback.onTabClose = function() {
+        delete $.cache.XmlDatas[DEFAULT_NEW_ID];
+    };
 
 	var inf = {};
 	inf.defaultPage = "page1";
 	inf.label = OPERATION_ADD.replace(/\$label/i, treeName);
 	inf.callback = callback;
-	inf.SID = CACHE_MENU_DETAIL + treeID;
+	inf.SID = CACHE_MENU_DETAIL + type + treeID;
 	ws.open(inf);
 }
 
@@ -208,16 +211,11 @@ function editTreeNode() {
 
 function loadMenuDetailData(treeID, type, parentId, portalId) {
 	var params = {};
-	if(type) {
-		params.type = type;
-	}
-	if(parentId) {
-		params.parentId = parentId;
-	}
-	if(portalId) {
-		params.portalId = portalId;
-	}
+	if(type)     params.type = type;
+	if(parentId) params.parentId = parentId;
+	if(portalId) params.portalId = portalId;
 
+    delete $.cache.XmlDatas[DEFAULT_NEW_ID];
     var menuInfoNode = $.cache.XmlDatas[treeID];
     if(menuInfoNode) {
         return initForm();

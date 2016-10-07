@@ -90,7 +90,7 @@ public class _Reporter extends BaseActionSupport {
     			String value;
     			if(isGet) {
     				try {
-    					value = new String(values[0].getBytes("ISO-8859-1"), "UTF-8");
+    					value = new String(values[0].getBytes("ISO-8859-1"), "UTF-8"); // tomcat7, (not jetty)
     				} catch (UnsupportedEncodingException e) {
     					value = values[0];
     				}

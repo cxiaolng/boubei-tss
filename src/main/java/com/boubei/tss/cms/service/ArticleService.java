@@ -20,6 +20,7 @@ import com.boubei.tss.cms.entity.Attachment;
 import com.boubei.tss.cms.entity.Channel;
 import com.boubei.tss.cms.helper.ArticleHelper;
 import com.boubei.tss.cms.helper.ArticleQueryCondition;
+import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.persistence.pagequery.PageInfo;
 import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.util.EasyUtils;
@@ -170,6 +171,9 @@ public class ArticleService implements IArticleService {
     public void moveArticle(Long articleId, Long channelId) {
         Article article = articleDao.getEntity(articleId);
         Channel channel = channelDao.getEntity(channelId);
+        if(channel.isSiteRoot()) {
+        	throw new BusinessException("文章不能移动到站点目录下，请重新选择一个目标栏目");
+        }
         article.setChannel(channel);
         
         articleDao.update(article);

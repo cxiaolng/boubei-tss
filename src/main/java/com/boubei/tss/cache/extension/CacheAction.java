@@ -167,7 +167,7 @@ public class CacheAction extends BaseActionSupport {
             
             DefaultGridNode gridNode = new DefaultGridNode();
             gridNode.getAttrs().put("id", thisKey);
-            gridNode.getAttrs().put("key", thisKey.toString().replaceAll("com.boubei.tss.", ""));
+            gridNode.getAttrs().put("key", thisKey.toString());
             gridNode.getAttrs().put("code", code);
             gridNode.getAttrs().put("death", item.getDeath());
             gridNode.getAttrs().put("birthday", item.getBirthday());
