@@ -24,7 +24,7 @@ public interface ILoginService {
      * @param loginName 用户登录名
      * @return String[] {用户名:String, 身份认证器类名（全路径）:String}
      */
-	@Cached(cyclelife = CacheLife.SHORTER)
+	@Cached(cyclelife = CacheLife.SHORT)
     String[] getLoginInfoByLoginName(String loginName);
 	
 	/**
@@ -81,10 +81,10 @@ public interface ILoginService {
      * @return
      *      登陆用户拥有的所有权限 List(roleId)
      */
-    @Cached(cyclelife = CacheLife.SHORTER)
+    @Cached(cyclelife = CacheLife.SHORT)
     List<Long> getRoleIdsByUserId(Long userId);
     
-    @Cached(cyclelife = CacheLife.SHORTER)
+    @Cached(cyclelife = CacheLife.SHORT)
     List<?> getAssistGroupIdsByUserId(Long userId);
     
 	/**

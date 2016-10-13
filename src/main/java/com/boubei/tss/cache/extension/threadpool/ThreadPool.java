@@ -45,7 +45,9 @@ public class ThreadPool extends ReusablePool implements IThreadPool{
     }
 
     public synchronized void excute(Pool taskpool, Cacheable task) {
-        this.taskpool = taskpool;
+    	if(taskpool != null) {
+    		this.taskpool = taskpool;
+    	}
         
         // 如果池中工作线程都已被销毁，则重新开始初始化（注：单单size()=0，有可能正在初始化）。
         if(size() == 0 && released) {
@@ -96,7 +98,7 @@ public class ThreadPool extends ReusablePool implements IThreadPool{
                         task.excute(); // 执行任务
                         
                         Object key = taskWrapper.getKey();
-						if(taskpool != null && taskpool.listKeys().contains(key)) {
+						if(taskpool != null && taskpool.listKeys().contains(key) ) {
                             taskpool.checkIn(taskWrapper);  // 只有LogTask能回收成功，其它类型Task都是直接new出来的
                         }
                         

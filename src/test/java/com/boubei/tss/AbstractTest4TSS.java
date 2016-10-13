@@ -98,11 +98,8 @@ public abstract class AbstractTest4TSS extends AbstractTransactionalJUnit4Spring
     	if(paramService.getParam(0L) == null) {
 			String sqlpath = _TestUtil.getInitSQLDir();
 	    	log.info( " sql path : " + sqlpath);
-	        _TestUtil.excuteSQL(sqlpath + "/framework");
+	        _TestUtil.excuteSQL(sqlpath);
 	        _TestUtil.excuteSQL(sqlpath + "/um");
-	        _TestUtil.excuteSQL(sqlpath + "/dm");
-	    	_TestUtil.excuteSQL(sqlpath + "/cms");
-	    	_TestUtil.excuteSQL(sqlpath + "/portal");
     	}
     	
     	// 初始化虚拟登录用户信息

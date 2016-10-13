@@ -42,7 +42,8 @@ public class RecordServiceImpl implements RecordService {
 	}
 
 	public List<Record> getAllRecordGroups() {
-		return (List<Record>) recordDao.getEntities("from Record o where o.type = ? order by o.decode", Record.TYPE0);
+		String hql = "from Record o where o.type = ? order by o.decode";
+		return (List<Record>) recordDao.getEntities(hql, Record.TYPE0);
 	}
 
 	public Record saveRecord(Record record) {
@@ -80,18 +81,31 @@ public class RecordServiceImpl implements RecordService {
 
 	public Record delete(Long id) {
 		Record record = getRecord(id);
+        if ( !checkOpPermission(id, Record.OPERATION_DELETE) ) {
+            throw new BusinessException("没有" +record+ "的权限，删除失败！");
+        }
+		
         return recordDao.deleteRecord(record);
 	}
 
-    public void startOrStop(Long reportId, Integer disabled) {
+    public void startOrStop(Long id, Integer disabled) {
         List<Record> list = ParamConstants.TRUE.equals(disabled) ? 
-        		recordDao.getChildrenById(reportId, Record.OPERATION_EDIT) : recordDao.getParentsById(reportId);
+        		recordDao.getChildrenById(id, Record.OPERATION_EDIT) : recordDao.getParentsById(id);
         
         for (Record record : list) {
             record.setDisabled(disabled);
             recordDao.updateWithoutFlush(record);
         }
         recordDao.flush();
+    }
+    
+    // 判断对所有子节点是否都拥有指定的操作权限
+    private boolean checkOpPermission(Long id, String operationId) {
+    	List<?> canDelChilds = recordDao.getChildrenById(id, operationId);
+		List<?> allSubChilds = recordDao.getChildrenById(id);
+        
+        //如果将要操作的数量==能够操作的数量,说明对所有节点都有操作权限,则返回true
+        return canDelChilds.size() == allSubChilds.size();
     }
     
 	public void sort(Long startId, Long targetId, int direction) {

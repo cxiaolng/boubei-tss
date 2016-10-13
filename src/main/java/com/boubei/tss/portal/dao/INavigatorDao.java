@@ -34,7 +34,7 @@ public interface INavigatorDao extends ITreeSupportDao<Navigator> {
      * @return
      */
     @PermissionTag(filter = PermissionFilter4Navigator.class)
-    @Cached(cyclelife = CacheLife.SHORTER)
+    @Cached(cyclelife = CacheLife.SHORT)
     List<Navigator> getMenuItems(Long menuId, Long userId);
     
     /**

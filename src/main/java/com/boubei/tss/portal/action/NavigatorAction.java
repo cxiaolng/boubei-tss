@@ -62,7 +62,7 @@ public class NavigatorAction extends BaseActionSupport {
     }
 	
 	private void flushMenuCache() {
-		CacheHelper.flushCache(CacheLife.SHORTER.toString(), "NavigatorDao.getMenuItems");
+		CacheHelper.flushCache(CacheLife.SHORT.toString(), "NavigatorDao.getMenuItems");
 	}
     
 	/**

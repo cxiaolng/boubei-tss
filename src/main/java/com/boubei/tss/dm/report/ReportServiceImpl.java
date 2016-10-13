@@ -94,7 +94,7 @@ public class ReportServiceImpl implements ReportService {
          List<Report> list2 = reportDao.getChildrenById(id);
          
          if(list1.size() < list2.size()) {
-         	throw new BusinessException("你的权限不足，无法删除整个枝。");
+         	throw new BusinessException("你的权限不足，无法删除" + report);
          }
          return reportDao.deleteReport(report);
     }
