@@ -50,12 +50,13 @@ public class _Oracle extends _Database {
    		createDDL.append("id NUMBER(19) not null");
    		createDDL.append( ")" );
    		
-   		SQLExcutor.excute(createDDL.toString(), datasource);	
-   		SQLExcutor.excute("alter table " + this.table + " add primary key (id)", datasource);	
-   		
-		try {
+		try { // 表或sequence可能已经存在
+			SQLExcutor.excute(createDDL.toString(), datasource);	
+	   		SQLExcutor.excute("alter table " + this.table + " add primary key (id)", datasource);
 			SQLExcutor.excute("create sequence " + getSeq() + " increment by 1 start with 1", datasource); 
-		} catch(Exception e) {
+		} 
+		catch(Exception e) {
+			log.warn(this.recordName + "在创建表结构时发生异常", e);
 		}
 	}
 	

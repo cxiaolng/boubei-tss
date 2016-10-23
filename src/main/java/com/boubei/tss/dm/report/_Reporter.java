@@ -47,7 +47,7 @@ import com.boubei.tss.util.EasyUtils;
  * 
  * 按用户缓存: /tss/data/json/123?uCache=true 或者 
  * {'label':'按用户缓存','type':'hidden','name':'uCache','defaultValue':'true'}
- * 
+ * 按用户缓存使用于查询脚本里加了用户信息（session里的账号、组织、角色等信息，比如${loginName}），这类情形必须使用uCache或noCache
  */
 @Controller
 @RequestMapping( {"/display", "/data", "/api"} )

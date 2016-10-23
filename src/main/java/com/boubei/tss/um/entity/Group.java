@@ -13,6 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import com.boubei.tss.framework.persistence.entityaop.IDecodable;
 import com.boubei.tss.framework.persistence.entityaop.OperateInfo;
 import com.boubei.tss.framework.web.dispaly.tree.TreeAttributesMap;
@@ -30,6 +32,8 @@ import com.boubei.tss.util.BeanUtil;
         @UniqueConstraint(name = "MULTI_NAME_GROUP", columnNames = { "parentId", "name" })
 })
 @SequenceGenerator(name = "group_sequence", sequenceName = "group_sequence", initialValue = 1000, allocationSize = 10)
+@JsonIgnoreProperties(value={"pk", "attributes4XForm", "attributes", "parentClass", "creatorId", "createTime", "creatorName", 
+		"updatorId", "updateTime", "updatorName", "lockVersion", "decode", "seqNo", "levelNo", "resourceType", "fromGroupId"})
 public class Group extends OperateInfo implements IDecodable, IXForm, IResource {
 
 	public static final Integer MAIN_GROUP_TYPE      = 1; // 主组类型

@@ -197,7 +197,31 @@ public class _Recorder extends BaseActionSupport {
     		@PathVariable("recordId") Long recordId, 
     		@PathVariable("id") Long id) {
     	
-    	getDB(recordId).delete(id);
+    	exeDelete(recordId, id);
+        printSuccessMessage();
+    }
+    
+    private void exeDelete(Long recordId, Long id) {
+    	_Database db = getDB(recordId);
+		db.delete(id);
+    	
+		if(db.needFile) { // 删除附件
+	    	List<?> attachs = recordService.getAttachList(recordId, id);
+	    	for(Object attach : attachs) {
+	    		Long attachId = ((RecordAttach)attach).getId();
+	    		this.deleteAttach(null, attachId);
+	    	}
+		}
+    }
+    
+    @RequestMapping(value = "/batch/{recordId}", method = RequestMethod.DELETE)
+    public void deleteBatch(HttpServletResponse response, 
+    		@PathVariable("recordId") Long recordId, String ids) {
+    	
+    	String[] idArray = ids.split(",");
+    	for(String id : idArray) {
+    		exeDelete(recordId, EasyUtils.obj2Long(id));
+    	}
         printSuccessMessage();
     }
     
@@ -248,7 +272,9 @@ public class _Recorder extends BaseActionSupport {
 		RecordAttach attach = recordService.getAttach(id);
 		recordService.deleteAttach(id);
 		FileHelper.deleteFile(new File(attach.getAttachPath()));
-        printSuccessMessage();
+		if(response != null) {
+			printSuccessMessage();
+		}
     }
 	
 	@RequestMapping("/attach/download/{id}")

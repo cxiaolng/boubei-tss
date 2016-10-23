@@ -107,6 +107,9 @@ public abstract class _Database {
 	
 	protected abstract String getFieldType(Map<Object, Object> fDefs);
 	
+	/**
+	 * 如果相同表名已经存在，直接使用既有表
+	 */
 	public abstract void createTable();
 	
 	public void dropTable(String table, String datasource) {

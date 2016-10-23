@@ -120,7 +120,7 @@ public class _TestUtil {
         return logs.size();
     }
     
-    public static void printEntity(IDao<?> dao, String entity) {
+    public static List<?> printEntity(IDao<?> dao, String entity) {
         List<?> list = dao.getEntities("from " + entity );
         
         log.debug("表【" + entity + "】的所有记录:");
@@ -128,5 +128,7 @@ public class _TestUtil {
             log.debug(temp);
         }
         log.debug("\n");
+        
+        return list;
     }
 }

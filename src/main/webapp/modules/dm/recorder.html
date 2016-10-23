@@ -350,6 +350,24 @@ function remove()  {
     });
 }
 
+function removeBatch() {
+    var grid = $.G("grid");
+    var ids  = grid.getCheckedRows();
+    if(!ids) {
+        return alert("你没有选中任何记录，请勾选后再进行批量删除。");
+    }
+    $.confirm("您确定要批量删除选中记录吗？", "批量删除确认", function(){
+        $.ajax({
+            url : URL_DELETE_SOURCE + "batch/" + recordId,
+            params: {"ids": ids},
+            method : "DELETE",
+            onsuccess : function() { 
+                loadGridData( $1("GridPageList").value || 1 ); // 更新Grid 
+            }
+        }); 
+    });
+}
+
 function clone (obj) {
     var copy = {};
     for (var name in obj) {
@@ -562,6 +580,7 @@ function delAttach() {
             <span class="icon"></span><span id="rcTitle">资源列表</span>&nbsp;
             <input type="button" class="tssbutton small blue" value="新 增" id="btn_create" onclick="showDetail('_new')"/>&nbsp;
             <input type="button" class="tssbutton small blue" value="查 询" id="btn_search" onclick="showQueryForm()"/>&nbsp;
+            <input type="button" class="tssbutton small blue" value="批量删除" id="btn_search" onclick="removeBatch()"/>&nbsp;
             <span id="customizeBox"></span>
             <span class="buttonBox" id="gridToolBar"></span>
           </td>

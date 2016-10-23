@@ -3,6 +3,7 @@ package com.boubei.tss.dm.record;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -155,7 +156,7 @@ public class _RecorderTest extends AbstractTest4DM {
 		
 		try {
 			request = new MockHttpServletRequest();
-			request.addParameter("f1", "12.12");
+			request.addParameter("f1", "12.13");
 			request.addParameter("f2", "just test end");
 			request.addParameter("f3", "2015-04-05");
 			recorder.update(request, response, recordId, 1L);
@@ -163,8 +164,31 @@ public class _RecorderTest extends AbstractTest4DM {
         } catch (Exception e) {
         	Assert.assertTrue("修改出错，该记录不存在，可能已经被删除。", true);
         }
-	}
 	
+		// test delete batch
+		for(int i=2; i < 6; i++) {
+			request.removeAllParameters();
+			request.addParameter("f1", i +".9");
+			request.addParameter("f2", "just test");	
+			request.addParameter("f3", "2015-04-05");
+			recorder.create(request, response, recordId);
+		}
+		
+		result = recorder.getDB(recordId).select().result;
+		List<Long> ids = new ArrayList<Long>();
+		for(Map<String, Object> item : result) {
+			Long _itemId = EasyUtils.obj2Long(item.get("id"));
+			uploadDocFile(recordId, _itemId);
+			ids.add(_itemId);
+		}
+		
+		recorder.deleteBatch(response, recordId, EasyUtils.list2Str(ids));
+		
+		result = recorder.getDB(recordId).select().result;
+		Assert.assertTrue(result.isEmpty());
+		
+		Assert.assertTrue( _TestUtil.printEntity(super.permissionHelper, "RecordAttach").isEmpty() ); 
+	}
 	
 	static String UPLOAD_PATH = _TestUtil.getTempDir() + "/upload/record/";
 	
