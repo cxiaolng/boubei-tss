@@ -10,8 +10,9 @@
                 "gray", "green", "red", "blue", "yellow", "silver", "orange", "olive"];
 
     /* 
-     * 时间 + 空间2维
-     * [ { "value": 21425.8, "day": "2015-04-09", "space1": "安徽分公司", "space2": "蚌埠分拨" }, ...... ]
+     * 时间 + 空间2维，tssJS.TimeSpace2(data, node, c).show();
+     * data格式：
+     *   [ { "value": 21425.8, "day": "2015-04-09", "space1": "安徽分公司", "space2": "蚌埠分拨" }, ...... ]
      */
     $.TimeSpace2 = function(data, el, config) {
         var title = config.title, cDay, cSpace1;
@@ -121,7 +122,7 @@
     };
 
     /* 
-     * 时间 + 空间1维
+     * 时间 + 空间1维,  tssJS.TimeSpace1(data, node, c).show();
      */
     $.TimeSpace1 = function(data, el, config) {
         var title = config.title, cDay;
@@ -301,7 +302,8 @@
         /*
          * 柱状图，column2D('canvas1', '货量分布', [{'name': '仓库一', 'value': '300'}, .....])
          */
-        column2D: function(canvasID, title, data, func) {
+        column2D: function(canvasID, title, data, func, config) {
+            config = config || {};
             var labels = [], _data = [];
             data.each(function(i, item) {
                 labels[i] = item.name;
@@ -333,7 +335,7 @@
                     {
                         name:title,
                         type:'bar',
-                        barWidth: 15, 
+                        barWidth: config.barWidth || 18, 
                         itemStyle : { normal: {label : {show: true, position: 'top'}}},
                         data: _data
                     }

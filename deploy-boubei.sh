@@ -2,7 +2,7 @@ mvn clean install -Pboubei -Dmaven.test.skip=true
 cp target/tss.war /Users/jinpujun/Desktop/workspace/release/boubei
 
 
-#boubei.com tssBi发布步骤【 用：tssbi / J..k*ng**16 来发布 】
+#boubei.com tssBi发布步骤【 用：tssbi / J..k*ng***6 来发布 】
 #  a、打包 deploy-boubei.sh，上传至 /home/tssbi/release
 #  d、./deploy.sh
 #  c、【放开tssUtil.js的CNZZ统计的注释】 vim ../tomcat7/webapps/tss/tools/tssUtils.js
