@@ -434,4 +434,3 @@ public abstract class AbstractPool implements Pool {
         listeners.add(x);
     }
 }
-

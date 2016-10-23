@@ -162,8 +162,8 @@ public interface Pool {
 	 * 释放所有池中的连接，并且关闭池。
 	 * 
 	 * @param 是否强制释放（  
-	 * 			  true: 强制销毁这些连接然后返回, 
-	 *            fasle:等所有连接都返回再释放）
+	 * 			  true: 强制销毁这些对象然后返回, 
+	 *            fasle:等所有对象都返回再释放）
 	 */
 	void release(boolean forced);
 

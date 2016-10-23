@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.cache.JCache;
-import com.boubei.tss.cache.Pool;
 import com.boubei.tss.cache.extension.CacheHelper;
+import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.modules.param.Param;
 import com.boubei.tss.modules.param.ParamConstants;
 import com.boubei.tss.modules.param.ParamManager;
@@ -63,11 +62,6 @@ public class DataSourceManager {
 					break;
 				}
 			}
-			
-			// 清空连接池里的已有连接
-			Pool pool = JCache.getInstance().getPool(code);
-			pool.init();
-			pool.flush();
 			
 			return "数据源配置修改成功";
 		}

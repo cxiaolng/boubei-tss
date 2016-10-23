@@ -94,6 +94,7 @@ public class CacheStrategy {
 	/** 缓冲池自定义类 */
 	String customizerClass = DEFAULT_CUSTOMIZER;
 	
+	/** 连接池等配置内容 或 配置文件 */
 	public String paramFile;
 
 	/** 缓存策略的名称 */
@@ -157,6 +158,10 @@ public class CacheStrategy {
 		if( TRUE.equals( this.disabled ) && FALSE.equals( c.disabled ) ) { // 启用池
 			this.setDisabled( c.disabled );
 			pool.firePoolEvent(PoolEvent.POOL_ENABLED);
+		}
+		if( c.paramFile != null && !c.paramFile.equals( this.paramFile ) ) { // 连接池的配置参数有变
+			this.setParamFile( c.paramFile );
+			pool.firePoolEvent(PoolEvent.STRATEGY_CHANGED_RESET);
 		}
 
 		setCustomizerClass(c.customizerClass);
