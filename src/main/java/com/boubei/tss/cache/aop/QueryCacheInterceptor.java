@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.Pool;
-import com.boubei.tss.cache.TimeWrapper;
 import com.boubei.tss.cache.extension.CacheHelper;
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.modules.param.ParamManager;
@@ -46,20 +45,15 @@ public class QueryCacheInterceptor implements MethodInterceptor {
  
 		Pool qCache = CacheHelper.getShortCache(); /* 使用10分钟Cache */
 		
-		Class<?> declaringClass = targetMethod.getDeclaringClass();
-		String qKey = "QC_" + declaringClass.getName() + "." + targetMethod.getName();
-        qKey += "(";
-        if(args != null && args.length > 0) {
-        	int index = 0;
-        	for(Object arg : args) {
-        		if( index++ > 0) {
-        			qKey += ", ";
-        		}
-        		qKey += arg;
-        	}
-        }
-        qKey += ")";
-        TimeWrapper qcItem = (TimeWrapper) qCache.getObject(qKey); // item.hit++
+		// 检查当前等待线程数（执行中 + 等待中）
+		int X = countThread(qCache), 
+			V = EasyUtils.obj2Int( ParamManager.getValue(MAX_QUERY_REQUEST, DEFAULT_MAX) );
+		if( X > V ) {
+			throw new BusinessException("当前应用服务器资源紧张，请稍后再查询。" + X + ">" + V);
+		}
+        
+        String qKey = "QC_" + CacheInterceptor.cacheKey(targetMethod, args);
+        Cacheable qcItem = qCache.getObject(qKey); // item.hit++
 		
 		Object returnVal;
 		long currentThread = Thread.currentThread().getId();
@@ -68,12 +62,6 @@ public class QueryCacheInterceptor implements MethodInterceptor {
 			Integer hit = qcItem.getHit();
 			qcItem.update( hit ); // 记录是第几个到访
 			log.debug( currentThread + " QueryCache【"+qKey+"】= " + hit );
-			
-			int X = countThread(qCache), 
-				V = EasyUtils.obj2Int( ParamManager.getValue(MAX_QUERY_REQUEST, DEFAULT_MAX) );
-			if( X > V ) {
-				throw new BusinessException("当前应用服务器资源紧张，请稍后再查询。" + X + ">" + V);
-			}
 			
 			// 等待执行中的上一次请求先执行完成； 
 			long start = System.currentTimeMillis();

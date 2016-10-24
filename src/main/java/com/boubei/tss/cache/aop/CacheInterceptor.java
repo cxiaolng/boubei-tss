@@ -16,6 +16,24 @@ import com.boubei.tss.cache.extension.CacheLife;
 public class CacheInterceptor implements MethodInterceptor {
 
     protected Logger log = Logger.getLogger(this.getClass());
+    
+    public static String cacheKey(Method targetMethod, Object[] args) {
+    	Class<?> declaringClass = targetMethod.getDeclaringClass();
+		String key = declaringClass.getName() + "." + targetMethod.getName();
+        key += "(";
+        if(args != null && args.length > 0) {
+        	int index = 0;
+        	for(Object arg : args) {
+        		if( index++ > 0) {
+        			key += ", ";
+        		}
+        		key += arg;
+        	}
+        }
+        key += ")";
+        
+        return key;
+    }
 
     public Object invoke(MethodInvocation invocation) throws Throwable {
         Method targetMethod = invocation.getMethod(); /* 获取目标方法 */
@@ -29,19 +47,7 @@ public class CacheInterceptor implements MethodInterceptor {
 		CacheLife life = annotation.cyclelife();
 		Pool dataCache = JCache.getInstance().getPool(life.toString());
 		
-		Class<?> declaringClass = targetMethod.getDeclaringClass();
-		String key = declaringClass.getName() + "." + targetMethod.getName();
-        key += "(";
-        if(args != null && args.length > 0) {
-        	int index = 0;
-        	for(Object arg : args) {
-        		if( index++ > 0) {
-        			key += ", ";
-        		}
-        		key += arg;
-        	}
-        }
-        key += ")";
+		String key = cacheKey(targetMethod, args);
 		Cacheable cacheItem = dataCache.getObject(key);
 		
 		Object returnVal;
