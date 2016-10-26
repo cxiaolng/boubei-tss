@@ -20,6 +20,10 @@ import com.boubei.tss.um.service.ILoginService;
  * <p>
  * 登录后将TSS中相关用户对角色信息复制到本地应用的数据库中
  * </p>
+ * userRights: list<Long>用户角色ID列表
+ * loginName: String 用户账号
+ * GROUP_LEVEL: int 用户所属组层级
+ * GROUP_LAST_NAME: string 用户所属组名称
  */
 public class FetchPermissionAfterLogin implements ILoginCustomizer {
     

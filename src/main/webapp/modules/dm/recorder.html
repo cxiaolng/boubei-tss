@@ -144,6 +144,9 @@ function init() {
     if( !_operation.contains("2") && !_operation.contains("4") && !_operation.contains("5") ) {
         $("#btn_search").hide();
     }
+    if( !_operation.contains("5") ) { // 只有维护数据权限的角色才能使用批量删除
+        $("#btn_batch_del").hide();
+    }
 }
 
 function initMenus() {
@@ -579,8 +582,8 @@ function delAttach() {
           <td id="gridTitle">
             <span class="icon"></span><span id="rcTitle">资源列表</span>&nbsp;
             <input type="button" class="tssbutton small blue" value="新 增" id="btn_create" onclick="showDetail('_new')"/>&nbsp;
+            <input type="button" class="tssbutton small orange" value="批量删除" id="btn_batch_del" onclick="removeBatch()"/>&nbsp;
             <input type="button" class="tssbutton small blue" value="查 询" id="btn_search" onclick="showQueryForm()"/>&nbsp;
-            <input type="button" class="tssbutton small blue" value="批量删除" id="btn_search" onclick="removeBatch()"/>&nbsp;
             <span id="customizeBox"></span>
             <span class="buttonBox" id="gridToolBar"></span>
           </td>

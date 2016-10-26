@@ -269,7 +269,7 @@ public class ReportServiceImpl implements ReportService {
 			excutor.excuteQuery(reportScript, paramsMap, page, pagesize, datasource);
 		} catch (Exception e) {
 			String exMsg = e.getMessage();
-			log.error( report + " error：" + exMsg);
+			log.error( report + " ：" + exMsg);
 			throw new BusinessException(exMsg);
 		}
 

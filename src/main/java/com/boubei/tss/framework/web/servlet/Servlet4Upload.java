@@ -34,6 +34,8 @@ import com.boubei.tss.util.FileHelper;
  * -2. 文件类型检查：强烈推荐白名单方式，结合MIME Type、后缀检查等方式；此外对于图片的处理可以使用压缩函数或resize函数，处理图片的同时破坏其包含的HTML代码；
  * -3. 使用随机数改写文件名和文件路径，使得用户不能轻易访问自己上传的文件
  * -4. 单独设置文件服务器的域名
+ * 
+ * 注：最大可以上传文件大小为20M = 20971520Byte
  */
 @WebServlet(urlPatterns="/auth/file/upload")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 20)

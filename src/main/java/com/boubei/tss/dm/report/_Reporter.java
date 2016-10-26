@@ -84,13 +84,14 @@ public class _Reporter extends BaseActionSupport {
     private Map<String, String> getRequestMap(HttpServletRequest request, boolean isGet) {
     	Map<String, String[]> parameterMap = request.getParameterMap();
     	Map<String, String> requestMap = new HashMap<String, String>();
+    	boolean isJetty = "org.eclipse.jetty.server.Request".equals( request.getClass().getName() );
     	for(String key : parameterMap.keySet()) {
     		String[] values = parameterMap.get(key);
     		if(values != null && values.length > 0) {
     			String value;
-    			if(isGet) {
+				if(isGet && !isJetty ) { // tomcat7, (not jetty)
     				try {
-    					value = new String(values[0].getBytes("ISO-8859-1"), "UTF-8"); // tomcat7, (not jetty)
+    					value = new String(values[0].getBytes("ISO-8859-1"), "UTF-8"); 
     				} catch (UnsupportedEncodingException e) {
     					value = values[0];
     				}
