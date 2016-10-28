@@ -111,7 +111,8 @@
                             result.push(item);
                         });
 
-                        if(result.length === codes.length) { // 判断是否已全部取到
+                        // 判断是否已全部取到，只有一页则无需检查
+                        if(codes.length <= 500 || result.length === codes.length) { 
                             callback(result);
                         }
                     }

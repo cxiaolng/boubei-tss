@@ -35,6 +35,10 @@ import com.boubei.tss.framework.web.mvc.BaseActionSupport;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.FileHelper;
 
+/**
+ * 小技巧：
+ * 1、隐藏创建人、创建时间、修改人、修改时间、修改次数这5列，在过滤条件里加：1=1<#if 1=0>hideCUV</#if>
+ */
 @Controller
 @RequestMapping("/auth/xdata")
 public class _Recorder extends BaseActionSupport {

@@ -704,6 +704,9 @@ public class FileHelper {
 	        }
 			response.setContentType("image/" + fileExt); 
 		}
+		else if(fileExt.equals("pdf")) {
+			response.setContentType("application/pdf"); 
+		}
         else {
         	response.setContentType("application/octet-stream"); // 设置附件类型
             response.setHeader("Content-Disposition", "attachment; filename=\"" + EasyUtils.toUtf8String(fileName) + "\"");        
