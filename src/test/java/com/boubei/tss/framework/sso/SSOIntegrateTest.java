@@ -154,6 +154,20 @@ public class SSOIntegrateTest {
             REQUEST-TYPE: xmlhttp
             Cookie: $Version=0; JSESSIONID=uxnvs54t4l5g14yxlx7wuufs6; $Path=/tss
             Cookie: $Version=0; token=+y69xSIFzvaUClV6fMkrA3Fp2EQB9GnWn7Nd1Pv4Fqk4Sd9eEXwHICyxJPD86/KY; $Path=/tss */
+        
+        log.info("--------------------------------- 3.2、测试带验证码登录 ------------------------------------------------------");
+        httppost = new PostMethod("http://localhost:8111/tss/auth/login.do");
+        httppost.setRequestHeader("REQUEST-TYPE", "xmlhttp");
+        
+        // 由于XmlHttpDecodeFilter配置在AutoLoginFilter之后，所以登录信息需要放在header里传递
+        httppost.setRequestHeader("loginName", "Jon.King");
+        httppost.setRequestHeader("password", "123456");
+        httppost.setRequestHeader("identifier", "com.boubei.tss.framework.sso.PWDUserIdentifier");
+        httppost.setRequestHeader("encodeKey", encodeKey+"");
+        httppost.setRequestHeader(SSOConstants.LOGIN_CHECK_KEY, "1234");
+ 
+        httppost.setRequestEntity(new StringRequestEntity(body, null, null));
+        excuteRequest(client, httppost);
     }
     
     @Test

@@ -1,5 +1,7 @@
 package com.boubei.tss.framework.sso;
 
+import javax.servlet.http.HttpSession;
+
 import com.boubei.tss.framework.exception.BusinessException;
 import com.boubei.tss.framework.sso.context.Context;
 import com.boubei.tss.framework.sso.context.RequestContext;
@@ -25,13 +27,25 @@ public class PasswordPassport {
      */
     public PasswordPassport() throws BusinessException {
         RequestContext requestContext = Context.getRequestContext();
+        HttpSession session = requestContext.getSession();
+        
+        // 检查图形验证码，如果有的话
+        String loginCheckKey = requestContext.getValue(SSOConstants.LOGIN_CHECK_KEY);
+        Object lckInSession = session.getAttribute(SSOConstants.LOGIN_CHECK_KEY);
+        if(loginCheckKey !=null || lckInSession != null) {
+        	if( !lckInSession.toString().equals(loginCheckKey) ) {
+        		session.removeAttribute(SSOConstants.LOGIN_CHECK_KEY); // 一次验证不成功，就要重新生成验证码(在生成图片验证码时)
+        		throw new BusinessException("验证码输入有误，请重新输入。");
+        	}
+        } 
+        
         String loginName = requestContext.getValue(SSOConstants.LOGINNAME_IN_SESSION);
         String password  = requestContext.getValue(SSOConstants.USER_PASSWORD);
         if (loginName == null || password == null) {
             throw new BusinessException("账号或密码不能为空，请重新登录。");
         }
         
-        Object randomKey = requestContext.getSession().getAttribute(SSOConstants.RANDOM_KEY);
+        Object randomKey = session.getAttribute(SSOConstants.RANDOM_KEY);
         if(randomKey == null) {
         	randomKey = requestContext.getValue(SSOConstants.RANDOM_KEY);
         }

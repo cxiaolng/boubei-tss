@@ -38,6 +38,7 @@ import com.boubei.tss.util.FileHelper;
 /**
  * 小技巧：
  * 1、隐藏创建人、创建时间、修改人、修改时间、修改次数这5列，在过滤条件里加：1=1<#if 1=0>hideCUV</#if>
+ *   needLog = false 时，也将自动隐藏这5列
  */
 @Controller
 @RequestMapping("/auth/xdata")

@@ -411,7 +411,7 @@ public abstract class _Database {
         	sb.append("<column name=\"fileNum\" mode=\"string\" caption=\"附件数\" />");
         }
         
-        if( (this.customizeTJ+"").indexOf("hideCUV") < 0 ) { // 判断是否默认隐藏这5列
+        if( (this.customizeTJ+"").indexOf("hideCUV") < 0 || !needLog) { // 判断是否默认隐藏这5列
         	sb.append("<column name=\"createtime\" mode=\"string\" caption=\"创建时间\" sortable=\"true\"/>");
             sb.append("<column name=\"creator\" mode=\"string\" caption=\"创建人\" sortable=\"true\"/>");
             sb.append("<column name=\"updatetime\" mode=\"string\" caption=\"更新时间\" sortable=\"true\"/>");

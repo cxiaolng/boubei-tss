@@ -27,4 +27,6 @@ public interface SSOConstants {
     public static final String USER_PASSWORD  = "password";
     
     public static final String RANDOM_KEY  = "randomKey";
+    
+    public static final String LOGIN_CHECK_KEY = "loginCheckKey";
 }

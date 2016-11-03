@@ -56,8 +56,10 @@ public class Filter0Security implements Filter {
         String serverName = req.getServerName(); // 网站的域名
         if(referer != null && !referer.contains(serverName)) { // 如果是跨域访问了，则过滤ip白名单
         	List<String> whiteList = new ArrayList<String>();
-        	whiteList.add("localhost");
-        	whiteList.add("127.0.0.1");
+        	if(SecurityUtil.getSecurityLevel() <= 3) {
+        		whiteList.add("localhost");
+        		whiteList.add("127.0.0.1");
+        	}
         	
         	String ipWhiteListConfig = ParamConfig.getAttribute(IP_WHITE_LIST);
         	if( !EasyUtils.isNullOrEmpty(ipWhiteListConfig) ) {

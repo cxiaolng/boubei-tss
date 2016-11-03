@@ -43,7 +43,7 @@ public class GetLoginInfo extends HttpServlet {
             int randomKey = MathUtil.randomInt(10000);
             encoder.put(SSOConstants.RANDOM_KEY, randomKey);
 			request.getSession(true).setAttribute(SSOConstants.RANDOM_KEY, randomKey);
-            
+			
             response.setCharacterEncoding("utf-8");
             encoder.print(new XmlPrintWriter(response.getWriter()));
         } 

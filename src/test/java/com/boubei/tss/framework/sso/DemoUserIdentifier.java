@@ -1,8 +1,6 @@
 package com.boubei.tss.framework.sso;
 
 import com.boubei.tss.framework.exception.UserIdentificationException;
-import com.boubei.tss.framework.sso.AnonymousOperator;
-import com.boubei.tss.framework.sso.IOperator;
 import com.boubei.tss.framework.sso.identifier.BaseUserIdentifier;
 
 /** 
