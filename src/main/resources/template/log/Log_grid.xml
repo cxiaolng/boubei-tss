@@ -8,7 +8,7 @@
 		<column name="operatorName"  caption="操作人"   mode="string" width="80px"/>
 		<column name="operatorIP"    caption="操作人IP" mode="string" width="90px"/>
 		<column name="operatorBrowser"  caption="浏览器" mode="string" width="150px"/>
-		<column name="operateTime"   caption="操作时间"  mode="date" pattern="yyyy-MM-dd HH:mm:ss" width="120px"/>
+		<column name="operateTime"   caption="操作完成时间"  mode="date" pattern="yyyy-MM-dd HH:mm:ss" width="120px"/>
 	</declare>			
 	<data>
 	</data>

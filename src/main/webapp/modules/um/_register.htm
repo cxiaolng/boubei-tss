@@ -66,12 +66,7 @@
             formNode : $.cache.XmlDatas[XML_REGISTER_INFO].querySelector("data"),
             onsuccess : function() { 
                 $.alert("您已成功注册，请等待管理员审批后再登陆");
-                if( opener ) {  // opener返回对创建该窗口的Window 对象的引用
-                    var loginName = registerForm.getData("loginName");
-                    opener.$("#userName").value(loginName); 
-                }
-                
-                setTimeout(window.close, 3000);
+                init();
             }
         });
     }

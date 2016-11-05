@@ -411,13 +411,18 @@ public abstract class _Database {
         	sb.append("<column name=\"fileNum\" mode=\"string\" caption=\"附件数\" />");
         }
         
-        if( (this.customizeTJ+"").indexOf("hideCUV") < 0 && needLog) { // 判断是否默认隐藏这5列
-        	sb.append("<column name=\"createtime\" mode=\"string\" caption=\"创建时间\" sortable=\"true\"/>");
-            sb.append("<column name=\"creator\" mode=\"string\" caption=\"创建人\" sortable=\"true\"/>");
-            sb.append("<column name=\"updatetime\" mode=\"string\" caption=\"更新时间\" sortable=\"true\"/>");
-            sb.append("<column name=\"updator\" mode=\"string\" caption=\"更新人\" sortable=\"true\"/>");
-            sb.append("<column name=\"version\" mode=\"string\" caption=\"更新次数\" />");
-		}
+        // 判断是否默认隐藏这5列
+        String show5C = "";
+        if( (this.customizeTJ+"").indexOf("hideCUV") >= 0 || !needLog ) {
+        	show5C = "display=\"none\"";
+        }
+    	sb.append("<column name=\"createtime\" " +show5C+ " caption=\"创建时间\" sortable=\"true\"/>");
+        sb.append("<column name=\"creator\" " +show5C+ " caption=\"创建人\" sortable=\"true\"/>");
+        sb.append("<column name=\"updatetime\" " +show5C+ " caption=\"更新时间\" sortable=\"true\"/>");
+        sb.append("<column name=\"updator\" " +show5C+ " caption=\"更新人\" sortable=\"true\"/>");
+        sb.append("<column name=\"version\" " +show5C+ " caption=\"更新次数\" />");
+        
+        // ID列默认隐藏
         sb.append("<column name=\"id\" display=\"none\"/>");
         
         sb.append("</declare><data></data></grid>");

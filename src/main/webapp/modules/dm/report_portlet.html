@@ -122,8 +122,11 @@ function initPortlet() {
                 showQueryForm();
             }
             
-            // 默认每30分钟刷新一次
-            window.setInterval( function() { searchReport( params ); }, (refresh || 30) * 60 * 1000);
+            // 是否自动刷新
+            if(refresh) {
+                refresh = parseInt(refresh);
+                window.setInterval( function() { searchReport( params ); }, refresh * 60 * 1000);
+            }
         }
     });
 }

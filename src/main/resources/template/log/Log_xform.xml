@@ -3,7 +3,7 @@
 	<declare prefix="layout">
 		<column name="id" caption="ID号" mode="string" editable="false"/>
 		<column name="_operatorName" caption="操作人" mode="string" editable="false"/>
-		<column name="_operateTime" caption="操作时间" mode="string" editable="false"/>
+		<column name="_operateTime" caption="操作完成时间" mode="string" editable="false"/>
         <column name="_content" caption="操作内容" mode="string"/>
 	</declare>
 	<layout>
@@ -12,7 +12,7 @@
 			<TD><input binding="id"/></TD>
 			<TD width="50"><label binding="_operatorName"/></TD>
 			<TD><input binding="_operatorName"/></TD>
-			<TD width="50"><label binding="_operateTime"/></TD>
+			<TD width="70"><label binding="_operateTime"/></TD>
 			<TD><input binding="_operateTime"/></TD>
 		</TR>
 		<TR>

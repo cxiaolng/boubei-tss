@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -22,12 +21,11 @@ import java.util.StringTokenizer;
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
 
-import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.cache.Cacheable;
 import com.boubei.tss.cache.JCache;
 import com.boubei.tss.cache.Pool;
+import com.boubei.tss.dm.DMConstants;
 import com.boubei.tss.framework.exception.BusinessException;
-import com.boubei.tss.framework.sso.Environment;
 import com.boubei.tss.util.EasyUtils;
 import com.boubei.tss.util.XMLDocUtil;
 
@@ -278,7 +276,7 @@ public class SQLExcutor {
             }
         } 
         catch (SQLException e) {
-            String exMsg = "出错了：" +e.getMessage()+ " ";
+            String exMsg = "异常：" +e.getMessage()+ " ";
             log.debug(exMsg + "\n   数据源：" + dbUrl + ",\n   参数：" + paramsMap + ",\n   脚本：" + sql);
             throw new BusinessException(exMsg);
         } 
@@ -330,8 +328,8 @@ public class SQLExcutor {
 		} catch (SQLException e) {
 			try { conn.rollback(); } catch (Exception e2) { }
 			
-			String errorMsg = "出错了：" +e.getMessage()+ "\n SQL: " + sql;
-			log.error(errorMsg);
+			String errorMsg = "异常：" +e.getMessage();
+			log.error(errorMsg + "\n SQL: " + sql);
 			throw new BusinessException(errorMsg);
 			
 		} finally {
@@ -430,8 +428,9 @@ public class SQLExcutor {
         	try { conn.rollback(); } 
         	catch (Exception e2) { log.error(e2.getMessage(), e2); }
         	
-        	log.debug(Environment.getUserCode() + ", " + Arrays.asList( paramsList.get(0)) );
-            throw new BusinessException("出错了：" +e.getMessage()+ "\n SQL: " + sql);
+        	String errorMsg = "异常：" +e.getMessage();
+        	log.error(errorMsg+ "\n SQL: " + sql);
+            throw new BusinessException(errorMsg);
             
         } finally {
         	try { conn.setAutoCommit(autoCommit); } 

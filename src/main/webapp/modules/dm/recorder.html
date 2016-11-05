@@ -63,7 +63,29 @@ var _operation = ['1','2','3','4','5'],
 
 // 监听器
 var preListener, // 在表单保存前触发，如不通过，则终止保存
-    afterListener; // 在表单保存后触发，可用作流程控制，发生email等
+    afterListener, // 在表单保存后触发，可用作流程控制，发生email等
+    checkFileOpt,  // 根据选中行的状态信息，确定是否可以继续上传或删除附件
+    attachListerner; // 在附件列表Grid生成后触发，常用于修改附件url
+
+/* -------- 示例 ------------------------------------------
+说明：图片在万马系统上传，需要在BI系统里浏览 （需要先把'/attach/download/'加入到万马的白名单里）
+attachListerner = function(recordId, itemId) {
+  var wm_url = 'http://wanma.800best.com';
+  $.ajax({ 
+    url: URL_ATTACH_LIST + recordId + "/" + itemId, 
+    method: "GET", 
+    headers: {"anonymous": "true", "appCode": "WM"},
+    onresult: function(){
+        $.G("attachGrid", this.getNodeValue("RecordAttach") );       
+        tssJS("#attachGrid td>a").each(function(i, item){
+            if( $(item).text() == '查看' ) {
+                $(item).attr('href', wm_url + $(item).attr('href') + '?anonymous=true');
+            }
+        });
+    } 
+  });
+}
+*/
 
 // 缓存查询条件，增加删除修改后刷新Grid可以继续使用
 var params = {};   
@@ -492,7 +514,7 @@ if( IS_TEST ) {
     URL_ATTACH_DELETE = "data/_success.xml?";
 }
 
-var selectedLineId, checkFileOpt;
+var selectedLineId;
 function manageAttach(lineId) {   
     selectedLineId = lineId || $.G("grid").getColumnValue("id"); 
     
@@ -509,10 +531,11 @@ function manageAttach(lineId) {
                 $("#uploadForm span").show();               
             }
             else {
-                $("#uploadForm span").hide();
-                $("column[name='delOpt']", attachNode).attr("display", "none");
+                $("#uploadForm span").hide();  // 隐藏上传附件操作
+                $("column[name='delOpt']", attachNode).attr("display", "none");  // 隐藏删除附件操作
             }
             var grid = $.G("attachGrid", attachNode);
+            attachListerner && attachListerner(recordId, selectedLineId);
         } 
     });
 }
