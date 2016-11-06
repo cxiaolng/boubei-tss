@@ -23,3 +23,6 @@ cp target/tss.war /Users/jinpujun/Desktop/workspace/release/boubei
 #  service nginx start
 #  /etc/rc.d/init.d/mysqld start
 #  ./home/tss/release/restart.sh
+
+# 备份阿里云TSS库
+# mysqldump -uroot -p -h boubei.com -P 3306 demo_bi | gzip > /Users/jinpujun/Desktop/workspace/backup/demo_bi_`date '+%m-%d-%Y'`.sql.gz

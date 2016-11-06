@@ -26,3 +26,28 @@ DELETE FROM component_log  WHERE `operateTable` = '系统异常';
 truncate table component_log;
 
 select count(*) FROM component_log l where l.operateTable='系统异常';
+
+-- 将日志变成分区表
+ALTER TABLE dm_access_log CHANGE COLUMN accessTime accessTime DATETIME NOT NULL  
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (id, accessTime);
+
+alter table dm_access_log
+partition by range(year(accessTime)*100+month(accessTime))
+(
+	partition p201601 values less than (201601),
+	partition p201602 values less than (201602),
+	partition p201603 values less than (201603),
+	partition p201604 values less than (201604),
+	partition p201605 values less than (201605),
+	partition p201606 values less than (201606),
+	partition p201607 values less than (201607),
+	partition p201608 values less than (201608),
+	partition p201609 values less than (201609),
+	partition p201610 values less than (201610),
+	partition p201611 values less than (201611),
+	partition p201612 values less than (201612),
+	PARTITION p0 values less than  MAXVALUE
+);
+
+alter table dm_access_log add partition (partition p201701 values less than(201701)); 

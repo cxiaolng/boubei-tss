@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
+<meta charset="UTF-8">
+<title>报表查询性能监控</title>
+
+<link rel="stylesheet" href="../../tools/easyui/themes/default/easyui.css">
+<link rel="stylesheet" href="../../tools/easyui/themes/icon.css">
+
+<script src="../../tools/tssJS/tssJS.all.js"></script>
+
+<script src="../../tools/easyui/jquery.min.js"></script>
+<script src="../../tools/easyui/jquery.easyui.min.js"></script>
+<script src="../../tools/easyui/easyui-lang-zh_CN.js"></script>
+
+<script src="../../tools/echarts/echarts-all-2.1.10.js"></script>
+<script src="../../more/bi_template/echart.js"></script>
+<script src="../../more/bi_template/common.js"></script>
+
+<STYLE type="text/css">
+
+         
+</STYLE>
+
+<script type="text/javascript">
+
+TOMCAT_URL = "";  // "http://10.9.45.68:8084";
+BASE_JSON_URL  = TOMCAT_URL + '/tss/data/json/';
+BASE_JSONP_URL = TOMCAT_URL + '/tss/data/jsonp/';
+
+function json_url(id) { return BASE_JSON_URL + id; }
+function jsonp_url(id) { return BASE_JSONP_URL + id; }
+
+
+$(document).ready(function(){
+
+    query();
+
+});
+
+var FIELDS_1 = [
+    { field: '服务名称', title: '服务名称', width: 120 },
+    { field: '最长运行时长', title: '最长时长', width: 60 },
+    { field: '平均运行时长', title: '平均时长', width: 60 },
+    { field: '访问次数', title: '访问次数', width: 60 }
+];
+$.each(FIELDS_1, function(i, field){
+    field.align = "center";
+});
+
+var today = new Date().format("yyyy-MM-dd")
+
+function query(params) {
+    params = params || {"param1": today};
+
+    tssJS.showWaitingLayer();
+    tssJS.getJSON(json_url(503), params, function(data){
+
+        $('#t1').datagrid({
+            fit : true,
+            fitColumns : true,
+            rownumbers : true,
+            singleSelect : true,
+            columns : [FIELDS_1],
+            data: data,
+            onClickRow: function(index, row) {
+                var serviceName = row["服务名称"];
+                showDetail( serviceName );
+            }
+        });
+
+        if(data.length) {
+            var firstName = data[0]["服务名称"];
+            showDetail( firstName );
+        }
+        tssJS.hideWaitingLayer();
+    });
+}
+
+var FIELDS_2 = [
+    { field: '服务名称', title: '服务名称', width: 100 },
+    { field: '参数', title: '参数', width: 250 },
+    { field: '访问时间', title: '访问时间', width: 100 },
+    { field: '运行时长', title: '运行时长', width: 60 },
+    { field: '访问人', title: '访问人', width: 60 }
+];
+$.each(FIELDS_2, function(i, field){
+    field.align = "center";
+});
+
+function showDetail(serviceName) {
+    tssJS.showWaitingLayer();
+    tssJS.getJSON(json_url(504), {"param1": serviceName, "param3": today, "pagesize": 100, "page": 1}, function(data){
+        $('#t2').datagrid({
+            fit : true,
+            fitColumns : true,
+            rownumbers : true,
+            columns : [FIELDS_2],
+            data: data
+        });
+
+        tssJS("#x1").text(serviceName);
+        tssJS.hideWaitingLayer();
+    });
+
+    showChart( serviceName );
+}
+
+function showChart(serviceName) {
+    tssJS.showWaitingLayer();
+    tssJS.getJSON(json_url(758), {"param1": serviceName}, function(data){
+        var data2 = [];
+        data.each( function(i, item) {
+            data2.push( {"name": item.name, "value": item["访问次数"] } );
+        } );
+        echartLine2D("canvasDiv", "趋势图", {"访问速度": data, "访问次数": data2});
+        
+        tssJS("#x2").text(serviceName);
+        tssJS.hideWaitingLayer();
+    });
+}
+    
+</script>
+
+
+</head>
+
+<body>
+   
+   <div class="easyui-layout" data-options="fit:'true'">
+        <div data-options="region:'west',split:true" title="数据服务" style="width:30%;" border="false">
+            <table id="t1" border="false"></table>
+        </div>
+        <div data-options="region:'east'"  style="width:70%;" border="false">
+            <div class="easyui-layout" data-options="fit:'true'" border="false">
+                <div data-options="region:'north'" title="【<i id='x1'></i>】访问明细" style="height:60%;" border="false">
+                    <table id="t2" border="false"></table>
+                </div>
+                <div data-options="region:'south'" title="【<i id='x2'></i>】走势图" style="height:40%;" border="false">
+                    <div id='canvasDiv' style="height: 100%;"></div>
+                </div>
+            </div>
+        </div>       
+    </div>
+
+</body>
+</html>
