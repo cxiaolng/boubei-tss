@@ -67,6 +67,9 @@ public class DataExportTest extends AbstractTest4DM {
 		List<Object[]> data2 = new ArrayList<Object[]>();
 		data2.add(new Object[] { 1, 2 } );
 		DataExport.exportCSV(data2, cnFields); 
+		
+		Object[][] result2 = DataExport.convertList2Array(null);
+		Assert.assertEquals(0, result2.length);
 	}
 }
 

@@ -29,6 +29,14 @@ public class SyncUserRoleJobTest extends AbstractTest4DM {
 		String sql = "select count(*) num from um_roleuser where userId = ?";
 		Object result = SQLExcutor.query(DMConstants.LOCAL_CONN_POOL, sql, 123L).get(0).get("num");
 		Assert.assertTrue( EasyUtils.obj2Int(result) > 0 );
+		
+		jobConfig =  "select 123 user, '102,103,104' role1, '121,122,104' as role2 from dual where sysdate > ? or sysdate > ?@connectionpool@errorcase";
+		try {
+			SyncUserRoleJob job = new SyncUserRoleJob();
+        	job.excuteJob(jobConfig);
+		} catch(Exception e) {
+			Assert.assertFalse(true);
+        }
 	}
 	
 }

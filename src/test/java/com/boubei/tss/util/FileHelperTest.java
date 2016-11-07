@@ -4,8 +4,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.mock.web.MockHttpServletResponse;
 
 public class FileHelperTest {
 	
@@ -86,5 +89,14 @@ public class FileHelperTest {
          FileHelper.deleteFile(tempDir1);
          FileHelper.deleteFile(tempDir2.getPath());
          FileHelper.deleteFile(zipFile);
+         
+         FileHelper.closeSteam(null, null);
+         
+         HttpServletResponse response = new MockHttpServletResponse();
+         FileHelper.downloadFile(response, "/1.pdf", null);
+         
+		 FileHelper.downloadFile(response, "/1.jpg", "1.jpg");
+		 FileHelper.downloadFile(response, "/1.png", "1.png");
+		 FileHelper.downloadFile(response, "/1.pdf", "1.pdf");
     }
 }

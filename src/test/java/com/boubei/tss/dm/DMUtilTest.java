@@ -12,11 +12,13 @@ public class DMUtilTest {
 	
 	@Test
 	public void test() {
+		Assert.assertNull(DMUtil.preTreatValue(null));
 		Assert.assertNull(DMUtil.preTreatValue(null, "string"));
 		
 		Assert.assertEquals("JK", DMUtil.preTreatValue("JK", null));
 		Assert.assertEquals("JK", DMUtil.preTreatValue("JK", "hidden"));
 		
+		Assert.assertNull(DMUtil.preTreatValue("xxx", "number"));
 		Assert.assertEquals(12L, DMUtil.preTreatValue("12", "number"));
 		Assert.assertEquals(12.2, DMUtil.preTreatValue("12.2", "number"));
 		
@@ -30,6 +32,11 @@ public class DMUtilTest {
 		map.put("report.info", "报表【120, 报表120, 创建人, 修改人】");
 		
 		DMUtil.freemarkerParse("<#if p1??> <#else> ${param1} </#if>", map);
+		
+		Assert.assertEquals(0, DMUtil.preTreatScopeValue(null).length);
+		Assert.assertEquals(1, DMUtil.preTreatScopeValue("[2016-10-01]").length);
+		Assert.assertEquals(2, DMUtil.preTreatScopeValue("[2016-10-01,2016-10-31]").length);
+		Assert.assertEquals(2, DMUtil.preTreatScopeValue("[1,100,108]").length);
 	}
 
 }

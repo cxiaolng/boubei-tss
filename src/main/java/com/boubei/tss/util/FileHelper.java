@@ -546,19 +546,18 @@ public class FileHelper {
 		}
 	}
 	
-	private static void closeSteam(InputStream inStream, OutputStream outStream) {
+	static void closeSteam(InputStream inStream, OutputStream outStream) {
 		try {
-            if(inStream != null)
+            if(inStream != null) {
                 inStream.close();
+            }
 		} catch (IOException e) {
-			throw new RuntimeException("输入流关闭失败", e);
 		} finally {
 			try {
                 if(outStream != null) {
                 	outStream.close();
                 }
 			} catch (IOException e) {
-//				log.debug("输出流关闭失败", e);
 			}
 		}
 	}
@@ -728,12 +727,7 @@ public class FileHelper {
         } catch (IOException e) {
             log.error("下载附件时IO异常，" + e.getMessage() + "," + e.getCause());
         } finally {
-            if (stream != null) {
-                stream.close();
-            }
-            if (out != null) {
-                out.close();
-            }
+            closeSteam(stream, out);
         }		
 	}
     

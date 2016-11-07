@@ -51,7 +51,7 @@ public class _RecorderTest extends AbstractTest4DM {
 		record.setDatasource(DMConstants.LOCAL_CONN_POOL);
 		record.setTable("x_tbl_12");
 		record.setDefine(tblDefine);
-		record.setNeedLog(ParamConstants.TRUE);
+		record.setNeedLog(ParamConstants.FALSE);
 		
 		record.setNeedFile(ParamConstants.TRUE);
 		

@@ -1,11 +1,11 @@
-/*
-$(function() {
-    var scriptNode = document.createElement("script");
-    scriptNode.src = "http://s11.cnzz.com/z_stat.php?id=1256153120&web_id=1256153120";
-    scriptNode.async = false;
-    $('head').appendChild(scriptNode);
-});
-*/
+if( location.hostname == 'www.boubei.com' ) {
+	$(function() {
+	    var scriptNode = document.createElement("script");
+	    scriptNode.src = "http://s11.cnzz.com/z_stat.php?id=1256153120&web_id=1256153120";
+	    scriptNode.async = false;
+	    $('head').appendChild(scriptNode);
+	});
+}
 
 /*********************** 系统配置 开始 **********************************/
  var

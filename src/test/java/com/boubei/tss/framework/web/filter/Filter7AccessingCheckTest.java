@@ -1,7 +1,9 @@
 package com.boubei.tss.framework.web.filter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.easymock.EasyMock;
 import org.easymock.IMocksControl;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -60,7 +63,7 @@ public class Filter7AccessingCheckTest {
 		EasyMock.expect(request.getServletPath()).andReturn("/login.do");
 		EasyMock.expect(request.getSession(false)).andReturn(session).times(0, 8);
 		
-		response.sendRedirect("/404.html");
+		response.sendRedirect("/tss/404.html");
 		EasyMock.expectLastCall();
 		
 		EasyMock.expect(
@@ -112,11 +115,11 @@ public class Filter7AccessingCheckTest {
     
     @Test
     public final void testCheckSessionIsNull2() throws IOException, ServletException {
-    	EasyMock.expect(request.getRequestURI()).andReturn("/tss/framework/module/param/param.htm").times(0, 3);
-    	EasyMock.expect(request.getServletPath()).andReturn("/framework/module/param/param.htm").times(0, 3);;
+    	EasyMock.expect(request.getRequestURI()).andReturn("/tss/modules/_param/param.htm").times(0, 3);
+    	EasyMock.expect(request.getServletPath()).andReturn("/modules/_param/param.htm").times(0, 3);;
     	EasyMock.expect(request.getSession(false)).andReturn( null ).times(0, 8);
     	
-    	response.sendRedirect("/404.html");
+    	response.sendRedirect("/tss/404.html");
 		EasyMock.expectLastCall();
 		
         mocksControl.replay(); // 让mock 准备重放记录的数据
@@ -125,5 +128,29 @@ public class Filter7AccessingCheckTest {
             public void doFilter(ServletRequest request, ServletResponse response) throws IOException, ServletException {
             }
         });
+    }
+    
+    @Test
+    public void testAccessingChecker() {
+    	 AccessingChecker checker = AccessingChecker.getInstance();
+    	 Assert.assertNotNull( checker.get404URL() );
+    	 
+    	 Assert.assertTrue( checker.checkPermission(null, "/login.do") ); 
+    	 
+    	 Assert.assertFalse( checker.checkPermission(null, "/modules/dm/datasource.html") );
+    	 
+    	 List<Object> rights = new ArrayList<Object>();
+    	 rights.add("anonymous");
+    	 Assert.assertFalse( checker.checkPermission(rights, "/modules/dm/datasource.html") );
+    	 
+    	 rights.add(-1);
+    	 rights.add("Admin");
+		 Assert.assertTrue( checker.checkPermission(rights, "/modules/dm/datasource.html") );
+    	 
+    	 AccessingChecker.rightsMap.clear();
+    	 Assert.assertTrue( checker.checkPermission(null, "/login.do") );
+    	 
+    	 AccessingChecker.rightsMap = null;
+    	 Assert.assertTrue( checker.checkPermission(null, "/login.do") );
     }
 }
