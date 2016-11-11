@@ -23,6 +23,6 @@ function checkDataService() {
 		if( /^\d*$/.test(ds) ) {
 			ds = NO_AUTH_PATH + 'data/json/' + target.id;
 		}
-        $("#_options").value(ds);
+        $("#_options").focus().value(ds);
     });
 }

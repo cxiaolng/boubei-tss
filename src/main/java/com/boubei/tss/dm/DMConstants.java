@@ -9,7 +9,7 @@ public final class DMConstants {
 	public final static String DEFAULT_CONN_POOL = "default_conn_pool";
 	public final static String LOCAL_CONN_POOL   = "connectionpool";
 
-	public final static String TEMP_EXPORT_PATH  = "TEMP_EXPORT_PATH";
+	public final static String TEMP_EXPORT_PATH  = "TEMP_EXPORT_PATH"; // 用于报表导出及数据录入附件上传
     
 	public final static String SCRIPT_MACRO = "ReportScriptMacros";
     

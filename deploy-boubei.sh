@@ -25,4 +25,4 @@ cp target/tss.war /Users/jinpujun/Desktop/workspace/release/boubei
 #  ./home/tss/release/restart.sh
 
 # 备份阿里云TSS库
-# mysqldump -uroot -p -h boubei.com -P 3306 demo_bi | gzip > /Users/jinpujun/Desktop/workspace/backup/demo_bi_`date '+%m-%d-%Y'`.sql.gz
+# mysqldump -uroot -p demo_bi | gzip > /home/tssbi/mysql_bk/demo_bi_`date '+%m-%d-%Y'`.sql.gz

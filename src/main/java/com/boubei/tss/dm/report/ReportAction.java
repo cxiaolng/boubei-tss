@@ -301,6 +301,7 @@ public class ReportAction extends BaseActionSupport {
             Long parentId = parentIdValue == null ? Report.DEFAULT_PARENT_ID : EasyUtils.obj2Long(parentIdValue);
             map.put("parentId", parentId);
             map.put("type", type);
+            map.put("param", "[\n{'label':'不要缓存','type':'hidden','name':'noCache','defaultValue':'true'}\n]");
             xformEncoder = new XFormEncoder(uri, map);
         } 
         else {

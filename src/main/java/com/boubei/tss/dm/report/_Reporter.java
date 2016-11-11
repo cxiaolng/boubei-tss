@@ -105,6 +105,8 @@ public class _Reporter extends BaseActionSupport {
     	}
     	
     	requestMap.remove("_time"); // 剔除jsonp为防止url被浏览器缓存而加的时间戳参数
+    	requestMap.remove("jsonpCallback"); // jsonp__x,其名也是唯一的
+    	
     	return requestMap;
     }
  
@@ -223,7 +225,6 @@ public class _Reporter extends BaseActionSupport {
     		throw new BusinessException("【" + report + "】数据服务不存在。");
     	}
     	
-    	long start = System.currentTimeMillis();
     	String jsonpCallback = request.getParameter("jsonpCallback"); // jsonp是用GET请求
     	Map<String, String> requestMap = getRequestMap(request, jsonpCallback != null);
     	
@@ -238,6 +239,7 @@ public class _Reporter extends BaseActionSupport {
     	int _pagesize = EasyUtils.obj2Int(pagesize);
     	int _page = page != null ? EasyUtils.obj2Int(page) : 1;
     			
+    	long start = System.currentTimeMillis();
         SQLExcutor excutor = reportService.queryReport(reportId, requestMap, _page, _pagesize, getLoginUserId(requestMap));
         
         // 对一些转换为json为报错的类型值进行预处理

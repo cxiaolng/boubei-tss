@@ -75,12 +75,16 @@ public class ReportServiceImpl implements ReportService {
 
     public Report saveReport(Report report) {
         if ( report.getId() == null ) {
-            report.setSeqNo(reportDao.getNextSeqNo(report.getParentId()));
+            Long parentId = report.getParentId();
+            Report parent = reportDao.getEntity(parentId);
+            if( (parent == null || parent.isActive() ) && report.isGroup() ) {
+            	report.setDisabled( ParamConstants.TRUE ); // 报表默认为停用，组看父组的状态
+            }
+            
+			report.setSeqNo(reportDao.getNextSeqNo(parentId));
             reportDao.create(report);
             
-            if(report.isGroup()) {
-            	report.setDisabled(ParamConstants.FALSE);
-            }
+            
         }
         else {
         	reportDao.refreshEntity(report);
