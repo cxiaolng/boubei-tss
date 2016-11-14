@@ -42,7 +42,7 @@ public class ReportJob extends AbstractJob {
 	/* 
 	 * jobConfig的格式为
 	 *  
-	 *  1:报表一:x1@x.com
+	 *  1:报表一:x1@163.com#sys
      *  2:报表二:x2@x.com
 	 *	3:报表三:x3@x.com,x4@x.com:param1=a,param2=b
 	 */
@@ -57,7 +57,7 @@ public class ReportJob extends AbstractJob {
 			if(EasyUtils.isNullOrEmpty(jobConfigs[i])) continue;
 			
 			String reportInfo[] = EasyUtils.split(jobConfigs[i], ":");
-			if(reportInfo.length <= 2) continue;
+			if(reportInfo.length < 3) continue;
 			
 			String receiverStr = reportInfo[2].trim();
 			ReceiverReports rr = map.get(receiverStr);
@@ -84,29 +84,29 @@ public class ReportJob extends AbstractJob {
 	    	rr.reportParams.add(paramsMap);
 		}
 		
-		for(String receiverStr : map.keySet()) {
-			String receiver[] = loginService.getContactInfos( receiverStr, false );
-			if(receiver == null || receiver.length == 0) {
-				continue;
-			}
+		for(String receivers : map.keySet()) {
+			ReceiverReports rr = map.get(receivers);
+			String[] info = MailUtil.parseReceivers(receivers);
+			String receiver[] = loginService.getContactInfos( info[1], false );
 			
-			ReceiverReports rr = map.get(receiverStr);
-			send(receiver, rr);
+			if(receiver != null && receiver.length > 0) {
+				send(info[0], receiver, rr);
+			}
 		}
 	}
 	
-	private void send(String[] receiver, ReceiverReports rr) {
+	private void send(String _ms, String[] receiver, ReceiverReports rr) {
 		String title = EasyUtils.list2Str(rr.reportTitles);
 		
-		JavaMailSenderImpl sender = (JavaMailSenderImpl) MailUtil.getMailSender();
+		JavaMailSenderImpl sender = MailUtil.getMailSender(_ms);
 		MimeMessage mailMessage = sender.createMimeMessage();
 		
 		try {
 			// 设置utf-8或GBK编码，否则邮件会有乱码
 			MimeMessageHelper messageHelper = new MimeMessageHelper(mailMessage, true, "utf-8");
-			messageHelper.setTo(receiver);   // 接受者
-			messageHelper.setFrom(MailUtil.getEmailFrom());  // 发送者
-			messageHelper.setSubject("定时报表：" + title); // 主题
+			messageHelper.setFrom( MailUtil.getEmailFrom(_ms) ); // 发送者
+			messageHelper.setTo(receiver);                       // 接受者
+			messageHelper.setSubject("定时报表：" + title);        // 主题
 			
 			// 邮件内容，注意加参数true
 			StringBuffer html = new StringBuffer();

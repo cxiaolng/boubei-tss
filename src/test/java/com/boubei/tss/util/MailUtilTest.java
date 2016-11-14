@@ -17,12 +17,12 @@ public class MailUtilTest {
 	@Test
 	public void test2() {
 		try {
-			MailUtil.send("test", "test", null);
+			MailUtil.send("test", "test", null, MailUtil.DEFAULT_MS);
 		} catch(Exception e) {
 		}
 		
 		try {
-			MailUtil.send("test", "test", new String[]{});
+			MailUtil.send("test", "test", new String[]{}, MailUtil.DEFAULT_MS);
 		} catch(Exception e) {
 		}
 	}

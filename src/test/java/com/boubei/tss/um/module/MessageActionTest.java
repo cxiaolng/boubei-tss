@@ -22,12 +22,14 @@ public class MessageActionTest extends AbstractTest4UM {
 	
 	@Test
 	public void test() {
-		messageAction.sendEmail("test", "<html><body><h3>生命变的厚重</h3></body></html>", MailUtil.getEmailTo()[0]);
+		messageAction.sendEmail("test", "<html><body><h3>生命变的厚重</h3></body></html>", 
+				MailUtil.getEmailTo(MailUtil.DEFAULT_MS)[0]);
 	}
 	
 	@Test
 	public void test2() {
-		messageAction.sendHtmlEmail("test", "<html><body><h3>生命变的厚重</h3></body></html>", MailUtil.getEmailTo()[0]);
+		messageAction.sendHtmlEmail("test", "<h3>生命变的厚重</h3>", 
+				MailUtil.getEmailTo(MailUtil.DEFAULT_MS)[0]);
 	}
 	
 	@Test

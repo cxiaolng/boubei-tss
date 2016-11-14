@@ -37,18 +37,21 @@ public class MessageAction extends BaseActionSupport {
     @RequestMapping(value = "/email", method = RequestMethod.POST)
     @ResponseBody
     public void sendEmail(String title, String content, String receivers) {
-    	String[] emails = loginService.getContactInfos(receivers, false);
+    	String[] info = MailUtil.parseReceivers(receivers);
+    	String[] emails = loginService.getContactInfos(info[1], false);
     	if(emails != null && emails.length > 0) {
-    		MailUtil.send(title, content, emails);
+    		MailUtil.send(title, content, emails, info[0]);
     	}
     }
     
     @RequestMapping(value = "/email2", method = RequestMethod.POST)
     @ResponseBody
     public void sendHtmlEmail(String title, String content, String receivers) {
-    	String[] emails = loginService.getContactInfos(receivers, false);
+		String[] info = MailUtil.parseReceivers(receivers);
+    	String[] emails = loginService.getContactInfos(info[1], false);
+    	
     	if(emails != null && emails.length > 0) {
-    		MailUtil.sendHTML(title, content, emails);
+    		MailUtil.sendHTML(title, content, emails, info[0]);
     	}
     }
     
