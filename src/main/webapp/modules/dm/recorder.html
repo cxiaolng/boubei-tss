@@ -65,6 +65,7 @@ var _operation = ['1','2','3','4','5'],
 var preListener, // 在表单保存前触发，如不通过，则终止保存
     afterListener, // 在表单保存后触发，可用作流程控制，发生email等
     checkFileOpt,  // 根据选中行的状态信息，确定是否可以继续上传或删除附件
+    disableSave,
     attachListerner; // 在附件列表Grid生成后触发，常用于修改附件url
 
 /* -------- 示例 ------------------------------------------
@@ -299,7 +300,7 @@ function loadDetailData(rowID) {
     attachReminder(rowID, xform); // 离开提醒
 
     // 设置保存/关闭按钮操作
-    if( canEditRow(rowID) ) {
+    if( canEditRow(rowID) && (!disableSave || !disableSave())) {
         $("#page1BtSave").show().click( function() { saveSource(rowID);  } );
     } else {
         $("#page1BtSave").hide();
